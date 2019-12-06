@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/image_bg"
+        android:layout_width="@dimen/dp_314"
+        android:layout_height="@dimen/dp_134"
+        android:layout_marginTop="@dimen/dp_12"
+        android:background="@drawable/shape_competition_management"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/match_name"
+        android:layout_width="@dimen/dp_160"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp_21"
+        android:text="比赛："
+        android:textColor="@color/wai_content_color"
+        android:maxLines="1"
+        android:ellipsize="end"
+        android:textSize="13sp"
+        app:layout_constraintLeft_toLeftOf="@+id/competition_round"
+        app:layout_constraintTop_toTopOf="@+id/image_bg" />
+
+    <TextView
+        android:id="@+id/group_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="组别："
+        android:textColor="@color/wai_content_color"
+        android:textSize="13sp"
+        app:layout_constraintLeft_toLeftOf="@+id/competition_round"
+        app:layout_constraintTop_toBottomOf="@+id/match_name" />
+
+    <TextView
+        android:id="@+id/competition_round"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/dp_14"
+        android:text="轮次："
+        android:textColor="@color/wai_content_color"
+        android:textSize="13sp"
+        app:layout_constraintLeft_toLeftOf="@+id/image_bg"
+        app:layout_constraintTop_toBottomOf="@+id/group_name" />
+
+    <TextView
+        android:id="@+id/competition_black"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="黑方："
+        android:textColor="@color/wai_content_color"
+        android:textSize="13sp"
+        app:layout_constraintLeft_toLeftOf="@+id/competition_round"
+        app:layout_constraintTop_toBottomOf="@+id/competition_round" />
+
+    <TextView
+        android:id="@+id/competition_white"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="白方："
+        android:textColor="@color/wai_content_color"
+        android:textSize="13sp"
+        app:layout_constraintLeft_toLeftOf="@+id/competition_round"
+        app:layout_constraintTop_toBottomOf="@+id/competition_black" />
+
+
+    <TextView
+        android:id="@+id/result_of_the_match"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="@dimen/dp_59"
+        android:text="比赛结果："
+        android:textColor="@color/wai_content_color"
+        android:textSize="13sp"
+        app:layout_constraintRight_toRightOf="@+id/image_bg"
+        app:layout_constraintTop_toTopOf="@+id/match_name" />
+
+    <TextView
+        android:id="@+id/result_match_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp_15"
+        android:text="未判棋"
+        android:textColor="@color/color_ff020e"
+        android:textSize="18sp"
+        app:layout_constraintLeft_toLeftOf="@+id/result_of_the_match"
+        app:layout_constraintRight_toRightOf="@+id/result_of_the_match"
+        app:layout_constraintTop_toBottomOf="@+id/result_of_the_match" />
+
+    <Button
+        android:id="@+id/button_judge"
+        android:layout_width="@dimen/dp_60"
+        android:layout_height="@dimen/dp_25"
+        android:layout_marginBottom="@dimen/dp_15"
+        android:background="@mipmap/integral_shopping_mall_yes"
+        android:text="判棋"
+        android:textColor="@color/color_a53f02"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="@+id/image_bg"
+        app:layout_constraintLeft_toLeftOf="@+id/result_of_the_match"
+        app:layout_constraintRight_toRightOf="@+id/result_of_the_match" />
+</android.support.constraint.ConstraintLayout>

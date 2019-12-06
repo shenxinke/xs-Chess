@@ -1,0 +1,242 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <include layout="@layout/login_title_layout"/>
+
+    <TextView
+        android:id="@+id/perfect_username"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/dp_50"
+        android:layout_marginTop="@dimen/dp_65"
+        android:text="@string/perfect_username"
+        android:textColor="@color/white"
+        android:textSize="@dimen/sp_15"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/prefect_username"
+        android:layout_width="@dimen/dp_200"
+        android:layout_height="@dimen/dp_33"
+        android:layout_marginLeft="@dimen/dp_30"
+        android:background="@drawable/textview_round_border"
+        android:paddingLeft="@dimen/dp_10"
+        android:paddingRight="@dimen/dp_10"
+        android:singleLine="true"
+        android:textSize="15sp"
+        app:layout_constraintBottom_toBottomOf="@+id/perfect_username"
+        app:layout_constraintLeft_toRightOf="@+id/perfect_username"
+        app:layout_constraintTop_toTopOf="@+id/perfect_username" />
+
+    <TextView
+        android:id="@+id/perfect_usersex"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp_30"
+        android:text="@string/perfect_usersex"
+        android:textColor="@color/white"
+        android:textSize="@dimen/sp_15"
+        app:layout_constraintLeft_toLeftOf="@+id/perfect_username"
+        app:layout_constraintTop_toBottomOf="@+id/perfect_username" />
+
+    <RadioGroup
+        android:id="@+id/prefect_radioGroup1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="@+id/perfect_usersex"
+        app:layout_constraintLeft_toLeftOf="@+id/prefect_username"
+        app:layout_constraintTop_toTopOf="@+id/perfect_usersex">
+
+        <RadioButton
+            android:id="@+id/prefect_radio1"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:checked="true"
+            android:drawableRight="@mipmap/men2x" />
+
+        <RadioButton
+            android:id="@+id/prefect_radio2"
+            android:layout_width="85dp"
+            android:layout_height="@dimen/dp_50"
+            android:layout_marginLeft="@dimen/dp_20"
+            android:checked="false"
+            android:drawableRight="@mipmap/wemon2x" />
+    </RadioGroup>
+
+    <TextView
+        android:id="@+id/perfect_barthday"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp_30"
+        android:text="@string/perfect_barthday"
+        android:textColor="@color/white"
+        android:textSize="@dimen/sp_15"
+        app:layout_constraintLeft_toLeftOf="@+id/perfect_usersex"
+        app:layout_constraintTop_toBottomOf="@+id/perfect_usersex" />
+
+    <TextView
+        android:id="@+id/prefect_birthdaystring"
+        android:layout_width="@dimen/dp_200"
+        android:layout_height="@dimen/dp_33"
+        android:background="@drawable/textview_round_border"
+        android:drawableRight="@mipmap/date"
+        android:editable="false"
+        android:gravity="center"
+        android:paddingRight="@dimen/dp_6"
+        android:textColor="@color/black"
+        android:textSize="15sp"
+        app:layout_constraintBottom_toBottomOf="@+id/perfect_barthday"
+        app:layout_constraintLeft_toLeftOf="@+id/prefect_username"
+        app:layout_constraintTop_toTopOf="@+id/perfect_barthday" />
+
+    <TextView
+        android:id="@+id/perfect_useraddress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp_30"
+        android:text="@string/perfect_useraddress"
+        android:textColor="@color/white"
+        android:textSize="@dimen/sp_15"
+        app:layout_constraintRight_toRightOf="@+id/perfect_barthday"
+        app:layout_constraintTop_toBottomOf="@+id/perfect_barthday" />
+
+
+    <com.xswq.chess.myapplication.customview.MaterialSpinner
+        android:id="@+id/prefect_spinner1"
+        android:layout_width="@dimen/dp_95"
+        android:layout_height="@dimen/dp_33"
+        android:layout_centerVertical="true"
+        android:ellipsize="end"
+        android:gravity="center_horizontal"
+        android:singleLine="true"
+        android:spinnerMode="dropdown"
+        android:textColor="@color/black"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="@+id/perfect_useraddress"
+        app:layout_constraintLeft_toLeftOf="@+id/prefect_username"
+        app:layout_constraintTop_toTopOf="@+id/perfect_useraddress" />
+
+    <com.xswq.chess.myapplication.customview.MaterialSpinner
+        android:id="@+id/prefect_spinner2"
+        android:layout_width="@dimen/dp_95"
+        android:layout_height="@dimen/dp_33"
+        android:layout_alignParentEnd="true"
+        android:ellipsize="end"
+        android:gravity="center_horizontal"
+        android:singleLine="true"
+        android:spinnerMode="dropdown"
+        android:textColor="@color/black"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="@+id/perfect_useraddress"
+        app:layout_constraintRight_toRightOf="@+id/prefect_username"
+        app:layout_constraintTop_toTopOf="@+id/perfect_useraddress" />
+
+
+    <TextView
+        android:id="@+id/perfect_the_garden"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp_30"
+        android:text="@string/perfect_the_garden"
+        android:textColor="@color/white"
+        android:textSize="@dimen/sp_15"
+        app:layout_constraintRight_toRightOf="@+id/perfect_useraddress"
+        app:layout_constraintTop_toBottomOf="@+id/perfect_useraddress" />
+
+
+    <EditText
+        android:id="@+id/prefect_text_garden"
+        android:layout_width="@dimen/dp_200"
+        android:layout_height="@dimen/dp_33"
+        android:layout_marginLeft="@dimen/dp_30"
+        android:background="@drawable/textview_round_border"
+        android:hint="@string/perfect_the_garden_hint"
+        android:paddingLeft="@dimen/dp_10"
+        android:paddingRight="@dimen/dp_10"
+        android:singleLine="true"
+        android:textColorHint="@color/color_1060b5"
+        android:textSize="11sp"
+        app:layout_constraintBottom_toBottomOf="@+id/perfect_the_garden"
+        app:layout_constraintLeft_toRightOf="@+id/perfect_the_garden"
+        app:layout_constraintTop_toTopOf="@+id/perfect_the_garden" />
+
+    <TextView
+        app:layout_constraintRight_toRightOf="@+id/prefect_text_garden"
+        app:layout_constraintLeft_toLeftOf="@+id/prefect_text_garden"
+        app:layout_constraintTop_toBottomOf="@+id/prefect_text_garden"
+        android:layout_width="wrap_content"
+        android:layout_marginTop="@dimen/dp_5"
+        android:layout_height="wrap_content"
+        android:text="@string/perfect_the_garden_text"
+        android:textColor="@color/white"
+        android:textSize="11sp" />
+
+    <TextView
+        android:id="@+id/perfect_teacher"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp_40"
+        android:text="@string/perfect_teacher"
+        android:textColor="@color/white"
+        android:textSize="@dimen/sp_15"
+        app:layout_constraintRight_toRightOf="@+id/perfect_useraddress"
+        app:layout_constraintTop_toBottomOf="@+id/perfect_the_garden" />
+
+    <com.xswq.chess.myapplication.customview.MaterialSpinner
+        android:id="@+id/prefect_teacher"
+        android:layout_width="200dp"
+        android:layout_height="33dp"
+        android:layout_alignParentEnd="true"
+        android:ellipsize="end"
+        android:gravity="center_horizontal"
+        android:singleLine="true"
+        android:spinnerMode="dropdown"
+        android:textColor="@color/black"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="@+id/perfect_teacher"
+        app:layout_constraintLeft_toLeftOf="@+id/prefect_spinner1"
+        app:layout_constraintTop_toTopOf="@+id/perfect_teacher" />
+
+    <TextView
+        android:id="@+id/perfect_class_id"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp_30"
+        android:text="@string/perfect_class_id"
+        android:textColor="@color/white"
+        android:textSize="@dimen/sp_15"
+        app:layout_constraintRight_toRightOf="@+id/perfect_useraddress"
+        app:layout_constraintTop_toBottomOf="@+id/perfect_teacher" />
+
+    <com.xswq.chess.myapplication.customview.MaterialSpinner
+        android:id="@+id/prefect_class"
+        android:layout_width="200dp"
+        android:layout_height="33dp"
+        android:layout_alignParentEnd="true"
+        android:ellipsize="end"
+        android:gravity="center_horizontal"
+        android:singleLine="true"
+        android:spinnerMode="dropdown"
+        android:textColor="@color/black"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="@+id/perfect_class_id"
+        app:layout_constraintLeft_toLeftOf="@+id/prefect_teacher"
+        app:layout_constraintTop_toTopOf="@+id/perfect_class_id" />
+
+    <Button
+        android:id="@+id/prefect_button"
+        android:layout_width="@dimen/dp_320"
+        android:layout_height="@dimen/dp_46"
+        android:layout_marginTop="@dimen/dp_20"
+        android:background="@mipmap/login_yellow"
+        android:text="@string/perfect_submit"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/perfect_class_id" />
+</android.support.constraint.ConstraintLayout>
+

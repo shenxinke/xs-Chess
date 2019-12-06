@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+
+    <include layout ="@layout/login_title_layout"></include>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="@dimen/dp_65"
+        android:orientation="vertical"
+        android:gravity="center_horizontal"
+        >
+
+        <android.support.design.widget.TabLayout
+            android:id="@+id/messagers_tablayout"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/dp_40"
+            app:elevation="@dimen/dp_0"
+            app:tabBackground="@drawable/btn_user_selector"
+            app:tabIndicatorHeight="0dp"
+            app:tabMaxWidth="@dimen/dp_100"
+            app:tabMinWidth="@dimen/dp_20"
+            app:tabPaddingBottom="-1dp"
+            app:tabPaddingEnd="-1dp"
+            app:tabPaddingStart="-1dp"
+            app:tabPaddingTop="-1dp"
+            app:tabMode="fixed"
+            app:tabTextColor="@color/color_0461d2"
+            app:tabSelectedTextColor="@color/white"
+            android:layout_gravity="left"
+            android:layout_marginLeft="@dimen/dp_30"
+            >
+
+        </android.support.design.widget.TabLayout>
+
+        <android.support.v4.view.ViewPager
+            android:id="@+id/messagers_viewpage"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="@dimen/dp_10"
+            android:layout_marginRight="@dimen/dp_10"
+            android:layout_marginBottom="@dimen/dp_10"
+            android:background="@mipmap/navigation_content_bg"
+            >
+
+        </android.support.v4.view.ViewPager>
+
+    </LinearLayout>
+    <include layout="@layout/webview_topic_layout"
+        android:visibility="invisible"
+        ></include>
+</RelativeLayout>

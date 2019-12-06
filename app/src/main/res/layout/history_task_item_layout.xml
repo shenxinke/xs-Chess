@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <TextView
+        android:id="@+id/task_time_id"
+        android:layout_width="@dimen/dp_130"
+        android:layout_height="@dimen/dp_50"
+        android:text="2018-01-06"
+        android:gravity="center"
+        />
+    <TextView
+        android:id="@+id/task_gailv_id"
+        android:layout_width="@dimen/dp_86"
+        android:layout_height="@dimen/dp_50"
+        android:text="80%"
+        android:layout_alignTop="@+id/task_time_id"
+        android:layout_toRightOf="@+id/task_time_id"
+        android:gravity="center"
+        />
+    <TextView
+        android:id="@+id/task_total_id"
+        android:layout_width="@dimen/dp_94"
+        android:layout_height="@dimen/dp_50"
+        android:text="10/80"
+        android:layout_alignTop="@+id/task_time_id"
+        android:layout_toRightOf="@+id/task_gailv_id"
+        android:gravity="center"
+        />
+
+</RelativeLayout>

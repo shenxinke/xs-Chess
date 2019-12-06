@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <ImageView
+        android:id="@+id/integral_shopping_mall_star"
+        android:background="@mipmap/integral_shopping_mall_star"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_300" />
+
+    <ImageView
+        android:id="@+id/integral_shoppingl_light"
+        android:background="@mipmap/integral_shoppingl_light"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_300"  />
+
+    <ImageView
+        android:background="@mipmap/integral_shopping_big_star"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_200" />
+
+    <ImageView
+        android:id="@+id/integral_shopping_head"
+        app:layout_constraintTop_toTopOf="@+id/integral_shopping_mall_star"
+        app:layout_constraintBottom_toBottomOf="@+id/integral_shopping_mall_star"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_width="@dimen/dp_90"
+        android:layout_height="@dimen/dp_90" />
+
+    <ImageView
+        android:visibility="gone"
+        android:id="@+id/integral_shoppingl_buy_succeed"
+        android:background="@mipmap/integral_shoppingl_buy_succeed"
+        app:layout_constraintTop_toBottomOf="@+id/integral_shopping_head"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_width="@dimen/dp_160"
+        android:layout_height="@dimen/dp_50" />
+
+
+    <ImageView
+        android:visibility="gone"
+        android:id="@+id/integral_shoppingl_use_succeed"
+        android:background="@mipmap/integral_shoppingl_use_succeed"
+        app:layout_constraintTop_toBottomOf="@+id/integral_shopping_head"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_width="@dimen/dp_160"
+        android:layout_height="@dimen/dp_50" />
+    
+    <Button
+        android:id="@+id/but_yes"
+        android:text="确定"
+        android:textSize="14sp"
+        android:textColor="@color/color_622f02"
+        android:layout_marginBottom="@dimen/dp_20"
+        app:layout_constraintLeft_toLeftOf="@+id/integral_shopping_mall_star"
+        app:layout_constraintRight_toRightOf="@+id/integral_shopping_mall_star"
+        app:layout_constraintTop_toBottomOf="@+id/integral_shopping_mall_star"
+        android:background="@mipmap/integral_shopping_mall_yes"
+        android:layout_width="@dimen/dp_111"
+        android:layout_height="@dimen/dp_41" />
+
+
+
+</android.support.constraint.ConstraintLayout>

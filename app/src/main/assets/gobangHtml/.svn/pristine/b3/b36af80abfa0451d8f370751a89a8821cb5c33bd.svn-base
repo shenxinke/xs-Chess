@@ -1,0 +1,912 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+		<meta name="renderer" content="webkit">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title>先手围棋智能教育服务平台</title>
+		<link rel="icon" href="img/logo-left.png" type="image/x-icon">
+		<link rel="stylesheet" type="text/css" href="css/lib/public.css"/>
+		<link rel="stylesheet" type="text/css" href="css/custom/webStyle.css"/>
+		<script src="js/gobang/common.js" type="text/javascript" charset="utf-8" name="公共配置信息"></script>
+		<script type="text/javascript" src="libs/jquery/jquery.js"></script>
+		<link rel="stylesheet" type="text/css" href="libs/layer/layer-v3.1.1/layer/theme/default/layer.css" />
+		<script type="text/javascript" src="libs/layer/layer-v3.1.1/layer/layer.js"></script>
+		<link rel="stylesheet" type="text/css" href="libs/swiper/css/idangerous.swiper.css"/>
+		<script src="libs/swiper/js/idangerous.swiper.min.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript" src="js/lib/rem.js"></script>
+		<script type="text/javascript" src="libs/vuejs/vue.js"></script>
+		
+		<!-- 棋盘 -->
+		<link rel="stylesheet" type="text/css" href="chess/css/chess.css"/>
+		<link rel="stylesheet" type="text/css" href="chess/skin/skin1/skin1.css"/>
+		<script src="chess/js/eve.js" type="text/javascript" charset="utf-8"></script>
+		<script src="chess/js/XSGO.js" type="text/javascript" charset="utf-8"></script>
+		<script src="chess/js/bundle.js" type="text/javascript" charset="utf-8"></script>
+		<script src="chess/js/GSocket.js" type="text/javascript" charset="utf-8"></script>
+		<script src="libs/pinchzoom/pinchzoom.js" type="text/javascript" charset="utf-8"></script>
+		
+	</head>
+	<style type="text/css">
+
+	</style>
+
+	<body style="display: none;">
+		<div id='questionStore' class="ha100">
+			<p class="fs30 df ai-c jc-c bge6f wa100 c003 pt20 pb30 desc"></p>
+			<div class="rel boardBg" id='canvasBox'>
+				<div class="chessBox wa100 h750 oh">
+					<div id="gameCanvas" class="wa100 ha100" onselectstart="return false"></div>
+				</div>
+			</div>
+			
+			<div class="btmBox wa100 df ai-c jc-c fw-w " v-show='!qrlzState'>
+				<div v-if="step1.status == 0" class="w700 h210 mb40 step1 swiper-container oh">
+					<div class="swiper-wrapper">
+						<div class="swiper-slide " v-for='(x,index) in step1.p1' @click="selectQuestion(x)">
+							<div :data-id='x.id' :data-index='index' :class="['w210 h210 m0a bgf rel imgBox',{right: x.status == 1, wrong: x.status == 2}]">
+								<div class="wa100 ha100 b3red abs tp0 lt0 dn bkuang"></div>
+								<img class="wa100 ha100" :src="x.snapshot" alt="" />
+							</div>
+						</div>
+						<div class="swiper-slide " v-for='(x,index) in step1.p2' @click="selectQuestion(x)">
+							<div :data-id='x.id' :data-index='index+3' :class="['w210 h210 m0a bgf rel imgBox',{right: x.status == 1, wrong: x.status == 2}]">
+								<div class="wa100 ha100 b3red abs tp0 lt0 dn bkuang"></div>
+								<img class="wa100 ha100" :src="x.snapshot" alt="" />
+							</div>
+						</div>
+						<div class="swiper-slide " v-for='(x,index) in step1.p3' @click="selectQuestion(x)">
+							<div :data-id='x.id' :data-index='index+6' :class="['w210 h210 m0a bgf rel imgBox',{right: x.status == 1, wrong: x.status == 2}]">
+								<div class="wa100 ha100 b3red abs tp0 lt0 dn bkuang"></div>
+								<img class="wa100 ha100" :src="x.snapshot" alt="" />
+							</div>
+						</div>
+					</div>
+				</div>
+				<div v-if="step2.status == 0" v-show='step2.status == 0 && step1.status != 0' class="w700 h210 mb40 step2 swiper-container oh">
+					<div  class="swiper-wrapper">
+						<div class="swiper-slide " v-for='(x,index) in step2.p1' @click="selectQuestion(x)">
+							<div :data-id='x.id' :data-index='index' :class="['w210 h210 m0a bgf rel imgBox',{right: x.status == 1, wrong: x.status == 2}]">
+								<div class="wa100 ha100 b3red abs tp0 lt0 dn bkuang"></div>
+								<img class="wa100 ha100" :src="x.snapshot" alt="" />
+							</div>
+						</div>
+					</div>
+				</div>
+				<div v-else class='df ac-c jc-c fw-w wa100'>
+					<div class='wa100 df ai-c jc-sa'>
+						<button class="btn-n w130 h60 bg_qs_01 cc06804" onclick="eve.f('HandlerStatisticalReq')()">数棋</button>
+						<button class="btn-n w130 h60 bg_qs_01 cc06804" onclick="eve.f('_CanHandleAdmitDefeat_')()">认输</button>
+					</div>
+				</div>
+				<!-- 倒计时 -->
+				<div class='w201 h69 bg_time cf df ai-c jc-c fs20 mb20' id='timer'></div>
+				 <div class='fix tp0 lt0'>
+					<!--<button @click="pretendRight()">假装答对</button>
+					<button @click="pretendWin()">假装赢棋</button>
+					<button @click="pretendWrong()">假装答错</button>-->
+				</div> 
+			</div>
+
+			<div v-show='qrlzState' class="df ai-c jc-sa pt30 pl20 pr20">
+				<button type="button" class="w72 h72 btn-n btn_w" @click="game.steering('w')"></button>
+				<button type="button" class="w72 h72 btn-n btn_s" @click="game.steering('s')"></button>
+				<button type="button" class="h72 w150 btn-n bt_btn ccf5003 fs30" @click="game.steering('e')">确认落子</button>
+				<button type="button" class="w72 h72 btn-n btn_a" @click="game.steering('a')"></button>
+				<button type="button" class="w72 h72 btn-n btn_d" @click="game.steering('d')"></button>
+			</div>
+			
+			<audio src="music/STONE0.wav" type="hidden" id="stepmusic"></audio>
+			<audio src="music/aswError.mp3" type="hidden" id="aswError"></audio>
+			<audio src="music/aswRight.mp3" type="hidden" id="aswRight"></audio>
+		</div>
+
+		<script type="text/javascript">
+
+					$('body').show();
+
+					//$('#gameCanvas').attr('width', $('body').width()).attr('height', $('body').width());
+					$('.btmBox').height($('body').height() - $('body').width()-50)
+					
+					//var layerload = layerLoad();
+					var mySwiper1,mySwiper2
+					var global = {
+							blackSum:'',
+							whiteSum:'',
+						}
+					$(function() {
+
+						//落子声音
+						eve.on("HandlerAction", function(takeBlack, takeWhite) {
+							$("#stepmusic")[0].play();
+                           $("#aswError").attr('src','');
+                           $("#aswRight").attr('src','');
+                           $("#aswError")[0].play();
+                           $("#aswRight")[0].play();
+						});
+						/**
+						 * 确定认输
+						 * 
+						 * @param message
+						 */
+						eve.on("_CanHandleAdmitDefeat_", function() {
+
+							layerTC("确定认输？", function() {
+								eve.f('notifyGameOver',1)()
+							})
+
+						});
+
+						function _pretendWin() { //赢
+							eve.f("notifyGameOver")(2, 0, 0);
+						}
+
+						function _pretendRight() { //对
+							eve.f("notifyGameOver")(13, 0, 0);
+						}
+
+						function _pretendWrong() { //错
+							eve.f("notifyGameOver")(12, 0, 0);
+						}
+
+						var levelMap = ['25k', '25k', '24k', '23k', '22k', '21k',
+							'20k', '19k', '18k', '17k', '16k', '15k', '14k', '13k', '12k', '11k',
+							'10k', '9k', '8k', '7k', '6k', '5k', '4k', '3k', '2k', '1k',
+							'1d', '2d', '3d', '4d', '5d'
+						];
+						var currentQuestion = null;
+						var currentAIMatch = null;
+						var loadAiTimes = 0;
+						var testData = {
+							step1: {
+								p1: [],
+								p2: [],
+								p3: [],
+								status: 0 // 0-未完成 1-已通过（下一阶段）
+							},
+							step2: {
+								p1: [],
+								status: 0 // 0-未完成 1-已通过（下一阶段） 2-已完成（无下一阶段）
+							},
+							step3: {
+								ai1: {
+									status: 0 // 0-未完成 1-胜利 2-失败
+								},
+								ai2: {
+									status: 0
+								},
+								ai3: {
+									status: 0
+								},
+								status: 0 // 0-未完成 1-已通过
+							},
+							
+							currentLevel: 0 ,// 当前评定结果
+							target:1,
+							qrlzState:0, //确认落子返回的状态 1 0
+						};
+
+						function getInfo(blackSum, whiteSum) {
+							if(blackSum === undefined || whiteSum === undefined)
+								return "";
+							var sum = 0;
+							if((blackSum + whiteSum) == 361) {
+								sum = blackSum - 180.5 - 3.75;
+							} else {
+								sum = blackSum - whiteSum - 3.75;
+							}
+							var sumstr = Math.abs(sum) + "";
+							var result = sumstr.substr(0, sumstr.indexOf("."));
+							var desimal = sumstr.substr(sumstr.indexOf(".") + 1, sumstr.length);
+							if(desimal == "25") {
+								desimal = "¼";
+							} else {
+								desimal = "¾";
+							}
+							if(result == "0") {
+								result = desimal;
+							} else {
+								result += desimal;
+							}
+
+							if(sum > 0) {
+								return "黑棋胜" + result + "子";
+							} else if(sum < 0) {
+								return "白棋胜" + result + "子";
+							} else {
+								return "平局";
+							}
+						}
+						var chessStatus = false;
+						(function() {
+
+							eve.on("socketOpen", function() {
+								console.log("已经连接");
+
+								setTimeout(function() {
+									listStep1Questions();
+								}, 1000)
+
+								//开始倒计时
+								window.timer = $('#timer').timeDown({
+									callback: function() {
+										var len = $('.imgBox').length - $('.right,.wrong').length
+										/* for(var i = 0; i < len; i++) {
+											loadNext()
+											_pretendWrong()
+										} */
+										saveUserLevel()
+									}
+								})
+
+							});
+
+							//棋局登入成功回调
+							eve.on('signInResponse',function(data){
+								console.log('登入成功',data);
+								var chessid;
+								if(window.currentAIMatch) {
+									chessid = window.currentAIMatch.chessid;
+								} else if(window.currentQuestion) {
+									chessid = window.currentQuestion.chessid;
+								}
+								//layer.close(layerload);//关闭loading
+								console.log("进入棋局", chessid);
+								if(chessStatus==false){
+									chessStatus = true;//赋值
+								}
+								//设置 谁先 0黑先 1白先
+								vm.game.config.first = data.first
+								
+								if(data.moveList.length){ //如果有落子信息()
+									//更新棋谱
+									vm.game.svg = data.moveList;
+								}else{
+									vm.game.svg = []
+								}
+								
+								//落子回调
+								vm.game.playCall = function(d){
+									console.log('落子位置',d)
+									//落子
+									eve.f('handlerAction',data.getGameId,d)(); 
+								}
+								
+								/*
+									测试创建的ai 对弈 没有棋局信息  createAITest
+									最后对弈需要清空棋盘
+									
+								
+								*/
+							})
+							
+							
+							//落子结果
+							eve.on("handlerActionResult", function(data) {
+								console.log('落子结果:',data)
+								vm.game.addQueue(data) //添加子到棋盘
+								var str = data.join('').indexOf('AE');
+								if(str>0){ //是否有提子
+									document.getElementById('ChipMany').play() //提子音效
+								}else{
+									document.getElementById('stepmusic').play() //落子声
+								}
+							});
+							
+							/**
+							 * 发送数子数子请求  200手之后才可以发起
+							 */
+							eve.on("HandlerStatisticalReq", function () {
+								if(vm.game.queue.length>=200){
+									eve.f('statisticalYes',uid,window.currentAIMatch.chessid)();
+								}else{
+									layerTC('请再下一会儿~')
+								}
+							});
+
+							
+							
+							
+							
+							//形式判断返回结果
+							eve.on("jugementResult", function(data) {
+								var mu = vm.game.jugement(data);
+								global.blackSum = mu.blackNum;
+								global.whiteSum = mu.whiteNum;
+
+							});
+							
+							
+							
+							
+							/**
+							 *  游戏结束
+							 */
+							eve.on("notifyGameOver", function(status, blackSum, whiteSum) {
+								if(window.currentQuestion) window.currentQuestion.status = 2;
+								if(window.currentAIMatch) window.currentAIMatch.status = 2;
+								var info;
+								if(status === 1) { //用户认输
+									if(loadAiTimes == 1) {
+										testData.step3.ai1.status = 2;
+									} else if(loadAiTimes == 2) {
+										testData.step3.ai2.status = 2;
+									} else if(loadAiTimes == 3) {
+										testData.step3.ai3.status = 2;
+									}
+									info = "白中盘胜";
+									if(testData.step3.ai2.status == 2 && testData.step3.ai1.status == 2) {
+
+										layerTC('棋力评测完成！')
+									} else if(testData.step3.ai3.status > 0) {
+										layerTC('棋力评测完成！')
+									} else {
+
+										layerTC(info + ',继续下一局评测！', function() {
+											loadNext()
+										})
+
+									}
+								} else if(status === 2) {
+									if(loadAiTimes == 1) {
+										testData.step3.ai1.status = 1;
+									} else if(loadAiTimes == 2) {
+										testData.step3.ai2.status = 1;
+									} else if(loadAiTimes == 3) {
+										testData.step3.ai3.status = 1;
+									}
+									layerTC('黑中盘胜！继续下一局！', function() {
+										loadNext()
+									})
+								} else if(status === 3) {
+
+									layerTC('白棋求和，黑棋已同意，棋局已结束！')
+
+								} else if(status === 4) {
+
+									layerTC('黑棋求和，白棋已同意，棋局已结束！')
+								} else if(status === 5) {
+									layerTC('黑棋超时，棋局已结束！')
+								} else if(status === 6) {
+									layerTC('白棋超时，棋局已结束！')
+								} else if(status === 7) {
+									layerTC('黑棋和白棋各停一手，棋局已结束！')
+								} else if(status === 8) {
+									if(loadAiTimes == 1) {
+										if(global.blackSum > global.whiteSum) {
+											testData.step3.ai1.status = 1;
+										} else {
+											testData.step3.ai1.status = 2;
+										}
+									} else if(loadAiTimes == 2) {
+										if(global.blackSum > global.whiteSum) {
+											testData.step3.ai2.status = 1;
+										} else {
+											testData.step3.ai2.status = 2;
+										}
+									} else if(loadAiTimes == 3) {
+										if(global.blackSum > global.whiteSum) {
+											testData.step3.ai3.status = 1;
+										} else {
+											testData.step3.ai3.status = 2;
+										}
+									}
+									info = getInfo(global.blackSum, global.whiteSum);
+									if(testData.step3.ai2.status == 2 && testData.step3.ai1.status == 2) {
+
+										layerTC('棋力评测完成！')
+									} else if(testData.step3.ai3.status > 0) {
+										layerTC('棋力评测完成！')
+									} else {
+										layerTC(info + ',继续下一局评测！', function() {
+											loadNext()
+										})
+									}
+								} else if(status === 9) {
+									info = getInfo(global.blackSum, global.whiteSum);
+									layerTC('白棋请求数子，黑棋同意，棋局已结束！' + info)
+
+								} else if(status === 10) {
+									if(global.blackSum > global.whiteSum) {
+										window.currentAIMatch.status = 1;
+									}
+									info = getInfo(global.blackSum, global.whiteSum);
+									layerTC('黑棋强制数子，棋局已结束！' + info)
+
+								} else if(status === 11) {
+									if(global.blackSum > global.whiteSum) {
+										window.currentAIMatch.status = 1;
+									}
+									info = getInfo(global.blackSum, global.whiteSum);
+									layerTC('白棋强制数子，棋局已结束！' + info)
+
+								} else if(status === 12) {
+									$("#aswError").attr("src","music/aswError.mp3");
+									$("#aswError")[0].play();
+									msgYN('msg-no', function() {
+										loadNext()
+									})
+
+								} else if(status === 13) {
+									window.currentQuestion.status = 1;
+									$("#aswRight").attr("src","music/aswRight.mp3");
+									$("#aswRight")[0].play();
+									msgYN('msg-yes', function() {
+										loadNext()
+									})
+
+								} else {
+									layerTC("游戏结束" + status);
+								}
+								var step = updateStepStatus();
+								console.log("updateStepStatus", step);
+								if(step == "step1") { // 已完成step1，加载step2
+									listStep2Questions();
+
+									clearInterval(timer);
+									window.timer = $('#timer').timeDown({
+										callback: function() {
+											/* var len = $('.imgBox').length - $('.right,.wrong').length
+											for(var i = 0; i < len; i++) {
+												_pretendWrong()
+											} */
+											saveUserLevel()
+										}
+									})
+
+								} else if(step == "step2") { // 已完成step2，加载step3
+
+									clearInterval(timer);
+									$('#timer').hide()
+
+									loadAi();
+								} else if(step == "step3") { // 已完成step3.
+
+									saveUserLevel();
+								} else if(!step) {
+									console.log(5666611)
+									//	loadNext()
+
+								}
+							});
+						})();
+
+						function loadNext() { //加载下一题
+							if(testData.step1.status == 0) { // 加载step1 下一题
+								console.log('testData.step1.p1', getNextQuestion(testData.step1.p1))
+								var nextQuestion = getNextQuestion(testData.step1.p1);
+								if(!nextQuestion) {
+									nextQuestion = getNextQuestion(testData.step1.p2);
+								}
+								if(!nextQuestion) {
+									nextQuestion = getNextQuestion(testData.step1.p3);
+								}
+								if(nextQuestion) {
+									loadQuestion(nextQuestion);
+									mySwiper1.swipeTo($('.imgBox[data-id='+nextQuestion.id+']').attr('data-index')*1 - 1);
+								}
+							} else if(testData.step2.status == 0) { // 加载step2 下一题
+								var nextQuestion = getNextQuestion(testData.step2.p1);
+								mySwiper2.swipeTo($('.imgBox[data-id='+nextQuestion.id+']').attr('data-index')*1 - 1);
+								loadQuestion(nextQuestion);
+							} else if(testData.step3.status == 0) { // 加载ai下一题
+								$("#description").hide();
+								loadAi();
+							}
+
+						}
+
+						var vm = new Vue({
+							el: "#questionStore",
+							data: testData,
+							
+							methods: {
+								selectQuestion: function(question) {
+									if(question.status <= 0) {
+										loadQuestion(question);
+									}
+								},
+								displayLevel: function(val) {
+									return toLevelName(val);
+								},
+								pretendRight: _pretendRight,
+								pretendWrong: _pretendWrong,
+								pretendWin: _pretendWin,
+
+							},
+							watch:{
+								step1:{
+									handler: function (val, oldVal) {
+										console.log('watch',val)
+										if(val.p1.length>1&&val.p2.length>1&&val.p3.length>1){
+											vm.$nextTick(function() {
+												mySwiper1.reInit();
+											})
+										}
+									},
+									deep: true
+								},
+								step2:{
+									handler: function (val, oldVal) {
+										vm.$nextTick(function() {
+											mySwiper2.reInit();
+										})
+									},
+									deep: true
+								},
+
+							},
+							mounted:function(){
+								mySwiper1 = new Swiper('.step1', {
+									slidesPerView: '3',
+								});
+								mySwiper2 = new Swiper('.step2', {
+									slidesPerView: '3',
+								})
+							}
+						});
+						
+						vm.game = new xsgo('gameCanvas',{
+							queue:[],
+							type:2,//2类型为做题
+							bgColor:'#ffd687',
+							affirmMovelater:1//开启确认落子
+						});
+						
+						//确认落子回调
+						vm.game.qrlzState = function(val){
+							vm.qrlzState = val
+						}
+						
+						
+						
+						function toLevelName(val) {
+							return levelMap[val];
+						}
+
+						function toLevelValue(name) {
+							for(var i = 0; i < levelMap.length; i++) {
+								if(levelMap[i] == name) {
+									return i;
+								}
+							}
+
+							return -1;
+						}
+
+						function calcStep1Level() {
+							var myLevel = 0;
+
+							if(getStatusCount(testData.step1.p3, 1) >= 2) {
+								myLevel = toLevelValue('11k');
+							} else if(getStatusCount(testData.step1.p2, 1) >= 2) {
+								myLevel = toLevelValue('16k');
+							} else if(getStatusCount(testData.step1.p1, 1) >= 2) {
+								myLevel = toLevelValue('21k');
+							} else {
+								myLevel = toLevelValue('25k');
+							}
+
+							return myLevel;
+						}
+
+						function calcStep2Level() {
+							var myLevel = 0;
+							var wrongCount = getStatusCount(testData.step2.p1, 2);
+							myLevel = testData.currentLevel -= Math.min(wrongCount, 4);
+							if(myLevel > toLevelValue('13k')) { // 11k 12k 评测结果均为10k
+								myLevel = toLevelValue('10k');
+							}
+							return myLevel;
+						}
+
+						function calcStep3Level() {
+							var myLevel = 0;
+							if(testData.step3.ai1.status == 0) { // 初始是10k
+								myLevel = toLevelValue('10k');
+							} else if(testData.step3.ai2.status == 0) { // 10k 胜利后是 1k，失败后保持10k结束
+								if(testData.step3.ai1.status == 1) {
+									myLevel = toLevelValue('1k');
+								} else {
+									myLevel = toLevelValue('10k');
+								}
+							} else if(testData.step3.ai3.status == 0) {
+								if(testData.step3.ai2.status == 1) {
+									if(testData.step3.ai2.ai_level == toLevelValue('10k')) { // 第二局赢，10k->1k  1k->2d
+										myLevel = toLevelValue('1k');
+									} else if(testData.step3.ai2.ai_level == toLevelValue('1k')) {
+										myLevel = toLevelValue('2d');
+									}
+								} else {
+									myLevel = testData.step3.ai2.ai_level; // 第二局输给10k，则没有第三局，输1k还是1k
+								}
+							} else if(testData.step3.ai3.status == 1) { // 第三局赢
+								myLevel = testData.step3.ai3.ai_level;
+							} else if(testData.step3.ai3.status == 2) { // 第三局输
+								if(testData.step3.ai3.ai_level == toLevelValue('1k')) {
+									myLevel = toLevelValue('5k');
+								} else if(testData.step3.ai3.ai_level == toLevelValue('2d')) {
+									myLevel = toLevelValue('1d');
+								}
+							}
+
+							return myLevel;
+						}
+
+						function getStatusCount(questions, status) {
+							var count = 0;
+							for(var i = 0; i < questions.length; i++) {
+								if(questions[i].status == status) {
+									count++;
+								}
+							}
+
+							return count;
+						}
+
+						function getNextQuestion(questions) {
+							for(var i = 0; i < questions.length; i++) {
+								if(questions[i].status == 0) {
+									return questions[i];
+								}
+							}
+
+							return null;
+						}
+
+						function updateStepStatus() {
+							console.log("updateStepStatus")
+							if(testData.step1.status == 0) { // 当前第一阶段
+								if(getStatusCount(testData.step1.p1, 0) > 0 || getStatusCount(testData.step1.p2, 0) > 0 || getStatusCount(testData.step1.p3, 0) > 0) {
+									return false; // 当前阶段还有没做完的题
+								} else {
+									testData.currentLevel = calcStep1Level();
+									if(testData.currentLevel == toLevelValue('25k')) {
+										return "step3";
+									} else {
+										testData.step1.status = 1;
+										return "step1";
+									}
+
+								}
+							} else if(testData.step2.status == 0) { // 当前第二阶段
+								if(getStatusCount(testData.step2.p1, 0) > 0) {
+									return false; // 当前阶段还有没做完的题
+								} else {
+									testData.currentLevel = calcStep2Level();
+									console.log("第二阶段结束，测得棋力为", testData.currentLevel);
+									if(testData.currentLevel >= toLevelValue('12k')) {
+										testData.step2.status = 1; // 可以进入AI
+										//$("#chessResult-ai").modal("show");
+
+										layerTC('答题阶段通过啦！您肯定有能力下一盘棋！ 来和阡陌姐姐较量一下，测试您的棋力吧！', function() {
+											console.log(1111)
+										})
+										return "step2";
+									} else {
+										//testData.step2.status = 2; // 不可进入AI
+										testData.step3.status = 1; // AI 对局已结束
+										return "step3";
+									}
+								}
+							} else if(testData.step3.status == 0) { // 当前第三阶段
+								if(testData.step3.ai3.status > 0) { // AI第三局测评结束
+									testData.currentLevel = calcStep3Level();
+									testData.step3.status = 1;
+									return "step3";
+								} else if(testData.step3.ai2.status == 2 && testData.step3.ai1.status == 2) { // AI连输2局 结束
+									testData.currentLevel = calcStep3Level();
+									testData.step3.status = 1;
+									return "step3";
+								} else {
+									return false;
+								}
+							}
+						}
+
+						function loadQuestion(question) {
+							console.log("加载试题", question);
+							//棋局开始前的提醒
+							/* $('#canvasBox').canvasAlert({
+								content:question.questionname.split('_')[0]
+							}) */
+							$(".desc").text(question.questionname.split('_')[0]);
+							var description =question.description.substring(0,question.description.indexOf('_'));
+						    if(question.titlerequs=='null'||question.titlerequs==null||question.titlerequs==''){
+						        $("#description").html(description);
+						    }else{
+						        $("#description").html(questionbank.titlerequs)
+						    }
+							$.ajax({
+								type : "POST",
+								url : http+"/gobangteach/classroom/loadQuestion",
+								data : "questionid=" + question.id + "&token=" + token + "&uid=" + uid,
+								dataType : 'json',
+								success : function(data) {
+									question.chessid = data.data.chessid;
+									window.currentQuestion = question;
+									//eve.f("HandlerSignInReq", uid)();
+									/* setTimeout(function(){
+										eve.f("HandlerHideStep")();
+									}, 100); */
+									
+									
+									var gameInfo = JSON.parse(data.data.questionbank.chessdata);
+										console.log('gameInfo',gameInfo)
+										
+										//设置棋盘路数
+										vm.game.config.road = gameInfo.roadX
+										
+										//更新类型
+										vm.game.config.sgfstate = data.data.questionbank.sgfstate
+										
+										//更新棋谱
+										vm.game.svg = gameInfo.listAction; 
+										
+										//登入棋局
+										eve.f('enterGame',data.data.chessid,uid)();
+									
+								},
+								error : function(XMLHttpRequest, data) {
+									layerTC("获取习题失败");
+								}
+							});
+							
+							//添加选中状态
+							$('.imgBox').removeClass('qipuActive')
+							
+								
+							vm.$nextTick(function() {
+								$('.imgBox[data-id=' + question.id + ']').addClass('qipuActive');
+							})
+							
+
+						}
+
+						function loadAi() {
+							loadAiTimes++;
+							var ai_Level = calcStep3Level();
+							var params = {
+								ai_level: ai_Level,
+								uid: uid,
+								token: token
+							};
+							if(loadAiTimes == 1) {
+								testData.step3.ai1.ai_level = ai_Level;
+							} else if(loadAiTimes == 2) {
+								testData.step3.ai2.ai_level = ai_Level;
+							} else if(loadAiTimes == 3) {
+								testData.step3.ai3.ai_level = ai_Level;
+							}
+							console.log("LoadAi", params);
+							$.ajax({
+								url: http+'/gobangteach/leveltest/createAITest',
+								type: "POST",
+								timeout: 60000, // 单位毫秒
+								data: $.param(params),
+								dataType: "json",
+								success: function(data) {
+									console.log('5555--', data)
+									window.currentAIMatch = data.data;
+									//eve.f("HandlerSignInReq", uid)();
+									
+									vm.game.config.type = 3;
+									vm.game.config.userFirst = 0;
+									eve.f('enterGame',data.data.chessid,readCookie('userid'))();
+									
+								},
+								error: function(XMLHttpRequest, textStatus) {
+									Messenger().post("服务器错误！！！");
+								}
+							});
+						}
+
+						function listQuestions(opt, callback) {
+							var params = opt || {};
+							params.pageNum = params.pageNum || 1;
+							params.pageSize = params.pageSize || 3;
+							params.uid= uid,
+							params.token=token
+
+							$.ajax({
+								url: http+'/gobangteach/leveltest/getTestQuestions',
+								type: "GET",
+								timeout: 60000,
+								dataType: "json",
+								data: $.param(params),
+								success: function(data) {
+									console.log('获取试题', data);
+									if(typeof callback === 'function') {
+										callback(data);
+										//$("#loadingNews").modal('hide');
+									}
+								}
+							});
+						}
+
+						function listStep1Questions() {
+							console.log("加载初测题目");
+							// 加载区间1题目(25k-20k)
+							listQuestions({
+								beginlevel: 6,
+								endlevel: 6
+							}, function(data) {
+								vm.step1.p1 = data.data;
+								var question = getNextQuestion(vm.step1.p1);
+								console.log("加载初测题目", question);
+								loadQuestion(question);
+									document.location.href = "myschema://go?a=14"
+		
+							});
+							// 加载区间2题目(20k-15k)
+							listQuestions({
+								beginlevel: 11,
+								endlevel: 11
+							}, function(data) {
+								vm.step1.p2 = data.data;
+							});
+							// 加载区间3题目(15k-10k)
+							listQuestions({
+								beginlevel: 16,
+								endlevel: 16
+							}, function(data) {
+								vm.step1.p3 = data.data;
+							});
+						}
+
+						function listStep2Questions() {
+							var beginLevel = 0,
+								endLevel = 0;
+							if(testData.currentLevel == toLevelValue('21k')) {
+								beginLevel = 6;
+								endLevel = 6;
+							} else if(testData.currentLevel == toLevelValue('16k')) {
+								beginLevel = 11;
+								endLevel = 11;
+							} else if(testData.currentLevel == toLevelValue('11k')) {
+								beginLevel = 16;
+								endLevel = 16;
+							}
+							listQuestions({
+								beginlevel: beginLevel,
+								endlevel: endLevel,
+								pageSize: 5
+							}, function(data) {
+								vm.step1.p1 = vm.step1.p2 = vm.step1.p3 = [];
+								vm.step2.p1 = data.data;
+								loadQuestion(getNextQuestion(vm.step2.p1));
+							});
+						}
+
+						function saveUserLevel() {
+							$.ajax({
+								type: "POST",
+								url: http+"/gobangteach/UserBaseController/updateMyLevel",
+								data: $.param({
+									id: readCookie("userid"),
+									level: testData.currentLevel,
+									uid: uid,
+									token: token
+								}),
+								success: function(data) {
+									layerTC('经评测您的棋力等级为：' + levelMap[testData.currentLevel], function() {
+										document.location.href = "myschema://go?a=1";
+									}, function() {
+										document.location.href = "myschema://go?a=1";
+									}, function() {
+										document.location.href = "myschema://go?a=1";
+									})
+								}
+							});
+						}
+					})
+
+				//})
+			//});
+		</script>
+
+	</body>
+
+</html>

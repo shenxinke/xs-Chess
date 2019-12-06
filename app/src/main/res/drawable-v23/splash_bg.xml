@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+    <item>
+        <shape>
+            <size
+                tools:height="@dimen/dp_360"
+                tools:width="@dimen/dp_360" />
+            <solid android:color="@color/white" />
+        </shape>
+    </item>
+
+    <item
+        android:width="@dimen/dp_138"
+        android:height="@dimen/dp_85"
+        android:gravity="center_horizontal"
+        android:top="@dimen/dp_109">
+        <bitmap android:src="@drawable/splash_log" />
+    </item>
+
+    <item
+        android:width="@dimen/dp_150"
+        android:height="@dimen/dp_11"
+        android:bottom="@dimen/dp_58"
+        android:gravity="center_horizontal|bottom">
+        <bitmap android:src="@drawable/splash_text" />
+    </item>
+</layer-list>
+

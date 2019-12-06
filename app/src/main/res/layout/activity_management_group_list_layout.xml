@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/half">
+
+    <ImageView
+        android:id="@+id/image_bg"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_250"
+        android:background="@mipmap/wei_qi_story_name_list_bg"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent" />
+
+    <Button
+        android:id="@+id/button_cancel"
+        android:layout_width="@dimen/dp_100"
+        android:layout_height="@dimen/dp_40"
+        android:layout_marginBottom="@dimen/dp_7"
+        android:layout_marginStart="@dimen/dp_24"
+        android:background="@mipmap/integral_shopping_mall_yes"
+        android:text="取消"
+        android:textColor="@color/color_591a05"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="@+id/image_bg"
+        app:layout_constraintLeft_toLeftOf="@+id/image_bg" />
+
+    <Button
+        android:id="@+id/button_confirm"
+        android:layout_width="@dimen/dp_100"
+        android:layout_height="@dimen/dp_40"
+        android:layout_marginEnd="@dimen/dp_24"
+        android:background="@mipmap/button_skip"
+        android:text="确定"
+        android:textColor="@color/color_134077"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="@+id/button_cancel"
+        app:layout_constraintRight_toRightOf="@+id/image_bg" />
+
+
+    <com.xswq.chess.myapplication.customview.StringScrollPicker
+        android:id="@+id/string_scroll"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_180"
+        android:layout_marginEnd="@dimen/dp_5"
+        android:layout_marginStart="@dimen/dp_5"
+        android:layout_marginTop="@dimen/dp_8"
+        app:spv_is_circulation="false"
+        app:layout_constraintTop_toTopOf="@+id/image_bg"
+        app:spv_center_item_position="2"
+        app:spv_end_color="@color/text2"
+        app:spv_max_text_size="24sp"
+        app:spv_min_text_size="15sp"
+        app:spv_start_color="@color/text2"
+        app:spv_visible_item_count="5" />
+
+</android.support.constraint.ConstraintLayout>

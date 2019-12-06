@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <include layout="@layout/login_title_layout"/>
+
+    <RelativeLayout
+        android:layout_width="@dimen/dp_330"
+        android:layout_height="match_parent"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="@dimen/dp_5"
+        android:layout_marginTop="@dimen/dp_62"
+        android:background="@mipmap/personal_juxing_bg227">
+
+        <EditText
+            android:id="@+id/start_etsearch"
+            android:layout_width="@dimen/dp_123"
+            android:layout_height="@dimen/dp_32"
+            android:layout_marginStart="@dimen/dp_20"
+            android:layout_marginTop="@dimen/dp_10"
+            android:background="@drawable/editview_round_border"
+            android:drawableEnd="@mipmap/date"
+            android:paddingEnd="@dimen/dp_8"
+            android:gravity="center"
+            android:singleLine="true"
+            android:textSize="12sp"
+            android:editable="false"/>
+
+        <EditText
+            android:id="@+id/end_etsearch"
+            android:layout_width="@dimen/dp_123"
+            android:layout_height="@dimen/dp_32"
+            android:layout_marginStart="@dimen/dp_10"
+            android:layout_marginTop="@dimen/dp_10"
+            android:layout_toEndOf="@+id/start_etsearch"
+            android:background="@drawable/editview_round_border"
+            android:drawableRight="@mipmap/date"
+            android:editable="false"
+            android:gravity="center"
+            android:paddingRight="@dimen/dp_8"
+            android:singleLine="true"
+            android:textSize="12sp" />
+
+        <ImageView
+            android:id="@+id/ivDeleteText"
+            android:layout_width="@dimen/dp_52"
+            android:layout_height="@dimen/dp_30"
+            android:layout_alignBottom="@+id/end_etsearch"
+            android:layout_alignParentRight="true"
+            android:layout_centerInParent="true"
+            android:padding="@dimen/dp_5"
+            android:src="@mipmap/personal_search" />
+
+        <ListView
+            android:id="@+id/history_view"
+            android:layout_width="@dimen/dp_310"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/start_etsearch"
+            android:layout_centerHorizontal="true"
+            android:divider="@color/transparent"
+            android:layout_marginBottom="@dimen/dp_20"
+            android:layout_marginTop="@dimen/dp_5"/>
+
+        <TextView
+            android:id="@+id/not_data"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:text="暂无数据"
+            android:textColor="@color/black"
+            android:visibility="gone" />
+    </RelativeLayout>
+
+</RelativeLayout>

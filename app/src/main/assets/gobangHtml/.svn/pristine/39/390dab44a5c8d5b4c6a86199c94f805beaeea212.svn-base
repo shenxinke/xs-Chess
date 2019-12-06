@@ -1,0 +1,2159 @@
+var emoji={"[大笑]":{file:"emoji_0.png"},"[可爱]":{file:"emoji_01.png"},"[色]":{file:"emoji_02.png"},"[嘘]":{file:"emoji_03.png"},"[亲]":{file:"emoji_04.png"},"[呆]":{file:"emoji_05.png"},"[口水]":{file:"emoji_06.png"},"[汗]":{file:"emoji_145.png"},"[呲牙]":{file:"emoji_07.png"},"[鬼脸]":{file:"emoji_08.png"},"[害羞]":{file:"emoji_09.png"},"[偷笑]":{file:"emoji_10.png"},"[调皮]":{file:"emoji_11.png"},"[可怜]":{file:"emoji_12.png"},"[敲]":{file:"emoji_13.png"},"[惊讶]":{file:"emoji_14.png"},"[流感]":{file:"emoji_15.png"},"[委屈]":{file:"emoji_16.png"},"[流泪]":{file:"emoji_17.png"},"[嚎哭]":{file:"emoji_18.png"},"[惊恐]":{file:"emoji_19.png"},"[怒]":{file:"emoji_20.png"},"[酷]":{file:"emoji_21.png"},"[不说]":{file:"emoji_22.png"},"[鄙视]":{file:"emoji_23.png"},"[阿弥陀佛]":{file:"emoji_24.png"},"[奸笑]":{file:"emoji_25.png"},"[睡着]":{file:"emoji_26.png"},"[口罩]":{file:"emoji_27.png"},"[努力]":{file:"emoji_28.png"},"[抠鼻孔]":{file:"emoji_29.png"},"[疑问]":{file:"emoji_30.png"},"[怒骂]":{file:"emoji_31.png"},"[晕]":{file:"emoji_32.png"},"[呕吐]":{file:"emoji_33.png"},"[拜一拜]":{file:"emoji_160.png"},"[惊喜]":{file:"emoji_161.png"},"[流汗]":{file:"emoji_162.png"},"[卖萌]":{file:"emoji_163.png"},"[默契眨眼]":{file:"emoji_164.png"},"[烧香拜佛]":{file:"emoji_165.png"},"[晚安]":{file:"emoji_166.png"},"[强]":{file:"emoji_34.png"},"[弱]":{file:"emoji_35.png"},"[OK]":{file:"emoji_36.png"},"[拳头]":{file:"emoji_37.png"},"[胜利]":{file:"emoji_38.png"},"[鼓掌]":{file:"emoji_39.png"},"[握手]":{file:"emoji_200.png"},"[发怒]":{file:"emoji_40.png"},"[骷髅]":{file:"emoji_41.png"},"[便便]":{file:"emoji_42.png"},"[火]":{file:"emoji_43.png"},"[溜]":{file:"emoji_44.png"},"[爱心]":{file:"emoji_45.png"},"[心碎]":{file:"emoji_46.png"},"[钟情]":{file:"emoji_47.png"},"[唇]":{file:"emoji_48.png"},"[戒指]":{file:"emoji_49.png"},"[钻石]":{file:"emoji_50.png"},"[太阳]":{file:"emoji_51.png"},"[有时晴]":{file:"emoji_52.png"},"[多云]":{file:"emoji_53.png"},"[雷]":{file:"emoji_54.png"},"[雨]":{file:"emoji_55.png"},"[雪花]":{file:"emoji_56.png"},"[爱人]":{file:"emoji_57.png"},"[帽子]":{file:"emoji_58.png"},"[皇冠]":{file:"emoji_59.png"},"[篮球]":{file:"emoji_60.png"},"[足球]":{file:"emoji_61.png"},"[垒球]":{file:"emoji_62.png"},"[网球]":{file:"emoji_63.png"},"[台球]":{file:"emoji_64.png"},"[咖啡]":{file:"emoji_65.png"},"[啤酒]":{file:"emoji_66.png"},"[干杯]":{file:"emoji_67.png"},"[柠檬汁]":{file:"emoji_68.png"},"[餐具]":{file:"emoji_69.png"},"[汉堡]":{file:"emoji_70.png"},"[鸡腿]":{file:"emoji_71.png"},"[面条]":{file:"emoji_72.png"},"[冰淇淋]":{file:"emoji_73.png"},"[沙冰]":{file:"emoji_74.png"},"[生日蛋糕]":{file:"emoji_75.png"},"[蛋糕]":{file:"emoji_76.png"},"[糖果]":{file:"emoji_77.png"},"[葡萄]":{file:"emoji_78.png"},"[西瓜]":{file:"emoji_79.png"},"[光碟]":{file:"emoji_80.png"},"[手机]":{file:"emoji_81.png"},"[电话]":{file:"emoji_82.png"},"[电视]":{file:"emoji_83.png"},"[声音开启]":{file:"emoji_84.png"},"[声音关闭]":{file:"emoji_85.png"},"[铃铛]":{file:"emoji_86.png"},"[锁头]":{file:"emoji_87.png"},"[放大镜]":{file:"emoji_88.png"},"[灯泡]":{file:"emoji_89.png"},"[锤头]":{file:"emoji_90.png"},"[烟]":{file:"emoji_91.png"},"[炸弹]":{file:"emoji_92.png"},"[枪]":{file:"emoji_93.png"},"[刀]":{file:"emoji_94.png"},"[药]":{file:"emoji_95.png"},"[打针]":{file:"emoji_96.png"},"[钱袋]":{file:"emoji_97.png"},"[钞票]":{file:"emoji_98.png"},"[银行卡]":{file:"emoji_99.png"},"[手柄]":{file:"emoji_100.png"},"[麻将]":{file:"emoji_101.png"},"[调色板]":{file:"emoji_102.png"},"[电影]":{file:"emoji_103.png"},"[麦克风]":{file:"emoji_104.png"},"[耳机]":{file:"emoji_105.png"},"[音乐]":{file:"emoji_106.png"},"[吉他]":{file:"emoji_107.png"},"[火箭]":{file:"emoji_108.png"},"[飞机]":{file:"emoji_109.png"},"[火车]":{file:"emoji_110.png"},"[公交]":{file:"emoji_111.png"},"[轿车]":{file:"emoji_112.png"},"[出租车]":{file:"emoji_113.png"},"[警车]":{file:"emoji_114.png"},"[自行车]":{file:"emoji_115.png"}};
+var userid = uid;
+var soundOpts = readCookie('soundOpts');
+var targetGameId = Tool.queryString("targetGameId");
+var watchPlay = Tool.queryString("watchPlay");
+var playingId = Tool.queryString("playingId");
+var levelAI = Tool.queryString("levelAI");
+var games = [];
+var currentGame;
+var statStack = [];
+var myRole;
+var nimConnected = false;
+var nimTeam = {};
+var stepShowed = false;
+var initMusic=0;
+var tryPlay = 0;
+var action_ = null;
+/* 棋盘事件 */
+	console.log(uid,token)
+	$.ajax({
+		type : "GET",
+		url : http+"/gobangteach/UserBaseController/getUserFullInfoById?userid="+uid+"&token="+token+"&uid="+uid,
+		success : function(data) {
+			var base = data.data.base;
+           var detail = data.data.detail;
+           var level ="";
+           if( detail.level<26 && detail.level>0){
+                level = 26-detail.level+"K";
+           }else if( detail.level>=26){
+                level = detail.level-25+"D";
+           }else{
+                level = "尚未定级";
+           }
+           setCookie('LEVEL', base.level);
+				setCookie('uid',data.imAccid);
+			    setCookie('level', level);
+				setCookie('userid',base.id);
+				setCookie('usertyp', base.usertype);
+				setCookie('username', base.username);
+		}
+	});
+
+	function loaduser(){
+			$.ajax({
+				type : 'POST',
+				//contentType : "application/json",
+				url : http+'/gobangteach/UserBaseController/login',
+				data : {
+				'idFlg' : '1',
+				// 'userId' : urlUserId,
+				// 'md5pass' : md5pass
+				'userId' : '13100000001',
+				'md5pass' : 'f5bb0c8de146c67b44babbf4e6584cc0'
+				},
+				success : function(data) {
+					if (data.error.returnCode == 0) {
+						setCookie('uid',data.data.imAccid);
+						setCookie('uid',data.data.imAccid);
+					
+						setCookie('sdktoken', data.data.imToken);
+						setCookie('userid',data.data.id);
+						setCookie('agentid', data.data.agentid);
+						setCookie('usertyp', data.data.usertype);
+						setCookie('username', data.data.username);
+						setCookie('orgNo', data.data.orgNo);
+						setCookie('orgNo', '1');
+						setCookie('token', data.data.token);
+					
+					socketStart();
+					
+					//randomBattle();
+					} else {
+					alert("登录失败" + data.error.returnMessage);
+					}
+				}
+			});
+			//randomBattle();
+	}
+	
+
+$(function(){
+  socketStart();
+  initNim();
+	
+					
+	
+	//loaduser()
+	//onConnect();
+});
+
+// 删除Cookie中用户信息
+function clearUser() {
+	delCookie('uid');
+	delCookie('sdktoken');
+	delCookie('userid');
+	delCookie('agentid');
+	delCookie('usertype');
+	delCookie('username');
+	delCookie('imOpts');
+	delCookie('soundOpts');
+}
+(function() {
+	//把未计算的 level 等级储存 cookie
+	// $.ajax({
+	// 	type:"get",
+	// 	url:http+"/gobangteach/UserBaseController/getUserFullInfoById?userid="+uid+"&token="+token+"&uid="+uid,
+	// 	async:true,
+	// 	success:function(data){
+	// 		document.cookie="LEVEL="+data.data.detail.level;
+	// 	}
+	// });
+	
+	
+	
+	// 棋盘加载完毕通知
+	eve.on("AppOnEnter", function() {
+		eve.f("SocketStart")();
+		if(initMusic==0){//请多指教
+          
+			//playSound("startmusic");
+           document.location.href = "myschema://go?a=10&music=START";
+		}
+	});
+
+	/**
+	 * 消息通知
+	 */
+	eve.on("NotifyPushToUserMessage", function(ack, msg) {
+		console.log("MessageNotify " + ack);
+		console.log("MessageNotify " + msg);
+		var msgInf = Base.decode(msg);
+		console.log("MessageNotify " + msgInf);
+		var result = JSON.parse(msgInf);
+		var code = result.code;
+		var info = result.info;
+		console.log("Message_info: " + msg);
+		switch (code) {
+		case '1':
+			// 对方接受挑战
+			loadGameInfoByUserId(function(data) {
+				console.log("对方接受应战", data, Tool.isArray(data));
+				if(Tool.isArray(data)) {
+					onGamesLoaded(data);
+				} else {
+					onGameLoaded(data);
+				}
+				
+			});
+			
+			break;
+		case '2':
+			if(info.state == 1) { // 对方确认规则，此时我方确认即开始
+				receiveConfirmRule(info);
+			} else if(info.state == 2) { // 对方修改规则，我方确认后,对方确认则开始
+				receiveChangeRule(info);
+			} else if(info.state == 3) {
+				layerTC("对方拒绝了你的邀请");
+				$(".invitationFriend-bg,.invitationFriend").hide();
+				$(".invitationFriend").find('select').attr('disabled', false);
+			}
+			break;
+		case '3':
+			if(info.gameInfo) {
+				layerTC(info.usernm + " 邀请你再来一局", function(){
+					closePlaying(currentGame.gameId, function() {
+    					var gameInfo = info.gameInfo;
+	    				gameInfo.userid = info.userid;
+	    				gameInfo.size =currentGame.RuleType2==1?19:9;   //  棋盘类型  9  19
+	    				createHome(gameInfo);
+    				});
+				},function(){
+					var pushMsg = {
+    					code : '3',
+    					info : {
+    						userid: uid,
+    						usernm: readCookie('username'),
+    						state: 3
+    					}
+    				};
+    				var request = Base.encode(JSON.stringify(pushMsg));
+    				// 发送消息
+    				pushToUserMessage("{'users':['" + info.userid + "'],'pushMsg':'" + request + "'}");
+				});
+			} else if(info.state == 3) {
+				layerTC("对方拒绝了你的邀请");
+			}
+			break;
+		case '4':
+		case '5':
+		case '6':
+		case '7':
+			break;
+		default:
+			console.log("无用消息" + msgInf);
+		}
+	});
+	var takeBlack_now = 0;
+	var takeWhite_now = 0;
+	eve.on("_ShowTake_", function(takeBlack, takeWhite) {
+		document.getElementById("blacktake").innerText = takeWhite;
+		document.getElementById("whitetake").innerText = takeBlack;
+		if(takeBlack>takeBlack_now){//提子音
+			document.location.href = "myschema://go?a=10&music=ChipMany";
+			takeBlack_now = takeBlack;
+			return;
+		}
+		if(takeWhite>takeWhite_now){//提子音
+			document.location.href = "myschema://go?a=10&music=ChipMany";
+			takeWhite_now = takeWhite;
+			return;
+		}
+		if(initMusic>0){//落子
+			document.location.href = "myschema://go?a=10&music=STONE0";
+		}
+		initMusic++;
+	});
+	eve.on("NotiyAction", function (message) {
+		if(currentGame) {
+			if(uid == currentGame.blackUserId) {
+				statStack.push(Math.floor((Math.random()*10)+1));
+			} else if(uid == currentGame.whiteUserId) {
+				statStack.push(Math.floor((Math.random()*10)+1) * (-1));
+			}
+		}
+	});
+	eve.on("_ConfirmTouchEnded_", function(p1, p2) {
+		console.log(4)
+		//eve.f(p1, p2)();
+		var gameId = GGame.get("game:id");
+    	var blackUserid = GGame.get("game:"+gameId+":black");
+    	var whiteUserid = GGame.get("game:"+gameId+":white");
+    	var tryPlay = GGame.get("game:"+gameId+":TryPlay");
+    	var steps = GGame.incrBy("game:" + gameId + ":steps", 0);
+    	var first = GGame.incrBy("game:" + gameId + ":first", 0);
+    	if(tryPlay === 0){
+    		if(blackUserid == userid){
+    			p2 = "B"+p2.substring(1,p2.length);
+    		}else if(whiteUserid == userid){
+    			p2 = "W"+p2.substring(1,p2.length);
+    		}
+    		if (steps % 2 === first) {
+    			//当前状态走黑棋
+    			if(p2.charAt(0) == "W"){
+    				//alert("当前黑棋落子")
+    				return;
+    			}
+    		}else{
+    			if(p2.charAt(0) == "B"){
+    				//("当前白棋落子")
+    				return;
+    			}
+    		}
+    	}
+    	  eve.f("HandReply",p2)();
+    	  action_ = p2;
+		$('.btns,.fall').show();
+		
+		$("#game_chat_wrapper,#research_control_wrapper,#classBtnsWrapper").hide();
+	});
+	
+	function getInfo(blackSum, whiteSum) {
+		 console.log('sum==>',blackSum,whiteSum)
+		if (blackSum === undefined || whiteSum === undefined) 	
+        return "";
+		var sum =0;
+		if((blackSum+whiteSum)==361){
+			sum = blackSum - 180.5 - 3.75;
+		}else{
+			sum = blackSum - whiteSum - 3.75;
+		}
+		var sumstr = Math.abs(sum)+"";
+		var result = sumstr.substr(0,sumstr.indexOf("."));
+		var desimal = sumstr.substr(sumstr.indexOf(".")+1,sumstr.length);
+		if(desimal=="25"){
+			desimal = "¼";
+		}else {
+			desimal = "¾";
+		}
+		if(result=="0"){
+			result = desimal;
+		}else{
+			result += desimal;
+		}
+		
+        if (sum > 0) {
+            return "黑棋胜" + result + "子";
+        } else if (sum < 0) {
+            return "白棋胜" + result + "子";
+        }else {
+            return "平局";
+        }
+    }
+	
+	/*
+	 * 获取当前用户 胜负结果
+	 */
+	
+	
+
+	function getInfo2(blackSum, whiteSum) {
+		var sum;
+		if (blackSum === undefined || whiteSum === undefined){
+				var chessColor = '' //白棋或黑旗
+				var vd = ''//胜负
+				var domid = $('div[data-uid='+uid+']').attr('id')//获取当前用户所在的‘阵营’
+				//如果当前登入用户  包含user_2_avater类  说明是黑棋  否则白棋
+				domid&&domid=='user_2_avater'?chessColor = 1:chessColor = 0
+				//如果在 #win 的元素上不能查找到 lose类 说明胜利  否则 失败
+				!$('#win').hasClass('lose')?vd = 1:vd = 0
+				
+				if(chessColor){ //黑旗
+					if(vd){
+						sum = 10;
+						return sum
+						//alert('黑旗胜')
+					}else{
+						sum = -10;
+						return sum
+						//alert('黑旗败')
+					}
+				}else{ //白棋
+					if(vd){
+						sum = -10;
+						return sum
+						//alert('白旗胜')
+					}else{
+						sum = 10;
+						return sum
+						//alert('白棋败')
+					}
+				}
+		}else{
+			sum = blackSum - 180.5 - 3.75;
+			return sum
+		}
+    }
+	
+	
+	
+	/**
+	 * 游戏结束
+	 */
+	eve.on("_NotifyGameOver_", function(status, blackSum, whiteSum) {
+		var msg;
+		var info;
+		console.log('status==>',status)
+		if (status === 1) {
+			 msg = "白中盘胜！";//黑旗认输
+		} else if (status === 2) {
+			msg = "黑中盘胜！";//白旗认输
+		} else if (status === 3) {
+			msg = "白棋求和，黑棋已同意！";
+		} else if (status === 4) {
+			msg = "黑棋求和棋局已结束！";
+		} else if (status === 5) {
+			msg = "黑棋超时，棋局已结束！";
+		} else if (status === 6) {
+			msg = "白棋超时，棋局已结束！";
+		} else if (status === 7) {//黑白棋各停一手
+			info = getInfo(blackSum, whiteSum);
+			msg = info;
+			if((blackSum+whiteSum)==361){
+				currentGame.resultSum = blackSum - 180.5 - 3.75;
+				currentGame.stoponehand = "7";
+			}else{
+				currentGame.resultSum = blackSum - whiteSum - 3.75;
+				currentGame.stoponehand = "7";
+			}
+		} else if (status === 8) {//白棋请求数棋
+			info = getInfo(blackSum, whiteSum);
+			msg = info;
+			if((blackSum+whiteSum)==361){
+				currentGame.resultSum = blackSum - 180.5 - 3.75;
+			}else{
+				currentGame.resultSum = blackSum - whiteSum - 3.75;
+			}
+		} else if (status === 9) {//黑棋请求数棋
+			info = getInfo(blackSum, whiteSum);
+			msg =  info;
+			if((blackSum+whiteSum)==361){
+				currentGame.resultSum = blackSum - 180.5 - 3.75;
+			}else{
+				currentGame.resultSum = blackSum - whiteSum - 3.75;
+			}
+		} else if (status === 10) {
+			info = getInfo(blackSum, whiteSum);
+			msg = info;
+			if((blackSum+whiteSum)==361){
+				currentGame.resultSum = blackSum - 180.5 - 3.75;
+			}else{
+				currentGame.resultSum = blackSum - whiteSum - 3.75;
+			}
+		} else if (status === 11) {
+			info = getInfo(blackSum, whiteSum);
+			msg = info;
+			if((blackSum+whiteSum)==361){
+				currentGame.resultSum = blackSum - 180.5 - 3.75;
+			}else{
+				currentGame.resultSum = blackSum - whiteSum - 3.75;
+			}
+		}  else if (status === 14) {//9路黑胜
+			info = getInfo2(blackSum, whiteSum);
+			msg = "游戏结束 ";
+		}  else if (status === 15) {//9路白胜
+			info = getInfo2(blackSum, whiteSum);
+			msg = "游戏结束 ";
+		}else {
+			msg = "游戏结束 ";
+		}
+		
+		if(tryPlay === 0) { // 不在试下状态时，发送 gameover 消息
+			sendTipMsg(msg);
+		}
+		if(currentGame.infoflag == "close"){
+			return;
+		}
+		closeGame(currentGame, function(data) {
+			currentGame.infoflag = "close";
+			getInfo(blackSum, whiteSum)
+			console.log('2222222222222222222222222222关闭棋局',currentGame)
+			if(data!=4){
+				var myColor = userid == currentGame.blackUserId ? 1 : 2;
+				if(myColor == 1 && (status == 1 || status == 5 || status == 15)) {//黑棋负
+					$("#win").addClass("lose");
+					document.location.href = "myschema://go?a=10&music=COMFORT";
+				} else if(myColor == 2 && ((status == 2 || status == 6  || status == 14))) {//白棋负
+					document.location.href = "myschema://go?a=10&music=COMFORT";
+					
+				} else if(status==3||status==4){
+					$("#win").addClass("pingju");
+		 			
+		 			document.location.href = "myschema://go?a=10&music=COMFORT";
+		 		} else if(myColor == 1 && currentGame.resultSum<0) {
+		 			$("#win").addClass("lose");
+					document.location.href = "myschema://go?a=10&music=COMFORT";
+		 		} else if(myColor == 2 && currentGame.resultSum>0) {
+		 			$("#win").addClass("lose");
+		 			document.location.href = "myschema://go?a=10&music=COMFORT";
+		 		} else{
+		 			
+					$("#win").addClass("win");
+					//alert('这里要根据引导标识判断是否播放')
+		 			document.location.href = "myschema://go?a=10&music=CELEBRATE";
+		 		}
+				console.log('msg==>',msg)
+				$(".win-result").html(msg);
+				var blacktake = $("#blacktake").text();
+				var whitetake = $("#whitetake").text();
+				$(".chessBlack").text('黑方提子'+blacktake);
+				$(".chessWhite").text('白方提子'+whitetake);
+				drawChart();
+				
+				var oLevel = readCookie('LEVEL');//当前 level 等级
+				var oTz = $("b[data-kake="+uid+"]")[0].innerText
+				var oResult = getInfo2(blackSum, whiteSum)
+				$('#researchGame').removeClass('disabled');
+				levelUpOrDown(oLevel,oTz,oResult);
+				$.ajax({
+					type : "GET",
+					data:"token="+token+"&uid="+uid,
+					url : http+"/gobangteach/ChessController/chessJF",
+					success : function(data) {
+						if(data.data>0){
+							$(".getJf").show();
+							setTimeout(function(){
+								$(".getJf").hide();
+							},2000)
+						}
+					}
+				});
+			}else{
+				$("#win").addClass("invalid");
+				$(".chessItem").hide();
+			}
+			
+			
+			
+                layerOpen({
+                	area: ['5.2rem', '7.8rem'],
+                	skin:'layerOpen chessResult',
+                	content: $("#chessResult"),
+                	cancel:function(){
+                		document.location.href = "myschema://go?a=8";
+                	},
+                	offset: 't',
+                });
+                if(guide.isGuideStudent){
+                	guide.flag=2
+                }
+        		
+			closePlaying(currentGame.gameId, function() {
+			});
+		});
+	});
+	
+	/**
+	 * 连接断开
+	 */
+	eve.on("SocketClose", function() {
+		eve.f("SocketStart")();
+		/*
+		swal("网络连接断开，请检查您的网络！", {
+			closeOnClickOutside : false,
+			buttons : {
+				exit : {
+					text : "退出棋局",
+					value : "exit"
+				},
+				retry : {
+					text : "重试",
+					value : "retry"
+				},
+			}
+		}).then(function(value) {
+			switch (value) {
+			case "exit":
+				break;
+			case "retry":
+				eve.f("SocketStart")();
+				break;
+			}
+		});*/
+	});
+
+	/**
+	 * 连接成功
+	 */
+	eve.on("SocketOpen", function() {
+		// 连接成功
+		console.log("已经连接");
+		eve.f("HandlerSignInReq", uid)();
+	});
+
+	/**
+	 * 用户登录响应用户登录响应
+	 */
+	eve.on("SignInResponse", function() {
+		console.log("用户登录 WebSocket 成功");
+		// 如果有棋局号则进入游戏，没有则从服务器获取，如果服务器也提示退出
+		if (targetGameId != null) {
+			$("#classBtnsWrapper .btn").addClass('disabled');
+			$("#classBtnsWrapper .btn").removeAttr('onclick');
+			loadGameInfoByGameId(targetGameId, function(data) {
+				onGameLoaded(data);
+			});
+			if(watchPlay!=null){
+				$("#classBtnsWrapper").empty().html('<button style="margin: 20px auto 0;" type="button" class="btn" onclick="quitGame()">退出房间</button>')
+			}
+		} else{
+			//randomBattle();
+			if($("#researchGame").hasClass("disabled")){
+				loadGameInfoByUserId(function(data) {
+					console.log("loadGameInfoByUserId - callback ", data, Tool.isArray(data));
+					if(Tool.isArray(data)) {
+						onGamesLoaded(data);
+					} else {
+						onGameLoaded(data);
+					}
+				});
+			}
+		}
+//           else if (levelAI != null) {
+//           randomBattle();
+//           playChessWithAi(levelAI)
+//           }
+           
+           });
+
+	/**
+	 * 对方悔棋请求
+	 */
+	eve.on("UndoNotiy", function() {
+		swal("对方请求悔棋？", {
+			closeOnClickOutside : false,
+			buttons : {
+				case1 : {
+					text : "同意",
+					value : "case1"
+				},
+				case2 : {
+					text : "不同意",
+					value : "case2"
+				},
+			}
+		}).then(function(value) {
+			switch (value) {
+			case "case1":
+				eve.f("HadlerAnswerUndoYes")();
+				sendTipMsg("同意悔棋", readCookie("username"));
+				break;
+			case "case2":
+				eve.f("HadlerAnswerUndoNo",currentGame.gameId)();
+				sendTipMsg("不同意悔棋", readCookie("username"));
+				break;
+			}
+		});
+	});
+
+	/**
+	 * 响应数子通知
+	 */
+	eve.on("StatisticalNotify", function() {
+		swal("对方请求数子？", {
+			closeOnClickOutside : false,
+			buttons : {
+				case1 : {
+					text : "同意",
+					value : "case1"
+				},
+				case2 : {
+					text : "不同意",
+					value : "case2"
+				}
+			}
+		}).then(function(value) {
+			switch (value) {
+			case "case1":
+				eve.f("HadlerStatisticalYes")();
+				sendTipMsg("同意数子", readCookie("username"));
+				break;
+			case "case2":
+				eve.f("HadlerStatisticalNo",currentGame.gameId)();
+				sendTipMsg("不同意数子", readCookie("username"));
+				break;
+			}
+		});
+	});
+
+	/**
+	 * 数子不同意通知
+	 * 
+	 * @param message
+	 */
+	eve.on("_StatisticalNoNotify_", function() {
+		swal("对方拒绝了数子！", {
+			closeOnClickOutside : false,
+			button : "确认"
+		});
+	});
+
+	/**
+	 * 数子限制次数已到
+	 */
+	eve.on("_StatisticalLimit_", function() {
+
+		document.getElementById("input1").disabled = false;
+		document.getElementById("input2").disabled = true;
+
+		swal("数子请求达到限制次数！", {
+			closeOnClickOutside : false,
+			button : "确认"
+		});
+		
+		sendTipMsg("数子请求已超限", readCookie("username"));
+	});
+
+	/**
+	 * 强制数子
+	 */
+	eve.on("StatisticalForceRefuse", function() {
+		swal("存在没有归属的点，不能进行强制数子！", {
+			closeOnClickOutside : false,
+			button : "确认"
+		});
+		
+		sendTipMsg("存在没有归属的点，不能进行强制数子", readCookie("username"));
+	});
+
+	/**
+	 * 响应和棋通知
+	 * 
+	 * @param message
+	 */
+	eve.on("_NotifyRequestDraw_", function() {
+		swal("对方请求和棋？", {
+			closeOnClickOutside : false,
+			buttons : {
+				case1 : {
+					text : "同意",
+					value : "case1"
+				},
+				case2 : {
+					text : "不同意",
+					value : "case2"
+				}
+			}
+		}).then(function(value) {
+			switch (value) {
+			case "case1":
+				eve.f("HadlerRequestDrawYes")();
+				sendTipMsg("同意和棋", readCookie("username"));
+				break;
+			case "case2":
+				eve.f("HadlerRequestDrawNo",currentGame.gameId)();
+				sendTipMsg("不同意和棋", readCookie("username"));
+				break;
+			}
+		});
+	});
+
+	/**
+	 * 黑棋停一手
+	 * 
+	 * @param message
+	 */
+	eve.on("_PressBlackNotify_", function() {
+		swal("黑棋停一手！", {
+			closeOnClickOutside : false,
+			button : "确认"
+		});
+		
+		//sendTipMsg("黑棋停一手");
+	});
+
+	/**
+	 * 白棋停一手
+	 * 
+	 * @param message
+	 */
+	eve.on("_PressWhiteNotify_", function() {
+		swal("白棋停一手！", {
+			closeOnClickOutside : false,
+			button : "确认"
+		});
+		
+		//sendTipMsg("白棋停一手");
+	});
+
+	/**
+	 * 和棋不同意通知
+	 * 
+	 * @param message
+	 */
+	eve.on("_AnswerDrawNoNotify_", function() {
+		swal("对方拒绝了和棋！", {
+			closeOnClickOutside : false,
+			button : "确认"
+		});
+	});
+	/**
+	 * 和棋请求达到限制次数
+	 * 
+	 * @param message
+	 */
+	eve.on("_AnswerDrawNoLimit_", function() {
+		swal("和棋请求达到限制次数！", {
+			closeOnClickOutside : false,
+			button : "确认"
+		});
+		
+		sendTipMsg("和棋请求次数超限", readCookie("username"));
+	});
+	/**
+	 * 悔棋请求达到限制次数
+	 * 
+	 * @param message
+	 */
+	eve.on("_AnswerUndoLimit_", function() {
+		swal("悔棋请求达到限制次数！", {
+			closeOnClickOutside : false,
+			button : "确认"
+		});
+
+		sendTipMsg("悔棋请求次数超限", readCookie("username"));
+	});
+
+	/**
+	 * 悔棋不同意通知
+	 * 
+	 * @param message
+	 */
+	eve.on("_AnswerUndoNoNotify_", function() {
+		swal("对方拒绝了悔棋！", {
+			closeOnClickOutside : false,
+			button : "确认"
+		});
+	});
+
+	/**
+	 * 确定认输
+	 * 
+	 * @param message
+	 */
+	eve.on("_CanHandleAdmitDefeat_", function() {
+		swal("确定认输？", {
+			closeOnClickOutside : false,
+			buttons : {
+				case1 : {
+					text : "确定",
+					value : "case1"
+				},
+				case2 : {
+					text : "取消",
+					value : "case2"
+				}
+			}
+		}).then(function(value) {
+			switch (value) {
+			case "case1":
+				eve.f("HadlerAdmitDefeat")();
+				sendTipMsg("发起认输", readCookie("username"));
+				break;
+			case "case2":
+				break;
+			}
+		});
+	});
+
+	/**
+	 * 试下状态
+	 * 
+	 * @param message
+	 */
+	eve.on("_TryPlayNotify_", function(tryPlay) {
+		console.log("_TryPlayNotify_", tryPlay);
+		if(tryPlay === 0) { // 不在试下状态
+			$("#tryPlayBtn").text("试下");
+			$("#tryPlayJudgementBtn").attr("disabled", true);
+			$("#tryPlayAIHelperBtn").attr("disabled", true);
+		} else {
+			$("#tryPlayBtn").text("结束试下");
+			$("#tryPlayJudgementBtn").attr('disabled', false);
+			$("#tryPlayAIHelperBtn").attr("disabled", false);
+		}
+	});
+
+	// 新建棋局测试用
+	eve.on("NewGameID", function(gameId) {
+		document.getElementById("form1").gameId.value = gameId;
+	});
+
+	// 通知棋局数据有更新
+	eve.on("_NotifyDateUpdate_", function(gameId) {
+		var m = getImageIdGameId();
+		console.log("_NotifyDateUpdate_", m);
+		for ( var i in m) {
+			if (m.hasOwnProperty(i) && m[i].gameId === gameId) {
+				(function() {
+					var img = document.getElementById(m[i].imgId);
+					//img.className = "highlight";
+					$(img).parent().attr('class','active').siblings().removeAttr('class');
+					/*setTimeout(function() {
+						img.className = "normal";
+					}, 1000);*/
+				})(i);
+				break;
+			}
+		}
+	});
+	//落子声音
+    eve.on("HandlerAction", function(takeBlack, takeWhite) {
+		//$("#stepmusic")[0].play();
+		if(window.judgeFlag){
+			eve.f("HandlerJudgement")();
+			window.judgeFlag = !window.judgeFlag;
+		}
+		$("#judgement-wrapper").hide();
+		$("#game_chat_wrapper").hide();
+	});
+	/*// 通知棋局棋盘有更新
+	eve.on("_NotifyUpdate_", function(gameId) {
+		var m = getImageIdGameId();
+		for ( var i in m) {
+			if (m.hasOwnProperty(i) && m[i].gameId === gameId) {
+				(function() {
+					var img = document.getElementById(m[i].imgId);
+					setTimeout(function() {
+						img.src = document.getElementById("gameCanvas")
+								.toDataURL('image/png');
+					}, 100);
+					$(img).attr('class','highlight');
+				})(i);
+				break;
+			}
+		}
+	});*/
+	
+	/**
+     * 停一手请求达到限制次数
+     * @param message
+     */
+    eve.on("PressLimit", function () {
+        swal("停一手请求达到限制次数！", {
+            closeOnClickOutside: false,
+            button: "确认"
+        });
+    });
+
+	/**
+	 * 推送消息给用户
+	 */
+	function pushToUserMessage(msg) {
+		console.log("推送消息：" + msg);
+		eve.f("HandlerPushToUserMessage", 1, msg)();
+	}
+
+	/**
+	 * 询问能否请求认输
+	 */
+	function admitDefeat() {
+		eve.f("HandleAskForAdmitDefeat")();
+	}
+
+	/**
+	 * 进行连接
+	 */
+	function socketStart() {
+		eve.f("SocketStart")();
+	}
+
+	function getImageIdGameId() {
+		var m = [];
+
+		for(var i = 0; i < games.length; i++) {
+			m.push({
+				imgId : "gameCanvasImg" + games[i].ChessSeq,
+				gameId : games[i].gameId
+			});
+		}
+		return m;
+	}
+
+	function handlerPencil() {
+		var canvas = document.getElementById('workspace');
+		if (canvas.hidden === false) {
+			canvas.hidden = true;
+		} else {
+			canvas.hidden = false;
+			_shape.graphics.clear();
+			_stage.update();
+		}
+	}
+
+	function canvas2Image() {
+		var canvas = document.getElementById("gameCanvas");
+		var dataURL = canvas.toDataURL('image/png');
+		document.getElementById("gameCanvasImg1").src = dataURL;
+	}
+
+	function enterGame(gameId, otherId) {
+		console.log("EnterGame", gameId);
+		eve.f("HandlerEnterGame", gameId)();
+        if(currentGame.GameType == 4 && myRole == "white"){//AI执黑
+        eve.f("HandlerAction","B[pp]")();
+        }
+        if(currentGame.GameType == 4 && myRole == "black" && currentGame.RuleType1 >=2 ){
+        //让子棋AI执白先行
+        setTimeout(function(){
+        eve.f("HandlerAction","W[pp]")();
+        },1000)
+        }
+	}
+	
+	function onGameLoaded(game) {
+		console.log("OnGameLoaded: ", game);
+		var whiteLevel = game.whiteLevel.toString();
+		var blackLevel = game.blackLevel.toString();
+		if(whiteLevel.indexOf('K')!=-1||whiteLevel.indexOf('D')!=-1||blackLevel.indexOf('K')!=-1||blackLevel.indexOf('D')!=-1){
+			window.vmGameInfo.game = game;
+		}else{
+			if(game.whiteLevel>25){
+				game.whiteLevel = (game.whiteLevel-25)+'D';
+			}else if(game.whiteLevel<=25&&game.whiteLevel>0){
+				game.whiteLevel = (26-game.whiteLevel)+'K';
+			}else if(game.whiteLevel==0||game.whiteLevel==''){
+				game.whiteLevel = '25k';
+			}
+			if(game.blackLevel>25){
+				game.blackLevel = (game.blackLevel-25)+'D';
+			}else if(game.blackLevel<=25&&game.blackLevel>0){
+				game.blackLevel = (26-game.blackLevel)+'K';
+			}else if(game.blackLevel==0||game.blackLevel==''){
+				game.blackLevel = '25k';
+			}
+			window.vmGameInfo.game = game;
+		}
+			
+		currentGame = game;
+	   currentGame.token =token;
+	currentGame.uid = uid
+	if(currentGame.GameType==2){
+		$('#researchGame').removeClass('disabled');
+	}
+		myRole = userid == currentGame.blackUserId ? "black" : userid == currentGame.whiteUserId ? "white" : "visitor";
+			enterGame(game.gameId);
+		
+	}
+	
+	function onGamesLoaded(gameList, opts) {
+		console.log("onGamesLoaded: ", gameList, opts);
+		games = gameList;
+		//  >2多人对弈
+ $("#chess_boards_wrapper").hide();
+ 
+		var target = 0;
+		if(opts && opts.playingId) {
+			for(var i = 0; i < games.length; i++) {
+				if(games[i].gameId == opts.playingId) {
+					target = i;
+					break;
+				}
+			}
+		}
+		onGameLoaded(gameList[target]);
+	}
+	
+	function quitGame() {
+		//debugger;
+		var myUserId = uid;
+		if(currentGame && (currentGame.blackUserId == myUserId || currentGame.whiteUserId == myUserId)) { // 我时游戏其中一方，则需要首先认输
+			loadMatchInfoByGameId(currentGame.gameId, function(game) {
+				console.log("loadMatchInfoByGameId", game);
+				if(game.playsts == 1) {
+					layerTC("您正在对局中，退出将视为认输，是否退出？",function() {
+						handleAskForAdmitDefeat();
+						clearUser();
+						// setTimeout(function(){
+						// 	document.location.href = "myschema://go?a=1";
+						// },1000)
+					},layer.closeAll());
+				} else {
+					closePlaying(currentGame.gameId, function() {
+						clearUser();
+						setTimeout(function(){
+							document.location.href = "myschema://go?a=7";
+						},1000)
+					});
+				}
+			});
+		} else {
+ 			clearUser();
+ 			document.location.href = "myschema://go?a=1";
+		}
+	}
+	function addToMyFriend() {
+		var friendAccount;
+		var arr = [];
+		showfrishipModal();
+		if(userid == currentGame.blackUserId) {
+			friendAccount = currentGame.whiteImAccid;
+		} else {
+			friendAccount = currentGame.blackImAccid;
+		}
+		arr.push(friendAccount)
+		nim_instance.getUsers({accounts: arr, done: function(err, list) {
+			
+			console.log('对弈好友',list);
+			var user = JSON.parse(list[0].custom);
+			
+			
+			/*$("#applyFriendChess").click(function(){
+				nim_applyFriend(friendAccount,$("#myModalSend_fri textarea").val());
+			})*/
+			
+		}});
+		
+		
+	}
+	//多人对弈逻辑
+	window.showMultiModal = function(){
+		$(".multi").show();
+	}
+	window.hideMultiModal = function(){
+		$(".multi").hide();
+	}
+	//展示右侧好友列表
+	function showfrishipModal(){
+		layer.closeAll();
+		$('.static').fadeToggle("slow","swing");
+		$('.member').removeClass('slideOutRight').addClass('animated Sliders slideInRight').show();
+	}
+	function share() {
+		$('#qrcode').qrcode({
+			width: 200, //宽度f
+			height:200, //高度
+			text: "http://121.52.212.34:8080/gobangteach/share.jsp?info=" + $("#win-result").html()
+//			text: "http://210.12.48.108:8080/gobangteach/share.jsp?info=" + $("#win-result").html()
+		});
+		$("#share-qrcode").toggle();
+	}
+	
+	function playAgain() {
+		layer.closeAll();
+		if(currentGame.GameType==1 || currentGame.GameType==3){
+			closePlaying(currentGame.gameId, function() {
+				closeGame(currentGame, function() {
+					randomBattle();
+				});
+			});
+		}else if(currentGame.GameType==4){
+			
+			$.ajax({
+				url: http+'/gobangteach/ChessController/getAIParam',
+				type: "GET",
+				contentType: "application/json",
+				data: $.param({
+					chessid:currentGame.gameId,
+					token:token,
+					uid:uid
+					}),
+				dataType: "json",
+				success: function (data) {
+					console.log(data);
+					if (data.error.returnCode == 0) {
+						createAIChess(data.data.ai_level,data.data.color,data.data.count,data.data.size)
+					} else {
+						layerTC(data.error.returnUserMessage);
+					}
+				},
+				error: function (XMLHttpRequest, textStatus) {
+					layerTC("服务器错误！！！");
+				}
+			});
+		} else {
+			var friendId;
+			if(userid == currentGame.blackUserId) {
+				friendId = currentGame.whiteUserId;
+			} else {
+				friendId = currentGame.blackUserId;
+			}
+			
+			if(friendId > 0) {
+				var pushMsg = {
+					code : '3',
+					info : {
+						userid: uid,
+						usernm: readCookie('username'),
+						state: 1,
+						gameInfo: {
+							//'friendsId' : friendId,
+							'ruletype' : currentGame.RuleType1,
+							'size' : currentGame.RuleType2 == 1 ? 19 : 9,
+							'blackuserid' : currentGame.blackUserId,
+							'whiteuserid' : currentGame.whiteUserId
+						}
+					}
+				};
+				var request = Base.encode(JSON.stringify(pushMsg));
+				// 发送消息
+				closePlaying(currentGame.gameId, function() {
+					pushToUserMessage("{'users':['" + friendId + "'],'pushMsg':'" + request + "'}");
+				});
+			}
+		}
+	}
+	function createAIChess(ai_level,color,count,size){
+		$.ajax({
+			url: http+'/gobangteach/ChessController/createAIChess',
+			type: "GET",
+			contentType: "application/json",
+			data: $.param({
+				ai_level: ai_level,
+				size:size,
+				count:count,
+				color:color, //'white'//black
+				token:token,
+				uid:uid
+				}),
+			dataType: "json",
+			success: function (data) {
+				console.log(data);
+				if (data.error.returnCode == 0) {
+					document.location.href = 'myschema://go?a=401';
+				} else {
+					layerTC(data.error.returnUserMessage);
+					popdownLoading();
+				}
+			},
+			error: function (XMLHttpRequest, textStatus) {
+				layerTC("服务器错误！！！");
+			}
+		});
+	}
+	window.judgeFlag = false;
+	function judgement() {
+		eve.f("HandlerJudgement")();	
+		window.judgeFlag = !window.judgeFlag;
+		$("#judgement-wrapper").toggle();
+		
+		var  judgement= new Vue({
+			el : '#judgement-wrapper',
+			data : {
+				game : {}
+			},
+			methods : {}
+		});
+		judgement.game = currentGame;
+		eve.on("_JudgementResult_",function(blackSum,whiteSum){
+			$(".blackSum").text(blackSum);
+	    	$(".whiteSum").text(whiteSum);
+	    	if(blackSum>whiteSum){
+	    		$(".judgeInfo").text('黑领先'+(blackSum-whiteSum)+'目')
+	    	}else if(whiteSum>blackSum){
+	    		$(".judgeInfo").text('白领先'+(whiteSum-blackSum)+'目')
+	    	}else if(whiteSum==blackSum){
+	    		$(".judgeInfo").text('黑白目数相等')
+	    	}
+	    });
+	    	
+	
+	}
+	
+	/*function doTryPlay() {
+		if($("#tryPlayBtn").text() == "试下") {
+			eve.f("HadlerResearchPlayStart")();
+			eve.f("HadlerTryPlayStart")();
+		} else {
+			
+			eve.f("HadlerTryPlayEnd")();
+			eve.f("HadlerResearchPlayEnd")();
+		}
+	}*/
+	
+	function handlerPass() {
+		eve.f('HandlerPass')();
+		swal("发起停一手");
+		sendTipMsg("发起停一手", readCookie("username"));
+	}
+
+	function handlerStatisticalReq() {
+		eve.f('HandlerStatisticalReq')();
+		swal("发起数棋请求");
+		sendTipMsg("发起数棋请求", readCookie("username"));
+	}
+	
+	function handlerRequestUndo() {
+		eve.f('HadlerRequestUndo')();
+		sendTipMsg("发起悔棋请求", readCookie("username"));
+	}
+	
+	function handlerRequestDraw() {
+		eve.f('HandlerRequestDraw')();
+		sendTipMsg("发起和棋请求", readCookie("username"));
+	}
+	
+	function handleAskForAdmitDefeat() {
+		eve.f('HandleAskForAdmitDefeat')();
+	}
+	
+	function handlerForceStatisticalReq() {
+		eve.f('HandlerForceStatisticalReq')();
+		sendTipMsg("发起强制数子请求", readCookie("username"));
+	}
+	
+	function playSound(soundId) {
+		if(soundId == "stepmusic" || soundId == "takemusic") {
+			if(soundOpts & 1 == 1) { // 落子音
+				$("#" + soundId)[0].play();
+			}
+		} else {
+			if(soundOpts & 2 == 2) { // 提示音
+				$("#" + soundId)[0].play();
+			}
+		}
+	}
+
+	window.enterGame = enterGame;
+	window.socketStart = socketStart;
+	window.onGameLoaded = onGameLoaded;
+	window.onGamesLoaded = onGamesLoaded;
+	window.pushToUserMessage = pushToUserMessage;
+	window.quitGame = quitGame;
+	window.addToMyFriend = addToMyFriend;
+	window.share = share;
+	window.playAgain = playAgain;
+	window.judgement = judgement;  //形式判断   先隐藏
+	//window.doTryPlay = doTryPlay;
+	window.handlerPass = handlerPass;
+	window.handlerStatisticalReq = handlerStatisticalReq;
+	window.handlerRequestUndo = handlerRequestUndo;
+	window.handlerRequestDraw = handlerRequestDraw;
+	window.handleAskForAdmitDefeat = handleAskForAdmitDefeat;
+	window.handlerForceStatisticalReq = handlerForceStatisticalReq;
+	window.playSound = playSound;
+})();
+/* ./棋盘事件 */
+
+/* 聊天及视图 */
+(function() {
+	var vmGameInfo = new Vue({
+		el : '#game_info_box',
+		data : {
+			game : {}
+		},
+		methods : {},
+		watch:{
+			game:function(val){
+				if(val.GameType==4){
+					$('.modal-footer .btn-info').eq(0).hide()
+				}
+				
+				
+				/*
+				 * 根据黑旗白棋 棋力等级 判断当前棋盘是 9路 或 16路
+				 * 9路棋盘下 禁用数棋按钮
+				 * 提示25-21k 和  20k-16k 的胜利规则
+				 * */
+				var blackLevel = val.blackLevel.substr(0,val.blackLevel.length-1)*1;
+				var whiteLevel = val.whiteLevel.substr(0,val.whiteLevel.length-1)*1;
+				if(blackLevel>=16 && whiteLevel>=16 && (currentGame.GameType==1 || currentGame.GameType==3)){
+					
+					//显示 9 路棋盘胜利规则
+					$('.tzinfo').show();
+					if(blackLevel>=21){
+						$('.tzinfo').text('提3子胜')
+					}else{
+						$('.tzinfo').text('提7子胜')
+					}
+				}
+				if(currentGame.RuleType2==1){
+					$('#classBtnsWrapper .sq').attr('disabled',false).removeClass('disabled');
+					$('#classBtnsWrapper .sq').attr('disabled',false).removeClass('disabled');
+					$('#group2 button').eq(2).show();
+					$('#group2 button').eq(3).show();
+				}else if(currentGame.RuleType2==2){
+					$('#classBtnsWrapper .sq').attr('disabled',true).addClass('disabled');
+					$('#classBtnsWrapper .sq').attr('disabled',true).addClass('disabled');
+					$('#group2 button').eq(1).hide();
+					//$('#group2 .btn').eq(3).hide();
+				}else if((currentGame.RuleType2==''||currentGame.RuleType2==null||currentGame.RuleType2=='null') && blackLevel<=15 && whiteLevel<=15){
+					$('#classBtnsWrapper .sq').attr('disabled',false).removeClass('disabled');
+					$('#classBtnsWrapper .sq').attr('disabled',false).removeClass('disabled');
+					$('#group2 button').eq(2).show();
+					$('#group2 button').eq(3).show();
+				}else if((currentGame.RuleType2==''||currentGame.RuleType2==null||currentGame.RuleType2=='null') && blackLevel>=16 && whiteLevel>=16){
+					$('#classBtnsWrapper .sq').attr('disabled',true).addClass('disabled');
+					$('#classBtnsWrapper .sq').attr('disabled',true).addClass('disabled');
+					$('#group2 button').eq(1).hide();
+				}
+			}
+			
+		}
+	});
+	//对弈用户信息存全局变量
+	window.vmGameInfo = vmGameInfo;
+	//window.vmChatInfo = vmChatInfo;
+
+	function createNimTeam() {
+		//console.log("createNimTeam", myRole, nimConnected);
+		//nimConnected = true;
+		if(myRole && nimConnected && myRole == "black") { // 黑方当主创建房间
+			nim_getTeams(function(teams) {
+				var t = false;
+				for(var i = 0; i < teams.length; i++) {
+					if(teams[i].name == currentGame.gameId) {
+						nimTeam = t = teams[i];
+						console.log("找到已创建群", nimTeam);
+						refreshChatUI();
+						break;
+					}
+				}
+				
+				if(!t) {
+					console.log("未找到已创建群，创建新群");
+					var accounts = [currentGame.blackImAccid];
+					if(currentGame.whiteImAccid) {
+						accounts.push(currentGame.whiteImAccid);
+						nim_createTeam({accounts: accounts, name:currentGame.gameId}, function(obj) {
+							console.log("对战房间初始化", obj);
+							nimTeam = obj.team;
+							sendTipMsg("对弈开始");
+						});
+					}
+				}
+			});
+		} else if(myRole && nimConnected && myRole != "black") { //其他用户向黑方要TeamId
+			nim_sendMsg(currentGame.blackImAccid, "[JOIN GAME]" + currentGame.gameId);
+		}
+	}
+	
+	function refreshChatUI() {
+		if(!currentGame) {
+			return;
+		}
+		
+		if(!nimTeam || !nimTeam.teamId) { // 从会话群里找当前群
+			nim_getTeams(function(teams) {
+				var t = false;
+				for(var i = 0; i < teams.length; i++) {
+					//console.log("非房主查找群", teams[i].name, currentGame.gameId)
+					if(teams[i].name == currentGame.gameId) {
+						nimTeam = t = teams[i];
+						console.log("非房主方从会话列表里找到已创建群", nimTeam.teamId, nimTeam);
+						nim_sendTeamMsg(nimTeam.teamId, "进入房间");
+						break;
+					}
+				}
+			});
+		}
+
+		if(!nimTeam || !nimTeam.teamId) {
+			console.log("未找到当前会话群。");
+			return;
+		}
+
+		console.log("refreshChatUI", nim_data.msgs, nimTeam.teamId);
+		var msgs = nim_data.msgs["team-" + nimTeam.teamId];
+		msgs.sort(function(a, b) {
+			return a.time - b.time;
+		});
+		/*for(var i=0;i<msgs.length;i++){
+			var uid = msgs[i].from;
+			loadInfo(uid,msgs[i]);
+		}
+		function loadInfo(uid,msgs){
+			$.ajax({
+				type : "GET",
+				url : http+"/gobangteach/UserBaseController/getUserFullInfoById?userid=" + uid,
+				success : function(data) {
+					debugger;
+					var dataMsg = data.data.base.headimg;
+					msgs.headImg = dataMsg;
+					console.log()
+				}
+			});
+		}*/
+		
+		vmChatInfo.msgs = msgs;
+		console.log('---------++++++++',vmChatInfo.msgs)
+		nim_getTeamMembers(nimTeam.teamId, function(obj) {
+			var accounts = [];
+			if(obj.members && obj.members.length) {
+				for(var i = 0; i < obj.members.length; i++) {
+					if(obj.members[i].account != currentGame.blackImAccid && obj.members[i].account != currentGame.whiteImAccid) {
+						accounts.push(obj.members[i].account);
+					}
+				}
+			}
+			if(accounts.length) {
+				nim_getUsers({accounts:accounts, done: function(err, list) {
+					for(var i = 0; i < list.length; i++) {
+						list[i].ex = JSON.parse(list[i].custom);
+					}
+					vmChatInfo.members = list;
+				}});
+			}
+		});
+	}
+	
+	function sendTipMsg(msg, from) {
+		if(nimTeam && nimTeam.teamId) {
+			console.log("发送TIP消息", msg);
+			if(from) {
+				nim_sendTeamTipMsg(nimTeam.teamId, "[" + from.substring(0, 7) + "] " + msg);
+			} else {
+				nim_sendTeamTipMsg(nimTeam.teamId, "[棋局状态] " + msg);
+			}
+		}
+	}
+	window.sendTipMsg = sendTipMsg;
+	
+	window.toggleEmoji = function toggleEmoji() {
+		$("#emoji").toggle();
+		/*window.openEmoji = layerOpen({
+		 	content:'#emoji',
+		 	area:'900px 2.5rem'
+		 }) */
+	}
+	window.useEmoji = function useEmoji(emoji) {
+		var tc = document.getElementById("p2p_input");  
+	    var tclen = tc.value.length;
+	    tc.focus();
+	    if(typeof document.selection != "undefined") {
+	        document.selection.createRange().text = emoji;
+	    }  
+	    else {  
+	        tc.value = tc.value.substr(0,tc.selectionStart)+emoji+tc.value.substring(tc.selectionStart,tclen);  
+	        $("#emoji").hide();
+	        /*layer.close(openEmoji)*/
+	    }
+	}
+	window.createNimTeam = createNimTeam;
+	window.refreshChatUI = refreshChatUI;
+	$("#p2p_send_btn").click(function() {
+		if ($("#p2p_input").val()) {
+			nim_sendTeamMsg(nimTeam.teamId, $("#p2p_input").val());
+			$("#p2p_input").val("");
+		}
+	});
+	
+	var emojihtml = "";
+	for(e in emoji) {
+		emojihtml += `<li><a href="javascript:useEmoji('${e}');"><img src="images/emoji/${emoji[e].file}"></a></li>`;
+	}
+	$("#emoji ul").html(emojihtml);
+})();
+/* ./聊天及视图 */
+
+/* 服务端API */
+	function loadGameInfoByGameId(gameId, callback) {
+		$.ajax({
+			type : "GET",
+			url : http+`/gobangteach/ChessController/getGameInfoByGameId`,
+			dataType : 'json',
+			data:"gameId="+gameId+"&token="+token+"&uid="+uid,
+			success : function(data) {
+				if (data.error.returnCode == 0) {
+					if (callback) {
+						callback(data.data);
+					}
+				} else if (data.error.returnCode == 10053) {
+					console.log("无对局信息");
+					/*swal("无对局信息！", {
+						closeOnClickOutside : false,
+						button : "确认"
+					});*/
+					layerTC('无对局信息！')
+					
+				} else {
+					layerTC("系统错误！," + data.error.returnUserMessage);
+				}
+			},
+			error : function(XMLHttpRequest, data) {
+				layerTC("系统错误！");
+			}
+		});
+	}
+
+	function loadGameInfoByUserId(callback) {
+		function success(data) {
+			console.log("loadGameInfoByUserId", data);
+			if (data.error.returnCode == 0) {
+				if(callback) {
+					callback(data.data);
+				}
+			} else if (data.error.returnCode == 10053) {
+				/*swal("无对局信息！", {
+					closeOnClickOutside : false,
+					button : "确认"
+				});*/
+				layerTC('无对局信息！')
+			} else {
+				layerTC("系统错误！");
+			}
+		}
+
+		$.ajax({
+			type : "POST",
+			url : http+"/gobangteach/ChessController/getGameInfoByUserId",
+			dataType : 'json',
+			data:"token="+token+"&uid="+uid,
+			success : success,
+			error : function(XMLHttpRequest, data) {
+				layerTC("系统错误！," + data);
+			}
+		});
+	}
+
+	function loadUserInfo(callback) {
+		
+		// 获取登陆信息
+		$.ajax({
+			type : "GET",
+			url : http+"/gobangteach/UserBaseController/getUserInfo",
+			dataType : 'json',
+			data:"token="+token+"&uid="+uid,
+			success : function(data) {
+				if (data.error.returnCode > 0) {
+					console.log("获取用户信息失败。", data.error);
+					alert("获取用户信息失败, 请重新登录。");
+				} else {
+					if (callback) {
+						callback(data.data);
+					}
+				}
+			},
+			error : function(XMLHttpRequest, data) {
+				layerTC("系统错误。。。。。。。！");
+			}
+		});
+	}
+	
+	function closeGame(gameInfo, callback) {
+		// 对弈结束时
+		$.ajax({
+			type : "POST",
+			url : http+"/gobangteach/ChessController/closeGame",
+			data : $.param(gameInfo),
+			dataType : 'json',
+			success : function(data) {
+				console.log('11111111111111111111111111111111关闭棋局',data.data)
+				if (data.error.returnCode > 0) {
+					console.log("更新对局状态失败。", data.error);
+				} else {
+					if (callback) {
+						callback(data.data);
+					}
+				}
+			},
+			error : function(XMLHttpRequest, data) {
+				layerTC("系统错误。。。。。。。！");
+			}
+		});
+	}
+	
+	function closePlaying(chessid, callback) {
+		if(nimTeam.teamId) {
+			nim_dismissTeam(nimTeam.teamId);
+		}
+		// 用户退出时+"&token="+token+"&uid="+uid
+		$.ajax({
+			type : "POST",
+			url : http+"/gobangteach/ChessController/closePlaying",
+			data : $.param({chessid: chessid,token:token,uid:uid}),
+			dataType : 'json',
+			success : function(data) {
+				if (data.error.returnCode > 0) {
+					console.log("更新用户比赛状态失败。", data.error);
+				} else {
+					if (callback) {
+						callback(data.data);
+					}
+				}
+			},
+			error : function(XMLHttpRequest, data) {
+				layerTC("系统错误。。。。。。。！");
+			}
+		});
+	}
+	
+	function loadMatchInfoByGameId(gameId, callback) {
+		console.log("loadMatchInfoByGameId", gameId);
+		$.ajax({
+			type : "GET",
+			url : http+`/gobangteach/ChessController/loadMatchInfo`,
+			dataType : 'json',
+			data:"chessid="+gameId+"&token="+token+"&uid="+uid,
+			success : function(data) {
+				if (data.error.returnCode == 0) {
+					if (callback) {
+						callback(data.data);
+					}
+				} else {
+					layerTC("系统错误！," + data.error.returnUserMessage);
+				}
+			},
+			error : function(XMLHttpRequest, data) {
+				layerTC("系统错误！");
+			}
+		});
+	}
+
+	window.loadGameInfoByGameId = loadGameInfoByGameId;
+	window.loadGameInfoByUserId = loadGameInfoByUserId;
+	window.loadUserInfo = loadUserInfo;
+	window.closeGame = closeGame;
+	window.closePlaying = closePlaying;
+	window.loadMatchInfoByGameId = loadMatchInfoByGameId;
+
+$(document).ready(function() {
+	// 1. 登入用户
+	if (!userid) {
+		
+		// loadUserInfo(function(user) {
+		// 	setCookie('uid', data.data.imaccid);
+		// 	setCookie('sdktoken', data.data.imtoken);
+		// 	setCookie('userid', data.data.id);
+		// 	setCookie('agentid', data.data.agentid);
+		// 	setCookie('usertyp', data.data.usertype);
+		// 	setCookie('username', data.data.username);
+		// 	socketStart();
+		// });
+	}
+	
+	/*eve.on("nim_onConnect", function() {
+		nimConnected = true;
+        if(currentGame.GameType != 4){
+           createNimTeam();
+        }
+	});*/
+	
+	eve.on("nim_onMsg", function(msgs) {
+		for(var i = 0; i < msgs.length; i++) {
+			console.log("nim_onmsg", msgs[i], nimTeam);
+			if(msgs[i].scene == "p2p" && msgs[i].text.startsWith("[JOIN GAME]") && myRole == "black") {
+				if(nimTeam && nimTeam.teamId) {
+					//nim_sendMsg(msgs[i].from, "[JOIN GAME RESPONSE]" + nimTeam.teamId);
+					console.log("addTeamMembers", nimTeam.teamId);
+					nim_addTeamMembers({
+						teamId: nimTeam.teamId,
+						accounts: [msgs[i].from]
+					});
+				}
+			}
+		}
+		console.log("nim_onMsg", msgs);
+		//refreshChatUI();
+	});
+});
+function confirmStep(){
+    if(action_==null){
+        layerTC("请选择落点");
+    }else{
+        var x = action_.substring(2,3).charCodeAt()-97;
+        var y = action_.substring(3,4).charCodeAt()-97;
+        var gameId = GGame.get("game:id");
+        var road = GGame.get("game:" + gameId + ":road");
+        if(x < 0 || x >= road.x || y < 0 || y >= road.x){
+            layerTC("请选择正确落点");
+            return;
+        }
+        eve.f("HandlerAction", action_)();
+        setTimeout(function(){
+           var queue = GGame.get("game:"+gameId+":queue");
+                   if(action_ == queue[queue.length-1]){
+                   action_ = null;
+           }
+       },1000);
+        $('.fall').hide();
+        if($("#researchGame").hasClass('disabled') || currentGame.GameType==2){
+            $("#classBtnsWrapper").show();
+        }else{
+            $("#research_control_wrapper").show();
+        }
+    }
+}
+
+function moveStep(x,y){
+	var move = false;
+	if(action_!=null){
+		var gameId = GGame.get("game:id");
+		var queue = GGame.get("game:"+gameId+":queue");
+		var tryPlay = GGame.get("game:"+gameId+":TryPlay");
+		var color = action_.substring(0,1);
+		var xLoc = action_.substring(2,3);
+		var yLoc = action_.substring(3,4); 
+		action_ = color+"["+String.fromCharCode(xLoc.charCodeAt()+x)+String.fromCharCode(yLoc.charCodeAt()+y) + "]";
+		var array = new Array();
+			if(tryPlay===1){
+				queue = GGame.get("game:"+gameId+":queueTraverse");
+			}
+		$.each(queue,function(index,item){
+			if(item.indexOf(action_.substring(2,4))!=-1){
+				array.push(item);
+			}
+		});
+		if(array.length>0){
+			var last = array[array.length-1];
+			if(last.length==5){
+				moveStep(x,y);
+			}else{
+				move = true;
+			}
+		}else{
+			move = true;
+		}
+		if(move){
+    		eve.f("HandReply",action_)();
+		}
+	}else{
+		alert("请选择落点");
+	}
+}
+/* ./聊天及视图 */
+
+var otherImAccid;
+var savedGameId; // 当前对局的棋局ID
+
+// 获取对局信息
+function getGame(num, id) {
+	for(var i = 0; i < games.length; i++) {
+		if(games[i].ChessSeq == num) {
+			onGameLoaded(games[i]);
+			return;
+		}
+	}
+
+	layerTC("无此对局信息");
+}
+
+// 对局研究
+function researchGame($this) {
+	console.log("researchGame", currentGame);
+	var $th = $this||$('#researchGame')
+	
+	if(currentGame && currentGame.gameId) {
+		loadMatchInfoByGameId(currentGame.gameId, function(game) {
+			if(game.playsts == 1) { // 未结束
+				if(currentGame.GameType==2){
+					/*$th.removeClass('disabled');
+					
+					$("#classBtnsWrapper").parent().toggle();
+					$("#research_control_wrapper").toggle();
+					eve.f("HadlerResearchPlayStart")();
+					eve.f("HadlerTryPlayStart")();*/
+				}else {
+					layerTC("请在游戏结束后进行研究");
+				}
+				$("#tryPlayJudgementBtn").attr("disabled", true);
+				$("#tryPlayAIHelperBtn").attr("disabled", true);
+				/*if(myRole == "black" && currentGame.blackPlayType == 2) {
+					$("#research_control_wrapper").toggle();
+				} else if(myRole == "white" && currentGame.whitePlayType == 2) {
+					$("#research_control_wrapper").toggle();
+				} else {
+					alert("请在游戏结束后进行研究");
+				}*/
+			} else { // 已结束
+				$th.removeClass('disabled');
+				eve.f("HadlerResearchPlayStart")();
+				eve.f("HadlerTryPlayStart")();
+				layer.closeAll();
+				$("#classBtnsWrapper").parent().hide();
+				$("#research_control_wrapper").show();
+				$("#tryPlayJudgementBtn").attr("disabled", false);
+				$("#tryPlayAIHelperBtn").attr("disabled", false);
+				//$("#research_control_wrapper").toggle();
+			}
+		});
+	}
+}
+// 显示隐藏手数
+function toggleStep() {
+	if(stepShowed) {
+		eve.f("HandlerHideStep")();
+		stepShowed = false;
+	} else {
+		eve.f("HandlerShowStep")();
+		stepShowed = true;
+	}
+}
+function closeModal($this){
+	$this.parent().hide().siblings().show();
+	$("#game_chat_wrapper").hide();
+}
+function refreshP2PChatUI() {
+	var array1 = nim_data.msgs["p2p-" + uid] || [];
+	var array2 = nim_data.msgs["p2p-" + otherImAccid] || [];
+	vmP2PChat.msgs = array1.concat(array2);
+}
+
+
+//成就
+function updateAchievement(oLevel,oTz,oResult){
+	var param = {
+			chessResult:oResult,  //对弈结算的结果  
+			takeNum:oTz,		  //提子数
+			//take10Num:take10Num,      //一次提10子以上的次数
+			//thinkingTime:thinkingTime,//最长思考时间
+			//threeSeconds:threeSeconds,//连续N步在3秒内落子
+			level:oLevel,				  //更新后的棋力等级
+    token:token,
+    uid:uid
+	}
+	$.ajax({
+		type : "POST",
+		url : http+'/gobangteach/AchievementController/updateAchievement',
+		dataType : 'json',
+		data : $.param(param),
+		success : function(data) {
+			//data.data={LEVEL: 34, CSJJ: 1}
+			if(!(JSON.stringify(data.data) == "{}")){
+				var arrCj = [] //本次对弈获得的成就集
+				$.each(data.data, function(key,val) { //循环对象
+					var obj = {};
+					obj[key]=val;
+					//achievement(obj) 传入一个键值对象 格式化成制定格式 如 {CSJJ:3} => [CSJJ_1,CSJJ_2,CSJJ_3]
+					var imgName = achievement(obj)[achievement(obj).length-1];//本次对弈获得的成就
+					arrCj.push(imgName)
+				})
+				console.log('本次对弈获得的成就集',arrCj)
+				var index = 0;
+				setCj();
+				function setCj(){
+					$('#achievement .cjImg').attr('src','img/achievement/'+arrCj[index]+'.png');//改变成就图标
+					$('#achievement .cjName').text('恭喜你获得了'+cjName[arrCj[index]]+'成就');//改变提示标题
+						$("#achievement").slideDown("slow");
+					setTimeout(function(){ //2.5秒后隐藏模态框
+						$("#achievement").modal('hide');
+						index++;
+						if(arrCj[index]){	//如果还有其他成就则 0.5秒后 再次执行上面逻辑
+							setTimeout(function(){
+								setCj()
+							},500)
+						}
+					},2500);
+				}
+			}
+		},
+		error : function(XMLHttpRequest, data) {
+			layerTC("系统错误！");
+		}
+	});
+}
+function levelUpOrDown(oLevel,oTz,oResult){
+	$.ajax({
+		type : "GET",
+		url : http+'/gobangteach/UserBaseController/levelUpOrDown?userId='+userid+"&token="+token+"&uid="+uid,
+		dataType : 'json',
+		success : function(data) {
+			console.log(data);
+			var riseOrFall = data.data.riseOrFall;
+			if(riseOrFall>0){
+				$(".riseOrFall").show().text('恭喜你晋升'+riseOrFall+'级');
+				oLevel = oLevel*1+riseOrFall
+			}else if(riseOrFall<0){
+				$(".riseOrFall").show().text('很遗憾你降了'+riseOrFall*-1+'级');
+				oLevel = oLevel*1+riseOrFall
+			}else{
+				$(".riseOrFall").text('');
+			}
+			//updateAchievement(oLevel,oTz,oResult);
+		},
+		error : function(XMLHttpRequest, data) {
+			layerTC("系统错误！");
+		}
+	});
+}
+var dataArr = new Array();
+dataArr=[0,0,0,0,0];
+function drawChart() {
+//    debugger;
+	$.ajax({
+		type : "GET",
+		url : http+"/gobangteach/RadarController/RadarAbility",
+		data:{
+			level:readCookie('LEVEL'),
+			userId:uid,
+			chessid:currentGame.gameId,
+			token:token,
+			uid:uid
+		},
+		dataType : 'json',
+		success : function(data) {
+			
+			
+			if(data.data != null && data.data){
+				console.log('能力',data.data);
+				
+				
+				if(readCookie('LEVEL')>25){
+					if(readCookie('LEVEL')>=26&&readCookie('LEVEL')<=28){
+						showGraphData(data.data,2)
+						console.log('等级区间1-3D')
+					}else{
+						showGraphData(data.data,2)
+						console.log('等级区间4D及以上')
+					}
+				}else if(readCookie('LEVEL')>25<=25){
+					if(readCookie('LEVEL')>=1&&readCookie('LEVEL')<=10){
+						showGraphData(data.data,0)
+						console.log('等级区间25-16k')
+					}else if(readCookie('LEVEL')>=11&&readCookie('LEVEL')<=15){
+						
+						showGraphData(data.data,1)
+						console.log('等级区间15-11k')
+					}else if(readCookie('LEVEL')>=16&&readCookie('LEVEL')<=25){
+						showGraphData(data.data,2)
+						console.log('等级区间10-1k')
+					}
+				}else{
+					//return '尚未定级'
+				}
+				
+				
+				
+				
+			}
+
+			
+
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			//showGraphData(dataArr);
+		},
+		error : function(XMLHttpRequest, data) {
+			layerTC("系统错误！," + data);
+		}
+	})
+	
+	
+}
+function loadingChess(time){
+	$('#optLoading').css('display','block')
+	var timeNum = time*1000;
+	var num = timeNum/100;
+	var step = 100/num;
+	var index =1
+	var timer = setInterval(function() {
+		num --;
+		
+		if(num<=0){
+			clearInterval(timer)
+			if(window.checkGameInfo) {
+				checkGameInfo(true);
+			}
+		}else{
+			index++;
+			$(".loadingBar img").css('left',(-100+step*index)+'%');
+			$(".loadingBar .timeNum").text(index)
+			console.log('ss',step*index)
+		}
+	}, 100)
+	
+	$('#optLoading button').click(function(){
+		clearInterval(timer)
+		$('#optLoading').hide()
+	})
+	
+}
+
+
+function showGraphData(data,index){
+    var myChart2 = echarts.init(document.getElementById('power'));
+    var indicator,value;
+    function filter(o,val){
+		if(o){
+			return o
+		}else{
+			return 0
+		}
+	}
+    
+    
+    
+    switch(index)
+	{
+	case 0:
+	indicator = [
+       { name: '吃子能力', max: 100},
+       { name: '切断能力', max: 100},
+       { name: '逃子能力', max: 100},
+	];
+	value = [filter(data.eatZ),filter(data.abscission),filter(data.fleeZ)];
+	  break;
+	case 1:
+		indicator = [
+           { name: '吃子能力', max: 100},
+           { name: '逃子能力', max: 100},
+           { name: '布局能力', max: 100},
+           { name: '计算能力', max: 100},
+           { name: '终局能力', max: 100} 
+		];
+	 value = [filter(data.eatZ) ,filter(data.fleeZ),filter(data.layout),filter(data.calculate),filter(data.final)];
+	  break;
+		case 2:
+		indicator = [
+           { name: '杀棋能力', max: 100},
+           { name: '活棋能力', max: 100},
+           { name: '布局能力', max: 100},
+           { name: '计算能力', max: 100},
+           { name: '官子能力', max: 100} 
+		];
+	 	value = [filter(data.eatZ),filter(data.fleeZ),filter(data.layout),filter(data.calculate),filter(data.final)];
+	  break;
+	  case 3 :
+		indicator = [
+           { name: '大局观', max: 100},
+           { name: '棋子效率', max: 100},
+           { name: '布局能力', max: 100},
+           { name: '计算能力', max: 100},
+           { name: '官子能力', max: 100} 
+		];
+	 	value = [filter(data.chessView),filter(data.chessEfficiency),filter(data.layout),filter(data.calculate),filter(data.final)];
+	  break;
+	  case 4 :
+		indicator = [
+           { name: '大局观', max: 100},
+           { name: '棋子效率', max: 100},
+           { name: '布局能力', max: 100},
+           { name: '计算能力', max: 100},
+           { name: '官子能力', max: 100} 
+		];
+	 	value = [filter(data.chessView),filter(data.chessEfficiency),filter(data.layout),filter(data.calculate),filter(data.final)];
+	  break;
+	 
+	}
+    console.log('data',data)
+    console.log(value)
+   
+    $("#djg span").text(indicator[0].name+":"+ Math.floor(value[0]*100)/100+'分');
+    $("#gj span").text(indicator[1].name+":"+Math.floor(value[1]*100)/100+'分');
+    $("#wk span").text(indicator[2].name+":"+Math.floor(value[2]*100)/100+'分');
+    if(indicator.length>3){
+    	$("#pk span").text(indicator[3].name+":"+Math.floor(value[3]*100)/100+'分');
+        $("#fs span").text(indicator[4].name+":"+Math.floor(value[4]*100)/100+'分');
+    }
+    
+    
+    
+    
+    var option2 = {
+    	    textStyle: {
+    	        color: '#000',
+    	        fontSize : '0.18rem'
+    	    },
+    	    tooltip:{
+    	    	show:true
+    	    },
+    	    radar: {
+
+    	        name: {
+    	            textStyle: {
+    	                color: '#000',
+    	                fontSize : '0.18rem'
+    	            }
+    	        },
+    	        splitLine: {
+    	            lineStyle: {
+    	                color: '#5ebdff',
+    	                	fontSize : '0.18rem'
+    	            }
+    	        },
+    	        splitArea: {
+    	            areaStyle: {
+    	                color: ['rgba(0,0,0,0)']
+    	            }
+    	        },
+    	        radius: '40%',
+                center: ['50%','50%'],
+    	        indicator: indicator,
+    	    },
+    	    legend: {
+		        data: [],
+		    	show:false
+		    },
+    	    series: [{
+    	        type: 'radar',
+    	        data: [{
+    	            areaStyle: {
+    	                normal: {
+    	                    color: '#5ebdff',
+    	                    fontSize : '0.18rem'
+    	                }
+    	            },
+    	            lineStyle: {
+    	                normal: {
+    	                    color: '#5ebdff',
+    	                    fontSize : '0.18rem'
+    	                }
+    	            },
+    	            value: value,
+    	            name : '个人能力图',
+    	        }],
+    	        itemStyle: {
+    	            normal: {
+    	                color: '#1c7dfa',
+    	                lineStyle: {
+    	                    color: '#388fff',
+    	                    fontSize : '0.18rem'
+    	                }
+    	            }
+    	        },
+    	    }]
+    	};
+   
+    myChart2.setOption(option2);
+    
+}

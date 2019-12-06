@@ -1,0 +1,931 @@
+/* 瀹瑰櫒瀹氫綅 */
+
+html,
+body {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.disn {
+    display: none;
+}
+
+.disbk {
+    display: block;
+}
+
+.liveContainer {
+    width: 100%;
+    height: 100%;
+}
+
+.marginAuto {
+    margin: 0 auto;
+}
+
+.width100 {
+    width: 100%;
+}
+
+.height100 {
+    height: 100%;
+}
+
+/* 瀹氫綅 */
+
+.posrel {
+    position: relative;
+}
+
+.posabs {
+    position: absolute;
+}
+
+/* flex璁剧疆 */
+
+.disflex {
+    display: flex;
+}
+
+.flex-flow {
+    flex-flow: row;
+}
+
+.flexcol {
+    flex-direction: column;
+}
+
+.j-seve {
+    justify-content: space-evenly;
+}
+
+.j-sbt {
+    justify-content: space-between;
+}
+
+.flexdirRev {
+    flex-direction: row-reverse
+}
+
+.ac {
+    align-items: center;
+}
+
+.jc {
+    justify-content: center;
+}
+
+.j-sa {
+    justify-content: space-around;
+}
+
+/* 瀹藉害璁剧疆 */
+
+/* 新 */
+
+.w1203 {
+    width: 12.03rem;
+}
+
+.w1639 {
+    width: 16.39rem;
+}
+
+.w436 {
+    width: 4.36rem;
+}
+
+.w369 {
+    width: 3.69rem;
+}
+
+.w385 {
+    width: 3.85rem;
+}
+.w516 {
+    width: 5.16rem;
+}
+
+.w276 {
+    width: 2.76rem;
+}
+
+.w97 {
+    width: 0.97rem;
+}
+
+.w162 {
+    width: 1.62rem;
+}
+.w127 {
+    width: 1.27rem;
+}
+.w46 {
+    width: 0.46rem;
+}
+
+/* 新高 */
+
+.h1203 {
+    height: 12.03rem;
+}
+
+.h939 {
+    height: 9.39rem;
+}
+
+.h63 {
+    height: 0.63rem
+}
+
+.h67 {
+    height: 0.67rem
+}
+
+.h69 {
+    height: 0.69rem
+}
+
+.h500 {
+    height: 5rem
+}
+
+.h483 {
+    height: 4.83rem
+}
+
+.h92 {
+    height: 0.92rem;
+}
+
+.h614 {
+    height: 6.14rem;
+}
+
+.w1480 {
+    width: 14.8rem;
+}
+
+.w1353 {
+    width: 13.53rem;
+}
+
+.w224 {
+    width: 2.24;
+}
+
+.w246 {
+    width: 2.46rem;
+}
+
+.w442 {
+    width: 4.42rem;
+}
+
+.w263 {
+    width: 2.63rem;
+}
+
+.w460 {
+    width: 4.6rem;
+}
+
+.w155 {
+    width: 1.55rem;
+}
+
+.w64 {
+    width: 0.64rem;
+}
+
+.w717 {
+    width: 7.17rem;
+}
+.w575 {
+    width: 5.75rem;
+}
+.w695 {
+    width: 6.95rem;
+}
+
+.w424 {
+    width: 4.24rem;
+}
+
+.w640 {
+    width: 6.4rem;
+}
+
+/* 楂樺害璁剧疆 */
+
+.h255 {
+    height: 2.55rem;
+}
+
+.h832 {
+    height: 8.32rem;
+}
+
+.h720 {
+    height: 7.2rem;
+}
+
+.h684 {
+    height: 6.82rem;
+}
+
+.h112 {
+    height: 1.12rem;
+}
+
+.h356 {
+    height: 3.56rem;
+}
+
+.h32 {
+    height: 0.32rem;
+}
+
+.h141 {
+    height: 1.41rem;
+}
+
+.h610 {
+    height: 6rem;
+}
+
+
+.h127 {
+    height: 1.27rem;
+}
+
+.h150 {
+    height: 1.5rem;
+}
+
+.h251 {
+    height: 1.96rem;
+}
+
+.h290 {
+    height: 2.9rem;
+}
+.h340 {
+    height: 3.4rem;
+}
+.h56 {
+    height: 0.56rem;
+}
+
+.h67 {
+    height: 0.67rem;
+}
+.h72{
+    height: 0.72rem;
+}
+.h241 {
+    height: 2.41rem;
+}
+
+.h200 {
+    height: 2rem;
+}
+
+.h220 {
+    height: 2.2rem;
+}
+
+/* 瀹氫綅top鍊� */
+
+.tp12 {
+    top: 0.12rem;
+}
+
+.tp10 {
+    top: 0.1rem;
+}
+
+.tp {
+    top: 0px;
+}
+
+.tp8 {
+    top: 0.08rem;
+}
+
+.tp2 {
+    top: 0.02rem;
+}
+
+.tp12 {
+    top: 0.12rem;
+}
+
+.tp14 {
+    top: 1.4rem;
+}
+
+.tp190 {
+    top: 1.9rem;
+}
+
+.tp140 {
+    top: 1.4rem;
+}
+
+.tp70 {
+    top: 0.7rem;
+}
+
+.tp208 {
+    top: 2.18rem;
+}
+
+.tp50 {
+    top: 0.5rem;
+}
+
+.btm0 {
+    bottom: 0;
+}
+
+.btm10 {
+    bottom: 0.1rem;
+}
+
+.btm15 {
+    bottom: 0.15rem;
+}
+
+.btm100 {
+    bottom: 1rem;
+}
+
+.btm140 {
+    bottom: 1.4rem;
+}
+.btm-160 {
+    bottom: -1.6rem;
+}
+/* 瀹氫綅left鍊� */
+
+.lt35 {
+    left: 0.35rem;
+}
+
+.lt0 {
+    left: 0;
+}
+
+.lt9 {
+    left: 0.09rem;
+}
+.lt90 {
+    left: 0.9rem;
+}
+.lt6 {
+    left: 0.06rem;
+}
+
+.lt100 {
+    left: 1rem;
+}
+
+.lt-32 {
+    left: -0.32rem;
+}
+
+/* 瀹氫綅right鍊� */
+
+.rt-32 {
+    right: -0.32rem;
+}
+
+.rt0 {
+    right: 0;
+}
+
+.rt20 {
+    right: 0.2rem;
+}
+
+.rt12 {
+    right: 0.12rem;
+}
+
+.rt25 {
+    right: 0.25rem;
+}
+
+.rt69 {
+    right: 0.69rem;
+}
+
+.rt110 {
+    right: 1.1rem;
+}
+
+.rt40 {
+    right: 0.4rem;
+}
+.rt210 {
+    right: 2.1rem;
+}
+.z1 {
+    z-index: 1;
+}
+
+.z2 {
+    z-index: 2;
+}
+.z99{
+	z-index:99;
+}
+.mgin-tp15 {
+    margin-top: 0.15rem;
+}
+.mt20 {
+    margin-top: 0.2rem;
+}
+.mgin-tp8 {
+    margin-top: 0.08rem;
+}
+
+.mgin-tp10 {
+    margin-top: 0.1rem;
+}
+
+.padBtmTop {
+    padding: 0.4rem 0px 1.1rem;
+}
+
+.mt57 {
+    margin-top: 0.57rem
+}
+
+.mb10 {
+    margin-bottom: 0.1rem
+}
+
+/* 鑳屾櫙棰滆壊璁剧疆 */
+
+.bgfff {
+    background: #fff;
+}
+
+.bgefd {
+    background-color: #fffefd;
+}
+
+.bge7f {
+    background: #e7fbff;
+}
+
+.bgfef {
+    background-color: #fef7dc;
+}
+
+.bgbcf {
+    background-color: #bcfbff;
+}
+
+.bgffd {
+    background-color: #ffd667;
+}
+
+.bgstar {
+    margin-left: -6.75rem;
+    left: 50%;
+}
+
+.textcenter {
+    text-align: center;
+}
+
+.textright {
+    text-align: right;
+}
+
+/* 字体大小 */
+
+.fontsz15 {
+    font-size: 0.15rem;
+}
+
+.fontsz26 {
+    font-size: 0.26rem;
+}
+
+.clr1d729b {
+    color: #1d729b;
+}
+
+.pad-lt25 {
+    padding-left: 0.25rem;
+}
+
+.pad-21 {
+    padding: 0.1rem 0 0.1rem;
+}
+
+.pad-tb {
+    padding: 0.1rem 0;
+}
+
+.padTb5 {
+    padding: 0.05rem 0;
+}
+.plr30{
+	padding:0 0.3rem;
+}
+/* 鍦嗚璁剧疆 */
+
+.boradius10 {
+    border-radius: 0.1rem;
+}
+
+.boradius20 {
+    border-radius: 0.2rem;
+}
+
+.boradius30 {
+    border-radius: 0.3rem;
+}
+
+.overHid {
+    overflow: hidden;
+}
+.boardBg{
+	background: url(../../cocos2d/res/board.bmp) no-repeat;
+    background-size: 100% 100%;
+}
+#start_tag{
+    display:block;
+    position:absolute;
+    z-index:99;
+    top:0;
+    left:0;
+    right:0;
+    bottom:0;
+    margin:auto;
+    width:100%;
+    height:100%;
+    background: url(../../img/liveImg/static.png) no-repeat;
+    background-size:100% 100%;
+}
+.btn {
+    width: 1.24rem;
+    height: 0.53rem;
+    border-radius: 0.26rem;
+    border: solid 2px #d87300;
+    padding: 0;
+    text-align: center;
+    color: #fff;
+    font-size: 0.18rem;
+    font-weight: 500;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    -ms-touch-action: manipulation;
+    touch-action: manipulation;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    outline: none;
+    background-image: none;
+    background: url(../../img/liveImg/btn.png) no-repeat;
+    background-size: 100% 100%;
+}
+
+.btn.classStart {
+    background: url(../../img/liveImg/classStart.png) no-repeat;
+    background-size: 100% 100%;
+    border: solid 2px #00abb1;
+}
+
+.btnCle {
+    width: 0.75rem;
+    height: 0.71rem;
+    padding: 0;
+    text-align: center;
+    font-size: 0.2rem;
+    font-weight: 600;
+    text-align: center;
+    vertical-align: middle;
+    -ms-touch-action: manipulation;
+    touch-action: manipulation;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    outline: none;
+    background-image: none;
+    text-decoration: none;
+    letter-spacing: 0.05rem;
+    font-weight: 600;
+    white-space: pre-wrap;
+}
+
+.btnCle.yellowBtn {
+    background: url(../../img/liveImg/yellowBtn.png) no-repeat;
+    background-size: 100% 100%;
+    border-radius: 0.315rem;
+    border: solid 0.01rem #a2570d;
+    color: #a76702;
+}
+
+.btnCle.blueBtn {
+    background: url(../../img/liveImg/blueBtn.png) no-repeat;
+    background-size: 100% 100%;
+    border-radius: 0.315rem;
+    border: solid 0.01rem #006fb5;
+    color: #045fa0;
+}
+
+.btnCle.greenBtn {
+    background: url(../../img/liveImg/greenBtn.png) no-repeat;
+    background-size: 100% 100%;
+    border-radius: 0.315rem;
+    border: solid 0.01rem #59b123;
+    color: #3c890d;
+}
+
+.sendMsgBg {
+    background: url(../../img/play/sendMsg.png) no-repeat center/100% 100%;
+}
+
+.game_chatBg {
+    background: url(../../img/play/game_chatBg@2x.png) no-repeat center/100% 100%;
+}
+
+.btn.active {
+    color: #a93c00;
+}
+
+.btn-group a {
+    font-size: 0.14rem;
+    text-decoration: none;
+}
+
+.clr1d729b {
+    color: #1d729b;
+}
+
+.clrfff {
+    color: #fff;
+}
+
+.boxText {
+    display: block;
+    position: relative;
+    line-height: 0.2rem;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    word-break: break-all;
+    border: solid 1px #f6a200;
+    -moz-border-radius: 12px;
+    -webkit-border-radius: 12px;
+    border-radius: 12px;
+    padding: 0.05rem;
+    margin: 0 0.1rem;
+    align-items: center;
+    font-size: 0.18rem;
+}
+.boxText img{
+    width:0.42rem;
+    height:0.42rem
+}
+.stuHeadBg {
+    background: url(../../img/liveImg/stuHeadBg.png) no-repeat;
+    background-size: 100% 100%;
+    height: 1.06rem;
+    line-height: 0.76rem;
+}
+
+#researchBtnsWrapper a {
+    margin: 0 0.04rem;
+}
+
+.btn-group a img {
+    width: 0.32rem;
+    height: 0.32rem;
+}
+
+#game_chat_wrapper .tablist li {
+    width: 1.69rem;
+    height: 0.64rem;
+    background-color: #fee59c;
+    border-radius: 0.31rem;
+    font-size: 0.15rem;
+    line-height: 0.54rem;
+    text-align: center;
+    cursor: pointer;
+}
+
+#game_chat_wrapper .tablist .active {
+    background-color: #ff8800;
+}
+
+#game_chat_wrapper .tablist li a {
+    text-decoration: none;
+    color: #000;
+}
+
+#game_chat_wrapper .tablist .active a {
+    color: #fff;
+}
+
+#chat-wrapper {
+    max-height:3.2rem;
+    overflow-x:hidden;
+    overflow-y:scroll;
+    height:3.2rem;
+}
+
+#chat-wrapper .tab-pane.active {
+    display: block;
+}
+
+#chat-wrapper .tab-pane {
+    padding: 0 0.1rem;
+    /*  min-height:1.96rem;
+    max-height:1.96rem; */
+    display: none;
+}
+
+.watchList {
+    margin-top: 0.1rem;
+}
+
+.table thead {
+    height: 0.4rem;
+    font-size: 0.15rem;
+    background: #ffd86f;
+}
+
+.table tr {
+    height: 0.4rem;
+    font-size: 0.15rem;
+}
+
+.table td {
+    text-align: center;
+    height: 0.45rem;
+    font-size: 0.15rem;
+}
+
+.input-group .news {
+    width: 0.57rem;
+    height: 0.56rem;
+}
+
+.input-group .btn {
+    width: 0.82rem;
+    height: 0.56rem;
+    line-height: 0.56rem;
+    background: url(../../img/play/newsend.png) no-repeat;
+    background-size: 100% 100%;
+    color: #fff;
+    font-size: 0.15rem;
+    text-align: center;
+}
+
+.input-group input {
+    outline: none;
+    font-size: 0.15rem;
+    padding-left: 0.1rem;
+    background-color: #ffffff;
+    border-radius: 0.28rem;
+    border: solid 1px #fecd95;
+    padding-right: 0.5rem;
+}
+
+#emoji {
+    background: rgba(66, 66, 66, .8);
+    z-index: 9;
+    display: none;
+    animation-duration: 0.5s;
+    animation-delay: 0.1s;
+    padding: 0.09rem;
+    width: 7.2rem;
+    bottom:0.9rem;
+    left: 0.16rem;
+    background: #fff;
+    box-shadow: 0 0 0.01rem #949393;
+    transition: 1s;
+}
+
+#emoji a {
+    font-size: 0.15rem;
+    float: left;
+}
+
+.teachImg {
+    width: 0.84rem;
+    height: 0.84rem;
+    border-radius: 50%;
+}
+
+.clraf6 {
+    color: #af6612;
+    font-size: 0.2rem;
+    font-weight: 600;
+}
+
+.clr848 {
+    color: #848484;
+    font-size: 0.16rem;
+    width: 2.56rem;
+    height: 1.37rem;
+    line-height: 0.28rem;
+    letter-spacing: 0.03em;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 5;
+    overflow: hidden;
+}
+
+.input-group .sendMsgBg {
+    line-height: 0.69rem;
+    color: #fff;
+    font-size: 0.26rem;
+    text-align: center;
+    margin: 0;
+}
+
+#emoji ul li img {
+    width: 0.35rem;
+    padding: 0.04rem;
+}
+
+/* 弹框背景图  */
+
+.manual .layui-layer-close {
+    display: inline-block;
+    width: 0.7rem;
+    height: 0.71rem;
+    background: url(../../img/play/resclose.png) no-repeat;
+    background-size: 100% 100%;
+    top: 0.6rem;
+    right: -0.6rem;
+}
+
+/* 
+background-color: #ffffff;
+	border-radius: 0.06rem;
+	border: solid 0.02rem #ffaa3c;
+ */
+
+#live_pull video {
+    left: -9% !important;
+    right: 0 !important;
+    bottom: 0 !important;
+    top: -24% !important;
+    width: 90% !important;
+    height: 90% !important;
+    transform: none !important;
+}
+
+#live_pull object {
+    width: 110% !important;
+}
+
+#live_player div {
+    top: 0.22rem;
+}
+
+.yun1 {
+    animation: yun1 10s ease-in-out infinite;
+}
+
+.yun2 {
+    animation: yun2 10s ease-in-out infinite;
+}
+
+@keyframes yun1 {
+    0% {
+        left: 0rem
+    }
+    50% {
+        left: 0.8rem
+    }
+    100% {
+        left: 0rem
+    }
+}
+
+@keyframes yun2 {
+    0% {
+        right: -0.8rem
+    }
+    50% {
+        right: 0.8rem
+    }
+    100% {
+        right: -0.8rem
+    }
+}

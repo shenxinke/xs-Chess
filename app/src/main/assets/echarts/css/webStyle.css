@@ -1,0 +1,2265 @@
+ html,body{
+	width: 100%;
+	height: 100%;
+	overflow: hidden;
+	font-size: 0.16rem;
+}
+/*字体大小*/
+.fs16{
+	font-size: 0.16rem
+}
+.fs20{
+	font-size: 0.2rem;
+}
+.fs22{
+	font-size: 0.22rem;
+}
+.fs24{
+	font-size: 0.24rem;
+}
+.fs26{
+	font-size: 0.26rem;
+}
+.fs28{
+	font-size: 0.28rem;
+}
+.fs30{
+	font-size: 0.3rem;
+}
+.fs35{
+	font-size: 0.35rem;
+}
+.fs36{
+	font-size: 0.36rem;
+}
+.fs48{
+	font-size: 0.48rem;
+}
+
+
+
+
+
+/*宽度类库*/
+.w15{
+	width: 0.15rem;
+}
+.w17{
+	width: 0.17rem;
+}
+.w23{
+	width: 0.23rem;
+}
+.w30{
+	width: 0.3rem;
+}
+.w35{
+	width: 0.35rem;
+}
+.w43{
+	width: 0.43rem;
+}
+.w46{
+	width: 0.46rem;
+}
+.w50{
+	width: 0.5rem;
+}
+.w60{
+	width: 0.6rem;
+}
+.w65{
+	width: 0.65rem;
+}
+.w76{
+	width: 0.76rem
+}
+.w79{
+	width: 0.79rem
+}
+.w80{
+	width: 0.8rem
+}
+.w85{
+	width: 0.85rem
+}
+.w95{
+	width: 0.95rem;
+}
+
+.w103{
+	width: 1.03rem;
+}
+.w106{
+	width: 1.06rem;
+}
+.w109{
+	width: 1.09rem;
+}
+.w110{
+	width: 1.1rem;
+}
+.w122{
+	width: 1.22rem;
+}
+.w125{
+	width: 1.25rem;
+}
+.w127{
+	width:1.27rem;
+}
+.w140{
+	width: 1.4rem;
+}
+.w147{
+	width: 1.47rem;
+}
+.w150{
+	width: 1.5rem;
+}
+.w153{
+	width: 1.53rem;
+}
+.w155{
+	width: 1.55rem;
+}
+.w157{
+	width: 1.57rem;
+}
+.w160{
+	width: 1.6rem;
+}
+.w166{
+	width: 1.66rem;
+}
+.w170{
+	width: 1.7rem;
+}
+.w173{
+	width:1.73rem
+}
+.w180{
+	width: 1.8rem;
+}
+.w187{
+	width: 1.87rem;
+}
+.w190{
+	width: 1.9rem
+}
+.w195{
+	width: 1.95rem
+}
+.w201{
+	width: 2.01rem;
+}
+.w206{
+	width: 2.06rem;
+}
+.w210{
+	width: 2.1rem;
+}
+.w215{
+	width: 2.15rem
+}
+.w217{
+	width: 2.17rem
+}
+
+.w220{
+	width: 2.2rem
+}
+.w225{
+	width: 2.25rem
+}
+.w228{
+	width: 2.28rem;
+}
+.w240{
+	width: 2.4rem;
+}
+.w244{
+	width: 2.44rem;
+}
+.w245{
+	width: 2.45rem;
+}
+.w248{
+	width: 2.48rem;
+}
+.w252{
+	width: 2.52rem;
+}
+.w255{
+	width: 2.52rem;
+}
+.w260{
+	width: 2.6rem;
+}
+.w268{
+	width: 2.68rem;
+}
+.w270{
+	width: 2.7rem;
+}
+.w272{
+	width: 2.72rem;
+}
+.w273{
+	width: 2.73rem;
+}
+.w275{
+	width: 2.75rem;
+}
+.w263{
+	width: 2.63rem;
+}
+.w282{
+	width: 2.82rem;
+}
+.w290{
+	width: 2.9rem;
+}
+.w295{
+	width: 2.95rem;
+}
+.w300{
+	width: 3rem;
+}
+.w312{
+	width: 3.12rem;
+}
+.w315{
+	width: 3.15rem;
+}
+.w322{
+	width: 3.22rem;
+}
+.w326{
+	width: 3.26rem;
+}
+.w330{
+	width: 3.3rem;
+}
+.w340{
+	width: 3.4rem;
+}
+
+.w360{
+	width: 3.6rem;
+}
+.w374{
+	width: 3.74rem;
+}
+.w383{
+	width: 3.83rem;
+}
+.w390{
+	width: 3.9rem;
+}
+.w400{
+	width: 4rem;
+}
+.w412{
+	width: 4.12rem;
+}
+.w430{
+	width: 4.3rem;
+}
+.w446{
+	width: 4.46rem;
+}
+.w455{
+	width: 4.55rem;
+}
+.w490{
+	width: 4.9rem;
+}
+.w510{
+	width: 5.1rem;
+}
+.w520{
+	width: 5.2rem;
+}
+.w540{
+	width: 5.2rem;
+}
+.w553{
+	width: 5.53rem;
+}
+.w600{
+	width: 6rem;
+}
+.w608{
+	width: 6.08rem;
+}
+.w610{
+	width: 6.1rem;
+}
+.w615{
+	width: 6.15rem;
+}
+.w632{
+	width: 6.32rem;
+}
+.w665{
+	width: 6.65rem;
+}
+.w673{
+	width: 6.73rem
+}
+
+.w684{
+	width: 6.84rem;
+}
+.w698{
+	width: 6.98rem;
+}
+.w700{
+	width: 7rem;
+}
+.w730{
+	width: 7.3rem;
+}
+.w760{
+	width: 7.6rem;
+}
+.w767{
+	width: 7.67rem;
+}
+.w775{
+	width: 7.75rem
+}
+.w783{
+	width: 7.83rem;
+}
+.w790{
+	width: 7.9rem
+}
+.w850{
+	width: 8.5rem
+}
+.w870{
+	width: 8.7rem
+}
+.w900{
+	width: 9rem
+}
+.w949{
+	width: 9.49rem;
+}
+.w1010{
+	width: 10.1rem;
+}
+.w1030{
+	width: 10.3rem;
+}
+.w1060{
+	width: 10.6rem;
+}
+.w1080{
+	width: 10.8rem;
+}
+.w1126{
+	width: 11.26rem;
+}
+.w1160{
+	width: 11.6rem !important;
+}
+.w1190{
+	width: 11.9rem !important;
+}
+.w1220{
+	width: 12.2rem;
+}
+.w1294{
+	width: 12.94rem;
+}
+.w1319{
+	width: 13.19rem;
+}
+.w1339{
+	width: 13.39rem;
+}
+.w1357{
+	width: 13.57rem;
+}
+.w1390{
+	width: 13.9rem;
+}
+.w1405{
+	width: 14.05rem;
+}
+.w1430{
+	width: 14.3rem;
+}
+.w1450{
+	width: 14.5rem;
+}
+.w1487{
+	width: 14.87rem;
+}
+.w1495{
+	width: 14.95rem;
+}
+.w1550{
+	width: 15.5rem;
+}
+.w1730{
+	width: 17.3rem;
+}
+
+/*高度类库*/
+.h15{
+	height: 0.15rem;
+}
+.h17{
+	height: 0.17rem;
+}
+.h23{
+	height: 0.23rem;
+}
+.h30{
+	height: 0.3rem;
+}
+.h35{
+	height: 0.35rem;
+}
+.h40{
+	height: 0.4rem;
+}
+.h42{
+	height: 0.42rem;
+}
+.h43{
+	height: 0.42rem;
+}
+.h45{
+	height: 0.45rem;
+}
+.h46{
+	height: 0.46rem;
+}
+.h50{
+	height: 0.5rem;
+}
+.h54{
+	height: 0.54rem;
+}
+.h55{
+	height: 0.55rem;
+}
+.h56{
+	height: 0.56rem;
+}
+.h60{
+	height: 0.6rem;
+}
+.h65{
+	height: 0.65rem;
+}
+.h68{
+	height: 0.68rem;
+}
+.h69{
+	height: 0.69rem
+}
+.h70{
+	height: 0.7rem;
+}
+.h72{
+	height: 0.72rem;
+}
+.h75{
+	height: 0.75rem;
+}
+.h76{
+	height: 0.76rem;
+}
+.h77{
+	height: 0.77rem;
+}
+.h80{
+	height: 0.8rem;
+}
+.h84{
+	height: 0.84rem;
+}
+.h85{
+	height: 0.85rem;
+}
+.h90{
+	height: 0.9rem;
+}
+.h95{
+	height: 0.95rem;
+}
+.h98{
+	height: 0.98rem;
+}
+.h100{
+	height: 1rem;
+}
+.h105{
+	height: 1.05rem;
+}
+.h108{
+	height: 1.08rem;
+}
+.h110{
+	height: 1.1rem;
+}
+.h116{
+	height: 1.16rem;
+}
+.h120{
+	height: 1.2rem;
+}
+.h125{
+	height: 1.25rem;
+}
+.h127{
+	height: 1.27rem;
+}
+.h140{
+	height: 1.4rem;
+}
+.h143{
+	height: 1.43rem;
+}
+.h148{
+	height: 1.48rem;
+}
+.h150{
+	height: 1.5rem;
+}
+.h155{
+	height: 1.55rem;
+}
+.h157{
+	height: 1.57rem;
+}
+.h160{
+	height: 1.6rem;
+}
+.h163{
+	height: 1.63rem;
+}
+.h165{
+	height: 1.65rem;
+}
+.h166{
+	height: 1.66rem;
+}
+.h179{
+	height: 1.79rem;
+}
+.h183{
+	height: 1.83rem;
+}
+.h187{
+	height: 1.87rem;
+}
+.h191{
+	height: 1.91rem;
+}
+.h196{
+	height: 1.96rem;
+}
+.h170{
+	height: 1.7rem;
+}
+.h200{
+	height: 2rem;
+}
+.h202{
+	height: 2.02rem;
+}
+.h206{
+	height: 2.06rem;
+}
+.h209{
+	height: 2.09rem;
+}
+.h214{
+	height: 2.14rem;
+}
+.h218{
+	height: 2.18rem;
+}
+.h220{
+	height: 2.2rem;
+}
+.h246{
+	height: 2.46rem;
+}
+.h248{
+	height: 2.48rem;
+}
+.h250{
+	height: 2.50rem;
+}
+.h255{
+	height: 2.55rem;
+}
+
+.h265{
+	height: 2.65rem;
+}
+.h272{
+	height: 2.72rem;
+}
+.h274{
+	height: 2.74rem;
+}
+.h290{
+	height: 2.9rem;
+}
+.h302{
+	height: 3.02rem;
+}
+.h309{
+	height: 3.09rem;
+}
+.h315{
+	height: 3.15rem;
+}
+.h325{
+	height: 3.25rem;
+}
+.h326{
+	height: 3.26rem;
+}
+.h335{
+	height: 3.35rem;
+}
+.h353{
+	height: 3.53rem;
+}
+.h365{
+	height: 3.65rem;
+}
+.h370{
+	height: 3.7rem;
+}
+.h380{
+	height: 3.8rem;
+}
+.h384{
+	height: 3.84rem;
+}
+.h400{
+	height: 4rem;
+}
+.h408{
+	height: 4.08rem;
+}
+.h430{
+	height: 4.3rem;
+}
+.h450{
+	height: 4.5rem;
+}
+.h463{
+	height: 4.63rem;
+}
+.h477{
+	height: 4.77rem;
+}
+.h480{
+	height: 4.8rem;
+}
+.h490{
+	height: 4.9rem;
+}
+.h495{
+	height: 4.95rem;
+}
+.h500{
+	height: 5rem;
+}
+.h525{
+	height: 5.25rem;
+}
+.h550{
+	height: 5.5rem;
+}
+.h584{
+	height: 5.84rem;
+}
+.h600{
+	height: 6rem;
+}
+.h608{
+	height: 6.08rem;
+}
+.h610{
+	height: 6.1rem;
+}
+.h630{
+	height: 6.3rem;
+}
+.h640{
+	height: 6.4rem;
+}
+.h650{
+	height: 6.5rem;
+}
+.h660{
+	height: 6.6rem;
+}
+.h680{
+	height: 6.8rem;
+}
+.h684{
+	height: 6.84rem;
+}
+.h700{
+	height: 7rem;
+}
+.h713{
+	height: 7.13rem;
+}
+.h720{
+	height: 7.2rem;
+}
+.h735{
+	height: 7.35rem;
+}
+.h740{
+	height: 7.4rem;
+}
+.h745{
+	height: 7.45rem;
+}
+.h815{
+	height: 8.15rem
+}
+.h830{
+	height: 8.3rem
+}
+.h840{
+	height: 8.4rem
+}
+.h850{
+	height: 8.5rem
+}
+.h860{
+	height: 8.6rem
+}
+.h870{
+	height: 8.7rem
+}
+.h885{
+	height: 8.85rem
+}
+.ha100-20{
+	height: calc(100% - 0.2rem);
+}
+.ha100-50{
+	height: calc(100% - 0.5rem);
+}
+.ha100-90{
+	height: calc(100% - 0.9rem);
+}
+.ha100-100{
+	height: calc(100% - 1rem);
+}
+
+/*padding 类库*/
+
+.p5{
+	padding: 0.05rem;
+}
+.p10{
+	padding: 0.1rem;
+}
+.p15{
+	padding: 0.15rem;
+}
+.p20{
+	padding: 0.2rem;
+}
+.p30{
+	padding: 0.3rem;
+}
+.p50{
+	padding: 0.5rem;
+}
+.plr86{
+	padding: 0.3rem 0.86rem;
+}
+
+
+.pt10{
+	padding-top: 0.1rem;
+}
+.pt14{
+	padding-top: 0.14rem;
+}
+.pt20{
+	padding-top: 0.2rem
+}
+.pt25{
+	padding-top: 0.25rem
+}
+.pt30{
+	padding-top: 0.3rem
+}
+.pt35{
+	padding-top: 0.35rem
+}
+.pt50{
+	padding-top: 0.5rem
+}
+.pt73{
+	padding-top: 0.73rem
+}
+.pt80{
+	padding-top: 0.8rem
+}
+.pb10{
+	padding-bottom: 0.1rem;
+}
+.pb25{
+	padding-bottom: 0.25rem;
+}
+.pb30{
+	padding-bottom: 0.3rem;
+}
+
+
+.pl10{
+	padding-left: 0.1rem;
+}
+.pl15{
+	padding-left: 0.15rem;
+}
+.pl20{
+	padding-left: 0.20rem;
+}
+.pl25{
+	padding-left: 0.25rem;
+}
+.pl30{
+	padding-left: 0.3rem
+}
+.pl40{
+	padding-left: 0.4rem;
+}
+.pl45{
+	padding-left: 0.45rem
+}
+.pl55{
+	padding-left: 0.55rem
+}
+.pl75{
+	padding-left: 0.75rem
+}
+.pl80{
+	padding-left: 0.8rem
+}
+.pl100{
+	padding-left: 1rem
+}
+
+.pr10{
+	padding-right: 0.1rem;
+}
+.pr15{
+	padding-right: 0.15rem;
+}
+.pr20{
+	padding-right: 0.2rem;
+}
+.pr40{
+	padding-right: 0.4rem;
+}
+.pr55{
+	padding-right: 0.55rem;
+}
+.pb10{
+	padding-bottom: 0.1rem;
+}
+.pb20{
+	padding-bottom: 0.2rem;
+}
+
+.pb25{
+	padding-bottom: 0.25rem;
+}
+
+
+.mta1{
+	margin-top: 1%;
+}
+.mt6{
+	margin-top: 0.06rem;
+}
+.mt10{
+	margin-top: 0.1rem;
+}
+.mt15{
+	margin-top: 0.15rem;
+}
+.mt20{
+	margin-top: 0.2rem;
+}
+.mt25{
+	margin-top: 0.25rem;
+}
+.mt30{
+	margin-top: 0.3rem;
+}
+.mt35{
+	margin-top: 0.35rem;
+}
+.mt40{
+	margin-top: 0.4rem;
+}
+.mt45{
+	margin-top: 0.45rem;
+}
+.mt50{
+	margin-top: 0.5rem;
+}
+.mt150{
+	margin-top: 1.5rem;
+}
+.mb1{
+	margin-bottom: 1px;
+}
+.mb10{
+	margin-bottom: 0.1rem;
+}
+.mb20{
+	margin-bottom: 0.2rem;
+}
+.mlr18{
+	margin:0.15rem 0.18rem;
+}
+.mb30{
+	margin-bottom: 0.3rem;
+}
+
+.m15{
+	margin: 0.15rem;
+}
+.ml10{
+	margin-left: 0.1rem;
+}
+.ml15{
+	margin-left: 0.15rem;
+}
+.ml33{
+	margin-left: 0.33rem;
+}
+.ml25{
+	margin-left: 0.25rem;
+}
+.ml50{
+	margin-left: 0.5rem;
+}
+.ml65{
+	margin-left: 0.65rem;
+}
+.ml90{
+	margin-left: 0.9rem;
+}
+.ml150{
+	margin-left: 1.5rem;
+}
+.ml125{
+	margin-left: 1.25rem;
+}
+.ml150{
+	margin-left: 1.5rem;
+}
+
+.mr-10{
+	margin-right: -0.1rem;
+}
+.mr10{
+	margin-right: 0.1rem;
+}
+.mr15{
+	margin-right: 0.15rem;
+}
+.mr20{
+	margin-right: 0.2rem;
+}
+.mr48{
+	margin-right: 0.48rem;
+}
+.mr70{
+	margin-right: 0.7rem;
+}
+.mr125{
+	margin-right: 1.25rem;
+}
+
+
+.tpa40{
+	top: 40%;
+}
+.tp-30{
+	top: -0.3rem;
+}
+.tp-40{
+	top: -0.4rem;
+}
+.tp-50{
+	top: -0.5rem;
+}
+.tp-60{
+	top: -0.6rem;
+}
+
+.tp10{
+	top: 0.1rem;
+}
+.tp30{
+	top: 0.3rem;
+}
+.tp40{
+	top: 0.4rem;
+}
+.tp50{
+	top: 0.5rem;
+}
+.tp60{
+	top: 0.6rem;
+}
+.tp70{
+	top: 0.7rem;
+}
+
+.tp75{
+	top: 0.75rem;
+}
+.tp80{
+	top: 0.8rem;
+}
+.tp88{
+	top: 0.88rem;
+}
+.tp90{
+	top: 0.9rem;
+}
+.tp100{
+	top:1rem;
+}
+.tp110{
+	top:1.1rem;
+}
+.tp130{
+	top: 1.3rem;
+}
+.tp140{
+	top: 1.4rem;
+}
+.tp148{
+	top: 1.48rem;
+}
+.tp180{
+	top: 1.8rem;
+}
+.tp190{
+	top: 1.9rem;
+}
+.tp200{
+	top: 2rem;
+}
+.tp220{
+	top: 2.2rem;
+}
+.tp240{
+	top: 2.4rem;
+}
+.tp300{
+	top: 3rem;
+}
+.tp315{
+	top: 3.15rem;
+}
+.tp320{
+	top: 3.2rem;
+}
+.tp370{
+	top: 3.7rem;
+}
+.tp390{
+	top: 3.9rem;
+}
+.tp445{
+	top: 4.45rem;
+}
+.tp484{
+	top: 4.84rem;
+}
+.tp500{
+	top: 5rem;
+}
+.tp510{
+	top: 5.1rem;
+}
+.bt-100{
+	bottom: -1rem;
+}
+.bt10{
+	bottom: 0.1rem;
+}
+.bt20{
+	bottom: 0.2rem;
+}
+.bt25{
+	bottom: 0.25rem;
+}
+.bt30{
+	bottom: 0.3rem;
+}
+.bt50{
+	bottom: 0.5rem;
+}
+.bt80{
+	bottom: 0.8rem;
+}
+.bt125{
+	bottom: 1.25rem;
+}
+
+
+
+.lt-50{
+	left:-0.5rem
+}
+.lt-10{
+	left:-0.1rem
+}
+.lt-80{
+	left: -0.8rem;
+}
+.lt-120{
+	left: -1.2rem;
+}
+.lt10{
+	left:0.1rem
+}
+.lt15{
+	left:0.15rem
+}
+.lt25{
+	left:0.25rem
+}
+.lt30{
+	left: 0.3rem;
+}
+.lt40{
+	left: 0.4rem;
+}
+.lt50{
+	left: 0.5rem;
+}
+.lt65{
+	left: 0.65rem;
+}
+
+.lt80{
+	left: 0.8rem;
+}
+.lt90{
+	left: 0.9rem;
+}
+.lt100{
+	left: 1rem;
+}
+.lt140{
+	left: 1.4rem;
+}
+.lt170{
+	left: 1.7rem;
+}
+.lt233{
+	left: 2.33rem;
+}
+.lt237{
+	left: 2.37rem;
+}
+.lt270{
+	left:2.7rem;
+}
+.lt290{
+	left:2.9rem;
+}
+.lt400{
+	left:4rem;
+}
+.lt518{
+	left:5.18rem;
+}
+.lt736{
+	left:7.36rem
+}
+
+.rt-20{
+	right:-0.2rem
+}
+.rt-120{
+	right:-1.2rem
+}
+.rt10{
+	right:0.1rem
+}
+.rt20{
+	right:0.2rem
+}
+.rt40{
+	right:0.4rem
+}
+.rt50{
+	right:0.5rem
+}
+.rt70{
+	right:0.7rem
+}
+.rt200{
+	right:2rem
+}
+
+.ts-t{
+	text-shadow: 0px 0px 0.2rem #0070b1;;
+}
+
+.bgAlert{
+	background: url(../../img/ElecBoard/alertBg.png) no-repeat;
+    background-size: 100% 100%;
+}
+.bg_teach_bg{
+	background: url(../../img/courseware/coursewareTeach/cwTeach_bg.png) no-repeat center/100% 100%;
+}
+.bg_teach_main1{
+	background: url(../../img/courseware/coursewareTeach/cwTeach_main1.png) no-repeat center/100% 100%;
+}
+.bg_teach_main2{
+	background: url(../../img/courseware/coursewareTeach/cwTeach_main2.png) no-repeat center/100% 100%;
+}
+.bg_teach_listBg{
+	background: url(../../img/courseware/coursewareTeach/cwTeach_listBg.png) no-repeat center/100% 100%;
+}
+.bg_teach_listBg.active{
+	box-shadow: #fff 0 0 0.4rem;
+}
+.bg_teach_nextStep{
+	background: url(../../img/courseware/coursewareTeach/cwTeach_nextStep.png) no-repeat center/100% 100%;
+}
+.bg_teach_reset{
+	background: url(../../img/courseware/coursewareTeach/cwTeach_reset.png) no-repeat center/100% 100%;
+}
+.bg_list_index{
+	background: url(../../img/courseware/coursewareTeach/cw_list_index.png) no-repeat center/100% 100%;
+}
+.bg_cw_bg{
+	background: url(../../img/courseware/cw_bg.jpg) no-repeat center/100% 100%;
+}
+.bg_vp_bg{
+	background: url(../../img/courseware/vp_bg.jpg) no-repeat center/100% 100%;
+}
+.bg_cw_title{
+	background: url(../../img/courseware/cw_title.png)no-repeat center/100% 100%;
+}
+.bg_vp_title{
+	background: url(../../img/courseware/vp_title.png)no-repeat center/100% 100%;
+}
+.bg_cw_listbg{
+	background: url(../../img/courseware/cw_listbg.png)no-repeat center/100% 100%;
+}
+.bg_cw_gb{
+	background: url(../../img/courseware/cw_goBack.png)no-repeat center/100% 100%;
+}
+.bg_cw_btnL{
+	background: url(../../img/courseware/cw_btnLeft.png)no-repeat center/100% 100%;
+}
+.bg_cw_btnR{
+	background: url(../../img/courseware/cw_btnRight.png)no-repeat center/100% 100%;
+}
+.bg_cw_fc{
+	background: url(../../img/courseware/cw_fuceng.png)no-repeat center/100% 100%;
+}
+.bg_ti_fc{
+	background: url(../../img/courseware/ti_fuceng.png)no-repeat center/100% 100%;
+}
+	/*视频课件播放页*/
+.bg_cwm_bg{
+	background: url(../../img/courseware/coursewareMp4/cwMp4_bg.png)no-repeat center/100% 100%;
+}
+.bg_cwm_gb{
+	background: url(../../img/courseware/coursewareMp4/cwMp4_goback.png)no-repeat center/100% 100%;
+}
+.bg_vp_back{
+	background: url(../../img/courseware/vpBack.png)no-repeat center/100% 100%;
+}
+.bg_cws_hg{
+	background: url(../../img/courseware/coursewareSwf/cwSwf_huigu.png)no-repeat center/100% 100%;
+}
+.bg_cws_gb{
+	background: url(../../img/courseware/coursewareSwf/cwSwf_gohd.png)no-repeat center/100% 100%;
+}
+.bg_cws_gb2{
+	background: url(../../img/courseware/coursewareSwf/cwSwf_gohd2.png)no-repeat center/100% 100%;
+}
+.bg_teach_back{
+	background: url(../../img/courseware/coursewareTeach/cwTeach_back.png)no-repeat center/100% 100%;
+}
+.bg_teach_prev{
+	background: url(../../img/courseware/coursewareTeach/cwTeach_prev.png)no-repeat center/100% 100%;
+}
+.bg_teach_next{
+	background: url(../../img/courseware/coursewareTeach/cwTeach_next.png)no-repeat center/100% 100%;
+}
+.bg_btn_prev{
+	background: url(../../img/courseware/coursewareDetail/prev.png)no-repeat center/100% 100%;
+}
+.bg_btn_next{
+	background: url(../../img/courseware/coursewareDetail/next.png)no-repeat center/100% 100%;
+}
+/*搜索按钮*/
+.bg_btn_search{
+	background: url(../../img/questionStore/search.png)no-repeat center/100% 100%;
+}
+/* 换一页 */
+.bg_btn_hyy{
+	background: url(../../img/questionStore/qihuan.png)no-repeat center/100% 100%;
+}
+
+/* 题库背景 */
+.bg_qs_bg{
+	background: url(../../img/questionStore/bg.jpg)no-repeat center/100% 100%;
+}
+/* 加载棋盘提示标题 */
+.bg_msg{
+	background: url(../../img/questionStore/titleMsg.png)no-repeat center/100% 100%;
+}
+
+
+.bg_btn_sc{
+	background: url(../../img/questionStore/sc.png)no-repeat center/100% 100%;
+}
+.bg_btn_ysc{
+	background: url(../../img/questionStore/ysc.png)no-repeat center/100% 100%;
+}
+
+/* 倒计时背景 */
+.bg_time{
+	background: url(../../img/testTitle/time.png)no-repeat center/100% 100%;
+}
+
+/* 评测数棋  */
+.bg_shuqi{
+	background: url(../../img/testTitle/btn2.png)no-repeat center/100% 100%;
+}
+.bg_renshu{
+	background: url(../../img/testTitle/btn1.png)no-repeat center/100% 100%;
+}
+
+/*个人信息背景*/
+.bg_UI_bg{
+	background: url(../../img/userInfor/UIbg.jpg)no-repeat center/100% 100%;
+}
+/*个人信息顶部透明背景*/
+.bg_UI_bg1{
+	background: url(../../img/userInfor/UI-bg1.png)no-repeat center/100% 100%;
+}
+.bg_UI_bg2{
+	background: url(../../img/userInfor/UI-bg2.png)no-repeat center/100% 100%;
+}
+.bg_UI_bg3{
+	background: url(../../img/userInfor/UI-bg3.png)no-repeat center/100% 100%;
+}
+.bg_UI_bg4{
+	background: url(../../img/userInfor/UI-bg4.png)no-repeat center/100% 100%;
+}
+.bg_UI_bg5{
+	background: url(../../img/userInfor/UI-bg5.png)no-repeat center/100% 100%;
+}
+.bg_UI_bg6{
+	background: url(../../img/userInfor/UI-bg6.png)no-repeat center/100% 100%;
+}
+.bg_UI_time{
+	background:#fff url(../../img/userInfor/UI-time.png)no-repeat 2.45rem center/0.3rem 0.4rem;
+}
+.bg_UI_time2 {
+    background: #fff url(../../img/userInfor/UI-time.png)no-repeat 2.85rem center/0.3rem 0.35rem;
+}
+
+/*修改资料按钮 黄色*/
+.bg_btn_xgzl{
+	background: url(../../img/userInfor/btnxgzl.png) no-repeat center/100% 100%;
+}
+/*历史对局按钮 橙色*/
+.bg_btn_lsdj{
+	background: url(../../img/userInfor/UI-btn-lsdj.png) no-repeat center/100% 100%;
+}
+
+
+/*返回按钮*/
+.bg_btn_back{
+	background: url(../../img/play/back_optChess.png)   no-repeat center/100% 100%;
+}
+
+.bg_btn_xz{
+	background: url(../../img/userInfor/UI-xz.png)   no-repeat center/100% 100%;
+}
+.bg_btn_wxz{
+	background: url(../../img/userInfor/UI-wxz.png)   no-repeat center/100% 100%;
+}
+
+.bg_UI-left{
+	background: url(../../img/userInfor/UI-left.png) no-repeat center/100% 100%;
+}
+
+.bg_UI-right{
+	background: url(../../img/userInfor/UI-right.png) no-repeat center/100% 100%;
+}
+
+
+.bg_idx_bg{
+	background: url(../../img/index/indexBg.jpg)no-repeat center/100% 100%;
+}
+.bg_idxt_bg{
+	background: url(../../img/index/indexTeach.png)no-repeat center/100% 100%;
+}
+.bg_idx_xz{
+	background: url(../../img/index/bg_idx_xz.jpg)no-repeat center/100% 100%;
+}
+.bg_idx_mp{
+	background: url(../../img/index/indexMp.png)no-repeat center/100% 100%;
+}
+.bg_menu_bg{
+	background: url(../../img/index/bg_menu_bg.png)no-repeat center/100% 100%;
+}
+.bg_loading_bg2 {
+	background: url(../../img/loading/loading.png) no-repeat center/100% 100%;
+}
+
+
+/*确定按钮背景*/
+.bgBtnYes{
+	background: url(../../img/classManage/btnYes.png)no-repeat center/100% 100%;
+}
+/*取消按钮背景*/
+.bgBtnNo{
+	background: url(../../img/classManage/btnNo.png)no-repeat center/100% 100%;
+}
+
+
+
+
+/* 班级管理 */
+.bg_cm_bg{
+	background: url(../../img/classManage/cmBg.png)no-repeat center/100% 100%;
+}
+.bg_cm_5{
+	background-color: rgba(18,185,255,0.5)
+}
+.bg_cm_btn1{
+	background: url(../../img/classManage/cmBtn1.png)no-repeat center/100% 100%;
+}
+.bg_cm_btn2{
+	background: url(../../img/classManage/cmBtn2.png)no-repeat center/100% 100%;
+}
+.bg_cm_btn3{
+	background: url(../../img/classManage/cmBtn3.png)no-repeat center/100% 100%;
+}
+.bg_cm_bage{
+	background: url(../../img/classManage/cmPageBg.png)no-repeat center/100% 100%;
+}
+.bg_cm_Tc{
+	background: url(../../img/classManage/cmTc.png)no-repeat center/100% 100%;
+}
+.bg_cm_title{
+	background: url(../../img/classManage/cmTitle.png)no-repeat center/100% 100%;
+}
+
+.bg_cm_bjgl{
+	background: url(../../img/classManage/cmCjbj.png)no-repeat center/100% 100%;
+}
+
+.bg_cm_gl{
+	background: url(../../img/classManage/cmGl.png)no-repeat center/100% 100%;
+}
+.bg_cm_add{
+	background: url(../../img/classManage/cmAdd.png)no-repeat center/100% 100%;
+}
+.bg_cm_del{
+	background: url(../../img/classManage/cmDel.png)no-repeat center/100% 100%;
+}
+
+
+.bg_arrowsB{
+	background: url(../../img/schoolHomework/arrowsB.png)no-repeat center/100% 100%;
+}
+.bg_arrowsR{
+	background: url(../../img/schoolHomework/arrowsR.png)no-repeat center/100% 100%;
+}
+
+.bg_sh_01{
+	background: url(../../img/schoolHomework/sh_01.png)no-repeat center/100% 100%;
+}
+
+.bg_sh_tcbg{
+	background: url(../../img/schoolHomework/sh_tcbg.png)no-repeat center/100% 100%;
+}
+.bg_sh_tab1{
+	background: url(../../img/schoolHomework/sh_tab1.png)no-repeat center/100% 100%;
+}
+.bg_sh_tab2{
+	background: url(../../img/schoolHomework/sh_tab2.png)no-repeat center/100% 100%;
+}
+
+
+.bg_my_lszy{
+	background: url(../../img/myJob/mj_lszy.png)no-repeat center/100% 100%;
+}
+
+/*  */
+.bg_tw_wxz{
+	background: url(../../img/testingWork/tw_wxz.png)no-repeat center/100% 100%;
+}
+.bg_tw_xz{
+	background: url(../../img/testingWork/tw_xz.png)no-repeat center/100% 100%;
+}
+
+.bg_pr_al{
+	background: url(../../img/prepareLesn/bgAlBlue.png)no-repeat center/100% 100%;
+}
+
+
+/* 背景颜色 */
+.bg47abff{
+	background-color: #47abff;
+}
+.bgffd86f{
+	background-color: #ffd86f;
+}
+.bg0686ce{
+	background-color: #0686ce;
+}
+.bgfff3bc{
+	background-color: #fff3bc;
+}
+.bgffe47a{
+	background-color: #ffe47a;
+}
+.bgff5558{
+	background-color: #ff5558 !important;
+}
+.bgffd961{
+	background-color: #ffd961;
+}
+.bgffbe32{
+	background-color: #ffbe32;
+}
+.bgfbe001{
+	background-color: #fbe001;
+}
+.bga5daff{
+	background-color: #a5daff;
+}
+.bgffe08b{
+	background-color: #ffe08b;
+}
+.bg6bcdff{
+	background-color: #6bcdff;
+}
+.bg7ff4ff{
+	background-color: #7ff4ff;
+}
+.bg5ce2ff{
+	background-color: #5ce2ff;
+}
+.bgyellow{
+	background-color: yellow;
+}
+.bg6dcc85{
+	background-color: #6dcc85 !important;
+}
+.bgd{
+	background-color: #ddd !important;
+}
+
+.opacity0{
+	background:rgba(0, 0, 0, 0);
+}
+
+.bgf2{
+	background: rgba(255,255,255,0.2);
+}
+.bgf5{
+	background: rgba(255,255,255,0.5);
+}
+.bgf9{
+	background: rgba(255,255,255,0.9);
+}  
+
+.bg01{
+	background: rgba(167, 250, 255, 0.5);
+}
+
+
+  
+.lineh76{
+	line-height:0.76rem;
+}
+.lineh68{
+	line-height:0.68rem;
+}
+.lineh60{
+	line-height:0.60rem;
+}
+.lineh50{
+	line-height:0.50rem;
+}
+
+
+
+/*文字颜色*/
+.c6{
+	color:#666
+}
+.cd05701{
+    color:#d05701;
+}
+.cdb3434{
+	color:#db3434;
+}
+.c9d5100{
+	color:#9d5100;
+}
+.cffbe32{
+	color: #ffbe32;
+}
+.c793415{
+	color: #793415;
+}
+.caa4800{
+	color: #aa4800;
+}
+.ccc6a00{
+	color:#cc6a00
+}
+.c773b0e{
+	color: #773b0e;
+}
+
+.c602c00{
+	color: #602c00;
+}
+.c14569c{
+	color: #14569c;
+}
+.c4a4a4a{
+	color:#4a4a4a;
+}
+
+.c0505ff{
+	color: #0505ff;
+}
+.c703b0c{
+	color: #703b0c;
+}
+.cc93d00{
+	color: #c93d00;
+}
+.cfc8636{
+	color:#fc8636
+}
+.cfff600{
+	color:#fff600
+}
+.c510{
+	color:#510000
+}
+.c0149cd{
+	color: #0149cd;
+}
+.cc05b00{
+	color: #c05b00;
+}
+.c893000{
+	color: #893000;
+}
+.c183{
+	color:#183f76;
+}
+.c0089bd{
+	color: #0089bd;
+}
+.ca35800{
+	color: #a35800;
+}
+.c0c5c35{
+	color: #0c5c35;
+}
+.cb95700{
+	color: #b95700;
+}
+.c6bcdff{
+	color: #6bcdff;
+}
+.c0071b2{
+	color: #0071b2;
+}
+.cc5660e{
+	color:#c5660e;
+}
+.cfff3bc{
+	color:#fff3bc
+}
+
+.bf2{
+	border: 0.02rem solid #fff;
+}
+.b1becff{
+	border: 1px solid #1becff;
+}
+.b10{
+	border: 0.1rem solid #fff4c6;
+}
+.b1ffc10c{
+	border: 1px solid #ffc10c;
+}
+.b2ffc10c{
+	border: 2px solid #ffc10c;
+}
+
+.b2f{
+	border: 2px solid #fff;
+}
+.b15e{
+	border: 1px solid #5ef2fe;
+}
+.b1ffa937{
+	border: 1px solid #ffa937 !important;
+}
+.b1ffbd3d{
+	border: 1px solid #ffbd3d;
+}
+.bc05b00{
+	border: 1px solid #c05b00;
+}
+.b2f08706{
+	border:0.02rem solid #f08706
+}
+.b88{
+	border: solid 0.08rem rgba(193, 241, 255, 0.82);
+}
+
+
+
+
+
+/*下拉框边框*/
+.b49ecff{
+	border:2px solid #49ecff;
+}
+
+.br10{
+	border-radius: 0.1rem;
+}
+.br12{
+	border-radius: 0.12rem;
+}
+.br20{
+	border-radius: 0.2rem;
+}
+.br32{
+	border-radius: 0.32rem;
+}
+.br40{
+	border-radius: 0.4rem;
+}
+.br50{
+	border-radius: 0.5rem;
+}
+.br157{
+	border-radius: 157rem;
+}
+.br30{
+	border-radius: 0 0.309rem 0.309rem 0;
+}
+
+.brl32{
+	border-top-left-radius: 0.32rem;
+	border-bottom-left-radius: 0.32rem;
+	
+}
+.brr32{
+	border-top-right-radius: 0.32rem;
+	border-bottom-right-radius: 0.32rem;
+}
+.brtbl20{
+	border-top-left-radius: 0.2rem;
+    border-bottom-left-radius: 0.2rem;
+}
+.brtbr20{
+	border-top-right-radius: 0.2rem;
+    border-bottom-right-radius: 0.2rem;
+}
+
+
+.btr32{
+	border-top-right-radius: 0.32rem;
+}
+.bbr32{
+	border-bottom-right-radius: 0.32rem;
+}
+
+
+
+
+/*课堂列表底框阴影*/
+.bs1{
+	-webkit-box-shadow: 0 0 0.25rem #92e6ff;
+	        box-shadow: 0 0 0.25rem #92e6ff;
+}
+
+.bs2{
+	-webkit-box-shadow: 0 0.01rem 0.02rem #000;
+	        box-shadow: 0 0.01rem 0.02rem #000;
+}
+
+.bs3{
+	box-shadow:0px 2px 13px #00000082;
+}
+
+
+
+.t3{
+	transition: 0.3s;
+}
+.cwLST:hover{
+	box-shadow: 0 0 0.25rem #ffdc7b;
+	transform: scale(1.1) translateX(-0.04rem);
+}
+.cwRST:hover{
+	box-shadow: 0 0 0.25rem #ffdc7b;
+	transform: scale(1.1) translateX(0.04rem);
+}
+.cwRST:hover p{
+	opacity: 1;
+}
+
+.cwRSB:hover{
+	box-shadow: 0 0 0.25rem #ffdc7b;
+	transform: scale(1.1) translateX(0.04rem);
+}
+.cwRSB:hover p{
+	opacity: 1;
+}
+
+.cmYD{
+	width: 0.42rem !important;
+    height: 0.42rem !important;
+    padding: 0 ;
+    background: url(../../img/classManage/cmYD1.png) no-repeat center/100% 100% !important;
+}
+.cmYD:checked {
+	 background: url(../../img/classManage/cmYD2.png) no-repeat center/100% 100% !important;
+}
+
+
+
+/*向左跳动*/
+.toLeft{
+	animation: toLeft 0.6s infinite;
+}
+@keyframes toLeft{
+	from{
+		left: 0.1rem;
+	}
+	to{
+		left: 0;
+	}
+}
+/*左-右晃动动画*/
+.toRight{
+	animation: toRight 0.6s infinite;
+}
+@keyframes toRight{
+	from{
+		right: 0.1rem;
+	}
+	to{
+		right: 0rem;
+	}
+}
+.headImg.active{
+	box-shadow: 0px 0px 0.13rem 0.1rem #efd0ba;
+}
+
+.right:after{
+	content: '';
+	display: block;
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	background: url(../../img/courseware/coursewareDetail/right.png) no-repeat center/100% 100%;
+}
+.wrong:after{
+	content: '';
+	display: block;
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	background: url(../../img/courseware/coursewareDetail/wrong.png) no-repeat center/100% 100%;
+}
+
+.qipuActive{
+	/* outline: 0.03rem solid red; */
+	border: 0.03rem solid red;
+	border-radius: 0.12rem;
+	background: #fff;
+}
+
+
+.page li{
+	float: left;
+	width: 0.4rem;
+	height: 0.4rem;
+	color: #c05b00;
+	font-weight: bold;
+	background: url(../../img/wrongQuestion/page.png)no-repeat center/100% 100%;
+}
+.page li.active{
+	background: url(../../img/wrongQuestion/page1.png)no-repeat center/100% 100%;
+	color:#fff
+}
+.page li:first-of-type{
+	width: 0.21rem;
+	background: url(../../img/wrongQuestion/pageLeft.png)no-repeat center/100% ;
+}
+.page li:last-child{
+	width: 0.21rem;
+	background: url(../../img/wrongQuestion/pageRight.png)no-repeat center/100% ;
+}
+
+
+#formUserInfor input[name=sex]:checked + span{
+	background: red;
+	
+}
+
+.scrollTable tbody{
+	display: block;
+	font-size: 0.22rem;
+}
+.scrollTable tbody tr{
+	display: table;
+	width: 100%;
+	height: 0.7rem;
+	table-layout: fixed;
+}
+#scrollbar tbody tr:hover{
+	background: rgba(255,255,255,0.6);
+}
+
+.tlf{
+	table-layout: fixed;
+}
+
+
+/* 首页按钮 */
+.btnTab .bgimg{
+	display: none;
+}
+.btnTab .bgimg:NTH-OF-TYPE(1){
+	display: block;
+}
+.btnTab.active .bgimg:NTH-OF-TYPE(1){
+	display: none;
+}
+.btnTab.active .bgimg:NTH-OF-TYPE(2){
+	display: block;
+}
+
+.btnTab .box{
+	display: none;
+	
+	
+} 
+.btnTab.active .box{
+	transition:1s;
+	display: block;
+	z-index:99;
+}
+
+
+
+
+
+input[type=radio]:checked+span span{
+	display: block;
+}
+input[type=checkbox]:checked+span span{
+	display: block;
+}
+
+
+/*
+ 布置作业，手风琴，人员操作
+ * */
+.StudentList .classBox ul{
+	overflow: hidden;
+	transition: 0.3s;
+}
+.StudentList .classBox.active ul{
+	height: 0 !important;
+}
+.StudentList .classBox button{
+	transition: 0.3s;
+	transform: rotate(90deg);
+}
+.StudentList .classBox.active button{
+	transform: rotate(0deg);
+}
+
+/* 选中题加对号 */
+#schoolWork .tabBtn div{
+	background: url(../../img/schoolHomework/sh_tab2.png)no-repeat center/100% 100%;
+}
+#schoolWork .tabBtn div.active{
+	background: url(../../img/schoolHomework/sh_tab1.png)no-repeat center/100% 100%;
+}
+.checkwork:checked + .workXz{
+	display: block
+}
+
+/* 滑过已选中的题加删除图标 */
+
+#schoolWork .swiper-job li:hover .workRemove{
+	display: block
+}
+
+
+
+#testingWork .tab .active{
+	color:#0149cd
+}
+
+
+
+
+
+/* 延时 */
+.delay3{
+	animation-delay:0.3s
+}
+.delay6{
+	animation-delay:0.6s
+}
+.delay9{
+	animation-delay:0.9s
+}
+
+
+input[type="checkbox"]+.ico{
+	background: url(../../img/public/settings_box.png) no-repeat center/100% 100%;
+}
+input[type="checkbox"]:checked+.ico {
+	background: url(../../img/public/settings_check.png) no-repeat center/100% 100%;
+}
+
+/* 点名按钮 */
+.sign{
+	width: 0.8rem;
+	height: 0.4rem;
+	background-color: #ddd;
+	color:#c05b00;
+}
+.sign:after{
+	content: "已到"
+}
+.signR:after{
+	content: "未到"
+}
+.sign:checked{
+	background-color: #ff5558;
+	color:#fff;
+}
+
+/* 转圈圈 */
+.rotation{
+	animation-name: rotation;
+	-webkit-animation-name: rotation;	
+
+	animation-duration: 8s;	
+	-webkit-animation-duration: 8s;
+
+	animation-timing-function: linear;	
+	-webkit-animation-timing-function: linear;
+
+	-webkit-animation-iteration-count: infinite;
+    animation-iteration-count: infinite;	
+
+	visibility: visible !important;						
+}
+@-webkit-keyframes rotation {
+    from { -webkit-transform: rotate(0deg) translateX(50%) rotate(0deg); }
+    to   { -webkit-transform: rotate(360deg) translateX(50%) rotate(-360deg); }
+} 
+@keyframes rotation {
+    from { transform: rotate(0deg) translateX(5%) rotate(0deg); }
+    to   { transform: rotate(360deg) translateX(5%) rotate(-360deg); }
+}
+
+
+/* 上下晃 */
+.floater{
+	animation-name: floater;
+	-webkit-animation-name: floater;
+
+	animation-duration: 3s;	
+	-webkit-animation-duration: 3s;
+
+	animation-iteration-count: infinite;
+	-webkit-animation-iteration-count: infinite;
+
+	visibility: visible !important;	
+}
+
+@keyframes floater {
+	0% {
+		transform: translateY(0%);	
+	}
+	50% {
+		transform: translateY(8%);	
+	}	
+	100% {
+		transform: translateY(0%);
+	}			
+}
+
+@-webkit-keyframes floater {
+	0% {
+		-webkit-transform: translateY(0%);	
+	}
+	50% {
+		-webkit-transform: translateY(8%);	
+	}	
+	100% {
+		-webkit-transform: translateY(0%);
+	}			
+}
+
+
+
+.animatedFc{
+	animation: feichan 1s 1
+}
+
+
+@keyframes feichan {
+    from { transform: scale(5); }
+    to   { transform: scale(1); }
+}
+
+.animatedG{
+	height:0;
+	animation: guang 0.8s 1s forwards 
+	
+}
+
+@keyframes guang {
+    from { height:0 }
+    to   { height:4.63rem }
+}
+
+
+.animatedTab1{
+	opacity:0;
+	animation: tab1 0.5s 1.5s forwards 
+}
+.animatedTab2{
+	opacity:0;
+	animation: tab2 0.75s 1.7s forwards 
+}
+.animatedTab3{
+	opacity:0;
+	animation: tab3 1s 2s forwards 
+}
+
+@keyframes tab1 {
+    from { opacity:1; transform: translate(-0.25rem,-1.06rem) scale(0.1); }
+    to   { opacity:1; transform: translate(0px,0px) scale(1);}
+}
+@keyframes tab2 {
+    from { opacity:1; transform: translate(-0.7rem,-2.7rem) scale(0.1); }
+    to   { opacity:1; transform: translate(0px,0px) scale(1);}
+}
+@keyframes tab3 {
+    from { opacity:1; transform: translate(-0.3rem,-4.2rem) scale(0.1); }
+    to   { opacity:1; transform: translate(0px,0px) scale(1);}
+}
+.flexcol {
+    flex-direction: column;
+}
+.snapBox div{
+	position:absolute;
+	top:-0.24rem;
+	left:-0.24rem;
+	line-height:0.65rem;
+	font-size:0.3rem;
+	font-weight:800;
+	
+}
+.pagination li .pageText{
+	width: 0.41rem;
+	height: 0.4rem;
+	line-height:0.4rem;
+	text-align:center;
+	display:block;
+	color:#fff;
+	margin:0 0.05rem;
+	background: #ffa901;
+	box-shadow: 0px 2px 0px 0px 
+		#ff7600, 
+		inset 0px 1px 0px 0px 
+		rgba(255, 255, 255, 0.48);
+	border-radius: 10px;
+	border: solid 1px #ff9c00;
+	    text-decoration: none;
+}
+
+.pagination li:first-child a{
+	width:0.21rem;
+	height:0.19rem;
+	display:block;
+	background:transparent url(../../img/ElecBoard/prev.png) no-repeat center/100% 100%;
+}
+.pagination li:last-child a{
+	width:0.21rem;
+	height:0.19rem;
+	display:block;
+	background:transparent url(../../img/ElecBoard/next.png) no-repeat center/100% 100%;
+}
+.clamp{
+	overflow:hidden; 
+text-overflow:ellipsis;
+display:-webkit-box; 
+-webkit-box-orient:vertical;
+-webkit-line-clamp:2; 
+width:66% !important;
+}
+.clamp4{
+	overflow:hidden; 
+text-overflow:ellipsis;
+display:-webkit-box; 
+-webkit-box-orient:vertical;
+-webkit-line-clamp:4; 
+}
+
+

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/half"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <ImageView
+        android:id="@+id/image_bg"
+        android:layout_width="@dimen/dp_300"
+        android:layout_height="@dimen/dp_200"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:background="@mipmap/incomplete_chess_game_bg" />
+
+    <TextView
+        android:id="@+id/text"
+        android:text="编辑数据将不会保存"
+        android:textStyle="bold"
+        android:textSize="15sp"
+        android:layout_marginTop="@dimen/dp_50"
+        app:layout_constraintTop_toTopOf="@+id/image_bg"
+        app:layout_constraintLeft_toLeftOf="@+id/image_bg"
+        app:layout_constraintRight_toRightOf="@+id/image_bg"
+        android:textColor="@color/color_ab4402"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <Button
+        android:id="@+id/button_save"
+        android:text="确定返回"
+        android:textSize="15sp"
+        android:textColor="@color/color_ab4402"
+        android:layout_marginBottom="@dimen/dp_30"
+        app:layout_constraintLeft_toLeftOf="@+id/image_bg"
+        app:layout_constraintRight_toLeftOf="@+id/button_cancel"
+        app:layout_constraintBottom_toBottomOf="@+id/image_bg"
+        android:background="@mipmap/integral_shopping_mall_yes"
+        android:layout_width="@dimen/dp_90"
+        android:layout_height="@dimen/dp_35" />
+
+    <Button
+        android:id="@+id/button_cancel"
+        android:text="取消"
+        android:textSize="15sp"
+        android:textColor="@color/color_134077"
+        app:layout_constraintLeft_toRightOf="@+id/button_save"
+        app:layout_constraintRight_toRightOf="@+id/image_bg"
+        app:layout_constraintBottom_toBottomOf="@+id/button_save"
+        android:background="@mipmap/button_skip"
+        android:layout_width="@dimen/dp_90"
+        android:layout_height="@dimen/dp_35" />
+</android.support.constraint.ConstraintLayout>

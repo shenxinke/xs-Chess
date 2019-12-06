@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/dp_65">
+
+    <ImageView
+        android:id="@+id/mechanism_image"
+        android:layout_width="@dimen/dp_316"
+        android:layout_height="@dimen/dp_46"
+        android:layout_marginStart="@dimen/dp_25"
+        android:layout_marginTop="@dimen/dp_10"
+        android:background="@mipmap/title_imageview"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/head_image_bg"
+        android:layout_width="@dimen/dp_55"
+        android:layout_height="@dimen/dp_55"
+        android:layout_marginStart="@dimen/dp_15"
+        android:background="@mipmap/head_backgroud"
+        app:layout_constraintBottom_toBottomOf="@+id/mechanism_image"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/mechanism_image" />
+
+    <ImageView
+        android:id="@+id/head_image"
+        android:layout_width="@dimen/dp_45"
+        android:layout_height="@dimen/dp_45"
+        app:layout_constraintBottom_toBottomOf="@+id/head_image_bg"
+        app:layout_constraintLeft_toLeftOf="@+id/head_image_bg"
+        app:layout_constraintRight_toRightOf="@+id/head_image_bg"
+        app:layout_constraintTop_toTopOf="@+id/head_image_bg" />
+
+    <TextView
+        android:id="@+id/user_names"
+        android:layout_width="@dimen/dp_105"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/dp_12"
+        android:ellipsize="end"
+        android:singleLine="true"
+        android:textColor="@color/white"
+        android:textSize="@dimen/sp_12"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/user_level"
+        app:layout_constraintLeft_toRightOf="@+id/head_image_bg"
+        app:layout_constraintTop_toTopOf="@+id/mechanism_image" />
+
+    <TextView
+        android:id="@+id/user_level"
+        android:layout_width="@dimen/dp_105"
+        android:layout_height="wrap_content"
+        android:ellipsize="end"
+        android:singleLine="true"
+        android:text="棋力："
+        android:textColor="@color/white"
+        android:textSize="@dimen/sp_12"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/mechanism_image"
+        app:layout_constraintLeft_toLeftOf="@+id/user_names"
+        app:layout_constraintTop_toBottomOf="@+id/user_names" />
+
+    <TextView
+        android:id="@+id/mechanism_name"
+        android:layout_width="@dimen/dp_102"
+        android:layout_height="@dimen/dp_28"
+        android:layout_marginEnd="@dimen/dp_14"
+        android:background="@mipmap/main_name_bg"
+        android:ellipsize="end"
+        android:gravity="center"
+        android:singleLine="true"
+        android:textColor="@color/color_5c4108"
+        android:textSize="@dimen/sp_12"
+        app:layout_constraintBottom_toBottomOf="@+id/mechanism_image"
+        app:layout_constraintRight_toRightOf="@+id/mechanism_image"
+        app:layout_constraintTop_toTopOf="@+id/mechanism_image" />
+
+
+</android.support.constraint.ConstraintLayout>

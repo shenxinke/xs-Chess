@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <include layout="@layout/login_title_layout" />
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="@dimen/dp_330"
+        android:layout_height="@dimen/dp_365"
+        android:layout_centerHorizontal="true"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="@dimen/dp_80"
+        android:background="@mipmap/personal_juxing">
+
+        <TextView
+            android:id="@+id/personal_username"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dp_54"
+            android:layout_marginTop="@dimen/dp_55"
+            android:text="@string/personal_username"
+            android:textColor="@color/white"
+            android:textSize="@dimen/sp_18"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/personal_sex"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_20"
+            android:text="@string/personal_usersex"
+            android:textColor="@color/white"
+            android:textSize="@dimen/sp_18"
+            app:layout_constraintRight_toRightOf="@+id/personal_username"
+            app:layout_constraintTop_toBottomOf="@+id/personal_username" />
+
+        <TextView
+            android:id="@+id/personal_happybarthday"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_20"
+            android:text="@string/personal_barthday"
+            android:textColor="@color/white"
+            android:textSize="@dimen/sp_18"
+            app:layout_constraintRight_toRightOf="@+id/personal_username"
+            app:layout_constraintTop_toBottomOf="@+id/personal_sex" />
+
+        <TextView
+            android:id="@+id/personal_useraddress"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_20"
+            android:text="@string/personal_useraddress"
+            android:textColor="@color/white"
+            android:textSize="@dimen/sp_18"
+            app:layout_constraintRight_toRightOf="@+id/personal_username"
+            app:layout_constraintTop_toBottomOf="@+id/personal_happybarthday" />
+
+        <TextView
+            android:id="@+id/personal_mechanism_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_20"
+            android:text="@string/personal_mechanism_name"
+            android:textColor="@color/white"
+            android:textSize="@dimen/sp_18"
+            app:layout_constraintRight_toRightOf="@+id/personal_username"
+            app:layout_constraintTop_toBottomOf="@+id/personal_useraddress" />
+
+
+        <TextView
+            android:id="@+id/personal_userphone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_20"
+            android:text="@string/personal_phone"
+            android:textColor="@color/white"
+            android:textSize="@dimen/sp_18"
+            app:layout_constraintRight_toRightOf="@+id/personal_username"
+            app:layout_constraintTop_toBottomOf="@+id/personal_mechanism_name" />
+
+
+        <EditText
+            android:id="@+id/personal_user"
+            android:layout_width="@dimen/dp_200"
+            android:layout_height="@dimen/dp_30"
+            android:layout_marginStart="@dimen/dp_12"
+            android:background="@drawable/textview_round_border"
+            android:paddingStart="@dimen/dp_22"
+            android:textColor="@color/color_1060b5"
+            android:textSize="12sp"
+            app:layout_constraintBottom_toBottomOf="@+id/personal_username"
+            app:layout_constraintLeft_toRightOf="@+id/personal_username"
+            app:layout_constraintTop_toTopOf="@+id/personal_username" />
+
+        <RadioGroup
+            android:id="@+id/radioGroup1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toBottomOf="@+id/personal_sex"
+            app:layout_constraintLeft_toLeftOf="@+id/personal_user"
+            app:layout_constraintTop_toTopOf="@+id/personal_sex">
+
+            <RadioButton
+                android:id="@+id/radio1"
+                android:layout_width="@dimen/dp_80"
+                android:layout_height="@dimen/dp_50"
+                android:checked="true"
+                android:drawableEnd="@mipmap/men2x" />
+
+            <RadioButton
+                android:id="@+id/radio2"
+                android:layout_width="@dimen/dp_85"
+                android:layout_height="@dimen/dp_50"
+                android:checked="false"
+                android:drawableEnd="@mipmap/wemon2x" />
+        </RadioGroup>
+
+        <TextView
+            android:id="@+id/personal_birthdaystring"
+            android:layout_width="@dimen/dp_148"
+            android:layout_height="@dimen/dp_30"
+            android:background="@drawable/textview_round_border"
+            android:drawableEnd="@mipmap/date"
+            android:editable="false"
+            android:gravity="fill_vertical"
+            android:paddingStart="@dimen/dp_12"
+            android:paddingEnd="@dimen/dp_6"
+            android:textColor="@color/color_1060b5"
+            android:textSize="12sp"
+            app:layout_constraintBottom_toBottomOf="@+id/personal_happybarthday"
+            app:layout_constraintLeft_toLeftOf="@+id/personal_user"
+            app:layout_constraintTop_toTopOf="@+id/personal_happybarthday" />
+
+
+        <com.xswq.chess.myapplication.customview.MaterialSpinner
+            android:id="@+id/spinner1"
+            android:layout_width="@dimen/dp_92"
+            android:layout_height="@dimen/dp_30"
+            android:background="@drawable/textview_round_border"
+            android:spinnerMode="dropdown"
+            android:textColor="@color/color_1060b5"
+            android:textSize="12sp"
+            android:padding="@dimen/dp_0"
+            android:gravity="fill_vertical"
+            app:layout_constraintBottom_toBottomOf="@+id/personal_useraddress"
+            app:layout_constraintLeft_toLeftOf="@+id/personal_user"
+            app:layout_constraintTop_toTopOf="@+id/personal_useraddress" />
+
+        <com.xswq.chess.myapplication.customview.MaterialSpinner
+            android:id="@+id/spinner2"
+            android:layout_width="@dimen/dp_92"
+            android:layout_height="@dimen/dp_30"
+            android:layout_marginStart="@dimen/dp_8"
+            android:background="@drawable/textview_round_border"
+            android:spinnerMode="dropdown"
+            android:textSize="12sp"
+            android:padding="@dimen/dp_0"
+            android:gravity="fill_vertical"
+            android:textColor="@color/color_1060b5"
+            app:layout_constraintBottom_toBottomOf="@+id/personal_useraddress"
+            app:layout_constraintLeft_toRightOf="@+id/spinner1"
+            app:layout_constraintTop_toTopOf="@+id/personal_useraddress" />
+
+        <TextView
+            android:id="@+id/personal_mechanismtext"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:textColor="@color/white"
+            android:textSize="@dimen/sp_18"
+            app:layout_constraintBottom_toBottomOf="@+id/personal_mechanism_name"
+            app:layout_constraintLeft_toLeftOf="@+id/personal_user"
+            app:layout_constraintTop_toTopOf="@+id/personal_mechanism_name" />
+
+        <TextView
+            android:id="@+id/personal_phonestring"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/dp_28"
+            android:gravity="center"
+            android:textColor="@color/white"
+            android:textSize="@dimen/sp_18"
+            app:layout_constraintBottom_toBottomOf="@+id/personal_userphone"
+            app:layout_constraintLeft_toLeftOf="@+id/personal_user"
+            app:layout_constraintTop_toTopOf="@+id/personal_userphone" />
+
+    </android.support.constraint.ConstraintLayout>
+
+    <include
+        layout="@layout/webview_topic_layout"
+        android:visibility="invisible" />
+</RelativeLayout>

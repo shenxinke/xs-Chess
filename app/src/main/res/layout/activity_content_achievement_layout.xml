@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+
+    <ImageView
+        android:id="@+id/image_background"
+        android:background="@mipmap/question_dialog"
+        android:layout_marginLeft="@dimen/dp_30"
+        android:layout_marginRight="@dimen/dp_30"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintVertical_bias="0.4"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_250" />
+
+    <ImageView
+        android:id="@+id/content_image_black"
+        app:layout_constraintTop_toTopOf="@+id/image_background"
+        app:layout_constraintRight_toRightOf="@+id/image_background"
+        android:background="@mipmap/shutdown"
+        android:layout_width="@dimen/dp_35"
+        android:layout_height="@dimen/dp_35" />
+    <TextView
+        android:id="@+id/text_title"
+        android:textColor="@color/color_763f05"
+        android:textSize="18sp"
+        app:layout_constraintLeft_toLeftOf="@+id/image_background"
+        app:layout_constraintRight_toRightOf="@+id/image_background"
+        app:layout_constraintTop_toTopOf="@+id/image_background"
+        android:layout_marginTop="@dimen/dp_20"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <ImageView
+        android:id="@+id/image"
+        app:layout_constraintLeft_toLeftOf="@+id/image_background"
+        app:layout_constraintRight_toRightOf="@+id/image_background"
+        app:layout_constraintTop_toTopOf="@+id/image_background"
+        android:layout_marginTop="@dimen/dp_55"
+        android:layout_width="@dimen/dp_110"
+        android:layout_height="@dimen/dp_100" />
+
+    <TextView
+        android:id="@+id/text_view"
+        android:textSize="15sp"
+        android:layout_marginLeft="@dimen/dp_10"
+        android:layout_marginTop="@dimen/dp_20"
+        app:layout_constraintTop_toBottomOf="@+id/image"
+        app:layout_constraintLeft_toLeftOf="@+id/my_progress_bar"
+        android:textColor="@color/color_7f4909"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <com.xswq.chess.myapplication.customview.MyProgressBar
+        android:id="@+id/my_progress_bar"
+        android:layout_width="140dp"
+        android:layout_height="30dp"
+        android:layout_centerInParent="true"
+        android:layout_marginLeft="@dimen/dp_18"
+        app:nearOverText=""
+        app:overText=""
+        app:layout_constraintLeft_toLeftOf="@+id/image_background"
+        app:layout_constraintRight_toLeftOf="@+id/button"
+        app:layout_constraintTop_toBottomOf="@+id/text_view"
+        android:layout_marginTop="@dimen/dp_5"
+        />
+
+    <TextView
+        android:id="@+id/text_number"
+        app:layout_constraintTop_toTopOf="@+id/my_progress_bar"
+        app:layout_constraintBottom_toBottomOf="@+id/my_progress_bar"
+        app:layout_constraintLeft_toLeftOf="@+id/my_progress_bar"
+        app:layout_constraintRight_toRightOf="@+id/my_progress_bar"
+        android:textSize="11sp"
+        android:textColor="@color/black"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <Button
+        android:id="@+id/button"
+        android:text="立即前往"
+        android:textSize="13sp"
+        android:textColor="@color/color_096f98"
+        app:layout_constraintBottom_toBottomOf="@+id/my_progress_bar"
+        app:layout_constraintLeft_toRightOf="@+id/my_progress_bar"
+        app:layout_constraintRight_toRightOf="@+id/image_background"
+        android:background="@mipmap/btn_setup_system"
+        android:layout_width="@dimen/dp_82"
+        android:layout_height="@dimen/dp_30" />
+</android.support.constraint.ConstraintLayout>

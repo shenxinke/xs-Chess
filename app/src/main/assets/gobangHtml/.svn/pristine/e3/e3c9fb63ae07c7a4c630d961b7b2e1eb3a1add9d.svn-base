@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+	<!-- 改自0424� nav.html -->
+	<meta charset="UTF-8"/>
+	<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+	<link rel="stylesheet" type="text/css" href="css/lib/reset.css">
+	<link rel="stylesheet" type="text/css" href="css/lib/public.css">
+	<link rel="stylesheet" type="text/css" href="css/lib/animate.min.css">
+	<link rel="stylesheet" type="text/css" href="css/custom/guide.css"/>
+	<script type="text/javascript" src="libs/jquery/jquery.js"></script>
+	<script type="text/javascript" src="libs/echarts/echarts.min.js"></script>
+	<!-- ./改自0424� -->
+
+	<!-- 第三� -->
+	<link rel="stylesheet" type="text/css" href="libs/messenger/css/messenger.css" />
+	<script type='text/javascript' src='libs/messenger/js/messenger.min.js'></script>
+	<script type='text/javascript' src='libs/messenger/js/messenger-theme-flat.js'></script>
+	<script type='text/javascript' src='libs/sweetalert/sweetalert.min.js'></script>
+	<script type="text/javascript" src="libs/dateformat/dateformat-min.js"></script>
+	<script type="text/javascript" src="libs/laydate/laydate.js"></script>
+	<script type="text/javascript" src="libs/md5/MD5.js"></script>
+	<script type="text/javascript" src="libs/base64/base64.js"></script>
+	<script type="text/javascript" src="libs/vuejs/vue.js"></script>
+	<link rel="stylesheet" type="text/css" href="libs/layer/layer-v3.1.1/layer/theme/default/layer.css" />
+	<script type="text/javascript" src="libs/layer/layer-v3.1.1/layer/layer.js"></script>
+    <script src="nim/im/js/util.js?v=2"></script>
+    <!-- ./第三� -->
+    
+    <!-- 通用处理 -->
+    <script type='text/javascript' src="cocos2d/src/eve.js"></script>
+    <script type="text/javascript" src="js/gobang/common.js"></script>
+    <script src="js/lib/config.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript" src="libs/nim/NIM_Web_SDK_v5.0.0.js"></script>
+	<script type="text/javascript" src="libs/nim/NIM_Web_WebRTC_v5.0.0.js"></script>
+	<script src='js/gobang/nim3.js'></script>
+	
+	
+	<script type="text/javascript" src="js/lib/rem.js"></script>
+	<!-- ./通用处理 -->
+
+<script src='js/gobang/game-helper.js'></script>
+	<!-- 页面样式 -->
+	<link rel="stylesheet" type="text/css" href="css/custom/play.css">
+	<!-- ./页面样式 -->
+	<!-- 页面处理js -->
+	<script type="text/javascript" src="libs/jquery/ext/jquery.qrcode.min.js"></script>
+	<!-- ./页面处理js -->
+
+	<title>先手围棋智能教育服务平台 </title>
+</head>
+<script type="text/javascript">
+    
+    
+           
+           
+    </script>
+<body id="play">
+	<audio src="music/STONE0.wav" type="hidden" id="stepmusic"></audio>
+	<audio src="music/START.wav"  type="hidden" id="startmusic"></audio>
+	<audio src="music/ChipMany.wav" type="hidden" id="takemusic"></audio>
+	<audio src="music/CELEBRATE.wav" type="hidden" id="winmusic"></audio>
+	<audio src="music/COMFORT.wav" type="hidden" id="losemusic"></audio>
+	<audio src="music/COUNTDOWN.wav" type="hidden" id="countdownmusic"></audio>
+	<!--<audio src="music/10.wav" type="hidden" id="second10music" class="second"></audio>
+	<audio src="music/9.wav" type="hidden" id="second9music" class="second"></audio>
+	<audio src="music/8.wav" type="hidden" id="second8music" class="second"></audio>
+	<audio src="music/7.wav" type="hidden" id="second7music" class="second"></audio>
+	<audio src="music/6.wav" type="hidden" id="second6music" class="second"></audio>
+	<audio src="music/5.wav" type="hidden" id="second5music" class="second"></audio>
+	<audio src="music/4.wav" type="hidden" id="second4music" class="second"></audio>
+	<audio src="music/3.wav" type="hidden" id="second3music" class="second"></audio>
+	<audio src="music/2.wav" type="hidden" id="second2music" class="second"></audio>
+	<audio src="music/1.wav" type="hidden" id="second1music" class="second"></audio>-->
+
+	<div class="playContainer">
+		<!-- 退出房间 -->
+		<!-- <img src="img/ElecBoard/elecExit.png" class="posabs tp rt69 h141 w224 cp z10" onclick="quitGame()" alt=""> -->
+		<!-- 星星背景 -->
+		<!-- 云朵 -->
+		<div class="getJf wa100 abs tp140 animated zoomInDown dn" style="z-index:9999999999999;">
+			<img src="img/play/jf_5.png" class="w140 h56 db m0a">
+		</div> 
+		<div class="box-wrapper posrel ha100">
+			<!-- ./游戏画布 -->
+			<div id="game_control_wrapper" class="boradius20 posrel ha100">
+				<div id='game_info_box' class="playChess width100">
+					<!-- 棋局信息 -->
+					<div  id="game_info_wrapper" class="disflex ai-c flex-flow jc-sb width100 bge7f h142 boradius20 plr33">
+						<!-- <div class='wa100 h67 bgtit fs24 df ai-c jc-c cf tzinfo'></div> -->
+						<div class="chessWhiteNews posrel" :data-uid='game.whiteUserId' id="user_1_avater">
+							
+							<img :src="game.whiteHeadImg || 'img/headImg/1.png'">
+							<p class="text-center">{{ game.whiteLevel }}</p>
+						</div>
+                        <div class="disflex flexcol">
+                            <img class='w113 h80 m0a disflex' style="" alt="" src="img/play/vs.png">
+                                <div class="w113 h50 fs12 df ai-c jc-c cr666 tzinfo m0a" style="font-size:0.18rem"></div>
+                        </div>
+						
+						<div class="chessBlackNews posrel" :data-uid='game.blackUserId' id="user_2_avater">
+							
+							<img :src="game.blackHeadImg || 'img/headImg/1.png'">
+							<p class="text-center">{{ game.blackLevel }}</p>
+						</div>
+						<!-- 读秒 -->
+						<div class='posabs width100 h142 lt0 ai-c jc-sb plr138' id="seconds">
+							<div id="user_1_time" class='fs18 z1 h142 df ai-c jc-c fw-w'>
+								<span class='wa100 tl fs26'>{{ game.whiteUserNm || 'username'}}</span>
+								<a class="time db fwb fs24 wa100 tl cr026 fs22" id="whitetime">00:00:00</a>
+								<div class="wa100 cr666">
+									<span class="read-time h30 lh30">
+										<b class='fwn' id="white_Seconds">30秒</b>
+									</span>
+									<span class="counts h30 lh30">
+										<b class='fwn' id="white_counts">0</b>次
+									</span>
+									<span class="take-stone h30 lh30">
+										提<b class='fwn' id="whitetake" :data-kake="game.whiteUserId">0</b>子
+									</span>
+								</div>
+								
+							</div>
+							<div id="user_2_time" class='fs18 z1 h142 df ai-c jc-c fw-w'>
+								<span class='wa100 tr fs26'>{{ game.blackUserNm || 'username'}}</span>
+								<a class="time db fwb fs24 wa100 tr cr026 fs22" id="blacktime">00:00:00</a>
+								<div class="wa100 tr cr666">
+									<span class="read-time h30 lh30 tr">
+										<b class='fwn' id="black_Seconds">30秒</b>
+									</span>
+									<span class="counts h30 lh30 tr ">
+										<b class='fwn' id="black_counts">0</b>次
+									</span>
+									<span class="take-stone h30 lh30 tr">
+										提<b class='fwn' id="blacktake" :data-kake="game.blackUserId">0</b>子
+									</span>
+								</div>
+							</div>
+						</div>
+					</div> 
+				</div>
+				<!-- 游戏画布 -->
+				<div id="canvas_wrapper" class="boardBg cl rel">
+					<canvas id="gameCanvas" width="640" height="640" onmouseout='eve.f("NotifyMouseout")()' style="display:block"></canvas>
+				
+					<div v-show='isGuideStudent' id='guideGame' class='wa100 ha100 abs bt0 lt0 pa10 z100'>
+						<div class='gameBox wa100 ha100 rel b1becff' >
+							<div v-show='direction' @click="drop" id='finger' class='w80 h80 abs bt100 lt0 z100'>
+								<div class='wa100 ha100 bra100 ma abs tp0 lt0 bt0 rt0 bg6ae3ff-8 ripple' ></div>
+								<div class='wa100 ha100 bra100 ma abs tp0 lt0 bt0 rt0 bg6ae3ff-8 ripple2' ></div>
+								<div class='w30 h30 bra100 ma abs tp0 lt0 bt0 rt0 bg6ae3ff'></div>
+								<img class='w90 h80 abs tp30 rt-45 finger' src ='img/guide/student/finger.png' >
+							</div>
+						</div>
+						<div class="wa100 ha100 fix tp0 lt0"></div>
+					</div>
+					<div v-show='isGuideStudent'>
+						<div v-show='flag==2' class="wa100 ha100 fix tp0 lt0" style = 'z-index:19891016'>
+							<div class="wa100 h345 abs bt0 lt0">
+								<img class='w238 h345 abs rt0 tp0 flag1' src="img/guide/student/xiaotianR/xiaotian1.png"/>
+								<div class='w500 h300 abs rt210 tp0 df ai-c ac-c jc-c fw-w bgdialogr'>
+									<img v-show = 'flag===2' class="w210 h62 rel wenzi22" src="img/guide/student/2wenzi1.png"/>	
+								</div>
+							</div>
+							<div @click="recur" class='w80 h80 abs tp660 lta26 z100'>
+								<div class='wa100 ha100 bra100 ma abs tp0 lt0 bt0 rt0 bg6ae3ff-8 ripple' ></div>
+								<div class='wa100 ha100 bra100 ma abs tp0 lt0 bt0 rt0 bg6ae3ff-8 ripple2' ></div>
+								<div class='w30 h30 bra100 ma abs tp0 lt0 bt0 rt0 bg6ae3ff'></div>
+								<img class='w90 h80 abs tp30 rt-45 finger' src ='img/guide/student/finger.png' >
+							</div>
+							
+						</div>
+						<!-- 点击手指确认落子 -->
+						<div class="wa100 ha100 fix tp0 lt0 dn qrlz" style = 'z-index:104'>
+							<div onclick="confirmStep()" class='w80 h80 abs bt110 lt330 z100'>
+								<div class='wa100 ha100 bra100 ma abs tp0 lt0 bt0 rt0 bg6ae3ff-8 ripple' ></div>
+								<div class='wa100 ha100 bra100 ma abs tp0 lt0 bt0 rt0 bg6ae3ff-8 ripple2' ></div>
+								<div class='w30 h30 bra100 ma abs tp0 lt0 bt0 rt0 bg6ae3ff'></div>
+								<img class='w90 h80 abs tp30 rt-45 finger' src ='img/guide/student/finger.png' >
+							</div>
+						</div>
+						
+					</div>
+				
+				
+				</div>
+				<div class="btns marginAuto cl wa100 h500">
+					<div class="fall df ai-c jc-c wa100 btm25 abs" style="display:none">
+						<div class="rel w246 h246 scale13">
+							<img alt="" src="img/play/fall.png" class="w246">
+							<div class="abs tp0 lt50 tc h60 w140 lt50 op0 upBtn" onclick="moveStep(0,1)"></div>
+							<div class="abs lt0 tp52 tc w60 h140 op0 leftBtn" onclick="moveStep(-1,0)"></div>
+							<div class="abs rt0 tp52 tc w60 h140 op0 rightBtn" onclick="moveStep(1,0)"></div>
+							<div class="abs bt0 lt50 tc h60 w140 op0 btmBtn" onclick="moveStep(0,-1)"></div>
+							<div class="abs btm64 lt62 tc h120 w120 op0 centerBtn" onclick="confirmStep()"></div>
+						</div>
+					</div>
+					<div class="pl30 wa100 abs bt0" role="group" id="classBtnsWrapper">
+						<div class="itemPrev oh wa100 mb10 dn" id="itemPrev">
+							<button type="button" class="btn" onclick="handlerRequestDraw()">和棋</button>
+							<button type="button" class="btn" onclick="handleAskForAdmitDefeat()">认输</button>
+							<button type="button" class="btn sq" onclick="handlerForceStatisticalReq()">强制数棋</button>
+							<button type="button" class="btn disabled" onclick="researchGame($(this))" id="researchGame">对局研究</button>
+						</div>
+						<div class="itemNext oh wa100">
+							<button type="button" class="btn" onclick="handlerPass()">停一手</button>
+							<button type="button" class="btn sq" onclick="handlerStatisticalReq()">数棋</button>
+							<button type="button" class="btn" onclick="handlerRequestUndo()">悔棋</button>
+							<!-- <button type="button" class="btn togBtn" id="togBtn"></button> --> <!--  onclick="showMsg()" -->
+							<button type="button" class="btn menuBtn" id="menuBtn" onclick="showPrev($(this))" style="margin-left:0.4rem"></button>
+						</div>
+					</div>
+				</div>
+				<!-- 对局研究按钮� -->
+				<div id="research_control_wrapper" class="abs bt0 h500 wa100 dn">
+					<div class=" wa100 ha100">
+						<div id="judgement-wrapper" class='wa100 h200 abs btm80' style="display:none">
+							<div class="wa100 bgf boradius30 brffb424 h200">
+								<header class="df ai-c jc-c wa100 fs24  mt10 judgeInfo">白领先2目胜</header>
+								<div class="wa80 df ai-c jc-sb m0a pb10">
+									<div class="w150">
+										<img src="cocos2d/res/WStone1.png" class="db w43 m0a">
+										<span class="db fs24 w150 tc oe">{{game.whiteUserNm}}</span>
+									</div>
+									<div class="w150">
+										<img src="cocos2d/res/BStone2.png" class="db w43 m0a">
+										<span class="db fs24 w150 tc oe">{{game.blackUserNm}}</span>
+									</div>
+								</div>
+								<div class="wa80 df ai-c jc-sb m0a pb10">
+									<div class="fs30 cf02043 whiteSum w150 tc">
+									1
+									</div>
+									<div class="w132 boradius20 bgffb424 h54 fs24 cf df ai-c jc-c">形式</div>
+									<div class="fs30 cf02043 blackSum w150 tc">
+									1
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="btn-group plr40 df ai-c jc-c wa100" role="group" id="c-play">
+							<a href="javascript:;" onclick='eve.f("HadlerGoToHead")()'>
+								<img src="img/play/play-1.png">
+							</a>
+							<a href="javascript:;" onclick='eve.f("HadlerGoToRewind")()'>
+								<img src="img/play/play-2.png">
+							</a>
+							<a href="javascript:;" onclick='eve.f("HadlerGoToPreviousStep")()'>
+								<img src="img/play/play-3.png">
+							</a>
+							<a href="javascript:;" onclick='eve.f("HadlerGoToNextStep")()'>
+								<img src="img/play/play-4.png">
+							</a>
+							<a href="javascript:;" onclick='eve.f("HadlerGoToForward")()'>
+								<img src="img/play/play-5.png">
+							</a>
+							<a href="javascript:;" onclick='eve.f("HadlerGoToTail")()'>
+								<img src="img/play/play-6.png">
+							</a>
+						</div>
+						<div class="btn-group fs30 pl35 pr35 c045fa0 fwb df ai-c jc-sa wa100" role="group" id="group2">
+							<button onclick='toggleStep()' class="bgyuan1 w150 h72 bn on cr026">显示手数</button>
+							<button id="tryPlayJudgementBtn" onclick='judgement()' class="bgyuan2 w150 h72 bn on cr053">形式判断</button>
+							<button id="tryPlayAIHelperBtn" onclick='eve.f("HandlerAIHelper")()' class="bgyuan3 w150 h72 bn on cr9f4">AI支招</button>
+							<button onclick='backPrev()' class="bgyuan4 w150 h72 bn on craa1">返回</button>
+						</div>
+		
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div id='optLoading' class=' dn'>
+		<div class='wa100 ha100 df ai-c jc-c loadingWarp'>
+			<div class='loadingBox'>
+				<p>正在为您匹配，请耐心等待！</p>
+				<div class='loadingBarbg m0a rel'>
+					<div class='loadingBar'>
+						<img class='wa100 ha100 fl' alt="" src="img/loading/loadingBar.png">
+						<p class='wa100 rel tp0 fs20'>Loading...<span class='timeNum'>0</span>%</p>
+					</div>
+					
+				</div>
+				<button class='btn-n'></button>
+			</div>
+		</div>
+	</div>
+</body>
+<!-- 成就弹框 -->
+
+<!-- 胜负结果弹框 -->
+<div class='width100 height100 posrel dn' id='chessResult'>
+	<div class="modal-content width100 height100 win  posrel">
+		<div class="modal-body" id="win">
+			<div class="chessItem disflex flexcol ac width100 posabs tp208">
+				<div id="showChessNews" class="disflex flexcol ac width100 textcenter pad-lt25">
+					<span id="win-result" class="disbk win-result fontsz15">黑棋</span>
+					<span class="disbk riseOrFall fontsz15">升降</span>
+				</div>
+				<div class="graph disflex jc-sa ac width100 h241">
+					<div class="power fontsz15" id="power"></div>
+				</div>
+			</div>
+			<div id="achievement" class="disflex flexcol ac marginAuto disn posabs btm140 width100" style="display:none">
+				<div class="fontsz15 textcenter">
+					成就奖励
+				</div>
+				<img alt="" class="w155 h127 disbk marginAuto" src="img/achievement/BMXS_1.png">
+				<img class="cjImg" alt="" src="">
+				 <p class="cjName fontsz15"></p>
+			</div>
+		</div>
+		<div class="modal-footer disflex jc-sa">
+			<button onclick='addToMyFriend()' class="btn btn-info crad4">加为好友</button>
+			<button onclick='playAgain()' class="btn btn-info cr096">再来一局</button>
+			<button class="btn btn-info craa1" data-dismiss="modal" onclick='researchGame()' aria-label="Close">复盘</button>
+		</div>
+	</div>
+</div>
+<script type="text/javascript" src="js/gobang/play.js"></script>
+<script>
+	$.getScript('game.min.js');
+	$('#gameCanvas').attr('width',$('body').width()).attr('height',$('body').width());
+	//对局研究返回
+	function backPrev() {
+		$("#research_control_wrapper").hide();
+		$(".btns,#classBtnsWrapper").show();
+		eve.f("HadlerTryPlayEnd")();
+		eve.f("HadlerResearchPlayEnd")();
+		$("#judgement-wrapper").hide();
+		window.judgeFlag = false;
+	}
+	function showPrev($this){
+		$this.parent().prev().toggle();
+	}
+	function showMsg(){
+		$("#game_chat_wrapper").toggle()
+	}
+	$(".tablist").find('li').click(function () {
+		var $index = $(this).index();
+		$(this).addClass('active').siblings().removeClass('active');
+		$(".tab-content").find('.tab-pane').eq($index).show().siblings('.tab-pane').hide();
+	});
+	$("#classBtnsWrapper button").click(function () {
+		if (!$(this).hasClass('disabled')) {
+			$(this).addClass('active').siblings().removeClass('active');
+		}
+	});
+	hideOtherClick('togBtn','game_chat_wrapper');
+	//hideOtherClick('menuBtn','itemPrev')
+	function hideOtherClick(buttonId,divId) {
+		$("#" + buttonId).click(function(event) {
+			$("#" + divId).toggle();
+			$(document).one("click", function() { //对document绑定一个影藏Div方法
+				$("#" + divId).hide();
+			});
+			event.stopPropagation(); //阻止事件向上冒泡
+		});
+		$("#" + divId).click(function(event) {
+			event.stopPropagation(); //阻止事件向上冒泡
+		});
+	}
+	function loadingChess(time){
+		$('#optLoading').css('display','block')
+		var timeNum = time*1000;
+		var num = timeNum/100;
+		var step = 100/num;
+		var index =1
+		var timer = setInterval(function() {
+			num --;
+			
+			if(num<=0){
+				clearInterval(timer)
+				if(window.checkGameInfo) {
+					checkGameInfo(true);
+				}
+			}else{
+				index++;
+				$(".loadingBar img").css('left',(-100+step*index)+'%');
+				$(".loadingBar .timeNum").text(index)
+				console.log('ss',step*index)
+			}
+		}, 100)
+		
+		$('#optLoading button').click(function(){
+			clearInterval(timer)
+			$('#optLoading').hide()
+			document.location.href = "myschema://go?a=309";//再来一局
+		})
+		
+	}
+
+function playWithAI($this) {
+	//var _index = $this.index();
+	var levelArr = ['15k','5k','2D','5D'];
+	$.ajax({
+		url: '/gobangteach/ChessController/createAIChess',
+		type: "GET",
+		contentType: "application/json",
+		data: $.param({ ai_level: levelArr[0] }),
+		dataType: "json",
+		success: function (data) {
+			console.log(data);
+			if (data.error.returnCode == 0) {
+				loadingChess(10)
+			} else {
+				layerTC(data.error.returnUserMessage);
+				//popdownLoading();
+			}
+		},
+		error: function (XMLHttpRequest, textStatus) {
+			layerTC("服务器错误！！！");
+		}
+	});
+}
+
+
+
+	//对弈引导
+	function fn(action){
+		if(action != null && action != undefined){
+			var x = action.substring(2,3).charCodeAt()-97;
+			var y = action.substring(3,4).charCodeAt()-97;
+			console.log(x)
+			var ww = $('#finger').parent().width()/8;//9路
+			var w = $('#finger').width()/2;
+			var left = ww*x - w;
+			var bottom = ww*y - w;
+			$('#finger').css({'left':left,'bottom':bottom})
+			action_ = action;
+		}
+	}
+	
+	var solution = ['B[de]','B[gf]','B[ec]','B[fd]',"B[dd]","B[ed]","B[cf]"];//正确答案
+	var anXiaotian;
+	var guide =  new Vue ({
+		el:'#canvas_wrapper',
+		data :{
+			isGuideStudent:jsonlink().guide*1,
+			flag:1,
+			direction:false,//棋盘引导的小手
+			solution:'',//正确答案
+		},
+		methods:{
+			recur:function(){
+				guide.isGuideStudent=false;
+				layer.closeAll();
+				closePlaying(currentGame.gameId, function() {
+					closeGame(currentGame, function() {
+						randomBattle();
+						
+					});
+				});
+    			
+			},
+			drop:function (){
+				eve.f("HandReply", action_)();
+				$('.btns,.fall').show();
+				$("#classBtnsWrapper").hide();
+				$('#finger').hide()
+				$('.qrlz').show()
+			},
+		},
+		mounted:function(){
+			var $this = this
+			
+			eve.on("_NotifyUpdate_", function(gameId) {
+				var steps = GGame.incrBy("game:" + gameId + ":steps", 0);
+				var first = GGame.incrBy("game:" + gameId + ":first", 0);
+				
+				if (steps % 2 === first) {
+					console.log('该黑子下')
+					setTimeout(function(){ //思考一秒
+						$this.direction = true
+					},1000)
+
+					if(steps==4){ //落子数==4则引导  solution[0]
+						fn(solution[0])
+					}else{
+						fn(solution[steps/2-2]) //4 6 8 10  == 0 1 2 3
+					}
+				} else {
+					console.log('该白子下')
+					$('.qrlz').hide()
+					$this.direction = false;
+				}
+			});
+		},
+		watch:{
+			flag:function(val){
+				switch (val){
+					case 2: //对弈结束
+						anXiaotian = $('.flag1').comeOn({
+							start:1,
+							end:107,
+							anTime:4000
+						})
+						setTimeout(function(){
+							document.location.href = "myschema://go?a=308"; //胜利啦！你真棒！再来一局吧
+						},2500)
+						
+						break;
+				};
+			}
+		}
+		
+	})
+</script>
+
+</html>

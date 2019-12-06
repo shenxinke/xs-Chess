@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link rel="stylesheet" type="text/css" href="css/lib/public.css">
+		<link rel="stylesheet" type="text/css" href="css/custom/webStyle.css"/>
+		<script type="text/javascript" src="libs/jquery/jquery.js"></script>
+		<script type="text/javascript" src="libs/vuejs/vue.js"></script>
+		<script type="text/javascript" src="libs/layer/layer-v3.1.1/layer/layer.js"></script>
+		<script src="js/gobang/common.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/lib/config.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript" src="js/lib/rem.js"></script>
+		<!-- 棋盘 -->
+		<link rel="stylesheet" type="text/css" href="chess/css/chess.css"/>
+		<link rel="stylesheet" type="text/css" href="chess/skin/skin1/skin1.css"/>
+		<script src="chess/js/eve.js" type="text/javascript" charset="utf-8"></script>
+		<script src="chess/js/XSGO.js" type="text/javascript" charset="utf-8"></script>
+		<script src="chess/js/bundle.js" type="text/javascript" charset="utf-8"></script>
+		<script src="chess/js/GSocket.js" type="text/javascript" charset="utf-8"></script>
+		<script src="libs/pinchzoom/pinchzoom.js" type="text/javascript" charset="utf-8"></script>
+		<title></title>
+	</head>
+	<body>
+		<div id="fromChess" class="wa100 ha100 ">
+			
+			<div class="">
+				<div class="chessBox wa100 h750 oh">
+					<div id="gameChess" class="wa100 h750 bgred"></div>
+				</div>
+				<div class="df ai-c jc-sa pt40">
+					<button type="button" class="btn-n btn_1 w234 h72 ccf5003 fs30 mr30" @click="jugement()">{{isJugement?'关闭形式':'形式判断'}}</button>
+					<button type="button" :class="['btn-n w234 h72  fs30 mr30',isJugementResult?'btn_1_hui c6':'btn_1 ccf5003']" @click="jugementResult()">叛棋结果</button>
+				</div>
+			</div>
+			
+			<div v-show="isJugement" class="wa100 h260 bgf br32 bffe880 oh df fw-w ai-c jc-c mt30">
+				<div class="df jc-sa fs36 wa100">
+					<div class="df ai-c ">
+						<img class="w46 h46" src="img/play/mcblack.png" ><p >黑：{{sqResult.blackNum}}目</p>
+					</div>
+					<div class="df ai-c">
+						<img class="w46 h46" src="img/play/mcwhite.png" ><p>白：{{sqResult.whiteNum}}目</p>
+					</div>
+				</div>
+				<p class="fs36">{{sqResult.content}}</p>
+			</div>
+			
+			<div v-show="isJugementResult" class="wa100 h260 bgf br32 bffe880 oh df fw-w ac-c jc-c mt30">
+				<div class="df ai-c jc-c fs36 wa100">
+					<div class="c0058b0 fs28 pr15">
+						叛棋结果:
+					</div>
+					<select class="w510 h60 br32 bffc pl10 c0058b0" v-model="result" name="">
+						<option value="1">黑胜</option>
+						<option value="2">白胜</option>
+						<option value="3">和棋</option>
+						<option value="4">无效对局</option>
+					</select>
+				</div>
+				<button type="button" class="btn-n btn_1 w234 h72 ccf5003 fs30 mr30 mt30" @click="saveJudgeResult()">提交</button>
+			</div>
+			
+		</div>
+
+		<script type="text/javascript">
+			let fromChess = new Vue({
+				el:'#fromChess',
+				data:{
+					game:"",
+					chessInfo:'',
+					sqResult:{
+						blackNum:'',
+						whiteNum:'',
+						content:''
+					},
+					result:1,
+					isJugement:0,//当前形式判断开启状态
+					isJugementResult:0
+				},
+				methods:{
+					loadChess:function(chessid='eOF5LlHbB6'){
+						var $this = this;
+						$.ajax({
+							type : "POST",
+							url : http+"/gobangteach/classroom/loadChess",
+							data :{
+								token:token,
+								uid:uid,
+								chessid: chessid
+							},
+							success : function(data) {
+								if (data.error.returnCode > 0) {
+									console.log("更新对局状态失败。", data.error);
+								} else {
+									$this.chessInfo =data.data.chessData
+									eve.f('enterGame',data.data.chessid,uid)(); 
+								}
+								document.location.href = "myschema://go?a=14"
+							},
+							error : function(XMLHttpRequest, data) {}
+						})
+					},
+					//形式判断
+					jugement:function(){
+						//如果当前是自己落子则可以发起 形式判断 数棋 等
+						eve.f('jugement',uid,this.game.svgFormatting())(); 
+						if(this.isJugementResult){
+							this.isJugementResult = 0
+						}
+					},
+					//叛棋结果
+					jugementResult:function(){
+						
+						this.isJugementResult ^= 1;
+						
+						if(this.isJugement){
+							this.isJugement = 0
+							eve.f('jugement',uid,this.game.svgFormatting())(); 
+						}
+					},
+					
+					
+					//根据形势判断结果返回谁胜，胜多少目
+					getInfo:function (blackSum, whiteSum) {
+						if (blackSum === undefined || whiteSum === undefined) 	
+					    return "";
+						var sum =0;
+						if((blackSum+whiteSum)==361){
+							sum = blackSum - 180.5 - 3.75;
+						}else{
+							sum = blackSum - whiteSum - 3.75;
+						}
+						var sumstr = Math.abs(sum)+"";
+						var result = sumstr.substr(0,sumstr.indexOf("."));
+						var desimal = sumstr.substr(sumstr.indexOf(".")+1,sumstr.length);
+						if(desimal=="25"){
+							desimal = "¼";
+						}else {
+							desimal = "¾";
+						}
+						if(result=="0"){
+							result = desimal;
+						}else{
+							result += desimal;
+						}
+						
+					    let obj = {};
+					    if (sum > 0) {
+					    	obj.title = '黑方胜利';
+					    	obj.content = "黑棋胜" + result + "子";
+					        return obj
+					    } else if (sum < 0) {
+					    	obj.title = '白方胜利';
+					    	obj.content = "白棋胜" + result + "子";
+					        return obj
+					    }else {
+					        obj.title = '双方平手';
+					        obj.content = "双方平手";
+					    	return obj;
+					    }
+					},
+					
+					//提交叛棋结果
+					saveJudgeResult:function (matchId,arenaId) {
+						const $this = this;
+						$.ajax({
+							type : "POST",
+							url : http+"/gobangteach/SchoolMasterMatchController/saveJudgeResult",
+							data :{
+								token:token,
+								uid:uid,
+								result: $this.result, //1黑胜 2白胜 3平手 4 无效
+								matchId: jsonlink().matchId,//比赛id
+								arenaId:jsonlink().arenaId, //对阵id
+								type:2, //正常对弈1 老师提交判棋传2
+							},
+							success : function(data) {
+								
+								if (data.error.returnCode === '0') {
+									layerTC("判棋成功！") 
+								} else {
+									layerTC(data.error.returnMessage)
+								}
+							},
+							error : function(XMLHttpRequest, data) {}
+						})
+					}
+					
+				},
+				mounted:function(){
+					var $this = this;
+					//加载棋谱
+					
+					this.loadChess(jsonlink().chessid)
+					
+					//棋盘缩放功能
+					new RTP.PinchZoom($(".chessBox"), {
+						animationDuration:200,
+						maxZoom:3
+					});
+					
+					//棋盘实例
+					this.game = new xsgo('gameChess',{
+						type:2,
+						road: 19,//$this.gameInfo.RuleType2===1?19:9 ,
+						bgColor:'#ffd687',
+					})
+					
+					//链接成功回调
+					eve.on('socketOpen',function(){
+						console.log('链接成功')
+					})
+					
+					
+					//棋局登入成功回调
+					eve.on('signInResponse',function(data){
+						console.log('成功',data)
+					
+						//更新棋盘路数 
+						$this.game.config.road = $this.chessInfo.roadX
+						
+						/* 
+							判断当前棋局是否有落子信息，防止刷新数据丢失
+							如果有落子信息则渲染落子否则初始化整个棋盘
+						 */
+					
+						if(data.moveList.length){ //如果有落子信息()
+							//更新棋谱
+							$this.game.svg = data.moveList;
+						}else{
+							$this.game.init() 
+						}
+						
+						console.log('登入成功');
+					})
+					
+					//形式判断返回结果
+					eve.on("jugementResult", function(data) {
+						var mu = $this.game.jugement(data);
+						if(mu){
+							$this.sqResult.title = $this.getInfo(mu.B,mu.W).title
+							$this.sqResult.blackNum = mu.B;
+							$this.sqResult.whiteNum = mu.W;
+							$this.sqResult.content =  $this.getInfo(mu.B,mu.W).content;
+						};
+						console.log($this.sqResult)
+						console.log('形式判断开关：',$this.game.config.isJugement)
+						$this.isJugement = $this.game.config.isJugement
+					});
+				}
+			})
+		</script>
+	</body>
+</html>

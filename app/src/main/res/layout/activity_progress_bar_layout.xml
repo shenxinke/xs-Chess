@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:text="正在为您匹配,请耐心等待!"
+        android:textColor="@color/white"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/my_progress_bar"
+        app:layout_constraintLeft_toLeftOf="@+id/my_progress_bar"
+        app:layout_constraintRight_toRightOf="@+id/my_progress_bar" />
+
+    <com.xswq.chess.myapplication.customview.MyBarPercentView
+        android:id="@+id/my_progress_bar"
+        android:layout_width="@dimen/dp_250"
+        android:layout_height="@dimen/dp_20"
+        app:barBgColor="@color/color_fff2ac"
+        app:barIsGradient="false"
+        app:barProgressColor="@color/color_0084d7"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/text_schedule"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/black"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="@+id/my_progress_bar"
+        app:layout_constraintLeft_toLeftOf="@+id/my_progress_bar"
+        app:layout_constraintRight_toRightOf="@+id/my_progress_bar"
+        app:layout_constraintTop_toTopOf="@+id/my_progress_bar" />
+
+    <Button
+        android:id="@+id/green_button"
+        android:layout_width="@dimen/dp_80"
+        android:layout_height="@dimen/dp_30"
+        android:layout_marginTop="@dimen/dp_20"
+        android:background="@mipmap/button_skip"
+        android:text="取消"
+        android:textColor="@color/color_134077"
+        app:layout_constraintLeft_toLeftOf="@+id/my_progress_bar"
+        app:layout_constraintRight_toRightOf="@+id/my_progress_bar"
+        app:layout_constraintTop_toBottomOf="@+id/my_progress_bar" />
+</android.support.constraint.ConstraintLayout>

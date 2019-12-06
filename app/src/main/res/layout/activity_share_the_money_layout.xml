@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <include layout="@layout/login_title_layout" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="@dimen/dp_60"
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
+
+        <android.support.design.widget.TabLayout
+            android:id="@+id/tablayout"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/dp_40"
+            android:layout_gravity="left"
+            android:layout_marginLeft="@dimen/dp_32"
+            app:elevation="@dimen/dp_0"
+            app:tabBackground="@drawable/btn_user_selector"
+            app:tabIndicatorHeight="0dp"
+            app:tabMaxWidth="@dimen/dp_100"
+            app:tabMinWidth="@dimen/dp_20"
+            app:tabMode="fixed"
+            app:tabPaddingBottom="-1dp"
+            app:tabPaddingEnd="-1dp"
+            app:tabPaddingStart="-1dp"
+            app:tabPaddingTop="-1dp"
+            app:tabSelectedTextColor="@color/white"
+            app:tabTextAppearance="@style/textBold"
+            app:tabTextColor="@color/color_0461d2">
+
+        </android.support.design.widget.TabLayout>
+
+        <android.support.v4.view.ViewPager
+            android:id="@+id/viewpage"
+            android:layout_width="@dimen/dp_330"
+            android:layout_height="@dimen/dp_458"
+            android:background="@mipmap/personal_juxing_bg227" />
+
+    </LinearLayout>
+
+</android.support.constraint.ConstraintLayout>

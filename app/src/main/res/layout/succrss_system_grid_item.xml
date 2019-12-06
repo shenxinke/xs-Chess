@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="@dimen/dp_103"
+    android:layout_height="@dimen/dp_145">
+
+    <ImageView
+        android:id="@+id/iamge_backgroud"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@mipmap/prepare_viewpage_bg"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/image_view"
+        android:layout_width="@dimen/dp_89"
+        android:layout_height="@dimen/dp_73"
+        android:layout_marginTop="@dimen/dp_15"
+        android:src="@mipmap/aoyoutree"
+        app:layout_constraintLeft_toLeftOf="@+id/iamge_backgroud"
+        app:layout_constraintRight_toRightOf="@+id/iamge_backgroud"
+        app:layout_constraintTop_toTopOf="@+id/iamge_backgroud" />
+
+    <TextView
+        android:id="@+id/text_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp_5"
+        android:textColor="@color/white"
+        android:textSize="12sp"
+        app:layout_constraintLeft_toLeftOf="@+id/image_view"
+        app:layout_constraintRight_toRightOf="@+id/image_view"
+        app:layout_constraintTop_toBottomOf="@+id/image_view" />
+
+
+    <com.xswq.chess.myapplication.customview.MyProgressBar
+        android:id="@+id/my_progress_bar"
+        android:layout_width="@dimen/dp_90"
+        android:layout_height="@dimen/dp_15"
+        android:layout_centerInParent="true"
+        android:visibility="invisible"
+        app:layout_constraintLeft_toLeftOf="@+id/image_view"
+        app:layout_constraintRight_toRightOf="@+id/image_view"
+        app:layout_constraintTop_toBottomOf="@+id/text_name"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:nearOverText=""
+        app:overText="" />
+
+    <TextView
+        android:id="@+id/text_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/white"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="@+id/my_progress_bar"
+        app:layout_constraintLeft_toLeftOf="@+id/my_progress_bar"
+        app:layout_constraintRight_toRightOf="@+id/my_progress_bar"
+        app:layout_constraintTop_toTopOf="@+id/my_progress_bar" />
+
+
+</android.support.constraint.ConstraintLayout>

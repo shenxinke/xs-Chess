@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="css/lib/public.css" />
+		<link rel="stylesheet" type="text/css" href="libs/mint/style.css" />
+		<link rel="stylesheet" type="text/css" href="css/custom/webStyle.css" />
+		<script src="libs/jquery/jquery.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/gobang/common.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/lib/config.js" type="text/javascript" charset="utf-8"></script>
+		<link rel="stylesheet" type="text/css" href="libs/layer/layer-v3.1.1/layer/theme/default/layer.css" />
+		<script src="libs/layer/layer-v3.1.1/layer/layer.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/lib/rem.js" type="text/javascript" charset="utf-8"></script>
+		<script src="libs/vuejs/vue.js" type="text/javascript" charset="utf-8"></script>
+		<script src="libs/vuejs/vue-router.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="libs/mint/index.js" type="text/javascript" charset="utf-8"></script>
+
+		<style type="text/css">
+			.mint-loadmore-text {
+				font-size: 0.3rem;
+			}
+
+			.mint-switch-core {
+				height: 28px;
+			}
+
+			.mint-switch-core::before {
+				height: 25px;
+			}
+
+			.mint-switch-core::after {
+				height: 25px;
+			}
+
+			/*路由切换动画*/
+			.slide-right-enter-active,
+			.slide-right-leave-active,
+			.slide-left-enter-active,
+			.slide-left-leave-active {
+				transition: 300ms;
+				position: absolute;
+			}
+
+			.slide-right-enter {
+
+				transform: translate3d(-100%, 0, 0);
+			}
+
+			.slide-right-leave-active {
+
+				transform: translate3d(100%, 0, 0);
+			}
+
+			.slide-left-enter {
+
+				transform: translate3d(100%, 0, 0);
+			}
+
+			.slide-left-leave-active {
+
+				transform: translate3d(-100%, 0, 0);
+			}
+		</style>
+	</head>
+	<body class="bg_cmbg">
+		<section class="ha100 rel" id="app">
+			<transition :name='viewAnimate'>
+				<router-view :option='option'></router-view>
+				<!-- <component :option='option' :is="show"></component> -->
+			</transition>
+		</section>
+		<!--检查作业 班级列表-->
+		<template id="classList">
+			<section class="wa100 ha100">
+				<header class="h125 df ai-c jc-c rel">
+					<span class="fs36 cf">检查作业</span>
+					<div class="pl30 pr30 df ai-c jc-sb abs wa100 ha100 tp0 lt0">
+						<button onclick='document.location.href = "myschema://go?a=1"' class="w63 h63 btn-n bg_cmfh"></button>
+						<button class="w63 h63 btn-n bg_help"></button>
+					</div>
+				</header>
+				<div class="hca1 w688 bg_cmlist m0a">
+					<div class="wa100 h120 df ai-c jc-sb pl25 pr25">
+						<div class="w240 h60 cf rel">
+							<input class="wa100 ha100 br32 bf2 op0 abs tp0 lt0 z1" @click='openInitial' readonly="readonly" v-model="startTime" />
+							<span class="df ai-c wa100 ha100 bf2 br30 pl20 pr15 rel">
+								{{startDate}}
+								<i class="db w38 h40 abs rt20 tp10 bg_coltime"></i>
+							</span>
+						</div>
+						<span class="cf fs24">至</span>
+						<div class="w240 h60 cf rel">
+							<input class="wa100 ha100 br32 bf2 op0 abs tp0 lt0 z1" @click='openAtLast' readonly="readonly" v-model="endTime" />
+							<span class="df ai-c wa100 ha100 bf2 br30 pl20 pr15 rel">
+								{{endDate}}
+								<i class="db w38 h40 abs rt20 tp10 bg_coltime"></i>
+							</span>
+						</div>
+
+						<mt-datetime-picker ref="pickerInitial" v-model="startTime" type="date" :end-date='new Date()' @confirm="startConfirm">
+						</mt-datetime-picker>
+
+						<mt-datetime-picker ref="pickerAtLast" v-model="endTime" type="date" :start-date='startTime' @confirm="endConfirm">
+						</mt-datetime-picker>
+						<button @click='getList' class="w97 btn-n h60 bg_cmsearch"></button>
+					</div>
+
+
+
+					<div class="hca1 oa">
+						<mt-loadmore :auto-fill='false' :top-method="loadTop" :bottom-method="loadBottom" :bottom-all-loaded="allLoaded"
+						 ref="loadmore">
+							<ul class="w646 m0a">
+								<li class="mt15 br20 bgf pt15 pb15 pl25 pr25 df ai-c jc-sa fw-w" v-for="(item,index) in list">
+									<div @click="tab('student-list',item.classInfoId,item.jobid)" class="w440 ha100 df ac-c fw-w">
+										<p class="fs27 wa100 lh40 fwb" v-text='item.className'>班级名称（班级昵称）</p>
+										<p class="fs23 wa100 lh40 c6">
+											<span>布置时间：</span>
+											<span>{{item.createtime | retain('yyyy-MM-dd hh:mm')}}</span>
+										</p>
+										<p class="fs23 wa100 lh40 c6">
+											<span>参与人数：</span>
+											<span v-text='item.questCount+"/"+item.totalcount'></span>
+										</p>
+
+									</div>
+									<div class="w130 df ai-c jc-fe fw-w">
+										<button @click="tab('student-list',item.classInfoId,item.jobid)" class="btn-n wa100 h53 bg_cmyesbtn cab4402 mb20">详情</button>
+										<button @click="go(item.classInfoId,item.jobid)" class="btn-n wa100 h53 bg_cmnobtn c0967a9">错题集锦</button>
+									</div>
+								</li>
+								<li v-if='allLoaded' class="wa100 h80 df ai-c jc-c c3 fs24">已加载完全部数据</li>
+							</ul>
+						</mt-loadmore>
+						<div v-if='allLoaded && list.length<=0' class="wa100 tc pt50">
+							<img class="h600" src="img/ab_help/qm.png" />
+							<div class="wa100 tc pt15 c6">
+								暂无数据
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+		</template>
+
+		<!--学生列表-->
+		<template id="studentList">
+			<section class="wa100 ha100">
+				<header class="h125 df ai-c jc-c rel">
+					<span class="fs36 cf">学生列表</span>
+					<div class="pl30 pr30 df ai-c jc-sb abs wa100 ha100 tp0 lt0">
+						<button @click="tab('class-list')" class="w63 h63 btn-n bg_cmfh"></button>
+					</div>
+				</header>
+				<div class="h72 df ai-fe jc-c ">
+					<div class="rel w190 fl">
+						<input class="abs tp0 lt0 wa100 ha100 op0" v-model="colltab" type="radio" name="tab" value="1" />
+						<button :class="['wa100 btn-n fwb fs28',colltab==='1'?'h72 bg_colxz cf':'h60 bg_colwxz c0461d2']">未完成</button>
+					</div>
+					<div class="rel w190 fl">
+						<input class="abs tp0 lt0 wa100 ha100 op0" v-model="colltab" type="radio" name="tab" value="2" />
+						<button :class="['wa100 btn-n fwb fs28',colltab==='2'?'h72 bg_colxz cf':'h60 bg_colwxz c0461d2']">已完成</button>
+					</div>
+				</div>
+				<div class="hca6 w688 bg_cmlist m0a">
+					<div class="wa100 h120 df ai-c jc-sb pt20 pl25 pr25">
+						<input class="bg2cb9f1 c2290c3 w455 h60 pl20 pr15 br32 cf" placeholder="可输入学生名称" v-model="userName" type="text" />
+						<button @click="getList({'userName':userName})" class="w97 btn-n h60 bg_cmsearch"></button>
+					</div>
+					<div class="hca1 oa">
+						<mt-loadmore :auto-fill='false' :top-method="loadTop" :bottom-method="loadBottom" :bottom-all-loaded="allLoaded"
+						 ref="loadmore">
+							<ul class="w646 m0a">
+								<li class="mt15 br20 bgf pt15 pb15 pl25 pr25 df jc-sb fw-w" v-for="item in list"  @click="colltab==2?go(item.userId,item.UserName):''">
+									<div class="df ai-c">
+										<img class="w92 h92 bra100 mr20 bgred" :src="item.HeadImg" alt="" />
+										<div class="lh40">
+											<p class="fs26 fwb" v-text="item.UserName">喵星人</p>
+											<p class="fs24">
+												<span>完成时间：</span>
+												<span v-if='item.maxTime'>{{item.maxTime | retain('yyyy-MM-dd hh:mm')}}</span>
+												<span v-else>--</span>
+											</p>
+											<p class="fs24">
+												<span>正确率：</span>
+												<span v-if='item.correct' v-text='item.correct+"%"'></span>
+												<span v-else-if='colltab==1 && !item.correct'>--</span>
+												<span v-else>0%</span>
+
+												<span class="pl10">练习次数：</span>
+												<span v-if='item.frequency' v-text='item.frequency'></span>
+												<span v-else>--</span>
+											</p>
+										</div>
+									</div>
+								</li>
+								<li v-if='allLoaded' class="wa100 h80 df ai-c jc-c c3 fs24">已加载完全部数据</li>
+							</ul>
+						</mt-loadmore>
+						<div v-if='allLoaded && list.length<=0' class="wa100 tc pt50">
+							<img class="h600" src="img/ab_help/qm.png" />
+							<div class="wa100 tc pt15 c6">
+								暂无数据
+							</div>
+						</div>
+					</div>
+
+				</div>
+			</section>
+		</template>
+	
+		<div id="layerHelp" class="dn w698 h900 df jc-c ac-fs fw-w bg_helpbg">
+			<img class="w483 h122" src="img/deshelps.png" alt="">
+			<ul class="w555 mt50 fs26 lh40 c390202">
+				<li class="mb50">• 上方搜索框可选择一段时间内布置作业的情况</li>
+				<li class="mb50">• 作业列表中显示作业的布置时间、班级、参与人数等数据，并可查看具体作业详情</li>
+				<li class="mb50">• 点击“错题集锦”，显示学生在完成作业过程中的错题</li>
+			</ul>
+		</div>
+		<script type="text/javascript">
+			$('body').on('click','.bg_help',function(){
+				layerOpen({
+					content:'#layerHelp',//节点
+					area:'6.98rem 9rem',//可选默认 2rem 2rem  宽度 高度(带单位)
+					closeBtn:0,
+					shadeClose:true,
+					shade: [0.7, '#000'],
+					cancel:function(){} //可选  右上角关闭回调
+				})
+			})
+			
+			$(function() {
+				/*
+				 * Vue时间戳过滤器
+				 * {{1529564879000 | retain('yyyy-MM-dd hh:mm')}}
+				 * */
+				Vue.filter('retain', function(data, fmt) {
+					date = new Date(data)
+					var o = {
+						"M+": date.getMonth() + 1, //月份   
+						"d+": date.getDate(), //日   
+						"h+": date.getHours(), //小时   
+						"m+": date.getMinutes(), //分   
+						"s+": date.getSeconds(), //秒   
+						"q+": Math.floor((date.getMonth() + 3) / 3), //季度   
+						"S": date.getMilliseconds() //毫秒   
+					};
+					if (/(y+)/.test(fmt))
+						fmt = fmt.replace(RegExp.$1, (date.getFullYear() + "").substr(4 - RegExp.$1.length));
+					for (var k in o)
+						if (new RegExp("(" + k + ")").test(fmt))
+							fmt = fmt.replace(RegExp.$1, (RegExp.$1.length == 1) ? (o[k]) : (("00" + o[k]).substr(("" + o[k]).length)));
+					return fmt;
+				})
+
+				var classList = {
+					data() {
+						return {
+							list: [],
+							topStatus: '',
+							allLoaded: false, //为true 则禁止下拉  一般无数据了设置为trun
+							pageNum: 1, //当前页
+							pages: '', //总页数
+							className: '', //班级名
+							cooperationType: '',
+
+
+							startTime: new Date(), //初始开始时间
+							endTime: new Date(), //初始结束时间
+
+							startDate: '', //开始时间
+							endDate: '', //结束时间
+						}
+					},
+					methods: {
+						openInitial() { //打开起始时间
+							this.$refs.pickerInitial.open();
+						},
+						openAtLast() { //打开终止时间
+							this.$refs.pickerAtLast.open();
+						},
+						startConfirm(val) { //开始时间确认
+							this.startDate = val.Format('yyyy-MM-dd') //格式化时间戳
+							console.log(val.Format('yyyy-MM-dd'))
+						},
+						endConfirm(val) { //结束时间确认
+							this.endDate = val.Format('yyyy-MM-dd')
+							console.log(val)
+						},
+						loadTop() {
+							$this = this
+							console.log('下拉刷新')
+							$this.pageNum = 1; //重置下一页页码
+							$this.getList({
+								pageNum: $this.pageNum,
+								className: $this.className,
+								success: function(data) {
+									setTimeout(function() {
+										$this.list = data.data.list;
+										$this.pages = data.data.pages;
+										$this.pageNum = data.data.nextPage;
+
+										if ($this.pageNum == 0) {
+											$this.allLoaded = true;
+										} else {
+											$this.allLoaded = false;
+										}
+										$this.$refs.loadmore.onTopLoaded();
+									}, 500)
+								}
+							})
+						},
+						loadBottom() {
+							$this = this
+							console.log('上拉加载')
+							$this.getList({
+								pageNum: $this.pageNum,
+								className: $this.className,
+								success: function(data) {
+									setTimeout(function() {
+										$this.list = $this.list.concat(data.data.list);
+										$this.pages = data.data.pages;
+										$this.pageNum = data.data.nextPage;
+										if ($this.pageNum == 0) {
+											$this.allLoaded = true;
+										}
+										$this.$refs.loadmore.onBottomLoaded();
+									}, 500)
+								}
+							})
+						},
+						getList(option) { //请求班级列表
+							$this = this
+							var msg = {
+								pageNum: 1,
+								success: function(data) {
+									$this.list = data.data.list;
+									$this.pages = data.data.pages;
+									$this.pageNum = data.data.nextPage;
+									if ($this.pageNum == 0) {
+										$this.allLoaded = true;
+									} else {
+										$this.allLoaded = false;
+									}
+								}
+							}
+							msg = $.extend(msg, option)
+							$.ajax({
+								type: 'post',
+								url: http + '/gobangteach/SchoolController/checkTask',
+								data: {
+									pageSize: 6,
+									pageNum: msg.pageNum,
+									startTime: $this.startDate,
+									endTime: $this.endDate,
+									token: token,
+									uid: uid
+								},
+								success: function(data) {
+									msg.success(data)
+								},
+								complete:function(){
+									document.location.href = "myschema://go?a=14"
+								}
+							})
+						},
+						tab: function(name, classid, jobid) {
+							vm.viewAnimate = 'slide-left'
+							router.push({
+								path: name
+							})
+							//vm.show=name;
+							vm.option.classId = classid;
+							vm.option.jobId = jobid;
+						},
+						go:function(classInfoId,jobid){
+							//alert("myschema://go?a=13&classInfoId="+classInfoId+"&jobid="+jobid)
+							document.location.href = "myschema://go?a=13&classInfoId="+classInfoId+"&jobid="+jobid
+						}
+					},
+					mounted() {
+						var $this = this;
+						this.getList({
+							pageNum: 1
+						});
+					},
+					template: '#classList',
+				};
+				var studentList = {
+					data() {
+						return {
+							list: [],
+							topStatus: '',
+							allLoaded: false, //为true 则禁止下拉  一般无数据了设置为trun
+							pageNum: 1, //当前页
+							pages: '', //总页数
+							userName: '', //学生
+							colltab: '1',
+							titleName:''
+						}
+					},
+					methods: {
+						tab: function(name, viewAnimate, userId) {
+							vm.viewAnimate = viewAnimate || 'slide-right'
+							router.push({
+								path: name
+							})
+							//vm.show=name;
+							//alert('userId'userId,this.option.jobId)
+						},
+						loadTop() {
+							$this = this
+							console.log('下拉刷新')
+							$this.pageNum = 1; //重置下一页页码
+							$this.getList({
+								pageNum: $this.pageNum,
+								userName: $this.userName,
+								success: function(data) {
+									setTimeout(function() {
+										$this.list = data.data.list;
+										$this.pages = data.data.pages;
+										$this.pageNum = data.data.nextPage;
+
+										if ($this.pageNum == 0) {
+											$this.allLoaded = true;
+										} else {
+											$this.allLoaded = false;
+										}
+										$this.$refs.loadmore.onTopLoaded();
+									}, 500)
+								}
+							})
+						},
+						loadBottom() {
+							$this = this
+							console.log('上拉加载')
+							$this.getList({
+								pageNum: $this.pageNum,
+								userName: $this.userName,
+								success: function(data) {
+									setTimeout(function() {
+										$this.list = $this.list.concat(data.data.list);
+										$this.pages = data.data.pages;
+										$this.pageNum = data.data.nextPage;
+										if ($this.pageNum == 0) {
+											$this.allLoaded = true;
+										}
+										$this.$refs.loadmore.onBottomLoaded();
+									}, 500)
+								}
+							})
+						},
+						getList(opt) { //请求班级列表
+							$this = this
+							var msg = {
+								pageNum: 1,
+								userName: $this.userName,
+								success: function(data) {
+									$this.list = data.data.list;
+									$this.pages = data.data.pages;
+									$this.pageNum = data.data.nextPage;
+									if ($this.pageNum == 0) {
+										$this.allLoaded = true;
+									} else {
+										$this.allLoaded = false;
+									}
+								}
+							}
+							msg = $.extend(msg, opt)
+							$.ajax({
+								type: 'post',
+								url: http + '/gobangteach/SchoolController/taskDetails',
+								data: {
+									classInfoId: $this.option.classId, //班级id
+									jobId: $this.option.jobId, //作业id
+									userName: msg.userName, //学生姓名
+									tab: $this.colltab,
+									pageNum: msg.pageNum,
+									pageSize: 9,
+									token: token,
+									uid: uid,
+								},
+								success: function(data) {
+									msg.success(data)
+								}
+							})
+						},
+						go:function(userid,userName){
+							//alert("myschema://go?a=12&userid="+userid+"&jobid="+this.option.jobId+'&userName='+userName)
+							document.location.href = "myschema://go?a=12&userid="+userid+"&jobid="+this.option.jobId+'&userName='+userName
+						}
+					},
+					watch: {
+						colltab: function() {
+							this.getList()
+						}
+					},
+					props: ['option'],
+					mounted: function() {
+						this.getList({
+							pageNum: 1
+						})
+					},
+					template: '#studentList'
+				}
+				//路由器配置
+				var router = new VueRouter({
+					routes: [{
+							path: '/',
+							redirect: '/class-list'
+						},
+						{
+							path: '/class-list', // 布置作业前 选择
+							component: classList
+						},
+						{
+							path: '/student-list', //布置作业页面（也选择的作业，作业类型筛选）
+							component: studentList
+						}
+					]
+				})
+
+				vm = new Vue({
+					el: '#app',
+					data: {
+						show: 'classList',
+						viewAnimate: 'slide-left',
+						option: {
+							classId: '', //班级id
+							jobId: ''
+						}
+					},
+					router: router,
+					methods: {
+
+					},
+				})
+			});
+		</script>
+
+	</body>
+</html>

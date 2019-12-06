@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <include layout="@layout/login_title_layout" />
+
+    <ImageView
+        android:layout_width="@dimen/dp_330"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="@dimen/dp_28"
+        android:layout_marginTop="@dimen/dp_50"
+        android:background="@mipmap/competition_management_bg"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/image_bg"
+        android:layout_width="@dimen/dp_318"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="@dimen/dp_35"
+        android:layout_marginTop="@dimen/dp_56"
+        android:background="@drawable/shape_paly_by_play"
+        android:scrollbars="none"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ScrollView
+        android:layout_width="@dimen/dp_318"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="@dimen/dp_50"
+        android:layout_marginTop="@dimen/dp_70"
+        android:scrollbars="none"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/school_name"
+                android:layout_width="@dimen/dp_290"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dp_14"
+                android:layout_marginTop="@dimen/dp_5"
+                android:ellipsize="end"
+                android:singleLine="true"
+                android:text="对方学校:"
+                android:textColor="@color/wai_content_color"
+                android:textSize="12sp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/match_name"
+                android:layout_width="@dimen/dp_290"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dp_14"
+                android:layout_marginTop="@dimen/dp_2"
+                android:ellipsize="end"
+                android:singleLine="true"
+                android:text="比赛名称:"
+                android:textColor="@color/wai_content_color"
+                android:textSize="12sp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/school_name"
+                app:layout_goneMarginTop="@dimen/dp_19" />
+
+            <TextView
+                android:id="@+id/match_time"
+                android:layout_width="@dimen/dp_290"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_2"
+                android:ellipsize="end"
+                android:singleLine="true"
+                android:text="报名时间:"
+                android:textColor="@color/wai_content_color"
+                android:textSize="12sp"
+                app:layout_constraintLeft_toLeftOf="@+id/match_name"
+                app:layout_constraintTop_toBottomOf="@+id/match_name" />
+
+            <TextView
+                android:id="@+id/match_introduced"
+                android:layout_width="@dimen/dp_290"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_2"
+                android:text="比赛介绍:"
+                android:textColor="@color/wai_content_color"
+                android:textSize="12sp"
+                app:layout_constraintLeft_toLeftOf="@+id/match_name"
+                app:layout_constraintTop_toBottomOf="@+id/match_time" />
+
+            <TextView
+                android:id="@+id/match_group"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_2"
+                android:text="比赛组别:"
+                android:textColor="@color/wai_content_color"
+                android:textSize="12sp"
+                app:layout_constraintLeft_toLeftOf="@+id/match_name"
+                app:layout_constraintTop_toBottomOf="@+id/match_introduced" />
+
+            <com.xswq.chess.myapplication.customview.HorizontalListView
+                android:id="@+id/list_view"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp_310"
+                android:layout_marginRight="@dimen/dp_14"
+                android:layout_marginTop="@dimen/dp_5"
+                app:layout_constraintLeft_toLeftOf="@+id/match_name"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/match_group" />
+
+            <Button
+                android:id="@+id/button_save"
+                android:layout_width="@dimen/dp_82"
+                android:layout_height="@dimen/dp_33"
+                android:layout_marginBottom="@dimen/dp_21"
+                android:layout_marginTop="@dimen/dp_19"
+                android:background="@mipmap/integral_shopping_mall_yes"
+                android:text="同意"
+                android:textColor="@color/color_591a05"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toLeftOf="@+id/button_cancel"
+                app:layout_constraintTop_toBottomOf="@+id/list_view" />
+
+            <Button
+                android:id="@+id/button_cancel"
+                android:layout_width="@dimen/dp_82"
+                android:layout_height="@dimen/dp_33"
+                android:layout_marginTop="@dimen/dp_19"
+                android:background="@mipmap/button_skip"
+                android:text="拒绝"
+                android:textColor="@color/color_134077"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="@+id/button_save"
+                app:layout_constraintLeft_toRightOf="@+id/button_save"
+                app:layout_constraintRight_toRightOf="parent" />
+
+            <Button
+                android:id="@+id/result"
+                android:layout_width="@dimen/dp_82"
+                android:layout_height="@dimen/dp_33"
+                android:layout_marginBottom="@dimen/dp_21"
+                android:layout_marginTop="@dimen/dp_19"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                android:visibility="gone"
+                android:background="@mipmap/play_by_play_unapply"
+                android:textColor="@color/wai_content_color"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/list_view" />
+        </android.support.constraint.ConstraintLayout>
+
+    </ScrollView>
+
+</android.support.constraint.ConstraintLayout>

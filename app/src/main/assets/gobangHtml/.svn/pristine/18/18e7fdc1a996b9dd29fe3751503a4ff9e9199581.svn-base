@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>先手围棋智能教育服务平台 </title>
+		<link rel="icon" href="img/logo-left.png" type="image/x-icon"></title>
+		<link rel="stylesheet" type="text/css" href="css/lib/public.css"/>
+		<link rel="stylesheet" type="text/css" href="css/custom/webStyle.css"/>
+		
+		<script src="js/gobang/common.js" type="text/javascript" charset="utf-8" name="公共配置信息"></script>
+		<script src="libs/jquery/jquery.js" type="text/javascript" charset="utf-8"></script>
+		<link rel="stylesheet" type="text/css" href="libs/layer/layer-v3.1.1/layer/theme/default/layer.css"/>
+		<script src="libs/layer/layer-v3.1.1/layer/layer.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/lib/rem.js" type="text/javascript" charset="utf-8"></script>
+		<script src="libs/vuejs/vue.js" type="text/javascript" charset="utf-8"></script>
+		
+		<!-- 棋盘 -->
+		<link rel="stylesheet" type="text/css" href="chess/css/chess.css"/>
+		<link rel="stylesheet" type="text/css" href="chess/skin/skin1/skin1.css"/>
+		<script src="chess/js/eve.js" type="text/javascript" charset="utf-8"></script>
+		<script src="chess/js/XSGO.js" type="text/javascript" charset="utf-8"></script>
+		<script src="chess/js/bundle.js" type="text/javascript" charset="utf-8"></script>
+		<script src="chess/js/GSocket.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body style="display: none;">
+		<div id="courseware" class="wa100 ha100 bg_cw_bg">
+			<!--返回主界面按钮-->
+			<div class="w147 h335 bg_teach_back abs tp0 lt80 cp" onclick="history.go(-1)">
+				<a class="db wa100 ha100 abs lt30 bt20 br50"></a>
+			</div>
+			<!-- 大小标题 -->
+			<h4 class="h77 df ai-c jc-c fs36 cf abs tp0 wa100" v-text='arrTitle.title'></h4>
+			<h4 class="h85 df ai-c jc-c fs28 cf abs tp75 wa100 c183 clamp" v-text='titlerequs'></h4>
+			<!--内容区域-->
+			<div class="wa100 ha100" id="mainWrapper">
+				<div class="wa100 ha100">
+					<div class="bgdcf h900 brb50">
+						<div id='canvasBox' class="boardBg df ai-c jc-c rel tp0">
+							<div id="gameCanvas" onselectstart="return false"></div>
+							<canvas class="abs tp opacity0 opc5 z10" id="canvasOp"></canvas>
+						</div>
+						<!-- 讲解内容 -->
+						<div class="h179 wa100 bg_teach_main1">
+						<!--  -->
+							<p class="c183 fs22 pl20 pr20 mt35 clamp4" v-text="commentStr">	
+							</p>
+						</div>
+					</div>
+					<!-- 步数 -->
+					<div class="wa100 h118 bffe880 br32 bgf df ai-c jc-sa mt50">
+						<div class="df ai-c jc-sa pt73 pl20 pr20 wa60">
+							<span class="w57 h57 bg_teach_listBg tc fs36 lineh57 bra100 cp c8f3a00 active" v-for="(index,i) in correctResultsList" v-if="i==0" v-text="i+1" v-on:click="attrClass($event)"></span>
+							<span class="w57 h57 bg_teach_listBg tc fs36 lineh57 bra100 c8f3a00 cp" v-else v-text="i+1" v-on:click="attrClass($event)"></span>
+						</div>
+						<div class="df ai-c jc-sa pl20 pr20">
+							<span class="w95 h68 tc fs36 lineh68 cd24a00" id="step" v-text="step"></span>
+							<!-- onclick='eve.f("HandlerAction", "B[ne]")()' -->
+							<span :class='["w137 h60 tc fs28 cp lineh60",disbd?"bg_teach_nextStep cd24a00":"bg_nextStep_disbd c999"]' v-on:click="nextStep()">下一步</span>
+							<!-- <span class="w160 h68 bg_teach_reset tc fs36 lineh68 cp" v-on:click="resetChess()">重做</span> -->
+						</div>
+					</div>
+					<div class="df pt14 jc-sa wa70 m0a">
+						<button v-on:click="page(pageinfo.prePage)" :class="['w150 h72 btn-n cp mr20 bg_teach_nextStep tc cd24a00 fs28 lineh50',pageinfo.hasPreviousPage?'':'dn']">上一题</button>
+						<button v-on:click="page(pageinfo.nextPage)" :class="['w150 h72 btn-n cp bg_teach_nextStep tc cd24a00 fs28 lineh50',pageinfo.hasNextPage?'':'dn']">下一题</button>
+					</div>
+					<!-- 所有题  -->
+					<div class="ml25 df fw-w dn" style="display:none">
+						<div class="w150 h150 mr10 mb10 br12 bgf rel cp imgBox" v-for='x in pageinfo.list' :data-id = 'x.id' v-on:click="loadMyJob(x.id)">
+							<img class="wa100 ha100 p5" :src="x.snapshot"/>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div style="display:none ">
+		黑：
+		<b id="blacktime">00:00:00</b>
+		提子：
+		<b id="blacktake">0</b>
+		读秒：
+		<b id="black_Seconds">0</b>
+		次数：
+		<b id="black_counts">0</b>
+		白：
+		<b id="whitetime">00:00:00</b>
+		提子：
+		<b id="whitetake">0</b>
+		读秒：
+		<b id="white_Seconds">0</b>
+		次数：
+		<b id="white_counts">0</b>
+		<audio src="music/ChipMany.wav" type="hidden" id="ChipMany"></audio>
+		<audio src="/gobangteach/music/STONE0.wav" type="hidden" id="stepmusic"></audio>
+		<audio src="music/aswError.mp3" type="hidden" id="aswError"></audio>
+		<audio src="music/aswRight.mp3" type="hidden" id="aswRight"></audio>
+	</div>
+		<!-- <script src="libs/require/require.js" type="text/javascript" charset="utf-8"></script> -->
+		<script type="text/javascript">
+			/* require(['js/lib/require.config'], function() {
+				require([
+					'Vue',
+					'rem', //game.js 要最后加载，不然有几率棋盘加载不出
+				], function(Vue) {
+					
+					window.Vue = Vue; //vue全局 */
+					$('body').show();
+					$('#gameCanvas,#canvasOp').css('width',$('body').width()).css('height',$('body').width())
+							//01 加载棋盘列表
+							if(readCookie('historyJobTime')) {
+								loadLatelyJob({
+									createTime: readCookie('historyJobTime')
+								});
+								delCookie('historyJobTime');
+							} else {
+								loadLatelyJob();
+							}
+
+							var vm = new Vue({
+								el: "#mainWrapper",
+								data: {
+									pageinfo: {},
+									arrTitle: {
+                                             msg: [
+                                                   '01 围棋礼仪',
+                                                   '02 棋盘棋子',
+                                                   '03 棋子的气',
+                                                   '04 紧气提子',
+                                                   '05 打吃,逃子',
+                                                   '06 双方互相打吃',
+                                                   '07 虎口',
+                                                   '08 禁入点（禁着点）！',
+                                                   '09 打劫',
+                                                   '10 打二还一和打多还一',
+                                                   '11 连接和切断',
+                                                   '12 一、二线吃子的秘密！',
+                                                   '13 双打吃',
+                                                   '14 征吃',
+                                                   '15 门吃',
+                                                   '16 抱吃',
+                                                   '17 枷吃',
+                                                   '18 扑与倒扑',
+                                                   '19 接不归',
+                                                   '20 利用对方缺陷逃子',
+                                                   '21 可逃之子与应弃之子',
+                                                   '22 两眼活棋',
+                                                   '23 基础死活常型(一)',
+                                                   '24 基础死活常型(二)',
+                                                   '25 杀棋基础',
+                                                   '26 获取基础',
+                                                   '27 布局基础(一)',
+                                                   '28 布局基础(二)',
+                                                   '29 对杀基础(一)',
+                                                   '30 对杀基础(二)',
+                                                   '31 综合吃子(一)',
+                                                   '32 综合吃子(二)',
+                                                   '33 好形和坏形',
+                                                   '34 官子入门',
+                                                   '35 胜负计算'
+                                                   ],
+										title: '',
+									},
+									titlerequs:'',
+									commentList:[],
+									correctResultsList:[],
+									step:'',
+									comment:[],
+									commentStr:'',
+									total:'',
+									num:'',
+									disbd:true,
+									game:''
+								},
+								methods: {
+									//根据棋谱id 加载棋盘
+									loadMyJob: function(questionId) {
+										var $this = this;
+										$.ajax({
+											type: "GET",
+											url:http+"/gobangteach/classroom/loadQuestionTeach",
+											data: {
+												questionid : questionId,
+												uid:uid,
+												token:token
+											},
+											dataType: 'json',
+											success: function(data) {
+												console.log("棋盘信息", data);
+												window.currentGameId = data.data.chessid;
+												window.quesionID = questionId;
+												$('.imgBox').removeClass('qipuActive')
+												$('.imgBox[data-id=' + window.quesionID + ']').addClass('qipuActive');
+												//棋局开始提示信息
+												$('#canvasBox').canvasAlert({
+													content:data.data.questionbank.titlerequs===null||
+													data.data.questionbank.titlerequs===''?
+													data.data.questionbank.description.split('_')[0]:
+													data.data.questionbank.titlerequs
+												});
+												vm.titlerequs = data.data.questionbank.titlerequs===null||
+												data.data.questionbank.titlerequs===''?
+														data.data.questionbank.description.split('_')[0]:
+														data.data.questionbank.titlerequs;
+												var _index = $(".bg_teach_listBg.active").index();
+												_index == -1?_index=0:_index=_index;
+												vm.commentList = 	data.data.commentList;  //讲解内容
+												vm.correctResultsList = data.data.correctResultsList; //步
+												var arr = vm.correctResultsList[_index];
+												vm.step = '0/'+arr.length;
+												vm.comment = vm.commentList[_index];
+												vm.commentStr = '';
+												if(jsonlink().classId==33){
+													vm.step = '1/1';
+													vm.commentStr = vm.comment[0];
+													vm.disbd =false
+												}else{
+													vm.disbd =true
+												}
+												
+												var gameInfo = JSON.parse(data.data.questionbank.chessdata);
+												
+												//设置棋盘路数
+												$this.game.road = gameInfo.roadX
+												
+												//更新类型
+												$this.game.config.sgfstate = data.data.questionbank.sgfstate
+												
+												//更新棋谱
+												$this.game.svg = gameInfo.listAction; 
+
+												//登入棋局
+												eve.f('enterGame',data.data.chessid,uid)();
+												//落子回调
+												$this.game.playCall = function(d){
+													console.log('落子位置',d)
+													//落子
+													eve.f('handlerAction',data.data.chessid,d)(); 
+												}		
+											},
+											error: function(XMLHttpRequest, data) {
+												alert("获取房间信息失败");
+											}
+										});
+									},
+									attrClass:function($event){
+										var oId = $('.imgBox.qipuActive').attr('data-id');
+										if(oId) {
+											vm.loadMyJob(oId);
+										}
+										var _ev = $event.currentTarget;
+										var _index = $(_ev).index();
+										$(_ev).addClass('active').siblings().removeClass('active');
+										var arr = vm.correctResultsList[_index];
+										vm.step = '0/'+arr.length;
+										var arrComment = vm.commentList[_index];
+										vm.comment = arrComment;
+									},
+									//点下一步
+									nextStep:function(){
+										
+										if(jsonlink().classId==33){
+											vm.step = '1/1';
+											vm.commentStr = vm.comment[0];
+											return false
+										}else{
+											//判断选中第几个变化图
+											var _index = $(".bg_teach_listBg.active").index();
+											var arr = vm.correctResultsList[_index];
+											var step = $("#step").text().split('/')[0]*1;
+											if(step == arr.length){
+											}else{
+												vm.step = (step+1)+'/'+arr.length;
+												eve.f('handlerAction',window.currentGameId,arr[step])(); 
+												vm.commentStr = vm.comment[step];
+											}
+										}
+									},
+									page:function(pageNum){
+										var pageinfo = this.pageinfo;
+										console.log(pageinfo)
+											loadLatelyJob({
+												pageNum: pageNum
+											});
+										$('.bg_teach_listBg').eq(0).addClass('active').siblings().removeClass('active');
+									},
+									//重做
+									resetChess:function(){
+										var oId = $('.imgBox.qipuActive').attr('data-id');
+										if(oId) {
+											vm.loadMyJob(oId);
+										}
+									},
+									formatTime: function(time) {
+										return DateFormat.format(new Date(time), 'yyyy-MM-dd hh:mm:ss');
+									}
+								},
+								mounted: function() {
+									//关闭loding
+									document.location.href = "myschema://go?a=14"
+									
+									//修改棋谱列表标题
+									this.arrTitle.title = this.arrTitle.msg[jsonlink().classId - 1];
+									console.log(this.arrTitle.title)
+									var $this = this;
+									//初始化棋盘
+									this.game = new xsgo('gameCanvas',{
+										//isShowCoord:1,//显示坐标
+										queue:[],
+										type:2,//2类型为做题
+										bgColor:'#ffd687'
+									})
+									
+									//链接成功回调
+									eve.on('socketOpen',function(){
+										console.log('链接成功')
+										//loadQuestion() //请求题目
+									})
+									
+									//棋局登入成功回调
+									eve.on('signInResponse',function(){
+										console.log('登入成功');
+									})
+									
+									//落子结果
+									eve.on("handlerActionResult", function(data) {
+										console.log('落子结果:',data)
+										$this.game.addQueue(data) //添加子到棋盘
+										var str = data.join('').indexOf('AE');
+										if(str>0){ //是否有提子
+											document.getElementById('ChipMany').play() //提子音效
+										}else{
+											document.getElementById('stepmusic').play() //落子声
+										}
+									});
+								}
+
+							});
+
+							function loadLatelyJob(condition) {
+								var params = condition || {};
+								params.pageNum = params.pageNum || jsonlink().index;
+								params.pageSize = 1;
+								params.classId = jsonlink().classId;
+								params.titlesource = 1;
+								params.uid=uid;
+								params.token=token;
+								$.ajax({
+									url: http+'/gobangteach/QuestionbankController/getQuestionbankByClassId',
+									type: "POST",
+									dataType: "json",
+									data: $.param(params),
+									success: function(data) {
+										$(".bg_teach_listBg").eq(0).addClass('active');
+										console.log('棋谱列表', data.data)
+										if(data.data.list.length == 0) {
+											
+										} else {
+											$('.imgBox').removeClass('wrong right');
+											vm.loadMyJob(data.data.list[0].id);
+											vm.pageinfo = data.data;
+											vm.total = data.data.total;
+											vm.num = data.data.pageNum;
+											
+										}
+									}
+								});
+							}
+				//})
+			//});
+		</script>
+
+	</body>
+	
+</html>

@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:id="@+id/user_help_main"
+    android:layout_height="match_parent">
+
+    <include layout="@layout/login_title_layout" />
+
+    <ImageView
+        android:id="@+id/iamge_backgroud"
+        android:layout_width="@dimen/dp_330"
+        android:layout_height="@dimen/dp_400"
+        android:layout_marginLeft="@dimen/dp_10"
+        android:layout_marginRight="@dimen/dp_10"
+        android:layout_marginTop="@dimen/dp_60"
+        android:background="@mipmap/user_help_backgrout"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/title_iamge"
+        android:layout_width="@dimen/dp_250"
+        android:layout_height="@dimen/dp_60"
+        android:layout_marginTop="@dimen/dp_10"
+        android:background="@mipmap/user_help_describe"
+        app:layout_constraintLeft_toLeftOf="@+id/iamge_backgroud"
+        app:layout_constraintRight_toRightOf="@+id/iamge_backgroud"
+        app:layout_constraintTop_toTopOf="@+id/iamge_backgroud" />
+
+    <ScrollView
+        android:id="@+id/scrollView"
+        android:layout_width="@dimen/dp_280"
+        android:layout_height="@dimen/dp_280"
+        app:layout_constraintLeft_toLeftOf="@+id/iamge_backgroud"
+        app:layout_constraintRight_toRightOf="@+id/iamge_backgroud"
+        app:layout_constraintTop_toBottomOf="@+id/title_iamge">
+
+        <LinearLayout
+            android:layout_width="@dimen/dp_260"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="@dimen/dp_10"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/user_help_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_10"
+                android:textColor="@color/black"
+                android:textSize="11sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_10"
+                android:textColor="@color/black"
+                android:textSize="11sp"
+                android:visibility="gone" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_10"
+                android:textColor="@color/black"
+                android:textSize="11sp"
+                android:visibility="gone" />
+        </LinearLayout>
+    </ScrollView>
+
+
+</android.support.constraint.ConstraintLayout>

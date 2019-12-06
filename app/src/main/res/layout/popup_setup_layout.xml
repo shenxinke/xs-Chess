@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@mipmap/popue_bg">
+
+    <Button
+        android:id="@+id/system_setup"
+        android:layout_width="@dimen/dp_112"
+        android:layout_height="@dimen/dp_40"
+        android:layout_marginTop="@dimen/dp_30"
+        android:background="@mipmap/btn_setup_system"
+        android:text="@string/syytem_setup"
+        android:textColor="@color/white"
+        android:textSize="@dimen/sp_15"
+        app:layout_constraintBottom_toTopOf="@+id/system_about_us"
+        app:layout_constraintHorizontal_bias="0.6"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/system_about_us"
+        android:layout_width="@dimen/dp_112"
+        android:layout_height="@dimen/dp_40"
+        android:background="@mipmap/btn_setup_system"
+        android:text="@string/about_us"
+        android:textColor="@color/white"
+        android:textSize="@dimen/sp_15"
+        app:layout_constraintBottom_toTopOf="@+id/system_helper"
+        app:layout_constraintLeft_toLeftOf="@+id/system_setup"
+        app:layout_constraintRight_toRightOf="@+id/system_setup"
+        app:layout_constraintTop_toBottomOf="@+id/system_setup" />
+
+    <Button
+        android:id="@+id/system_helper"
+        android:layout_width="@dimen/dp_112"
+        android:layout_height="@dimen/dp_40"
+        android:background="@mipmap/btn_setup_system"
+        android:text="@string/helper_center"
+        android:textColor="@color/white"
+        android:textSize="@dimen/sp_15"
+        app:layout_constraintBottom_toTopOf="@+id/change_password"
+        app:layout_constraintLeft_toLeftOf="@+id/system_about_us"
+        app:layout_constraintRight_toRightOf="@+id/system_about_us"
+        app:layout_constraintTop_toBottomOf="@+id/system_about_us" />
+
+    <Button
+        android:id="@+id/change_password"
+        android:layout_width="@dimen/dp_112"
+        android:layout_height="@dimen/dp_40"
+        android:background="@mipmap/btn_setup_system"
+        android:text="@string/change_password"
+        android:textColor="@color/white"
+        android:textSize="@dimen/sp_15"
+        app:layout_constraintBottom_toTopOf="@+id/system_switchuser"
+        app:layout_constraintLeft_toLeftOf="@+id/system_helper"
+        app:layout_constraintRight_toRightOf="@+id/system_helper"
+        app:layout_constraintTop_toBottomOf="@+id/system_helper" />
+
+    <Button
+        android:id="@+id/system_switchuser"
+        android:layout_width="@dimen/dp_112"
+        android:layout_height="@dimen/dp_40"
+        android:background="@mipmap/btn_setup_system"
+        android:text="@string/switch_user"
+        android:textColor="@color/white"
+        android:textSize="@dimen/sp_15"
+        app:layout_constraintBottom_toTopOf="@+id/check_for_updates"
+        app:layout_constraintLeft_toLeftOf="@+id/system_helper"
+        app:layout_constraintRight_toRightOf="@+id/system_helper"
+        app:layout_constraintTop_toBottomOf="@+id/change_password" />
+
+    <Button
+        android:id="@+id/check_for_updates"
+        android:layout_width="@dimen/dp_112"
+        android:layout_height="@dimen/dp_40"
+        android:layout_marginBottom="@dimen/dp_20"
+        android:background="@mipmap/btn_setup_system"
+        android:text="@string/check_for_updates"
+        android:textColor="@color/white"
+        android:textSize="@dimen/sp_15"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="@+id/system_helper"
+        app:layout_constraintRight_toRightOf="@+id/system_helper"
+        app:layout_constraintTop_toBottomOf="@+id/system_switchuser" />
+
+</android.support.constraint.ConstraintLayout>

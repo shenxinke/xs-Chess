@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <include layout="@layout/login_title_layout" />
+
+    <ImageView
+        android:id="@+id/image_bg"
+        android:layout_width="@dimen/dp_316"
+        android:layout_height="@dimen/dp_370"
+        android:layout_marginTop="@dimen/dp_80"
+        android:background="@mipmap/setup_bg"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/setup_cupicon"
+        android:layout_width="@dimen/dp_218"
+        android:layout_height="@dimen/dp_40"
+        android:layout_marginTop="@dimen/dp_66"
+        android:background="@mipmap/setup_button"
+        android:drawableStart="@mipmap/cupicon"
+        android:drawablePadding="@dimen/dp_16"
+        android:paddingVertical="@dimen/dp_10"
+        android:paddingStart="@dimen/dp_12"
+        android:text="@string/invitation_game"
+        android:textColor="@color/white"
+        app:layout_constraintLeft_toLeftOf="@+id/image_bg"
+        app:layout_constraintRight_toRightOf="@id/image_bg"
+        app:layout_constraintTop_toTopOf="@+id/image_bg" />
+
+
+    <TextView
+        android:id="@+id/setup_musictoneicon"
+        android:layout_width="@dimen/dp_218"
+        android:layout_height="@dimen/dp_40"
+        android:layout_marginTop="@dimen/dp_20"
+        android:background="@mipmap/setup_button"
+        android:drawableLeft="@mipmap/musictoneicon"
+        android:drawablePadding="@dimen/dp_16"
+        android:paddingVertical="@dimen/dp_10"
+        android:paddingLeft="@dimen/dp_12"
+        android:text="@string/falling_sound"
+        android:textColor="@color/white"
+        app:layout_constraintLeft_toLeftOf="@+id/setup_cupicon"
+        app:layout_constraintTop_toBottomOf="@+id/setup_cupicon" />
+
+
+    <TextView
+        android:id="@+id/setup_speakericon"
+        android:layout_width="@dimen/dp_218"
+        android:layout_height="@dimen/dp_40"
+        android:layout_marginTop="@dimen/dp_20"
+        android:background="@mipmap/setup_button"
+        android:drawableLeft="@mipmap/speakericon"
+        android:drawablePadding="@dimen/dp_16"
+        android:paddingVertical="@dimen/dp_10"
+        android:paddingLeft="@dimen/dp_12"
+        android:text="@string/warning_tone"
+        android:textColor="@color/white"
+        app:layout_constraintLeft_toLeftOf="@+id/setup_musictoneicon"
+        app:layout_constraintTop_toBottomOf="@+id/setup_musictoneicon" />
+
+    <TextView
+        android:id="@+id/setup_add_frend"
+        android:layout_width="@dimen/dp_218"
+        android:layout_height="@dimen/dp_40"
+        android:layout_marginTop="@dimen/dp_20"
+        android:background="@mipmap/setup_button"
+        android:drawableLeft="@mipmap/add_frend"
+        android:drawablePadding="@dimen/dp_16"
+        android:paddingVertical="@dimen/dp_10"
+        android:paddingLeft="@dimen/dp_12"
+        android:text="@string/add_friend"
+        android:textColor="@color/white"
+        app:layout_constraintLeft_toLeftOf="@+id/setup_speakericon"
+        app:layout_constraintTop_toBottomOf="@+id/setup_speakericon" />
+
+
+    <com.xswq.chess.myapplication.widget.SwitchButton
+        android:id="@+id/setup_cupicons"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/dp_5"
+        app:layout_constraintBottom_toBottomOf="@+id/setup_cupicon"
+        app:layout_constraintRight_toRightOf="@+id/setup_cupicon"
+        app:layout_constraintTop_toTopOf="@+id/setup_cupicon" />
+
+    <com.xswq.chess.myapplication.widget.SwitchButton
+        android:id="@+id/setup_musictoneicons"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/dp_5"
+        app:layout_constraintBottom_toBottomOf="@+id/setup_musictoneicon"
+        app:layout_constraintRight_toRightOf="@+id/setup_musictoneicon"
+        app:layout_constraintTop_toTopOf="@+id/setup_musictoneicon" />
+
+    <com.xswq.chess.myapplication.widget.SwitchButton
+        android:id="@+id/setup_speakericonsas"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/dp_5"
+        app:layout_constraintBottom_toBottomOf="@+id/setup_speakericon"
+        app:layout_constraintRight_toRightOf="@+id/setup_speakericon"
+        app:layout_constraintTop_toTopOf="@+id/setup_speakericon" />
+
+    <com.xswq.chess.myapplication.widget.SwitchButton
+        android:id="@+id/setup_add_frends"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/dp_5"
+        app:layout_constraintBottom_toBottomOf="@+id/setup_add_frend"
+        app:layout_constraintRight_toRightOf="@+id/setup_add_frend"
+        app:layout_constraintTop_toTopOf="@+id/setup_add_frend" />
+
+    <Button
+        android:id="@+id/setup_save_id"
+        android:layout_width="@dimen/dp_120"
+        android:layout_height="@dimen/dp_32"
+        android:layout_marginTop="@dimen/dp_20"
+        android:background="@mipmap/setup_btn"
+        android:text="@string/save"
+        android:textColor="@color/white"
+        android:textSize="12sp"
+        app:layout_constraintLeft_toLeftOf="@+id/setup_add_frend"
+        app:layout_constraintRight_toRightOf="@+id/setup_add_frend"
+        app:layout_constraintTop_toBottomOf="@+id/setup_add_frend" />
+
+
+</android.support.constraint.ConstraintLayout>

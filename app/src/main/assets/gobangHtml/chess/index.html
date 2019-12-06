@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="css/chess.css"/>
+		<link rel="stylesheet" type="text/css" href="skin/skin1/skin1.css"/>
+		
+		<script src="js/jquery.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/XSGO.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body >
+		<style type="text/css">
+			#game{
+				width: 600px;
+				height: 600px;
+				float: left;
+				margin-right: 20px;
+			}
+		</style>
+		
+		<div id="game" onselectstart="return false"></div>
+		<div class="">
+			<div class="">
+				<p>显示坐标</p>
+				<button type="button" onclick="showCoord()">显示坐标</button>
+			</div>
+			<div class="">
+				<p>前进后退</p>
+				<button type="button" onclick="first()">第0步</button>
+				<button type="button" onclick="nexts()">退5步</button>
+				<button type="button" onclick="next()">后退一步</button>
+				<button type="button" onclick="prev()">前进一步</button>
+				<button type="button" onclick="prevs()">进5步</button>
+				<button type="button" onclick="last()">最后一步</button>
+			</div>
+			
+			<div class="">
+				<p>显示手数</p>
+				<button type="button" onclick="showLot()">手数</button>
+			</div>
+			<div class="">
+				<p>console.log 开关</p>
+				<button type="button" onclick="closeLog()">关闭</button>
+				<button type="button" onclick="startLog()">开启</button>
+			</div>
+			<div class="">
+				<p>切换棋子</p>
+				<button type="button" onclick="changeFirst('BW')">黑白</button>
+				<button type="button" onclick="changeFirst('WB')">白黑</button>
+				<button type="button" onclick="changeFirst('B')">纯黑</button>
+				<button type="button" onclick="changeFirst('W')">纯白</button>
+			</div>
+			
+			<div class="">
+				<p>标记</p>
+				<button type="button" onclick="changeFirst('TR')">三角形</button>
+				<button type="button" onclick="changeFirst('SQ')">正方形</button>
+				<button type="button" onclick="changeFirst('CR')">圆形</button>
+				<button type="button" onclick="changeFirst('LB1')">数字</button>
+				<button type="button" onclick="changeFirst('LBA')">字母</button>
+				<button type="button" onclick="delLabel()">清空标记</button>
+			</div>
+			
+			<div class="">
+				<p>试下</p>
+				<button type="button" onclick="startTry()">开始试下</button>
+				<button type="button" onclick="endTry()">结束试下</button>
+			</div>
+			<div class="">
+				<p>切换笑脸</p>
+				<button type="button" onclick="smilingFace()">切换笑脸</button>
+			</div>
+			<div class="">
+				<p>切换棋盘</p>
+				<button type="button" onclick="switchChess(9)">9</button>
+				<button type="button" onclick="switchChess(19)">19</button>
+			</div>
+		</div>
+		
+		<script type="text/javascript">
+			var game = new xsgo('game',{
+				road:9
+			})
+			game.init();
+			
+			function switchChess(road){
+				if(confirm('切换棋盘将清空棋盘数据，您确认切换吗？')){
+					game.switchChess(road)
+				}
+				
+			}
+			
+			
+			//第0步
+			function first(){
+				game.first()
+			}
+			//后退一步
+			function next (){
+				game.next()
+			}
+			function nexts (){
+				game.nexts()
+			}
+			//前进一步
+			function prev (){
+				game.prev()
+			}
+			//前进5步
+			function prevs (){
+				game.prevs()
+			}
+			//最后一步
+			function last(){
+				game.last()
+			}
+			//显示手数
+			function showLot(){	
+				game.isShowLot ^= 1 //1显示 0隐藏
+			}
+			//关闭console.log
+			function closeLog(){
+				game.closeLog()
+			}
+			//启用console.log
+			function startLog(){
+				game.startLog()
+			}
+			//切换状态
+			function changeFirst(val){
+				game.changeFirst(val)
+			}
+			//清除标记
+			function delLabel(){
+				game.delLabel()
+			}
+			//开始试下
+			function startTry(){
+				game.startTry()
+			}
+			//结束试下
+			function endTry(){
+				game.endTry()
+			}
+			//显示笑脸
+			function smilingFace(){
+				game.isSmilingFace^=1 //1显示 0隐藏
+			}
+			//显示坐标
+			function showCoord(){
+				game.isShowCoord^=1  //1显示 0隐藏
+			}
+			
+			//落子回调
+			game.playCall = function(data){
+				console.log(data)
+			}
+			
+			
+
+		</script>
+	</body>
+</html>

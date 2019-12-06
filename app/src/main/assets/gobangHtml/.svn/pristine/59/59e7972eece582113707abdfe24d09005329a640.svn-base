@@ -1,0 +1,1905 @@
+html,body{
+	width: 100%;
+	height: 100%;
+	overflow: hidden;
+	font-size: 0.16rem;
+	font-family: "微软雅黑";
+}
+/*字体大小*/
+.fs16{
+	font-size: 0.16rem
+}
+.fs20{
+	font-size: 0.2rem;
+}
+.fs22{
+	font-size: 0.22rem;
+}
+.fs23{
+	font-size: 0.23rem;
+}
+.fs24{
+	font-size: 0.24rem;
+}
+.fs26{
+	font-size: 0.26rem;
+}
+.fs27{
+	font-size: 0.27rem;
+}
+.fs28{
+	font-size: 0.28rem;
+}
+.fs30{
+	font-size: 0.3rem;
+}
+.fs35{
+	font-size: 0.35rem;
+}
+.fs36{
+	font-size: 0.36rem;
+}
+.fs48{
+	font-size: 0.48rem;
+}
+.fs60{
+	font-size: 0.6rem;
+}
+
+
+
+
+/*宽度类库*/
+.w20{
+	width:0.2rem;
+}
+.w30{
+	width:0.30rem;
+}
+.w35{
+	width:0.35rem;
+}
+.w38{
+	width:0.38rem;
+}
+.w40{
+	width:0.4rem;
+}
+.w46{
+	width:0.46rem;
+}
+.w50{
+	width:0.5rem;
+}
+.w57{
+	width:0.57rem;
+}
+.w60{
+	width: 0.6rem
+}
+.w63{
+	width: 0.63rem
+}
+.w67{
+	width: 0.67rem
+}
+.w70{
+	width: 0.7rem
+}
+.w72{
+	width: 0.72rem
+}
+.w73{
+	width: 0.73rem
+}
+.w79{
+	width: 0.79rem
+}
+.w80{
+	width: 0.8rem
+}
+.w84{
+	width: 0.84rem
+}
+.w85{
+	width: 0.85rem
+}
+.w92{
+	width: 0.92rem;
+}
+.w95{
+	width: 0.95rem;
+}
+.w97{
+	width: 0.97rem;
+}
+.w100{
+	width: 1rem;
+}
+.w103{
+	width: 1.03rem;
+}
+.w107{
+	width: 1.07rem;
+}
+.w118{
+	width: 1.18rem;
+}
+.w120{
+	width: 1.22rem;
+}
+.w122{
+	width: 1.22rem;
+}
+.w124{
+	width: 1.24rem;
+}
+.w125{
+	width: 1.25rem;
+}
+.w130{
+	width: 1.3rem;
+}
+.w135{
+	width: 1.35rem;
+}
+.w137{
+	width: 1.37rem;
+}
+.w140{
+	width: 1.4rem;
+}
+.w147{
+	width: 1.47rem;
+}
+.w150{
+	width: 1.5rem;
+}
+.w156{
+	width: 1.56rem;
+}
+.w160{
+	width: 1.6rem;
+}
+.w164{
+	width: 1.64rem;
+}
+.w170{
+	width: 1.7rem;
+}
+.w173{
+	width:1.73rem
+}
+.w175{
+	width:1.75rem
+}
+.w180{
+	width: 1.8rem;
+}
+.w185{
+	width: 1.85rem;
+}
+.w190{
+	width: 1.9rem;
+}
+.w193{
+	width: 1.93rem;
+}
+.w200{
+	width: 2rem;
+}
+.w201{
+	width: 2.01rem;
+}
+.w210{
+	width: 2.1rem
+}
+.w215{
+	width: 2.15rem
+}
+.w220{
+	width: 2.2rem
+}
+.w234{
+	width: 2.34rem
+}
+.w238{
+	width: 2.38rem
+}
+.w240{
+	width: 2.4rem;
+}
+.w245{
+	width: 2.45rem;
+}
+.w250{
+	width: 2.5rem;
+}
+.w260{
+	width: 2.6rem;
+}
+.w300{
+	width: 3rem;
+}
+.w305{
+	width: 3.05rem;
+}
+.w312{
+	width: 3.12rem;
+}
+.w322{
+	width: 3.22rem;
+}
+.w330{
+	width: 3.3rem;
+}
+.w336{
+	width: 3.6rem;
+}
+.w375{
+	width: 3.75rem;
+}
+.w400{
+	width: 4rem;
+}
+.w412{
+	width: 4.12rem;
+}
+.w436{
+	width: 4.36rem;
+}
+.w440{
+	width: 4.4rem;
+}
+.w455{
+	width: 4.55rem;
+}
+.w470{
+	width: 4.7rem;
+}
+.w477{
+	width: 4.77rem;
+}
+.w480{
+	width: 4.8rem;
+}
+.w483{
+	width: 4.83rem;
+}
+.w500{
+	width: 5rem;
+}
+
+.w510{
+	width: 5.1rem;
+}
+.w520{
+	width: 5.2rem;
+}
+.w530{
+	width: 5.3rem;
+}
+.w555{
+	width: 5.55rem;
+}
+.w580{
+	width: 5.8rem;
+}
+.w608{
+	height: 6.08rem;
+}
+.w610{
+	width: 6.1rem;
+}
+.w620{
+	width: 6.2rem;
+}
+.w632{
+	width: 6.32rem;
+}
+.w645{
+	width: 6.45rem;
+}
+.w646{
+	width: 6.46rem;
+}
+.w650{
+	width: 6.5rem;
+}
+.w660{
+	width: 6.6rem;
+}
+.w673{
+	width: 6.73rem
+}
+.w680{
+	width: 6.8rem;
+}
+.w684{
+	width: 6.84rem;
+}
+.w688{
+	width: 6.88rem;
+}
+.w698{
+	width: 6.98rem;
+}
+.w700{
+	width: 7rem;
+}
+.w767{
+	width: 7.67rem;
+}
+.w775{
+	width: 7.75rem
+}
+.w1010{
+	width: 10.1rem;
+}
+.w1050{
+	width: 10.5rem;
+}
+.w1080{
+	width: 10.8rem;
+}
+.w1160{
+	width: 11.6rem;
+}
+.w1220{
+	width: 12.2rem;
+}
+.w1332{
+	width: 13.32rem;
+}
+.w1357{
+	width: 13.57rem;
+}
+.w1369{
+	width: 13.69rem;
+}
+.w1487{
+	width: 14.87rem;
+}
+.w1550{
+	width: 15.5rem;
+}
+.w1730{
+	width: 17.3rem;
+}
+
+/*高度类库*/
+.h1{
+	height: 1px;
+}
+.h20{
+	height: 0.2rem;
+}
+.h30{
+	height: 0.3rem;
+}
+.h34{
+	height: 0.34rem;
+}
+.h35{
+	height: 0.35rem;
+}
+.h40{
+	height: 0.4rem;
+}
+.h46{
+	height: 0.46rem;
+}
+.h47{
+	height: 0.47rem;
+}
+.h50{
+	height: 0.5rem;
+}
+.h53{
+	height: 0.53rem;
+}
+.h55{
+	height: 0.55rem;
+}
+.h57{
+	height: 0.57rem;
+}
+.h60{
+	height: 0.6rem;
+}
+.h62{
+	height: 0.62rem;
+}
+.h63{
+	height: 0.63rem;
+}
+.h64{
+	height: 0.64rem;
+}
+.h67{
+	height: 0.67rem;
+}
+.h69{
+	height: 0.69rem
+}
+.h70{
+	height: 0.7rem;
+}
+.h72{
+	height: 0.72rem;
+}
+.h73{
+	height: 0.73rem;
+}
+.h74{
+	height: 0.74rem;
+}
+.h75{
+	height: 0.75rem;
+}
+.h80{
+	height: 0.8rem;
+}
+.h85{
+	height: 0.85rem;
+}
+.h90{
+	height: 0.9rem;
+}
+.h92{
+	height: 0.92rem;
+}
+.h95{
+	height: 0.95rem;
+}
+.h97{
+	height: 0.97rem;
+}
+.h100{
+	height: 1rem;
+}
+.h103{
+	height: 1.03rem;
+}
+.h105{
+	height: 1.05rem;
+}
+.h110{
+	height: 1.1rem;
+}
+.h118{
+	height: 1.18rem;
+}
+.h120{
+	height: 1.2rem;
+}
+.h122{
+	height: 1.22rem;
+}
+.h124{
+	height: 1.24rem;
+}
+.h125{
+	height: 1.25rem;
+}
+.h137{
+	height: 1.37rem;
+}
+.h140{
+	height: 1.4rem;
+}
+.h142{
+	height: 1.42rem;
+}
+.h150{
+	height: 1.5rem;
+}
+.h160{
+	height: 1.6rem;
+}
+.h170{
+	height: 1.7rem;
+}
+.h180{
+	height: 1.8rem;
+}
+.h185{
+	height: 1.85rem;
+}
+.h191{
+	height: 1.91rem;
+}
+.h196{
+	height: 1.96rem;
+}
+.h200{
+	height: 2rem;
+}
+.h202{
+	height: 2.02rem;
+}
+.h210{
+	height: 2.1rem;
+}
+.h220{
+	height: 2.2rem;
+}
+.h230{
+	height: 2.3rem;
+}
+.h240{
+	height: 2.4rem;
+}
+.h246{
+	height: 2.46rem;
+}
+.h250{
+	height: 2.50rem;
+}
+.h260{
+	height: 2.6rem;
+}
+.h265{
+	height: 2.65rem;
+}
+.h302{
+	height: 3.02rem;
+}
+.h315{
+	height: 3.15rem;
+}
+.h370{
+	height: 3.7rem;
+}
+.h408{
+	height: 4.08rem;
+}
+.h477{
+	height: 4.77rem;
+}
+.h587{
+	height: 5.87rem;
+}
+.h600{
+	height: 6rem;
+}
+.h615{
+	height: 6.15rem;
+}
+.h650{
+	height: 6.5rem;
+}
+.h670{
+	height: 6.7rem;
+}
+.h680{
+	height: 6.8rem;
+}
+.h684{
+	height: 6.84rem;
+}
+.h700{
+	height: 7rem;
+}
+.h710{
+	height: 7.1rem;
+}
+.h735{
+	height: 7.35rem;
+}
+.h745{
+	height: 7.45rem;
+}
+.h750{
+	height: 7.5rem;
+}
+.h800{
+	height: 8rem
+}
+.h830{
+	height: 8.3rem
+}
+.h850{
+	height: 8.5rem
+}
+.h870{
+	height: 8.7rem
+}
+.h900{
+	height: 9rem
+}
+.h928{
+	height: 9.28rem
+}
+.h1025{
+	height: 10.25rem;
+}
+.h1050{
+	height: 10.5rem;
+}
+.h1163{
+	height: 11.63rem
+}
+
+
+.hca1{
+	height: calc(100% - 1.5rem);
+}
+.hca2{
+	height: calc(100% - 2rem);
+}
+.hca3{
+	height: calc(100% - 0.72rem);
+}
+.hca4{
+	height: calc(100% - 1.2rem);
+}
+.hca5{
+	height: calc(100% - 1rem);
+}
+.hca6{
+	height: calc(100% - 2.5rem);
+}
+.hca7{
+	height: calc(100% - 0.3rem);
+}
+.hca8{
+	height: calc(100% - 4rem);
+}
+.hca9{
+	height: calc(100% - 3rem);
+}
+.hmax0{
+	max-height: 0rem;
+}
+.hmax456{
+	max-height: 4.56rem;
+}
+
+/*padding 类库*/
+
+.p2{
+	padding: 0.02rem;
+}
+.p5{
+	padding: 0.05rem;
+}
+.p15{
+	padding: 0.15rem;
+}
+.p33{
+	padding: 0.33rem;
+}
+.pt10{
+	padding-top: 0.1rem;
+}
+.pt14{
+	padding-top: 0.14rem;
+}
+.pt15{
+	padding-top: 0.15rem;
+}
+.pt20{
+	padding-top: 0.2rem
+}
+.pt30{
+	padding-top: 0.3rem
+}
+.pt40{
+	padding-top: 0.4rem
+}
+.pt50{
+	padding-top: 0.5rem
+}
+.pt80{
+	padding-top: 0.8rem
+}
+.pb10{
+	padding-bottom: 0.1rem;
+}
+.pb15{
+	padding-bottom: 0.15rem;
+}
+.pb25{
+	padding-bottom: 0.25rem;
+}
+.pb30{
+	padding-bottom: 0.3rem;
+}
+
+
+
+.pl10{
+	padding-left: 0.1rem;
+}
+.pl15{
+	padding-left: 0.15rem;
+}
+.pl20{
+	padding-left: 0.2rem;
+}
+.pl25{
+	padding-left: 0.25rem;
+}
+.pl30{
+	padding-left: 0.3rem
+}
+.pl40{
+	padding-left: 0.4rem
+}
+.pl60{
+	padding-left: 0.6rem
+}
+
+
+.pr10{
+	padding-right: 0.1rem;
+}
+.pr12{
+	padding-right: 0.12rem;
+}
+.pr15{
+	padding-right: 0.15rem;
+}
+.pr20{
+	padding-right: 0.2rem;
+}
+.pr25{
+	padding-right: 0.25rem;
+}
+.pr30{
+	padding-right: 0.3rem;
+}
+.pr40{
+	padding-right: 0.4rem;
+}
+.pr60{
+	padding-right: 0.6rem;
+}
+
+
+.mt10{
+	margin-top: 0.1rem;
+}
+.mt15{
+	margin-top: 0.15rem;
+}
+.mt20{
+	margin-top: 0.2rem;
+}
+.mt30{
+	margin-top: 0.3rem;
+}
+.mt35{
+	margin-top: 0.35rem;
+}
+.mt50{
+	margin-top: 0.5rem;
+}
+.mt80{
+	margin-top: 0.8rem;
+}
+.mt150{
+	margin-top: 1.5rem;
+}
+.mb5{
+	margin-bottom: 0.05rem;
+}
+.mb10{
+	margin-bottom: 0.1rem;
+}
+.mb14{
+	margin-bottom: 0.14rem;
+}
+.mb15{
+	margin-bottom: 0.15rem;
+}
+.mb20{
+	margin-bottom: 0.2rem;
+}
+.mb22{
+	margin-bottom: 0.22rem;
+}
+.mb25{
+	margin-bottom: 0.25rem;
+}
+.mb30{
+	margin-bottom: 0.3rem;
+}
+.mb40{
+	margin-bottom: 0.4rem;
+}
+.mb50{
+	margin-bottom: 0.5rem;
+}
+.mb65{
+	margin-bottom: 0.65rem;
+}
+
+.m15{
+	margin: 0.15rem;
+}
+.ml2{
+	margin-left: 0.02rem;
+}
+.ml10{
+	margin-left: 0.1rem;
+}
+.ml15{
+	margin-left: 0.15rem;
+}
+.ml20{
+	margin-left: 0.20rem;
+}
+.ml22{
+	margin-left: 0.22rem;
+}
+.ml25{
+	margin-left: 0.25rem;
+}
+.ml40{
+	margin-left: 0.4rem;
+}
+.ml50{
+	margin-left: 0.5rem;
+}
+.ml65{
+	margin-left: 0.65rem;
+}
+.ml150{
+	margin-left: 1.5rem;
+}
+
+.ml-90{
+	margin-left: -0.9rem;
+}
+
+
+
+
+
+.mr10{
+	margin-right: 0.1rem;
+}
+.mr14{
+	margin-right: 0.14rem;
+}
+.mr15{
+	margin-right: 0.15rem;
+}
+.mr20{
+	margin-right: 0.2rem;
+}
+.mr30{
+	margin-right: 0.3rem;
+}
+.mr40{
+	margin-right: 0.4rem;
+}
+.mr70{
+	margin-right: 0.7rem;
+}
+
+
+.tpa40{
+	top: 40%;
+}
+.tp-25{
+	top: -0.25rem;
+}
+.tp-50{
+	top: -0.5rem;
+}
+.tp10{
+	top: 0.1rem;
+}
+.tp19{
+	top: 0.19rem;
+}
+.tp44{
+	top: 0.44rem;
+}
+.tp50{
+	top: 0.5rem;
+}
+.tp52{
+	top: 0.52rem;
+}
+.tp75{
+	top: 0.75rem;
+}
+.tp100{
+	top: 1rem;
+}
+.tp140{
+	top: 1.4rem;
+}
+.tp180{
+	top: 1.8rem;
+}
+
+
+
+.bt-10{
+	bottom: -0.1rem;
+}
+.bt20{
+	bottom: 0.2rem;
+}
+.bt30{
+	bottom: 0.3rem;
+}
+.bt33{
+	bottom: 0.33rem;
+}
+.bt50{
+	bottom: 0.5rem;
+}
+.bt64{
+	bottom: 0.64rem;
+}
+.bt80{
+	bottom: 0.8rem;
+}
+
+.bta10{
+	bottom: 10%;
+}
+
+.lt-10{
+	left:-0.1rem
+}
+.lt-20{
+	left:-0.2rem
+}
+.lt-50{
+	left:-0.5rem
+}
+.lt30{
+	left: 0.3rem;
+}
+.lt50{
+	left: 0.5rem;
+}
+.lt52{
+	left: 0.52rem;
+}
+.lt62{
+	left: 0.62rem;
+}
+.lt100{
+	left: 1rem;
+}
+
+
+.rt-10{
+	right: -0.1rem;
+}
+.rt11{
+	right: 0.11rem;
+}
+.rt20{
+	right: 0.2rem;
+}
+.rt60{
+	right: 0.6rem;
+}
+
+
+
+.ts-t{
+	text-shadow: 0px 0px 0.2rem #0070b1;;
+}
+
+
+/*视频课件页背景*/
+.bg_cw_bg{
+	background: url(../../img/courseware/cw_bg.jpg) no-repeat center/100% 100%;
+}
+.bg_cw_title{
+	background: url(../../img/courseware/cw_title.png)no-repeat center/100% 100%;
+}
+.bg_cw_listbg{
+	background: url(../../img/courseware/cw_listbg.png)no-repeat center/100% 100%;
+}
+.bg_cw_gb{
+	background: url(../../img/courseware/cw_goBack.png)no-repeat center/100% 100%;
+}
+.bg_cw_btnL{
+	background: url(../../img/courseware/cw_btnLeft.png)no-repeat center/100% 100%;
+}
+.bg_cw_btnR{
+	background: url(../../img/courseware/cw_btnRight.png)no-repeat center/100% 100%;
+}
+.bg_cw_fc{
+	background: url(../../img/courseware/cw_fuceng.png)no-repeat center/100% 100%;
+}
+.bg_ti_fc{
+	background: url(../../img/courseware/ti_fuceng.png)no-repeat center/100% 100%;
+}
+	/*视频课件播放页*/
+.bg_cwm_bg{
+	background: url(../../img/courseware/coursewareMp4/cwMp4_bg.png)no-repeat center/100% 100%;
+}
+.bg_cwm_gb{
+	background: url(../../img/courseware/coursewareMp4/cwMp4_goback.png)no-repeat center/100% 100%;
+}
+
+.bg_cws_hg{
+	background: url(../../img/courseware/coursewareSwf/cwSwf_huigu.png)no-repeat center/100% 100%;
+}
+.bg_cws_gb{
+	background: url(../../img/courseware/coursewareSwf/cwSwf_gohd.png)no-repeat center/100% 100%;
+}
+
+.bg_btn_prev{
+	background: url(../../img/courseware/coursewareDetail/prev.png)no-repeat center/100% 100%;
+}
+.bg_btn_next{
+	background: url(../../img/courseware/coursewareDetail/next.png)no-repeat center/100% 100%;
+}
+.bg_btn_good{
+	background: url(../../img/courseware/coursewareDetail/goodBtn.png)no-repeat center/100% 100%;
+}
+.bg_btn_bad{
+	background: url(../../img/courseware/coursewareDetail/badBtn.png)no-repeat center/100% 100%;
+}
+/*搜索按钮*/
+.bg_btn_search{
+	background: url(../../img/questionStore/search.png)no-repeat center/100% 100%;
+}
+/* 换一页 */
+.bg_btn_hyy{
+	background: url(../../img/questionStore/qihuan.png)no-repeat center/100% 100%;
+}
+
+/* 题库背景 */
+.bg_qs_bg{
+	background: url(../../img/questionStore/qs_bg.png)no-repeat bottom/cover;
+}
+.bg_qs_01{
+	background: url(../../img/questionStore/qs_01.png)no-repeat center/100% 100%;
+}
+
+
+
+/* 加载棋盘提示标题 */
+.bg_msg{
+	background: url(../../img/questionStore/titleMsg.png)no-repeat center/100% 100%;
+}
+
+
+.bg_btn_sc{
+	background: url(../../img/questionStore/sc.png)no-repeat center/100% 100%;
+}
+.bg_btn_ysc{
+	background: url(../../img/questionStore/ysc.png)no-repeat center/100% 100%;
+}
+
+/* 倒计时背景 */
+.bg_time{
+	background: url(../../img/testTitle/time.png)no-repeat center/100% 100%;
+}
+
+/* 评测数棋  */
+.bg_shuqi{
+	background: url(../../img/testTitle/testTitle-2.png)no-repeat center/100% 100%;
+}
+.bg_renshu{
+	background: url(../../img/testTitle/textTitle-3.png)no-repeat center/100% 100%;
+}
+
+.bg_textTitle-1{
+	background: url(../../img/testTitle/textTitle-1.png)repeat-x left;
+}
+
+.boardBg{
+	background: url(../../cocos2d/res/board.bmp) no-repeat;
+    background-size: 100% 100%;
+}
+.scale116{
+    -webkit-transform: scale(1.5);
+        -ms-transform: scale(1.5);
+            transform: scale(1.5);
+}
+.bg_teach_listBg{
+	background: url(../../img/courseware/coursewareTeach/cwTeach_listBg.png) no-repeat center/100% 100%;
+}
+.bg_teach_listBg.active{
+	background: url(../../img/courseware/coursewareTeach/stepAc.png) no-repeat center/100% 100%;
+}
+.bg_teach_nextStep{
+	background: url(../../img/courseware/coursewareTeach/nextStep.png) no-repeat center/100% 100%;
+}
+.bg_nextStep_disbd{
+	background: url(../../img/courseware/coursewareTeach/el_gray.png) no-repeat center/100% 100%;
+}
+.bg_cmfh{
+	background: url(../../img/classManage/cmfh.png) no-repeat center/100% 100%;
+}
+.bg_cmlist{
+	background: url(../../img/classManage/cmlistbg.png) no-repeat center/100% 100%;
+}
+.bg_cmsearch{
+	background: url(../../img/classManage/cmsearch.png) no-repeat center/100% 100%;
+}
+.bg_cmyesbtn{
+	background: url(../../img/classManage/cmyesbtn.png) no-repeat center/100% 100%;
+}
+.bg_cmnobtn{
+	background: url(../../img/classManage/cmnobtn.png) no-repeat center/100% 100%;
+}
+.bg_cmaddclass{
+	background: url(../../img/classManage/cmaddclassbg.png) no-repeat center/100% 100%;
+}
+.bg_cmbtn4{
+	background: url(../../img/classManage/cmbtn4.png) no-repeat center/100% 100%;
+}
+.bg_cmxsxx{
+	background: url(../../img/classManage/cmxsxxbg.png) no-repeat center/100% 100%;
+}
+.bg_cmxsxxti{
+	background: url(../../img/classManage/cmxsxxti.png) no-repeat center/100% 100%;
+}
+.bg_cmbg{
+	background: url(../../img/classManage/cmbg.png) no-repeat center/100% 100%;
+}
+.bg_xwbg{
+	background: url(../../img/classManage/xwBg.png) no-repeat center/100% 100%;
+}
+.bg_shsxbg{
+	background: url(../../img/schoolHomework/sh_sxbg.png) no-repeat center/100% 100%;
+}
+.bg_shclose{
+	background: url(../../img/schoolHomework/sh_close.png) no-repeat center/100% 100%;
+}
+
+.bg_colwxz{
+	background: url(../../img/collection/colwxz.png) no-repeat center/100% 100%;
+}
+.bg_colxz{
+	background: url(../../img/collection/colxz.png) no-repeat center/100% 100%;
+}
+.bg_colbg1{
+	background: url(../../img/collection/colbg1.png) no-repeat center/100% 100%;
+}
+.bg_colbtnyes{
+	background: url(../../img/collection/colbtnyes.png) no-repeat center/100% 100%;
+}
+.bg_colbtnno{
+	background: url(../../img/collection/colbtnno.png) no-repeat center/100% 100%;
+}
+.bg_coltime{
+	background: url(../../img/collection/coltime.png) no-repeat center/100% 100%;
+}
+.bg_help{
+	background: url(../../img/help.png) no-repeat center/100% 100%;
+}
+.bg_helpbg{
+	background: url(../../img/helpbg.png) no-repeat center/100% 100%;
+}
+/* 学务管理 */
+.xw_xssj{
+	background: url(../../img/classManage/xw_xssjBg.png) no-repeat center/100% 100%;
+}
+.xw_xsgl{
+	background: url(../../img/classManage/xw_xsgl.png) no-repeat center/100% 100%;
+}
+.xw_bjbj{
+	background: url(../../img/classManage/xw_bjbj.png) no-repeat center/100% 100%;
+}
+.xw_sc{
+	background: url(../../img/classManage/xw_sc.png) no-repeat center/100% 100%;
+}
+.xssj_tab{
+	background: url(../../img/classManage/xssj_tab.png) no-repeat center/100% 100%;
+}
+.xssj_tab.active{
+	background: url(../../img/classManage/xssj_tab_ac.png) no-repeat center/100% 100%;
+}
+.ph_tab{
+	background: url(../../img/classManage/xw_xssjBg.png) no-repeat center/100% 100%;
+}
+.ph_tab.active{
+	background: url(../../img/classManage/xw_xsgl.png) no-repeat center/100% 100%;
+}
+.py_black{
+	background: url(../../img/play/mcblack.png) no-repeat center/100% 100%;
+}
+.py_white{
+	background: url(../../img/play/mcwhite.png) no-repeat center/100% 100%;
+}
+.layer_bg1{
+	background: url(../../img/play/layerBg1.png) no-repeat center/100% 100%;
+}
+.xw_qxbg{
+	background: url(../../img/classManage/bg.png) no-repeat center/100% 100%;
+}
+.xw_close{
+	background: url(../../img/classManage/close.png) no-repeat center/100% 100%;
+}
+
+.bt_btn{
+	background: url(../../img/play/btnBg.png) no-repeat center/100% 100%;
+}
+
+
+/*确定按钮背景*/
+.bgBtnYes{
+	background: url(../../img/classManage/btnYes.png)no-repeat center/100% 100%;
+}
+/*取消按钮背景*/
+.bgBtnNo{
+	background: url(../../img/classManage/btnNo.png)no-repeat center/100% 100%;
+}
+
+
+/* 确认落子方向 */
+.btn_w{
+	background: url(../../img/play/mW.png) no-repeat center/100% 100%;
+}
+.btn_s{
+	background: url(../../img/play/mS.png) no-repeat center/100% 100%;
+}
+.btn_a{
+	background: url(../../img/play/mA.png) no-repeat center/100% 100%;
+}
+.btn_d{
+	background: url(../../img/play/mD.png) no-repeat center/100% 100%;
+}
+.btn_hui{
+	background: url(../../img/play/btnHui.png) no-repeat center/100% 100%;
+}
+
+.btn_kj1{
+	background: url(../../img/play/kj1.png) no-repeat center/100% 100%;
+}
+.btn_kj2{
+	background: url(../../img/play/kj2.png) no-repeat center/100% 100%;
+}
+.btn_kj3{
+	background: url(../../img/play/kj3.png) no-repeat center/100% 100%;
+}
+.btn_kj4{
+	background: url(../../img/play/kj4.png) no-repeat center/100% 100%;
+}
+.btn_kj5{
+	background: url(../../img/play/kj5.png) no-repeat center/100% 100%;
+}
+.btn_kj6{
+	background: url(../../img/play/kj6.png) no-repeat center/100% 100%;
+}
+
+.btn_1{
+	background: url(../../img/play/btn_1.png) no-repeat center/100% 100%;
+}
+
+.btn_1_hui{
+	background: url(../../img/play/btn_1_hui.png) no-repeat center/100% 100%;
+}
+
+/* select样式 */
+.slt{
+	background: url(../../img/classManage/selectIcon.png) no-repeat scroll 95% center #fff;
+}
+.slt{
+	    outline: none;
+	    appearance:none;  
+    -moz-appearance:none;  
+    -webkit-appearance:none;
+	    padding:0 0.08rem;
+}
+.xw_date{
+	background: url(../../img/classManage/xw_date.png) no-repeat scroll 95% center #fff;
+}
+/* 背景颜色 */
+.bg06{
+	background-color: #060606;
+}
+.bgfde128{
+	background-color: #fde128;
+}
+.bgffe880{
+	background-color: #ffe880;
+}
+.bg47abff{
+	background-color: #47abff;
+}
+.bgffc37b{
+	background-color:#ffc37b
+}
+.bgfef8b8{
+	background-color: #fef8b8;
+}
+.bg7bdfff{
+	background-color: #7bdfff;
+}
+.bgf2{
+	background: rgba(225,225,225,0.2);
+}
+.bg08{
+	background: rgba(0,0,0,0.8);
+}
+.bgdcf{
+	background:#dcf7ff;
+}
+.bgc{
+	background:#ccc;
+}
+.bgf1{
+	background:#f1f1f1;
+}
+.bg2cb9f1{
+	background-color: #2cb9f1;
+}
+.bgffd44f{
+	background-color: #ffd44f;
+}
+.bg63ccf6{
+	background-color: #63ccf6;
+}
+.bge6f{
+	background-color: #e6f9ff
+}   
+.bgd9f{
+	background-color: #d9f5ff
+}
+.b3aa{
+	background-color:#3aa8fb
+}
+
+.bgffe47a{
+	background-color: #ffe47a;
+}
+.bge7fbff{
+	background-color: #e7fbff;
+}
+
+.opacity0{
+	background:rgba(0, 0, 0, 0);
+}
+.opacity05{
+	background:rgb(217,245,255,0.5);
+}
+.opc5{
+	opacity:0.5
+}
+.lh35{
+	line-height: 0.35rem;
+}
+.lh40{
+	line-height: 0.4rem;
+}
+.lh70{
+	line-height: 0.7rem;
+}
+.lh80{
+	line-height: 0.8rem;
+}
+
+.oxh{
+	overflow-x: hidden;
+}
+.oya{
+	overflow-y: auto;
+}
+
+
+
+/*文字颜色*/
+.c773b0e{
+	color: #773b0e;
+}
+.c1b1b46{
+	color: #1b1b46;
+}
+.cff3000{
+	color: #ff3000;
+}
+.c0260d3{
+	color: #0260d3;
+}
+.c006699{
+	color: #006699;
+}
+.c390202{
+	color: #390202;
+}
+.c0862d0{
+	color: #0862d0;
+}
+.c8b4501{
+	color: #8b4501;
+}
+.c2b7cb6{
+	color: #2b7cb6;
+}
+.ccf5003{
+	color: #cf5003;
+}
+.cad4303{
+	color: #ad4303;
+}
+.c26a2ff{
+	color:#26a2ff;
+}
+.caa4800{
+	color: #aa4800;
+}
+.c3{
+	color: #333;
+}
+.c6{
+	color: #666;
+}
+.c602c00{
+	color: #602c00;
+}
+.c14569c{
+	color: #14569c;
+}
+.c510{
+	color:#c510000
+}
+.cc06804{
+	color: #c06804;
+}
+.cd24a00{
+	color:#d24a00
+}
+.c8f3a00{
+	color:#8f3a00
+}
+.cfceb2c{
+	color: #fceb2c;
+}
+.c2cb9f1{
+	color: #2cb9f1;
+}
+.caf5804{
+	color: #af5804;
+}
+.cab4402{
+	color: #ab4402;
+}
+.c0967a9{
+	color: #0967a9;
+}
+.c0058b0{
+	color: #0058b0;
+}
+.c0461d2{
+	color: #0461d2;
+}
+.cred{
+	color: red;
+}
+.c003{
+	color:#003698
+}
+.c999{
+	color:#999
+}
+.cfc0{
+	color:#fc0f52
+}
+.c0560d3{
+	color:#0560d3
+}
+.c276bbd{
+	color:#276bbd
+}
+.ca43c0e{
+	color:#a43c0e
+}
+.cff0{
+	color:#ff0b0b
+}
+input.c2290c3::-webkit-input-placeholder{
+	color: #2290c3;
+}
+
+
+.ba2{
+	border: 0.02rem solid #aaa;
+}
+.ba2c05b00{
+	border: 0.02rem solid #c05b00;
+}
+.bf2{
+	border: 0.02rem solid #fff;
+}
+.bf4{
+	border: 0.04rem solid #fff;
+}
+.b1becff{
+	border: 1px solid #1becff;
+}
+.b10{
+	border: 0.1rem solid #fff4c6;
+}
+.b4ff0000{
+	border: 0.04rem solid #ff0000;
+}
+.b4f{
+	border: 0.04rem solid #fff;
+}
+.bffe880{
+	border: 0.1rem solid #ffe880;
+}
+.bbccc{
+	border-bottom:0.01rem solid #ccc;
+}
+
+
+.btffe47a{
+	border-top: 1px solid #ffe47a;
+}
+    
+
+
+/*下拉框边框*/
+.b49ecff{
+	border:0.02rem solid #49ecff;
+}
+.bffc{
+	border:0.02rem solid #ffc10c;
+}
+.b3red{
+	border: 0.03rem solid red;
+}
+
+
+
+.br12{
+	border-radius: 0.12rem;
+}
+.br14{
+	border-radius: 0.14rem;
+}
+.br20{
+	border-radius: 0.2rem;
+}
+.br30{
+	border-radius: 0.3rem;
+}
+.br32{
+	border-radius: 0.32rem;
+}
+.br37{
+	border-radius: 0.37rem;
+}
+.br40{
+	border-radius: 0.4rem;
+}
+.br50{
+	border-radius: 0.5rem;
+}
+.bra100{
+	border-radius: 100%;
+}
+.brb50{
+	border-radius:0 0 0.5rem 0.5rem;
+}
+
+.brl32{
+	border-top-left-radius: 0.32rem;
+	border-bottom-left-radius: 0.32rem;
+}
+.brr32{
+	border-top-right-radius: 0.32rem;
+	border-bottom-right-radius: 0.32rem;
+}
+
+.btr32{
+	border-top-right-radius: 0.32rem;
+}
+.bbr32{
+	border-bottom-right-radius: 0.32rem;
+}
+
+.brl100{
+	border-top-left-radius: 1rem;
+	border-bottom-left-radius: 1rem;
+}
+.brblr50{
+	border-bottom-left-radius: 0.5rem;
+	border-bottom-right-radius:0.5rem;
+}
+
+
+/*课堂列表底框阴影*/
+.bs1{
+	-webkit-box-shadow: 0 0 0.25rem #92e6ff;
+	        box-shadow: 0 0 0.25rem #92e6ff;
+}
+
+.t3{
+	-webkit-transition: 0.3s;
+	-o-transition: 0.3s;
+	transition: 0.3s;
+}
+.cwLST:hover{
+	-webkit-box-shadow: 0 0 0.25rem #ffdc7b;
+	        box-shadow: 0 0 0.25rem #ffdc7b;
+	-webkit-transform: scale(1.1) translateX(-0.04rem);
+	    -ms-transform: scale(1.1) translateX(-0.04rem);
+	        transform: scale(1.1) translateX(-0.04rem);
+}
+.cwRST:hover{
+	-webkit-box-shadow: 0 0 0.25rem #ffdc7b;
+	        box-shadow: 0 0 0.25rem #ffdc7b;
+	-webkit-transform: scale(1.1) translateX(0.04rem);
+	    -ms-transform: scale(1.1) translateX(0.04rem);
+	        transform: scale(1.1) translateX(0.04rem);
+}
+.cwRST:hover p{
+	opacity: 1;
+}
+
+.cwRSB:hover{
+	-webkit-box-shadow: 0 0 0.25rem #ffdc7b;
+	        box-shadow: 0 0 0.25rem #ffdc7b;
+	-webkit-transform: scale(1.1) translateX(0.04rem);
+	    -ms-transform: scale(1.1) translateX(0.04rem);
+	        transform: scale(1.1) translateX(0.04rem);
+}
+.cwRSB:hover p{
+	opacity: 1;
+}
+
+/*向左跳动*/
+.toLeft{
+	-webkit-animation: toLeft 0.6s infinite;
+	        animation: toLeft 0.6s infinite;
+}
+@-webkit-keyframes toLeft{
+	from{
+		left: 0.1rem;
+	}
+	to{
+		left: 0;
+	}
+}
+@keyframes toLeft{
+	from{
+		left: 0.1rem;
+	}
+	to{
+		left: 0;
+	}
+}
+/*左-右晃动动画*/
+.toRight{
+	-webkit-animation: toRight 0.6s infinite;
+	        animation: toRight 0.6s infinite;
+}
+@-webkit-keyframes toRight{
+	from{
+		right: 0.1rem;
+	}
+	to{
+		right: 0rem;
+	}
+}
+@keyframes toRight{
+	from{
+		right: 0.1rem;
+	}
+	to{
+		right: 0rem;
+	}
+}
+
+.toRight2{
+	-webkit-animation: toRight2 0.3s 1;
+	        animation: toRight2 0.3s 1;
+}
+@keyframes toRight2{
+	from{
+		right: -6.5rem;
+	}
+	to{
+		right: 0rem;
+	}
+}
+.toRight3{
+	-webkit-animation: toRight3 0.3s 1;
+	        animation: toRight3 0.3s 1;
+}
+@keyframes toRight3{
+	from{
+		right: 0rem;
+	}
+	to{
+		right: -6.5rem;
+		
+	}
+}
+.fadeIn{
+	-webkit-animation: fadeIn 0.3s 1;
+	        animation: fadeIn 0.3s 1;
+}
+
+@keyframes fadeIn{
+	from{
+		background: rgba(0,0,0,0)
+	}
+	to{
+		background: rgba(0,0,0,0.8)
+	}
+}
+
+.right:after{
+	content: '';
+	display: block;
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	background: url(../../img/courseware/coursewareDetail/right.png) no-repeat center/100% 100%;
+}
+.wrong:after{
+	content: '';
+	display: block;
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	background: url(../../img/courseware/coursewareDetail/wrong.png) no-repeat center/100% 100%;
+}
+
+.qipuActive .bkuang{
+	display: block;
+}
+
+
+.page li{
+	float: left;
+	width: 0.5rem;
+	height: 0.5rem;
+	background: url(../../img/wrongQuestion/page.png)no-repeat center/100% 100%;
+}
+.page li.active{
+	background: url(../../img/wrongQuestion/page1.png)no-repeat center/100% 100%;
+	color:#fff
+}
+.page li:first-of-type{
+	width: 0.36rem;
+	background: url(../../img/wrongQuestion/pageLeft.png)no-repeat center/100% ;
+}
+.page li:last-child{
+	width: 0.36rem;
+	background: url(../../img/wrongQuestion/pageRight.png)no-repeat center/100% ;
+}
+.fdir{
+	-webkit-box-orient: vertical;
+	-webkit-box-direction: normal;
+	-webkit-flex-direction: column;
+	    -ms-flex-direction: column;
+	        flex-direction: column;
+}
+.lh27{
+	line-height:0.27rem;
+}
+.lh40{
+	line-height:0.4rem;
+}
+
+.lineh57{
+	line-height:0.57rem;
+}
+.lineh60{
+	line-height:0.6rem;
+}
+.clamp4{
+	overflow:hidden; 
+-o-text-overflow:ellipsis; 
+   text-overflow:ellipsis;
+display:-webkit-box; 
+-webkit-box-orient:vertical;
+-webkit-line-clamp:4; 
+}
+
+.texth{
+	overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+
+/* .timleMsg {
+    width: 7.75rem;
+    height: 3.7rem;
+    margin: auto;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url(img/questionStore/titleMsg.png)no-repeat center/100% 100%;
+    z-index: 10;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    animation: fangda  0.6s 1;
+}
+.timleMsg span{
+	font-size: 0.5rem;
+	font-weight: bold;
+	color: yellow;
+}
+
+@keyframes fangda{
+	from{transform: scale(0.2)}
+	to{transform: scale(1)}
+} */
+.checkboxYuan{
+
+}
+
+.checkboxYuan:checked+div:after{
+	content: '';
+	display: block;
+	width: 100%;
+	height: 100%;
+	background: url(../../img/classManage/cmxz.png)no-repeat center/100%;
+}
+
+
+/*
+ 布置作业折叠框
+ * */
+
+.foldTop.active + .foldBox{
+	max-height: 4.56rem;
+}
+.foldTop.active .icon-gengduo{
+	-webkit-transform: rotate(90deg);
+	    -ms-transform: rotate(90deg);
+	        transform: rotate(90deg);
+}
+
+
+input.type+span{
+	background: #7bdfff;
+	border-radius: 0.2rem;
+	color: #0967a9;
+	border: 0.02rem solid #23a3d9;
+}
+input.type:checked+span{
+	background: #fef8b8;
+	color: #fd8904;
+	border: 0.02rem solid #f99102;
+}
+
+input.inputdx:checked+img{
+	display: block;
+}
+
+#power input[type=checkbox]{
+	margin-right: 0.05rem;
+	background: #fff;
+	width: 0.25rem;
+	height: 0.25rem;
+	border-radius: 100%;
+	appearance: none;
+    -moz-appearance: none;
+    -webkit-appearance: none;
+	box-shadow: 0px 2px 2px #656262;
+}
+#power input[type=checkbox]:checked{
+	border: 0.03rem solid #fff;
+	background: #aa4800;
+}

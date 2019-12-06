@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+	<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+	<meta charset="UTF-8"/>
+	
+	<link rel="stylesheet" type="text/css" href="css/lib/reset.css">
+	<link rel="stylesheet" type="text/css" href="css/lib/public.css">
+	<link rel="stylesheet" type="text/css" href="css/lib/animate.min.css" />
+	
+	<script type="text/javascript" src="libs/jquery/jquery.js"></script>
+	<script type="text/javascript" src="libs/echarts/echarts.min.js"></script>
+	
+	<!-- 第三方 -->
+	<link rel="stylesheet" type="text/css" href="libs/messenger/css/messenger.css" />
+	<script type='text/javascript' src='libs/messenger/js/messenger.min.js'></script>
+	<script type='text/javascript' src='libs/messenger/js/messenger-theme-flat.js'></script>
+    
+    <script type="text/javascript" src="js/gobang/common.js"></script>
+    <script src="js/lib/config.js" type="text/javascript" charset="utf-8"></script>
+    
+    
+    
+	<script type='text/javascript' src='libs/sweetalert/sweetalert.min.js'></script>
+	<script type="text/javascript" src="libs/dateformat/dateformat-min.js"></script>
+	<script type="text/javascript" src="libs/laydate/laydate.js"></script>
+	<script type="text/javascript" src="libs/md5/MD5.js"></script>
+	<script type="text/javascript" src="libs/base64/base64.js"></script>
+	<script type="text/javascript" src="libs/vuejs/vue.js"></script>
+	<link rel="stylesheet" type="text/css" href="libs/layer/layer-v3.1.1/layer/theme/default/layer.css" />
+	<script type="text/javascript" src="libs/layer/layer-v3.1.1/layer/layer.js"></script>
+	<script type="text/javascript" src="libs/nim/NIM_Web_SDK_v5.0.0.js"></script>
+	<script type="text/javascript" src="libs/nim/NIM_Web_WebRTC_v5.0.0.js"></script>
+	<link rel="stylesheet" type="text/css" href="libs/liveplayer/neplayer.min.css">
+
+	<script type="text/javascript" src="libs/liveplayer/neplayer.min.js"></script>
+    
+	<script src="nim/im/js/util.js?v=2"></script>
+
+	<script type='text/javascript' src="cocos2d/src/eve.js"></script>
+	<script type="text/javascript" src="js/gobang/nim3.js"></script>
+	<script type="text/javascript" src="js/gobang/game-helper.js"></script>
+	
+	<script type="text/javascript" src="js/lib/rem.js"></script>
+
+	<!-- 页面样式 -->
+	
+	<link rel="stylesheet" type="text/css" href="css/custom/live.css">
+	<script type="text/javascript" src="libs/jquery/ext/jquery.qrcode.min.js"></script>
+    
+	<title>先手围棋智能教育服务平台</title>
+	<link rel="icon" href="img/logo-left.png" type="image/x-icon">
+	
+	<script type="text/javascript">
+		
+       
+	</script>
+</head>
+<body>
+	<div class="liveContainer">
+		<!-- 退出房间 -->
+		
+		<div class="box-wrapper posrel wa100 ha100 fw-w ai-c">
+			<div id="canvas_wrapper" class="fontsz15 posrel boardBg">
+				<canvas id="gameCanvas" class="marginAuto" width="640" height="640" onmouseout='eve.f("NotifyMouseout")()' style="display:block"></canvas>
+				<div id="start_tag"></div>
+			</div>
+			<div class="stuPop w575 h340 abs tp208 lt90 z99">
+				<div class="wa100 boradius30 overHid z2 tp8 fontsz15 lt6 bgfff">
+					<div class="classTitle fontsz26 stuHeadBg clrfff textcenter" id="mask_title">
+						
+					</div>
+					<section class="disflex j-sa ac h220">
+						<div class="disflex ac flexcol h127 j-sbt">
+							<img src="img/headImg/1.png" class="teachImg" id="headerImg">
+							<span class="clraf6" id="teachName">王老师</span>
+						</div>
+						<div class="clr848 summary">
+							
+						</div>
+					</section>
+				</div>
+			</div>
+			<div class="boxRight boradius30 bt0 tp0 rt0 rel wa100 h290 z10 disflex j-sa ac">
+				<div id="game_control_wrapper" class="bt0 tp0 rt0 abs wa100 ha100">
+					<div id="game_chat_wrapper" class="wa100 ha100">
+						<div class="tab-content wa100 marginAuto posrel boradius30 h290 mt20" id="chat-wrapper">
+							<div role="tabpanel" class="tab-pane active" id="game_control_tab_1">
+								<p v-for="msg in msgs" :data-time="formatTime(msg.time)" v-if="" class="fontsz15">
+                                   <template v-if="formatId(msg)=='1'">
+                                       <div class="fontsz15 disflex ac pad-tb">
+                                           <img :src="msg.fromAvatar" class="systemImg w64 h63" alt="">
+                                               <span class="clr1d729b fontsz15 boxText"> {{ msg.tip }}</span>
+                                               </div>
+                                   </template>
+                                   <template v-else-if="formatId(msg)=='2'">
+                                       <div class="fontsz15 disflex ac pad-tb flexdirRev">
+                                           <img :src="msg.fromAvatar" class="w64 h63" alt="">
+                                               <span class="fontsz15 boxText" v-html="buildEmoji(msg.text)"></span>
+                                               </div>
+                                   </template>
+                                   <template v-else-if="formatId(msg)=='3'">
+                                       <div class="fontsz15 disflex ac pad-tb">
+                                           <img :src="msg.fromAvatar" class="w64 h63" alt="">
+                                               <span class="fontsz15 boxText" v-html="buildEmoji(msg.text)"></span>
+                                               </div>
+                                   </template>
+								</p>
+							</div>
+						</div>
+						<div class="btnSend marginAuto width100 abs btm-160">
+							<div class="input-group posrel width100 disflex j-sa fw-w plr30">
+								<input type="text" class="w516 h72 mb10" id="chatroom_input" placeholder="请输入聊天的内容">
+								<img src="img/play/smile.png" class="smile posabs rt210 tp10 w46" id="smileImg" alt="">
+								<span class="btn-primary sendMsgBg w127 h72 fs24 tc" id="chatroom_send_btn">发送</span>
+								<div id="emoji" class="width100 posabs animated bounceInUp">
+									<ul class="list-inline width100 height100"></ul>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div id="camera_wrapper" class="posrel mgin-tp8 boradius30" style="display: none">
+						<div id="live_pull" class="w424 h255 marginAuto boradius30 overHid fontsz15" style="background:#b4b4b4;"></div>
+						<div id="live_me" class="posabs rt20 btm10"></div>
+						<div id="live_player" class="posabs rt20 btm10"></div>
+					</div>
+				<div id="live_control_wrapper" style="display: none">
+					<div class="row disflex flexcol ac fontsz15">
+						<div class="btn-group pad-21" role="group" id="researchBtnsWrapper">
+							<a onclick='eve.f("HadlerGoToHead")()'>
+								<img src="img/liveImg/play-1.png">
+							</a>
+							<a href="javascript:;" onclick='eve.f("HadlerGoToRewind")()'>
+								<img src="img/liveImg/play-2.png">
+							</a>
+							<a href="javascript:;" onclick='eve.f("HadlerGoToPreviousStep")()'>
+								<img src="img/liveImg/play-3.png">
+							</a>
+							<a href="javascript:;" onclick='eve.f("HadlerGoToNextStep")()'>
+								<img src="img/liveImg/play-4.png">
+							</a>
+							<a href="javascript:;" onclick='eve.f("HadlerGoToForward")()'>
+								<img src="img/liveImg/play-5.png">
+							</a>
+							<a href="javascript:;" onclick='eve.f("HadlerGoToTail")()'>
+								<img src="img/liveImg/play-6.png">
+							</a>
+						</div>
+						<div class="btn-group" role="group" id="researchBtnsWrapper2">
+							<!-- 榛戝厛 -->
+							<a href="javascript:;" onclick='eve.f("HandlerSetFirst")(0)'>
+								<img src="img/liveImg/play-13.png">
+							</a>
+							<!-- 鐧藉厛 -->
+							<a href="javascript:;" onclick='eve.f("HandlerSetFirst")(1)'>
+								<img src="img/liveImg/play-14.png">
+							</a>
+							<a href="javascript:;" onclick='eve.f("HandlerTurnEditStatus")(8)'>
+								<img src="img/liveImg/play-15.png">
+							</a>
+							<a href="javascript:;" onclick='eve.f("HandlerTurnEditStatus")(9)'>
+								<img src="img/liveImg/play-16.png">
+							</a>
+							<a href="javascript:;" onclick='eve.f("HandlerTurnEditStatus")(1)'>
+								<img src="img/liveImg/play-10.png">
+							</a>
+							<a href="javascript:;" onclick='eve.f("HandlerTurnEditStatus")(4)'>
+								<img src="img/liveImg/play-12.png">
+							</a>
+							<a href="javascript:;" onclick='eve.f("HandlerTurnEditStatus")(2)'>
+								<img src="img/liveImg/play-18.png">
+							</a>
+							<a href="javascript:;" onclick='eve.f("HandlerTurnEditStatus")(6)'>
+								<img src="img/liveImg/play-8.png">
+							</a>
+							<a href="javascript:;" onclick='eve.f("HandlerTurnEditStatus")(5)'>
+								<img src="img/liveImg/play-9.png">
+							</a>
+							<a href="javascript:;" onclick='eve.f("HandlerTurnEditStatus")(7)'>
+								<img src="img/liveImg/play-11.png">
+							</a>
+						</div>
+					</div>
+					<div class="row padTb5 classBtnsWrapper disflex j-sa" id="classBtnsWrapper">
+						<button type="button" class="btnCle blueBtn" onclick="discuss($(this))">开始投票</button>
+						<button type="button" class="btnCle blueBtn" onclick="anwserRight()">答对</button>
+						<button type="button" class="btnCle blueBtn" onclick="anwserWrong()">答错</button>
+						<button type="button" class="btnCle blueBtn manualModal">加载棋谱</button>
+					</div>
+					<div class="row padTb5 classBtnsWrapper disflex j-sa" id="">
+						<button type="button" class="btnCle yellowBtn library">题库</button>
+						<button type="button" class="btnCle yellowBtn" onclick="toggleCoordinate()">棋盘坐标</button>
+						<button type="button" class="btnCle yellowBtn" onclick="toggleShowStep()">显示手数</button>
+						<button type="button" class="btnCle yellowBtn clearboard">清空棋盘</button>
+					</div>
+					<div class="row padTb5 disflex j-sa" id="imgBtn">
+						<button type="button" class="btnCle greenBtn changeChessboardModal">切换棋盘</button>
+						<button type="button" class="btnCle greenBtn" onclick="showJobWrapperModal()">作业管理</button>
+						<button type="button" class="btnCle greenBtn classStart" onclick="startClass($(this))">开始上课</button>
+						<button type="button" class="btnCle greenBtn discuss">研讨</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+
+   <div style="display:none">
+		黑：
+		<b id="blacktime">00:00:00</b>
+		提子：
+		<b id="blacktake">0</b>
+		读秒：
+		<b id="black_Seconds">0</b>
+		次数：
+		<b id="black_counts">0</b>
+		白：
+		<b id="whitetime">00:00:00</b>
+		提子：
+		<b id="whitetake">0</b>
+		读秒：
+		<b id="white_Seconds">0</b>
+		次数：
+		<b id="white_counts">0</b>
+		<audio src="music/STONE0.wav" type="hidden" id="stepmusic"></audio>
+	</div>
+<script type="text/javascript " src="js/custom/liveFn.js "></script>
+<script type="text/javascript " src="game.min.js "></script>
+<script>
+	
+</script>
+<script type="text/javascript" src="js/gobang/live.js"></script>
+<script>
+	$('#gameCanvas').attr('width',$('body').width()).attr('height',$('body').width());
+	
+	$(".tablist").find('li').click(function () {
+		var $index = $(this).index();
+		$(this).attr('class', 'active').siblings().removeAttr('class');
+		$(".tab-content").find('.tab-pane').eq($index).show().siblings('.tab-pane').hide();
+	});
+	laydate.render({
+		elem: "#jobStartTime",
+		format: 'yyyy-MM-dd'
+	});
+	laydate.render({
+		elem: "#jobEndTime",
+		format: 'yyyy-MM-dd'
+	});
+	
+    $("#smileImg").click(function(){
+                         $("#emoji").toggle();
+                         
+                         })
+	
+	
+</script>
+
+</html>

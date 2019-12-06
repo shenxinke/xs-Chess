@@ -1,0 +1,540 @@
+.fs36{
+	font-size: 0.36rem;
+}
+
+.cb9590b{
+	color: #b9590b;
+}
+
+.w30{
+	width: 0.3rem
+}
+.w80{
+	width: 0.8rem
+}
+.w90{
+	width: 0.9rem
+}
+.w109{
+	width: 1.09rem
+}
+.w150{
+	width: 1.5rem
+}
+.w156{
+	width: 1.56rem
+}
+.w173{
+	width: 1.73rem
+}
+.w178{
+	width: 1.78rem
+}
+.w193{
+	width: 1.93rem
+}
+.w208{
+	width: 2.08rem;
+}
+.w210{
+	width: 2.1rem;
+}
+.w218{
+	width: 2.18rem;
+}
+.w238{
+	width: 2.38rem;
+}
+.w243{
+	width: 2.43rem;
+}
+.w255{
+	width: 2.52rem;
+}
+.w267{
+	width: 2.67rem
+}
+.w269{
+	width: 2.69rem;
+}
+.w274{
+	width: 2.74rem;
+}
+.w294{
+	width: 2.94rem;
+}
+.w300{
+	width: 3rem
+}
+.w312{
+	width: 3.12rem
+}
+.w324{
+	width: 3.24rem;
+}
+.w332{
+	width: 3.32rem
+}
+.w336{
+	width: 3.36rem
+}
+.w380{
+	width: 3.8rem
+}
+.w410{
+	width: 4.1rem;
+}
+.w450{
+	width: 4.5rem;
+}
+.w500{
+	width: 5rem;
+}
+.w514{
+	width: 5.14rem;
+}
+.w890{
+	width: 8.9rem
+}
+.w1028{
+	width: 10.28rem;
+}
+
+.h23{
+	height: 0.23rem;
+}
+.h26{
+	height: 0.26rem;
+}
+.h30{
+	height: 0.3rem;
+}
+.h35{
+	height: 0.35rem;
+}
+.h58{
+	height: 0.58rem
+}
+.h60{
+	height: 0.6rem
+}
+.h62{
+	height: 0.62rem
+}
+.h80{
+	height: 0.8rem;
+}
+.h81{
+	height: 0.81rem;
+}
+.h94{
+	height: 0.94rem;
+}
+.h109{
+	height: 1.09rem
+}
+.h119{
+	height: 1.19rem
+}
+.h133{
+	height: 1.33rem;
+}
+.h140{
+	height: 1.4rem;
+}
+.h180{
+	height: 1.8rem;
+}
+.h210{
+	height: 2.1rem;
+}
+.h243{
+	height: 2.43rem;
+}
+.h270{
+	height: 2.7rem;
+}
+.h278{
+	height: 2.78rem;
+}
+.h290{
+	height: 2.9rem;
+}
+.h300{
+	height: 3rem;
+}
+.h345{
+	height: 3.45rem;
+}
+.h408{
+	height: 4.08rem;
+}
+.h454{
+	height: 4.54rem
+}
+.h492{
+	height: 4.92rem;
+}
+.h835{
+	height: 8.35rem
+}
+.h882{
+	height: 8.82rem
+}
+.h890{
+	height: 8.9rem
+}
+
+.tpa70{
+	top: 70%;
+}
+.tpa48{
+	top: 48%;
+}
+.tpa10{
+	top: 10%;
+}
+.tp30{
+	top: 0.3rem;
+}
+.tp60{
+	top: 0.6rem;
+}
+
+.tp70{
+	top: 0.7rem;
+}
+.tp100{
+	top: 1rem;
+}
+.tp150{
+	top: 1.5rem;
+}
+.tp160{
+	top: 1.6rem;
+}
+.tp180{
+	top: 1.8rem;
+}
+.tp240{
+	top: 2.4rem;
+}
+.tp280{
+	top: 2.8rem;
+}
+.tp260{
+	top: 2.6rem;
+}
+.tp660{
+	top: 6.6rem;
+}
+.tp665{
+	top: 6.65rem;
+}
+.tp800{
+	top: 8rem;
+}
+.tp900{
+	top: 9rem;
+}
+
+.lta26{
+	left: 26%;
+}
+.lt80{
+	left: 0.8rem;
+}
+.lt100{
+	left: 1rem;
+}
+.lt140{
+	left: 1.4rem;
+}
+.lt220{
+	left: 2.2rem;
+}
+.lt280{
+	left:2.8rem;
+}
+.lt330{
+	left:3.3rem;
+}
+.lt335{
+	left: 3.35rem;
+}
+.lt610{
+	left:6.1rem;
+}
+.lt657{
+	left:6.57rem;
+}
+.lt770{
+	left:7.7rem
+}
+.lt785{
+	left:7.85rem
+}
+.lt1000{
+	left:10rem
+}
+
+.rt-45{
+	right:-0.45rem
+}
+.rt25{
+	right:0.25rem
+}
+.rt180{
+	right: 1.8rem
+}
+.rt210{
+	right: 2.1rem
+}
+.rt300{
+	right: 3rem
+}
+.rt330{
+	right: 3.3rem
+}
+.rt340{
+	right: 3.4rem
+}
+.rt657{
+	right: 6.57rem
+}
+.rt1000{
+	right: 10rem
+}
+
+.bt30{
+	bottom: 0.3rem;
+}
+.bt50{
+	bottom: 0.5rem;
+}
+.bt80{
+	bottom: 0.8rem;
+}
+.bt100{
+	bottom:1rem
+}
+.bt110{
+	bottom:1.1rem
+}
+.bt130{
+	bottom:1.3rem
+}
+.bt220{
+	bottom:2.2rem
+}
+.bt350{
+	bottom:3.5rem
+}
+
+
+.pa10{
+	padding: 10%
+}
+.p24{
+	padding: 5%
+}
+
+.mt20{
+	margin-top: 0.2rem;
+}
+
+.bgbtn243{
+	background: url(../../img/guide/student/btn1.png)no-repeat center/100% 100%;
+}
+.bgbtnxyb{
+	background: url(../../img/guide/student/btnxyb.png)no-repeat center/100% 100%;
+}
+
+.bg08{
+	background: rgba(0,0,0,0.8);
+} 
+ 
+.bg6ae3ff-8{
+	background: rgba(106,227,255,0.8);
+}  
+.bg6ae3ff{
+	background-color: #6ae3ff
+}
+
+.bgdialogl{
+	background: url(../../img/guide/student/1-4wenzibg.png) no-repeat center/100% 100%;
+}
+.bgdialogr{
+	background: url(../../img/guide/student/webzibgr.png) no-repeat center/100% 100%;
+}
+
+
+.z100{
+	z-index: 100 !important;
+}
+.z101{
+	z-index: 101 !important;
+}
+.z102{
+	z-index: 102 !important;
+}
+.z103{
+	z-index: 103 !important;
+}
+.andeng{
+	height:0;
+	animation: andeng 0.8s 0.3s forwards 
+}
+@keyframes andeng {
+    from { height:0 }
+    to   { height:8.35rem }
+}
+
+.ancaodi{
+	opacity: 0;
+	animation: ancaodi 1.5s  forwards 
+}
+@keyframes ancaodi {
+    from { opacity:0 }
+    to   { opacity:1}
+}
+
+.anhuli{
+	top: -3rem;
+	opacity: 0;
+	animation: anhuli 0.8s 0.5s forwards 
+}
+@keyframes anhuli {
+    from { top: -3rem; opacity: 0;}
+    to   { top: 3rem;opacity:1}
+}
+.wenzibg{
+	opacity: 0;
+	animation: ancaodi 0.5s 0.7s forwards 
+}
+.wenzi{
+	right: -2.7rem;
+	opacity: 0;
+	animation: wenzi 0.5s 0.7s forwards 
+}
+.wenzi2{
+	right: -2.7rem;
+	opacity: 0;
+	animation: wenzi 0.5s forwards 
+}
+@keyframes wenzi {
+    from { right: -2.7rem;}
+    to   { right: 1.15rem;opacity: 1;}
+}
+
+.shakebtn{
+	opacity: 0;
+	animation:shakebtn 0.5s 1s forwards
+}
+@keyframes shakebtn {
+	0%, 100% {transform: translateX(0);}
+    16%, 50%, 83% {transform: translateX(-10px);}
+    33%, 66% {transform: translateX(10px);}
+    100%{opacity: 1;}
+}
+
+
+
+.andeng2{
+	height:0;
+	animation: andeng2 0.8s 0.3s forwards 
+}
+@keyframes andeng2 {
+    from { height:0 }
+    to   { height:7.16rem }
+}
+
+.anhuli2{
+	top: -0.5rem;
+	opacity: 0;
+	animation: anhuli2 0.8s 0.5s forwards 
+}
+@keyframes anhuli2 {
+    from { top: -0.5rem; opacity: 0;}
+    to   { top: 2.45rem;opacity:1}
+}
+
+.wenzi22{
+	right: -4rem;
+	opacity: 0;
+	animation: wenzi22 0.5s 0.8s forwards 
+}
+.wenzi221{
+	right: -4rem;
+	opacity: 0;
+	animation: wenzi22 0.5s forwards 
+}
+@keyframes wenzi22 {
+    from { right: -4rem;}
+    to   { right: 0rem;opacity: 1;}
+}
+
+
+.anxue{
+	opacity: 0;
+	animation: ancaodi 1.5s 1s forwards 
+}
+
+.tx21{
+	animation: tx21 1s 0.2s forwards 
+}
+@keyframes tx21 {
+    from { transform: translateX(2.1rem);}
+    to   { transform: translateX(0rem);}
+}
+
+/* 光圈 */
+.ripple{
+	animation: ripple 1s  ease-in infinite
+}
+.ripple2{
+	animation: ripple 1s 0.3s ease-in infinite
+}
+@keyframes ripple {
+	0%,100%{
+		opcity:0;
+		transform: scale(0.3);
+		background: rgba(106,227,255,0)
+	}
+	25%,50%{
+		opcity:1;
+		transform: scale(1);
+		background: rgba(106,227,255,0.5)
+	}
+	
+}
+/* 小拇指 */
+.finger{
+	animation: finger 0.7s 0.5s infinite
+}
+@keyframes finger{
+	0%,100%{
+    	top: 30px;
+    	right: -45px;
+	}
+	25%,50%{
+		top: 60px;
+    	right: -75px;
+	}
+}
+
+/*答对了*/
+.correct{
+	animation: correct 0.25s  ease-in 
+}
+@keyframes correct {
+	0%{
+		opcity:0;
+		transform: scale(0);
+	}
+	,100%{
+		opcity:1;
+		transform: scale(1);
+	}
+	
+}

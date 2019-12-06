@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <include layout="@layout/login_title_layout" />
+
+    <ImageView
+        android:id="@+id/image_bg"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="@dimen/dp_20"
+        android:layout_marginLeft="@dimen/dp_10"
+        android:layout_marginRight="@dimen/dp_10"
+        android:layout_marginTop="@dimen/dp_70"
+        android:background="@mipmap/personal_juxing_bg227"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/president_text2" />
+
+    <ImageView
+        android:id="@+id/shape_punching_card_record"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_50"
+        android:layout_marginLeft="@dimen/dp_20"
+        android:layout_marginRight="@dimen/dp_20"
+        android:layout_marginTop="@dimen/dp_10"
+        android:background="@drawable/shape_punching_card_record"
+        app:layout_constraintLeft_toLeftOf="@+id/image_bg"
+        app:layout_constraintRight_toRightOf="@+id/image_bg"
+        app:layout_constraintTop_toTopOf="@+id/image_bg" />
+
+    <TextView
+        android:id="@+id/text_name"
+        android:layout_width="@dimen/dp_200"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="学校名称"
+        android:textColor="@color/color_573800"
+        android:textSize="13sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/shape_punching_card_record"
+        app:layout_constraintLeft_toLeftOf="@+id/shape_punching_card_record"
+        app:layout_constraintRight_toLeftOf="@+id/text_level"
+        app:layout_constraintTop_toTopOf="@+id/shape_punching_card_record" />
+
+    <TextView
+        android:id="@+id/text_level"
+        android:layout_width="@dimen/dp_60"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/dp_5"
+        android:gravity="center"
+        android:text="操作"
+        android:textColor="@color/color_573800"
+        android:textSize="13sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/shape_punching_card_record"
+        app:layout_constraintLeft_toRightOf="@+id/text_name"
+        app:layout_constraintRight_toRightOf="@+id/shape_punching_card_record"
+        app:layout_constraintTop_toTopOf="@+id/shape_punching_card_record" />
+
+    <ListView
+        android:id="@+id/list_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="@dimen/dp_20"
+        android:layout_marginRight="@dimen/dp_20"
+        android:layout_marginTop="@dimen/dp_130"
+        android:layout_marginBottom="@dimen/dp_30"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+</android.support.constraint.ConstraintLayout>

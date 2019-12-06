@@ -1,0 +1,268 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/creat_ai_image_bg"
+        android:layout_width="@dimen/dp_300"
+        android:layout_height="@dimen/dp_350"
+        android:layout_marginTop="@dimen/dp_30"
+        android:background="@mipmap/creat_ai_image_bg"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/iamge_head"
+        app:layout_constraintVertical_bias="0.2" />
+
+    <ImageView
+        android:id="@+id/iamge_head"
+        android:layout_width="@dimen/dp_70"
+        android:layout_height="@dimen/dp_70"
+        android:background="@mipmap/creat_ai_head"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.2" />
+
+    <Button
+        android:id="@+id/button_yes"
+        android:layout_width="@dimen/dp_60"
+        android:layout_height="@dimen/dp_30"
+        android:layout_marginTop="@dimen/dp_20"
+        android:background="@mipmap/integral_shopping_mall_yes"
+        android:text="确定"
+        android:textColor="@color/color_ba3200"
+        app:layout_constraintLeft_toLeftOf="@+id/creat_ai_image_bg"
+        app:layout_constraintRight_toLeftOf="@+id/button_skip"
+        app:layout_constraintTop_toBottomOf="@+id/creat_ai_image_bg" />
+
+    <Button
+        android:id="@+id/button_skip"
+        android:layout_width="@dimen/dp_60"
+        android:layout_height="@dimen/dp_30"
+        android:layout_marginTop="@dimen/dp_20"
+        android:background="@mipmap/button_skip"
+        android:text="取消"
+        android:textColor="@color/color_276bbd"
+        app:layout_constraintLeft_toRightOf="@+id/button_yes"
+        app:layout_constraintRight_toRightOf="@+id/creat_ai_image_bg"
+        app:layout_constraintTop_toBottomOf="@+id/creat_ai_image_bg" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp_20"
+        android:text="阡陌姐姐"
+        android:textColor="@color/black"
+        android:textSize="@dimen/sp_12"
+        app:layout_constraintLeft_toLeftOf="@+id/creat_ai_image_bg"
+        app:layout_constraintRight_toRightOf="@+id/creat_ai_image_bg"
+        app:layout_constraintTop_toBottomOf="@+id/iamge_head" />
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="@dimen/dp_20"
+        android:text="对局"
+        android:textColor="@color/color_522802"
+        android:textSize="@dimen/sp_11"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/president_text"
+        app:layout_constraintRight_toLeftOf="@+id/president_text"
+        app:layout_constraintTop_toTopOf="@+id/president_text" />
+
+    <TextView
+        android:id="@+id/president_text"
+        android:layout_width="@dimen/dp_160"
+        android:layout_height="@dimen/dp_25"
+        android:layout_marginRight="@dimen/dp_30"
+        android:background="@mipmap/creat_ai_image_switch_bg"
+        android:dropDownVerticalOffset="@dimen/dp_1"
+        android:gravity="center"
+        android:paddingLeft="@dimen/dp_19"
+        android:text="分先"
+        android:paddingRight="@dimen/dp_10"
+        android:textColor="@color/color_522802"
+        app:layout_constraintBottom_toBottomOf="@+id/creat_ai_image_bg"
+        app:layout_constraintRight_toRightOf="@+id/creat_ai_image_bg"
+        app:layout_constraintTop_toTopOf="@+id/creat_ai_image_bg"
+        app:layout_constraintVertical_bias="0.35"/>
+
+    <ImageView
+        android:id="@+id/image"
+        android:layout_width="@dimen/dp_20"
+        android:layout_height="@dimen/dp_20"
+        android:layout_marginRight="@dimen/dp_10"
+        android:background="@mipmap/creat_ai_image_arrows_bg"
+        app:layout_constraintBottom_toBottomOf="@+id/president_text"
+        app:layout_constraintRight_toRightOf="@+id/president_text"
+        app:layout_constraintTop_toTopOf="@+id/president_text" />
+
+
+    <TextView
+        android:id="@+id/text_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="@dimen/dp_20"
+        android:text="时间"
+        android:textColor="@color/color_522802"
+        android:textSize="@dimen/sp_11"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/president_text2"
+        app:layout_constraintRight_toLeftOf="@+id/president_text2"
+        app:layout_constraintTop_toTopOf="@+id/president_text2" />
+
+    <TextView
+        android:id="@+id/president_text2"
+        android:layout_width="@dimen/dp_160"
+        android:layout_height="@dimen/dp_25"
+        android:layout_marginRight="@dimen/dp_30"
+        android:layout_marginTop="@dimen/dp_10"
+        android:background="@mipmap/creat_ai_image_switch_bg"
+        android:dropDownVerticalOffset="@dimen/dp_1"
+        android:text="20分"
+        android:paddingLeft="@dimen/dp_19"
+        android:gravity="center"
+        android:paddingRight="@dimen/dp_10"
+        android:textColor="@color/color_522802"
+        android:spinnerMode="dropdown"
+        app:layout_constraintRight_toRightOf="@+id/creat_ai_image_bg"
+        app:layout_constraintTop_toBottomOf="@+id/president_text5" />
+
+    <ImageView
+        android:id="@+id/image2"
+        android:layout_width="@dimen/dp_20"
+        android:layout_height="@dimen/dp_20"
+        android:layout_marginRight="@dimen/dp_10"
+        android:background="@mipmap/creat_ai_image_arrows_bg"
+        app:layout_constraintBottom_toBottomOf="@+id/president_text2"
+        app:layout_constraintRight_toRightOf="@+id/president_text2"
+        app:layout_constraintTop_toTopOf="@+id/president_text2" />
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="@dimen/dp_20"
+        android:text="读秒"
+        android:textColor="@color/color_522802"
+        android:textSize="@dimen/sp_11"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/president_text3"
+        app:layout_constraintRight_toLeftOf="@+id/president_text3"
+        app:layout_constraintTop_toTopOf="@+id/president_text3" />
+
+    <TextView
+        android:id="@+id/president_text3"
+        android:layout_width="@dimen/dp_160"
+        android:layout_height="@dimen/dp_25"
+        android:layout_marginRight="@dimen/dp_30"
+        android:layout_marginTop="@dimen/dp_10"
+        android:background="@mipmap/creat_ai_image_switch_bg"
+        android:dropDownVerticalOffset="@dimen/dp_1"
+        android:paddingRight="@dimen/dp_10"
+        android:text="30秒"
+        android:paddingLeft="@dimen/dp_19"
+        android:gravity="center"
+        android:textColor="@color/color_522802"
+        android:spinnerMode="dropdown"
+        app:layout_constraintRight_toRightOf="@+id/creat_ai_image_bg"
+        app:layout_constraintTop_toBottomOf="@+id/president_text2" />
+
+    <ImageView
+        android:id="@+id/image3"
+        android:layout_width="@dimen/dp_20"
+        android:layout_height="@dimen/dp_20"
+        android:layout_marginRight="@dimen/dp_10"
+        android:background="@mipmap/creat_ai_image_arrows_bg"
+        app:layout_constraintBottom_toBottomOf="@+id/president_text3"
+        app:layout_constraintRight_toRightOf="@+id/president_text3"
+        app:layout_constraintTop_toTopOf="@+id/president_text3" />
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="@dimen/dp_20"
+        android:text="超时次数"
+        android:textColor="@color/color_522802"
+        android:textSize="@dimen/sp_11"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/president_text4"
+        app:layout_constraintRight_toLeftOf="@+id/president_text4"
+        app:layout_constraintTop_toTopOf="@+id/president_text4" />
+
+    <TextView
+        android:id="@+id/president_text4"
+        android:layout_width="@dimen/dp_160"
+        android:layout_height="@dimen/dp_25"
+        android:layout_marginRight="@dimen/dp_30"
+        android:layout_marginTop="@dimen/dp_10"
+        android:background="@mipmap/creat_ai_image_switch_bg"
+        android:dropDownVerticalOffset="@dimen/dp_1"
+        android:paddingRight="@dimen/dp_10"
+        android:text="3次"
+        android:paddingLeft="@dimen/dp_19"
+        android:gravity="center"
+        android:spinnerMode="dropdown"
+        android:textColor="@color/color_522802"
+        app:layout_constraintRight_toRightOf="@+id/creat_ai_image_bg"
+        app:layout_constraintTop_toBottomOf="@+id/president_text3" />
+
+    <ImageView
+        android:id="@+id/image4"
+        android:layout_width="@dimen/dp_20"
+        android:layout_height="@dimen/dp_20"
+        android:layout_marginRight="@dimen/dp_10"
+        android:background="@mipmap/creat_ai_image_arrows_bg"
+        app:layout_constraintBottom_toBottomOf="@+id/president_text4"
+        app:layout_constraintRight_toRightOf="@+id/president_text4"
+        app:layout_constraintTop_toTopOf="@+id/president_text4" />
+
+
+    <TextView
+        android:id="@+id/text_son"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="@dimen/dp_20"
+        android:text="让子"
+        android:textColor="@color/color_522802"
+        android:textSize="@dimen/sp_11"
+        android:textStyle="bold"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="@+id/president_text5"
+        app:layout_constraintRight_toLeftOf="@+id/president_text5"
+        app:layout_constraintTop_toTopOf="@+id/president_text5" />
+
+    <TextView
+        android:id="@+id/president_text5"
+        android:layout_width="@dimen/dp_160"
+        android:layout_height="@dimen/dp_25"
+        android:layout_marginRight="@dimen/dp_30"
+        android:layout_marginTop="@dimen/dp_10"
+        android:background="@mipmap/creat_ai_image_switch_bg"
+        android:dropDownVerticalOffset="@dimen/dp_1"
+        android:spinnerMode="dropdown"
+        android:paddingRight="@dimen/dp_10"
+        android:text="让 2 子"
+        android:gravity="center"
+        android:paddingLeft="@dimen/dp_19"
+        android:textColor="@color/color_522802"
+        android:visibility="gone"
+        app:layout_constraintRight_toRightOf="@+id/creat_ai_image_bg"
+        app:layout_constraintTop_toBottomOf="@+id/president_text" />
+
+    <ImageView
+        android:id="@+id/image5"
+        android:layout_width="@dimen/dp_20"
+        android:layout_height="@dimen/dp_20"
+        android:layout_marginRight="@dimen/dp_10"
+        android:background="@mipmap/creat_ai_image_arrows_bg"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="@+id/president_text5"
+        app:layout_constraintRight_toRightOf="@+id/president_text5"
+        app:layout_constraintTop_toTopOf="@+id/president_text5" />
+</android.support.constraint.ConstraintLayout>

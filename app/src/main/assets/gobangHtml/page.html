@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+	<!-- 改自0424� nav.html -->
+	<meta charset="UTF-8"/>
+	<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+	<link rel="stylesheet" type="text/css" href="css/lib/public.css" />
+	<link rel="stylesheet" type="text/css" href="css/lib/component.css" />
+	<link rel="stylesheet" type="text/css" href="css/lib/animate.min.css" />
+	<!-- 第三� -->
+	<script type="text/javascript" src="libs/jquery/jquery.js"></script>
+	<link rel="stylesheet" type="text/css" href="libs/messenger/css/messenger.css" />
+	<script type='text/javascript' src='libs/messenger/js/messenger.min.js'></script>
+	<script type='text/javascript' src='libs/messenger/js/messenger-theme-flat.js'></script>
+	<script type='text/javascript' src='libs/sweetalert/sweetalert.min.js'></script>
+	<script type="text/javascript" src="libs/dateformat/dateformat-min.js"></script>
+	<script type="text/javascript" src="libs/laydate/laydate.js"></script>
+	<script type="text/javascript" src="libs/md5/MD5.js"></script>
+	<script type="text/javascript" src="libs/base64/base64.js"></script>
+	<script type="text/javascript" src="libs/vuejs/vue.js"></script>
+	<link rel="stylesheet" type="text/css" href="libs/layer/layer-v3.1.1/layer/theme/default/layer.css" />
+	<script type="text/javascript" src="libs/layer/layer-v3.1.1/layer/layer.js"></script>
+	<script src="nim/im/js/util.js?v=2"></script>
+	<script type="text/javascript" src="libs/nim/NIM_Web_SDK_v5.0.0.js"></script>
+	<script type="text/javascript" src="libs/nim/NIM_Web_WebRTC_v5.0.0.js"></script>
+	<script src='js/gobang/nim3.js'></script>
+	<!-- 通用处理 -->
+	<script type='text/javascript' src="cocos2d/src/eve.js"></script>
+	<script type="text/javascript" src="js/gobang/common.js"></script>
+	<script src="js/lib/config.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript" src="js/lib/rem.js"></script>
+	<script src='js/gobang/game-helper.js'></script>
+	<script src="js/gobang/bundle.js"></script>
+	<!-- ./通用处理 -->
+	<script src='js/gobang/socket.js'></script>
+	<style>
+		.layui-layer-shade{
+			background: rgba(0,0,0,0.8);
+		}
+    .invitationModal .layui-layer-close{
+        position:absolute;top:-0.54rem;left:-0.36rem !important
+        
+    }
+	</style>
+</head>
+<body>
+		
+			
+	<!-- 邀请对局弹框  -->
+	<div class="invitationFriend alertBg fsz16 wa100 ha100 dn" id="invitation">
+		<div class="invitationContent">
+			<div class="Prompt clr763 df jc-c ai-c fsz24 fwb rel tp21" id="instant_state">将发起友谊赛,是否发起？</div>
+			<div class="w106 h106 mt30 df flexcol ai-c rel m0a">
+				<img src="img/headImg/1.png" class="bd4 brs50 w106 h106">
+				<span class="db abs cf lev tc">12k</span>
+				<em id="instant_name" class="clr145 fsz24">王晓晓</em>
+			</div>
+			<div class="wa100">
+				<div class="df ai-c wa92 m0a mt54">
+					<span class="fsz24 clr763">对局: </span> 
+					<select class="form-control w141 h42 clr145 bgf ml22" name="" id="fight_type_1" onchange="onRuleTypeChanged()">
+						<option value="1">分先</option>
+						<option value="2">让4子</option>
+						<option value="3">让9子</option>
+					</select>
+					<select class="form-control w141 h42 clr145 bgf ml10" name="" id="fight_type_2" style="display:none;">
+						<option value="1">执黑</option>
+						<option value="2">执白</option>
+					</select>
+					<select class="form-control w141 h42 clr145 bgf ml10" name="" id="fight_type_3">
+						<option value="19">19 x 19</option>
+						<option value="9">9 x 9</option>
+					</select>
+				</div>
+				<div class="df ai-c wa92 m0a mt24">
+					<span class="fsz24 clr763">时间: </span> 
+					<select class="form-control w141 h42 clr145 bgf ml22" name="" id="fight_type_4">
+						<option value="">慢棋</option>
+					</select> 
+					<select class="form-control w141 h42 clr145 bgf ml10" name="" id="fight_type_5">
+						<option value="">20分</option>
+					</select> 
+					<select class="form-control w141 h42 clr145 bgf ml10" name="" id="fight_type_6">
+						<option value="">30秒</option>
+					</select> 
+					<select class="form-control w141 h42 clr145 bgf ml10" name="" id="fight_type_7">
+						<option value="">3次</option>
+					</select>
+				</div>
+			</div>
+		</div>
+		<div class="invitationFooter df ai-c jc-sa mt35">
+			<span id="instant_confirm" class="btnBglt instantBtn">申请对弈</span> 
+			<span class="invitation-modify btnBgrt instantBtn" id="instant_modify">修改规则</span> 
+			<span class="invitation-refuse btnBgrt instantBtn" id="instant_refuse">拒绝</span>
+		</div>
+		<input type="hidden" id="fight_userid"> 
+		<input type="hidden" id="instant_step">
+		<input type="hidden" id="rule_checked" value=0>
+		<input type="hidden" id="instant_level_1" >
+		<input type="hidden" id="instant_name_1" >
+		<input type="hidden" id="instant_level_2" >
+		<input type="hidden" id="instant_name_2" >
+	</div>
+	<div id='optLoading' class=' dn'>
+		<div class='wa100 ha100 df ai-c jc-c loadingWarp'>
+			<div class='loadingBox'>
+				<p>正在为您匹配，请耐心等待！</p>
+				<div class='loadingBarbg m0a rel'>
+					<div class='loadingBar'>
+						<img class='wa100 ha100 fl' alt="" src="img/loading/loadingBar.png">
+						<p class='wa100 rel tp0 fs20'>Loading...<span class='timeNum'>0</span>%</p>
+					</div>
+					
+				</div>
+				<button class='btn-n'></button>
+			</div>
+		</div>
+	</div>
+</body>
+
+<script>
+    function playWithAI(str) {
+        var _index = str;
+        var levelArr = ['15k','5k','2D','5D'];
+        $.ajax({
+               url: http+'/gobangteach/ChessController/createAIChess',
+               type: "GET",
+               contentType: "application/json",
+               data: $.param({ ai_level: levelArr[_index] ,token:token,uid:uid}),
+               dataType: "json",
+               success: function (data) {
+               console.log(data);
+               if (data.error.returnCode == 0) {
+               console.log("创建成功");
+               document.location.href = "myschema://go?a=3";
+               } else if(data.error.returnCode == 10048){
+                    layerTC(data.error.returnUserMessage,function(){
+                       document.location.href = "myschema://go?a=2";
+                       },function(){
+                       document.location.href = "myschema://go?a=2";
+                            },function(){
+                            document.location.href = "myschema://go?a=2";
+                            });
+               
+               }else{
+               layerTC(data.error.returnUserMessage,function(){
+                       document.location.href = "myschema://go?a=3";
+                       },function(){
+                       document.location.href = "myschema://go?a=1";
+                       },function(){
+                       document.location.href = "myschema://go?a=1";
+                       });
+               }
+               },
+               error: function (XMLHttpRequest, textStatus) {
+               
+               }
+               });
+    }
+
+$(function(){
+	socketStart();
+
+})
+</script>

@@ -1,0 +1,496 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:id="@+id/user_help_main2"
+    android:layout_height="match_parent"
+    android:background="@color/half">
+
+    <include layout="@layout/login_title_layout" />
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="@dimen/dp_0"
+        android:layout_height="@dimen/dp_0"
+        android:layout_marginLeft="@dimen/dp_10"
+        android:layout_marginRight="@dimen/dp_10"
+        android:layout_marginTop="@dimen/dp_60"
+        android:background="@mipmap/user_help_backgrout"
+        app:layout_constraintDimensionRatio="H,1:1.4"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_400"
+            android:layout_marginBottom="@dimen/dp_15"
+            android:layout_marginLeft="@dimen/dp_10"
+            android:layout_marginRight="@dimen/dp_10"
+            android:layout_marginTop="@dimen/dp_15"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <android.support.constraint.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <ImageView
+                    android:id="@+id/title_iamge"
+                    android:layout_width="@dimen/dp_250"
+                    android:layout_height="@dimen/dp_60"
+                    android:background="@mipmap/user_help_describe"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/user_help_text"
+                    android:layout_width="@dimen/dp_260"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp_10"
+                    android:text="电子棋盘功能为教师线下围棋授课提供了便利，在取代传统挂盘的同时，增强了教学互动性，例如，落子标记、投票和圈示功能；并且支持棋谱收藏，满足老师个性化教学需求。"
+                    android:textColor="@color/black"
+                    android:textSize="11sp"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/title_iamge" />
+
+                <ImageView
+                    android:id="@+id/iamge_function_definition"
+                    android:layout_width="@dimen/dp_250"
+                    android:layout_height="@dimen/dp_60"
+                    android:layout_marginTop="@dimen/dp_15"
+                    android:background="@mipmap/function_definition"
+                    app:layout_constraintLeft_toLeftOf="@+id/title_iamge"
+                    app:layout_constraintRight_toRightOf="@+id/title_iamge"
+                    app:layout_constraintTop_toBottomOf="@+id/user_help_text" />
+
+                <TextView
+                    android:id="@+id/user_function_text1"
+                    android:layout_width="@dimen/dp_260"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp_10"
+                    android:text="• 左侧棋盘可用于摆题、打谱、讲解等，点击即落子"
+                    android:textColor="@color/black"
+                    android:textSize="11sp"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/iamge_function_definition" />
+
+                <TextView
+                    android:id="@+id/user_function_text2"
+                    android:layout_width="@dimen/dp_260"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp_10"
+                    android:text="• 棋盘左侧“下拉”，用于调整棋盘高度"
+                    android:textColor="@color/black"
+                    android:textSize="11sp"
+                    app:layout_constraintLeft_toLeftOf="@+id/user_function_text1"
+                    app:layout_constraintTop_toBottomOf="@id/user_function_text1" />
+
+                <TextView
+                    android:id="@+id/user_function_text3"
+                    android:layout_width="@dimen/dp_260"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp_10"
+                    android:text="• “答对奖励”、“答错鼓励”点击可出现对应的动画效果，增强课中教师与学生间的互动性"
+                    android:textColor="@color/black"
+                    android:textSize="11sp"
+                    app:layout_constraintLeft_toLeftOf="@+id/user_function_text2"
+                    app:layout_constraintTop_toBottomOf="@id/user_function_text2" />
+
+                <ImageView
+                    android:id="@+id/iamge_play_1"
+                    android:layout_width="@dimen/dp_20"
+                    android:layout_height="@dimen/dp_20"
+                    android:background="@mipmap/play_1"
+                    android:layout_marginTop="@dimen/dp_5"
+                    app:layout_constraintLeft_toLeftOf="@+id/user_function_text3"
+                    app:layout_constraintTop_toBottomOf="@+id/user_function_text3" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="：黑先白后，交替落子"
+                    android:textColor="@color/black"
+                    android:textSize="11sp"
+                    app:layout_constraintLeft_toRightOf="@+id/iamge_play_1"
+                    app:layout_constraintTop_toTopOf="@+id/iamge_play_1" />
+
+                <ImageView
+                    android:id="@+id/iamge_play_2"
+                    android:layout_width="@dimen/dp_20"
+                    android:layout_height="@dimen/dp_20"
+                    android:layout_marginTop="@dimen/dp_5"
+                    android:background="@mipmap/play_2"
+                    app:layout_constraintLeft_toLeftOf="@+id/iamge_play_1"
+                    app:layout_constraintTop_toBottomOf="@+id/iamge_play_1" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="：白先黑后，交替落子"
+                    android:textColor="@color/black"
+                    android:textSize="11sp"
+                    app:layout_constraintLeft_toRightOf="@+id/iamge_play_2"
+                    app:layout_constraintTop_toTopOf="@+id/iamge_play_2" />
+
+                <ImageView
+                    android:id="@+id/iamge_play_3"
+                    android:layout_width="@dimen/dp_20"
+                    android:layout_height="@dimen/dp_20"
+                    android:layout_marginTop="@dimen/dp_5"
+                    android:background="@mipmap/play_3"
+                    app:layout_constraintLeft_toLeftOf="@+id/iamge_play_2"
+                    app:layout_constraintTop_toBottomOf="@+id/iamge_play_2" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="：始终落黑子"
+                    android:textColor="@color/black"
+                    android:textSize="11sp"
+                    app:layout_constraintLeft_toRightOf="@+id/iamge_play_3"
+                    app:layout_constraintTop_toTopOf="@+id/iamge_play_3" />
+
+                <ImageView
+                    android:id="@+id/iamge_play_4"
+                    android:layout_width="@dimen/dp_20"
+                    android:layout_height="@dimen/dp_20"
+                    android:layout_marginTop="@dimen/dp_5"
+                    android:background="@mipmap/play_4"
+                    app:layout_constraintLeft_toLeftOf="@+id/iamge_play_3"
+                    app:layout_constraintTop_toBottomOf="@+id/iamge_play_3" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="：始终落白子"
+                    android:textColor="@color/black"
+                    android:textSize="11sp"
+                    app:layout_constraintLeft_toRightOf="@+id/iamge_play_4"
+                    app:layout_constraintTop_toTopOf="@+id/iamge_play_4" />
+
+                <ImageView
+                    android:id="@+id/iamge_play_5"
+                    android:layout_width="@dimen/dp_20"
+                    android:layout_height="@dimen/dp_20"
+                    android:layout_marginTop="@dimen/dp_5"
+                    android:background="@mipmap/play_5"
+                    app:layout_constraintLeft_toLeftOf="@+id/iamge_play_4"
+                    app:layout_constraintTop_toBottomOf="@+id/iamge_play_4" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="：标记三角形"
+                    android:textColor="@color/black"
+                    android:textSize="11sp"
+                    app:layout_constraintLeft_toRightOf="@+id/iamge_play_5"
+                    app:layout_constraintTop_toTopOf="@+id/iamge_play_5" />
+
+                <ImageView
+                    android:id="@+id/iamge_play_6"
+                    android:layout_width="@dimen/dp_20"
+                    android:layout_height="@dimen/dp_20"
+                    android:layout_marginTop="@dimen/dp_5"
+                    android:background="@mipmap/play_6"
+                    app:layout_constraintLeft_toLeftOf="@+id/iamge_play_5"
+                    app:layout_constraintTop_toBottomOf="@+id/iamge_play_5" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="：标记正方形"
+                    android:textColor="@color/black"
+                    android:textSize="11sp"
+                    app:layout_constraintLeft_toRightOf="@+id/iamge_play_6"
+                    app:layout_constraintTop_toTopOf="@+id/iamge_play_6" />
+
+                <ImageView
+                    android:id="@+id/iamge_play_7"
+                    android:layout_width="@dimen/dp_20"
+                    android:layout_height="@dimen/dp_20"
+                    android:layout_marginTop="@dimen/dp_5"
+                    android:background="@mipmap/play_7"
+                    app:layout_constraintLeft_toLeftOf="@+id/iamge_play_6"
+                    app:layout_constraintTop_toBottomOf="@+id/iamge_play_6" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="：标记圆形"
+                    android:textColor="@color/black"
+                    android:textSize="11sp"
+                    app:layout_constraintLeft_toRightOf="@+id/iamge_play_7"
+                    app:layout_constraintTop_toTopOf="@+id/iamge_play_7" />
+
+                <ImageView
+                    android:id="@+id/iamge_play_8"
+                    android:layout_width="@dimen/dp_20"
+                    android:layout_height="@dimen/dp_20"
+                    android:layout_marginTop="@dimen/dp_5"
+                    android:background="@mipmap/play_8"
+                    app:layout_constraintLeft_toLeftOf="@+id/iamge_play_7"
+                    app:layout_constraintTop_toBottomOf="@+id/iamge_play_7" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="：标记数字"
+                    android:textColor="@color/black"
+                    android:textSize="11sp"
+                    app:layout_constraintLeft_toRightOf="@+id/iamge_play_8"
+                    app:layout_constraintTop_toTopOf="@+id/iamge_play_8" />
+
+                <ImageView
+                    android:id="@+id/iamge_play_9"
+                    android:layout_width="@dimen/dp_20"
+                    android:layout_height="@dimen/dp_20"
+                    android:layout_marginTop="@dimen/dp_5"
+                    android:background="@mipmap/play_9"
+                    app:layout_constraintLeft_toLeftOf="@+id/iamge_play_8"
+                    app:layout_constraintTop_toBottomOf="@+id/iamge_play_8" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="：标记字母"
+                    android:textColor="@color/black"
+                    android:textSize="11sp"
+                    app:layout_constraintLeft_toRightOf="@+id/iamge_play_9"
+                    app:layout_constraintTop_toTopOf="@+id/iamge_play_9" />
+
+                <ImageView
+                    android:id="@+id/iamge_play_10"
+                    android:layout_width="@dimen/dp_20"
+                    android:layout_height="@dimen/dp_20"
+                    android:layout_marginTop="@dimen/dp_5"
+                    android:background="@mipmap/play_10"
+                    app:layout_constraintLeft_toLeftOf="@+id/iamge_play_9"
+                    app:layout_constraintTop_toBottomOf="@+id/iamge_play_9" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="：清除标记"
+                    android:textColor="@color/black"
+                    android:textSize="11sp"
+                    app:layout_constraintLeft_toRightOf="@+id/iamge_play_10"
+                    app:layout_constraintTop_toTopOf="@+id/iamge_play_10" />
+
+                <ImageView
+                    android:id="@+id/iamge_play_11"
+                    android:layout_width="@dimen/dp_20"
+                    android:layout_height="@dimen/dp_20"
+                    android:layout_marginTop="@dimen/dp_5"
+                    android:background="@mipmap/play_11"
+                    app:layout_constraintLeft_toLeftOf="@+id/iamge_play_10"
+                    app:layout_constraintTop_toBottomOf="@+id/iamge_play_10" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="：显示第一手"
+                    android:textColor="@color/black"
+                    android:textSize="11sp"
+                    app:layout_constraintLeft_toRightOf="@+id/iamge_play_11"
+                    app:layout_constraintTop_toTopOf="@+id/iamge_play_11" />
+
+                <ImageView
+                    android:id="@+id/iamge_play_12"
+                    android:layout_width="@dimen/dp_20"
+                    android:layout_height="@dimen/dp_20"
+                    android:layout_marginTop="@dimen/dp_5"
+                    android:background="@mipmap/play_12"
+                    app:layout_constraintLeft_toLeftOf="@+id/iamge_play_11"
+                    app:layout_constraintTop_toBottomOf="@+id/iamge_play_11" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="：快退三手"
+                    android:textColor="@color/black"
+                    android:textSize="11sp"
+                    app:layout_constraintLeft_toRightOf="@+id/iamge_play_12"
+                    app:layout_constraintTop_toTopOf="@+id/iamge_play_12" />
+
+                <ImageView
+                    android:id="@+id/iamge_play_13"
+                    android:layout_width="@dimen/dp_20"
+                    android:layout_height="@dimen/dp_20"
+                    android:layout_marginTop="@dimen/dp_5"
+                    android:background="@mipmap/play_13"
+                    app:layout_constraintLeft_toLeftOf="@+id/iamge_play_12"
+                    app:layout_constraintTop_toBottomOf="@+id/iamge_play_12" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="：显示上一手"
+                    android:textColor="@color/black"
+                    android:textSize="11sp"
+                    app:layout_constraintLeft_toRightOf="@+id/iamge_play_13"
+                    app:layout_constraintTop_toTopOf="@+id/iamge_play_13" />
+
+                <ImageView
+                    android:id="@+id/iamge_play_14"
+                    android:layout_width="@dimen/dp_20"
+                    android:layout_height="@dimen/dp_20"
+                    android:layout_marginTop="@dimen/dp_5"
+                    android:background="@mipmap/play_14"
+                    app:layout_constraintLeft_toLeftOf="@+id/iamge_play_13"
+                    app:layout_constraintTop_toBottomOf="@+id/iamge_play_13" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="：显示下一手"
+                    android:textColor="@color/black"
+                    android:textSize="11sp"
+                    app:layout_constraintLeft_toRightOf="@+id/iamge_play_14"
+                    app:layout_constraintTop_toTopOf="@+id/iamge_play_14" />
+
+                <ImageView
+                    android:id="@+id/iamge_play_15"
+                    android:layout_width="@dimen/dp_20"
+                    android:layout_height="@dimen/dp_20"
+                    android:layout_marginTop="@dimen/dp_5"
+                    android:background="@mipmap/play_15"
+                    app:layout_constraintLeft_toLeftOf="@+id/iamge_play_14"
+                    app:layout_constraintTop_toBottomOf="@+id/iamge_play_14" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="：快进三手"
+                    android:textColor="@color/black"
+                    android:textSize="11sp"
+                    app:layout_constraintLeft_toRightOf="@+id/iamge_play_15"
+                    app:layout_constraintTop_toTopOf="@+id/iamge_play_15" />
+
+                <ImageView
+                    android:id="@+id/iamge_play_16"
+                    android:layout_width="@dimen/dp_20"
+                    android:layout_height="@dimen/dp_20"
+                    android:layout_marginTop="@dimen/dp_5"
+                    android:background="@mipmap/play_16"
+                    app:layout_constraintLeft_toLeftOf="@+id/iamge_play_15"
+                    app:layout_constraintTop_toBottomOf="@+id/iamge_play_15" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="：显示最后一手"
+                    android:textColor="@color/black"
+                    android:textSize="11sp"
+                    app:layout_constraintLeft_toRightOf="@+id/iamge_play_16"
+                    app:layout_constraintTop_toTopOf="@+id/iamge_play_16" />
+
+                <TextView
+                    android:id="@+id/user_function_text4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="• 切换棋盘：可选择9路或19路棋盘"
+                    android:textColor="@color/black"
+                    android:textSize="11sp"
+                    android:layout_marginTop="@dimen/dp_5"
+                    app:layout_constraintLeft_toLeftOf="@+id/iamge_play_16"
+                    app:layout_constraintTop_toBottomOf="@+id/iamge_play_16" />
+
+                <TextView
+                    android:id="@+id/user_function_text5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="• 清空棋盘：清空当前棋盘"
+                    android:textColor="@color/black"
+                    android:textSize="11sp"
+                    android:layout_marginTop="@dimen/dp_5"
+                    app:layout_constraintLeft_toLeftOf="@+id/user_function_text4"
+                    app:layout_constraintTop_toBottomOf="@+id/user_function_text4" />
+
+                <TextView
+                    android:id="@+id/user_function_text6"
+                    android:layout_width="@dimen/dp_250"
+                    android:layout_height="wrap_content"
+                    android:text="• 加载题库：加载平台题库，选择后可将习题直接显示到电子棋盘上"
+                    android:textColor="@color/black"
+                    android:textSize="11sp"
+                    android:layout_marginTop="@dimen/dp_5"
+                    app:layout_constraintLeft_toLeftOf="@+id/user_function_text5"
+                    app:layout_constraintTop_toBottomOf="@+id/user_function_text5" />
+
+                <TextView
+                    android:id="@+id/user_function_text7"
+                    android:layout_width="@dimen/dp_250"
+                    android:layout_height="wrap_content"
+                    android:text="• 加载棋谱：可选择加载自己或他人的棋谱，也可加载本地文件格式为.sgf格式的棋谱"
+                    android:textColor="@color/black"
+                    android:textSize="11sp"
+                    android:layout_marginTop="@dimen/dp_5"
+                    app:layout_constraintLeft_toLeftOf="@+id/user_function_text6"
+                    app:layout_constraintTop_toBottomOf="@+id/user_function_text6" />
+
+                <TextView
+                    android:id="@+id/user_function_text8"
+                    android:layout_width="@dimen/dp_250"
+                    android:layout_height="wrap_content"
+                    android:text="• 加载棋谱：可选择加载自己或他人的棋谱，也可加载本地文件格式为.sgf格式的棋谱"
+                    android:textColor="@color/black"
+                    android:textSize="11sp"
+                    android:layout_marginTop="@dimen/dp_5"
+                    app:layout_constraintLeft_toLeftOf="@+id/user_function_text7"
+                    app:layout_constraintTop_toBottomOf="@+id/user_function_text7" />
+
+                <TextView
+                    android:id="@+id/user_function_text9"
+                    android:layout_width="@dimen/dp_250"
+                    android:layout_height="wrap_content"
+                    android:text="• 显示手数：显示棋盘中所有棋子的手数"
+                    android:textColor="@color/black"
+                    android:textSize="11sp"
+                    android:layout_marginTop="@dimen/dp_5"
+                    app:layout_constraintLeft_toLeftOf="@+id/user_function_text8"
+                    app:layout_constraintTop_toBottomOf="@+id/user_function_text8" />
+
+                <TextView
+                    android:id="@+id/user_function_text10"
+                    android:layout_width="@dimen/dp_250"
+                    android:layout_height="wrap_content"
+                    android:text="• 加载收藏：可加载收藏夹中的棋谱或习题"
+                    android:textColor="@color/black"
+                    android:textSize="11sp"
+                    android:layout_marginTop="@dimen/dp_5"
+                    app:layout_constraintLeft_toLeftOf="@+id/user_function_text9"
+                    app:layout_constraintTop_toBottomOf="@+id/user_function_text9" />
+
+                <TextView
+                    android:id="@+id/user_function_text11"
+                    android:layout_width="@dimen/dp_250"
+                    android:layout_height="wrap_content"
+                    android:text="• 圈示：可选择不同颜色、不同粗细的笔，在棋盘上画线"
+                    android:textColor="@color/black"
+                    android:textSize="11sp"
+                    android:layout_marginTop="@dimen/dp_5"
+                    app:layout_constraintLeft_toLeftOf="@+id/user_function_text10"
+                    app:layout_constraintTop_toBottomOf="@+id/user_function_text10" />
+
+                <TextView
+                    android:layout_width="@dimen/dp_250"
+                    android:layout_height="wrap_content"
+                    android:text="• 研讨：加载棋谱后，点击研讨即可开始试下"
+                    android:textColor="@color/black"
+                    android:textSize="11sp"
+                    android:layout_marginTop="@dimen/dp_5"
+                    app:layout_constraintLeft_toLeftOf="@+id/user_function_text11"
+                    app:layout_constraintTop_toBottomOf="@+id/user_function_text11" />
+
+            </android.support.constraint.ConstraintLayout>
+        </ScrollView>
+
+    </android.support.constraint.ConstraintLayout>
+
+
+</android.support.constraint.ConstraintLayout>

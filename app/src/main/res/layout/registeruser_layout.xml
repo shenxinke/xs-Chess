@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <include layout="@layout/login_title_layout" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:orientation="vertical">
+
+        <EditText
+            android:id="@+id/register_usercode"
+            android:layout_width="@dimen/dp_318"
+            android:layout_height="@dimen/dp_38"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/dp_61"
+            android:background="@drawable/textview_round_border"
+            android:hint="@string/register_phonecode"
+            android:paddingLeft="@dimen/dp_22" />
+
+        <EditText
+            android:id="@+id/register_password"
+            android:layout_width="@dimen/dp_318"
+            android:layout_height="@dimen/dp_38"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/dp_106"
+            android:background="@drawable/textview_round_border"
+            android:hint="@string/register_password"
+            android:inputType="textPassword"
+            android:paddingLeft="@dimen/dp_22" />
+
+        <EditText
+            android:id="@+id/register_againpassword"
+            android:layout_width="@dimen/dp_318"
+            android:layout_height="@dimen/dp_38"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/dp_151"
+            android:background="@drawable/textview_round_border"
+            android:hint="@string/register_againpassword"
+            android:inputType="textPassword"
+            android:paddingLeft="@dimen/dp_22" />
+
+
+        <EditText
+            android:id="@+id/register_checkcode"
+            android:layout_width="@dimen/dp_318"
+            android:layout_height="@dimen/dp_38"
+            android:layout_alignStart="@+id/register_usercode"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="@dimen/dp_196"
+            android:background="@drawable/textview_round_border"
+            android:hint="@string/register_checkcode"
+            android:paddingLeft="@dimen/dp_22" />
+
+        <Button
+            android:id="@+id/register_getcheckcode"
+            android:layout_width="@dimen/dp_78"
+            android:layout_height="@dimen/dp_28"
+            android:layout_marginLeft="@dimen/dp_254"
+            android:layout_marginTop="@dimen/dp_201"
+            android:background="@mipmap/login_yellow"
+            android:text="@string/register_getcheckcode"
+            android:textColor="@color/red_light"
+            android:textSize="@dimen/sp_13" />
+
+        <Button
+            android:id="@+id/register_register"
+            android:layout_width="@dimen/dp_318"
+            android:layout_height="@dimen/dp_38"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/dp_286"
+            android:background="@mipmap/login_yellow"
+            android:text="@string/register_register"
+            android:textColor="@color/red_light"
+            android:textSize="@dimen/sp_15" />
+    </RelativeLayout>
+</LinearLayout>

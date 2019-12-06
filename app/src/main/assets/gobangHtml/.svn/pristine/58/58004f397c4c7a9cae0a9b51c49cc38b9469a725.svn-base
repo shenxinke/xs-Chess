@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+		<meta name="renderer" content="webkit">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title>先手围棋智能教育服务平台</title>
+		<link rel="stylesheet" type="text/css" href="css/custom/guide.css"/>
+		<link rel="stylesheet" type="text/css" href="css/lib/animate.min.css" />
+		<!-- 棋盘 -->
+		<link rel="stylesheet" type="text/css" href="chess/css/chess.css"/>
+		<link rel="stylesheet" type="text/css" href="chess/skin/skin1/skin1.css"/>
+		<script src="chess/js/eve.js" type="text/javascript" charset="utf-8"></script>
+		<script src="chess/js/XSGO.js" type="text/javascript" charset="utf-8"></script>
+		<script src="chess/js/bundle.js" type="text/javascript" charset="utf-8"></script>
+		<script src="chess/js/GSocket.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<style type="text/css"></style>
+
+	<body style="display: none;">
+		<div id='questionStore' class="ha100 oh">
+			<p id='description' class="fs30 df ai-c jc-c bge6f wa100 c003 h80">{{description}}</p>
+			<div :class="['rel boardBg',{'z103':flag==3||flag==4}]" id='canvasBox'>
+				<div id="gameCanvas" onselectstart="return false"></div>
+				
+				<div v-show='isGuideStudent' id='guideGame' class='wa100 ha100 abs bt0 lt0 p24'>
+					<div class='gameBox wa100 ha100 rel'>
+						<div v-show='flag===3' id='finger' @click="drop" class='w80 h80 abs bt100 lt0'>
+							<div class='wa100 ha100 bra100 ma abs tp0 lt0 bt0 rt0 bg6ae3ff-8 ripple' ></div>
+							<div class='wa100 ha100 bra100 ma abs tp0 lt0 bt0 rt0 bg6ae3ff-8 ripple2' ></div>
+							<div class='w30 h30 bra100 ma abs tp0 lt0 bt0 rt0 btn bg6ae3ff'></div>
+							<img class='w90 h80 abs tp30 rt-45 finger' src ='img/guide/student/finger.png' >
+						</div>
+					</div>
+				</div>
+			
+			</div>
+			<div class="btmBox wa100 df ai-c jc-c fw-w " v-show='!qrlzState'>
+
+				<div :class="['w700 h210 mb40 swiper-container oh',{'z101':flag==1}]">
+					<div class="swiper-wrapper">
+						<div class="swiper-slide " v-for='(x,index) in chessManualList' @click="loadMyJob(x.id,x.collect,index)">
+							<div :data-id='x.id' :data-collect='x.collect' :data-index='index' class="w210 h210 m0a bgf rel imgBox">
+								<div class="wa100 ha100 b3red abs tp0 lt0 dn bkuang"></div>
+								<img class="wa100 ha100" :src="x.snapshot" alt="" />
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="wa100 h70 df ai-c jc-sa">
+					<button :class="['btn-n w130 h60 bg_qs_01 cc06804 rel',{'z102':flag==2}]" @click='getList()'>换页</button>
+					<button :class="['btn-n w130 h60 bg_qs_01 cc06804',{'z103':flag==6}]" @click='collect'>
+						{{collectMsg.collect===1?'已收藏':'收藏'}}
+					</button>
+				</div>
+			</div>
+
+			<div v-show='qrlzState' class="df ai-c jc-sa pt30 pl20 pr20">
+				<button type="button" class="w72 h72 btn-n btn_w" @click="game.steering('w')"></button>
+				<button type="button" class="w72 h72 btn-n btn_s" @click="game.steering('s')"></button>
+				<button type="button" class="h72 w150 btn-n bt_btn ccf5003 fs30" @click="game.steering('e')">确认落子</button>
+				<button type="button" class="w72 h72 btn-n btn_a" @click="game.steering('a')"></button>
+				<button type="button" class="w72 h72 btn-n btn_d" @click="game.steering('d')"></button>
+			</div>
+			<audio src="music/ChipMany.wav" type="hidden" id="ChipMany"></audio>
+			<audio src="music/STONE0.wav" type="hidden" id="stepmusic"></audio>
+			<audio src="music/aswError.mp3" type="hidden" id="aswError"></audio>
+			<audio src="music/aswRight.mp3" type="hidden" id="aswRight"></audio>
+			<div class="getJf wa100 abs tp140 animated zoomInDown dn" style="z-index:9999999999999;">
+				<img src="img/play/jf_1.png" class="w140 h56 db m0a">
+			</div> 
+			<guide-student v-if='isGuideStudent' :aflag = 'flag'></guide-student>
+		</div>
+		<template id='guideStudent'>
+			<div class="wa100 ha100">
+				<!-- 遮罩 -->
+				<div class='wa100 ha100 bg08 fix tp0 lt0 z100'></div>
+				<!-- 开场  -->
+				<div v-show="flag!=4" :class="['wa100 h345 abs tp260 lt0 z102',{'tp800':flag==3||flag==6},{'tp900':flag==5}]">
+					<img class='w238 h345 abs rt0 tp0 flag1' src="img/guide/student/xiaotianR/xiaotian1.png"/>
+					<div class='w500 h300 abs rt210 tp0 df ai-c ac-c jc-c fw-w bgdialogr'>
+						<img v-show = 'flag===1' class="w267 h35 rel wenzi22" src="img/guide/student/1wenzi1.png"/>	
+						<img v-show = 'flag===2' class="w300 h26 rel wenzi221" src="img/guide/student/1wenzi2.png"/>	
+						<img v-show = 'flag===3' class="w294 h26 rel wenzi221" src="img/guide/student/1wenzi3.png"/>
+						<img v-show = 'flag===5' class="w255 h62 rel wenzi221" src="img/guide/student/1wenzi5.png"/>
+						<img v-show = 'flag===6' class="w312 h62 rel wenzi221 mt10" src="img/guide/student/1wenzi6.png"/>
+						<img v-show = 'flag===7' class="w312 h62 rel wenzi221 mt10" src="img/guide/student/1wenzi7.png"/>
+						<div v-show = 'flag===5||flag===6||flag===7' class="wa100 tc">
+							<button @click="tab" class="w156 h60 btn-n bgbtnxyb mt20"></button>
+						</div>
+					</div>
+					<!--<button v-show='flag!=4 && flag!=5' @click='tab' class="btn-n w193 h81 bgbtn243 abs rt300 bt220 fs36 cb9590b fwb shakebtn">下一步</button>-->
+				</div>
+				<div :class="['btmBox abs bt0 lt0 wa100 df ai-c jc-c fw-w',{'z103':flag==4}]">
+					<div class="w700 h210 mb40 rel">
+						<div v-show="flag==1" @click="tab" id='' class='w80 h80 abs tp70 lt80 z103'>
+							<div class='wa100 ha100 bra100 ma abs tp0 lt0 bt0 rt0 bg6ae3ff-8 ripple' ></div>
+							<div class='wa100 ha100 bra100 ma abs tp0 lt0 bt0 rt0 bg6ae3ff-8 ripple2' ></div>
+							<div class='w30 h30 bra100 ma abs tp0 lt0 bt0 rt0 btn bg6ae3ff'></div>
+							<img class='w90 h80 abs tp30 rt-45 finger' src ='img/guide/student/finger.png' >
+						</div>
+					</div>
+					<div class="wa100 h70 rel">
+						<div v-show="flag==2" @click="tab" id='' class='w80 h80 abs tp0 lt140 z103'>
+							<div class='wa100 ha100 bra100 ma abs tp0 lt0 bt0 rt0 bg6ae3ff-8 ripple' ></div>
+							<div class='wa100 ha100 bra100 ma abs tp0 lt0 bt0 rt0 bg6ae3ff-8 ripple2' ></div>
+							<div class='w30 h30 bra100 ma abs tp0 lt0 bt0 rt0 btn bg6ae3ff'></div>
+							<img class='w90 h80 abs tp30 rt-45 finger' src ='img/guide/student/finger.png' >
+						</div>
+					</div>
+					
+					<div v-show="flag==4" @click="tab" id='' class='w80 h80 abs tpa48 lt335 z103'>
+						<div class='wa100 ha100 bra100 ma abs tp0 lt0 bt0 rt0 bg6ae3ff-8 ripple' ></div>
+						<div class='wa100 ha100 bra100 ma abs tp0 lt0 bt0 rt0 bg6ae3ff-8 ripple2' ></div>
+						<div class='w30 h30 bra100 ma abs tp0 lt0 bt0 rt0 btn bg6ae3ff'></div>
+						<img class='w90 h80 abs tp30 rt-45 finger' src ='img/guide/student/finger.png' >
+					</div>
+				
+				</div>
+				
+				<img v-if='flag==5' class="wa100 abs tpa10 lt0 z102 correct" src="img/guide/student/dadui-min.png"/>
+				
+				<!---->
+				
+			</div>
+		</template>
+		<script src="libs/require/require.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			require(['js/lib/require.config'], function() {
+				require([
+					'Vue',
+					'rem',
+					'swiper'
+				], function(Vue) {
+					$('body').show();
+					window.Vue = Vue; //vue全局
+					$('#gameCanvas').css('width', $('body').width()).css('height', $('body').width());
+					$('.btmBox').height($('body').height() - $('body').width()-document.documentElement.offsetWidth/7.5*0.8)
+
+                    var sgfState = 0;
+					var mySwiper;
+					var anXiaotian;
+					var vm = new Vue({
+						el: '#questionStore',
+						data: {
+							chessManualList: {
+								list: []
+							}, //棋谱列表
+							collectMsg: { //
+								collect: '',
+								id: '',
+								index: 0
+							},
+							isGuideStudent:jsonlink().guide*1,
+							qrlzState: 0,
+							game:'',//棋盘
+							flag:1,
+							solution:'',//正确答案
+							description:''
+						},
+						methods: {
+							drop:function (){
+								eve.f("HandReply", this.solution)();
+								action_ = this.solution;
+								this.target = 0;
+								this.flag ++
+							},
+							//棋谱列表
+							getList: function(pageNum) {
+								$this = this
+								$.ajax({
+									type: 'post',
+									url: http + '/gobangteach/classroom/searchQuestions',
+									data: {
+										questionType: jsonlink().questionType,
+										level: jsonlink().level,//'10k'
+										QuestionName: decodeURI(jsonlink().QuestionName) ,//'一线扳'
+										pageNum: 1,
+										pageSize: 12,
+										uid: uid,
+										token: token
+									},
+									success: function(data) {
+										vm.chessManualList = data.data.list;
+										// 加载 列表中第一个棋谱 棋盘
+										
+										$this.$nextTick(function() {
+											mySwiper.reInit();
+										})
+										if(jsonlink().guide==1){
+											$.ajax({
+												url:http+'/gobangteach/PushTeacherController/getPushTeachQuestionInfo',
+												type: 'post',
+												data: {
+													questions: '44375',
+													uid:uid,
+													token:token
+												},
+												success: function(data) {
+													if(data.error.returnCode==0){
+														vm.chessManualList[0]=data.data[0];
+														// 加载 列表中第一个棋谱 棋盘
+														vm.loadMyJob(vm.chessManualList[0].id,vm.chessManualList[0].collect)
+														$('.imgBox').removeClass('wrong right');
+													}
+												}
+											})
+										}else{
+											// 加载 列表中第一个棋谱 棋盘
+											vm.loadMyJob(vm.chessManualList[0].id,vm.chessManualList[0].collect)
+											$('.imgBox').removeClass('wrong right');
+										}
+									}
+								})
+							},
+							//根据棋谱id 加载棋盘
+							loadMyJob: function(questionId, collect, index) {
+								this.collectMsg.id = questionId,
+									this.collectMsg.collect = collect,
+									this.collectMsg.index = index || 0,
+									$.ajax({
+										type: "POST",
+										url: http + "/gobangteach/classroom/loadQuestion",
+										data: "questionid=" + questionId + "&token=" + token + "&uid=" + uid,
+										dataType: 'json',
+										success: function(data) {
+											console.log("棋盘信息", data);
+											window.currentGameId = data.data.chessid;
+											window.quesionID = questionId;
+											$('.imgBox').removeClass('qipuActive')
+											$('.imgBox[data-id=' + window.quesionID + ']').addClass('qipuActive');
+											vm.description = data.data.questionbank.titlerequs === null ||
+													data.data.questionbank.titlerequs === '' ?
+													data.data.questionbank.description.split('_')[0] : data.data.questionbank.titlerequs
+                                           sgfState = data.data.questionbank.sgfstate;
+                                           
+										 	var gameInfo = JSON.parse(data.data.questionbank.chessdata);
+											//设置棋盘路数
+											$this.game.config.road = gameInfo.roadX
+											
+											//更新类型
+											$this.game.config.sgfstate = data.data.questionbank.sgfstate
+											
+											//更新棋谱
+											$this.game.svg = gameInfo.listAction; 
+
+											//登入棋局
+											eve.f('enterGame',data.data.chessid,uid)();
+											//落子回调
+											$this.game.playCall = function(d){
+												console.log('落子位置',d)
+												//落子
+												eve.f('handlerAction',data.data.chessid,d)(); 
+											}
+													
+                                           //正确答案坐标
+											vm.solution = JSON.parse(data.data.questionbank.chessdata).correctResultsList[0].pop();
+											console.log('正确答案：',vm.solution)
+											fn(vm.solution)
+											function fn(action){
+												var x = action.substring(2,3).charCodeAt()-97;
+												var y = action.substring(3,4).charCodeAt()-97;
+												console.log(x)
+												var ww = $('#finger').parent().width()/18;
+												var w = $('#finger').width()/2;
+												var left = ww*x - w;
+												var bottom = ww*y - w;
+												$('#finger').css({'left':left,'bottom':bottom})
+											}
+										},
+										error: function(XMLHttpRequest, data) {
+											alert("获取房间信息失败");
+										}
+									});
+							},
+							//收藏
+							collect: function() {
+								if(this.collectMsg.collect == '1') {
+									layerTC('你确定要取消收藏吗？', function() {
+										postCollect()
+									})
+								} else {
+									postCollect()
+								}
+
+								function postCollect() {
+									$.ajax({
+										type: 'post',
+										url: http + '/gobangteach/QuestionbankController/collectChess',
+										data: {
+											type: 1,
+											chessId: vm.collectMsg.id,
+											collect: vm.collectMsg.collect === 1 ? 2 : 1,
+											uid: uid,
+											token: token
+										},
+										success: function(data) {
+											vm.collectMsg.collect = vm.collectMsg.collect === 1 ? 2 : 1;
+											//更改当前棋谱的 collect 收藏状态
+											vm.chessManualList[vm.collectMsg.index].collect = vm.collectMsg.collect
+										}
+									})
+								}
+
+							},
+						},
+						mounted: function() {
+							//页面初始化完成 请求棋谱列表
+							this.getList();
+							mySwiper = new Swiper('.swiper-container', {
+								slidesPerView: '3',
+								//loop: true
+							})
+							$('body').on('click','#aaaaa',function(){
+								alert(5555)
+							})
+
+							
+							var $this = this;
+							
+							//初始化棋盘
+							this.game = new xsgo('gameCanvas',{
+								//isShowCoord:1,//显示坐标
+								queue:[],
+								type:2,//2类型为做题
+								bgColor:'#ffd687',
+								affirmMovelater:1//开启确认落子
+							})
+							
+							//确认落子回调
+							$this.game.qrlzState = function(val){
+								$this.qrlzState = val
+							}
+
+							//链接成功回调
+							eve.on('socketOpen',function(){
+								console.log('链接成功')
+								//loadQuestion() //请求题目
+							})
+							
+							//棋局登入成功回调
+							eve.on('signInResponse',function(){
+								console.log('登入成功');
+							})
+							
+							//落子结果
+							eve.on("handlerActionResult", function(data) {
+								console.log('落子结果:',data)
+								$this.game.addQueue(data) //添加子到棋盘
+								var str = data.join('').indexOf('AE');
+								if(str>0){ //是否有提子
+									document.getElementById('ChipMany').play() //提子音效
+								}else{
+									document.getElementById('stepmusic').play() //落子声
+								}
+							});
+							
+							/**
+							 *  游戏结束
+							 */
+							eve.on("notifyGameOver", function(status, blackSum, whiteSum) {
+
+								if(status === 12) {
+									msgYN('msg-no', function() {
+										next()
+									})
+
+									$("#aswError").attr("src","music/aswError.mp3");
+									$("#aswError")[0].play();
+									$('.imgBox[data-id=' + window.quesionID + ']').removeClass('right').addClass('wrong');
+									addRightWrong('2')
+									updateErrorQuestionsStates(1)
+								} else if(status === 13) {
+									msgYN('msg-yes', function() {
+										next()
+									})
+									
+									$("#aswRight").attr("src","music/aswRight.mp3");
+									$("#aswRight")[0].play();
+									$('.imgBox[data-id=' + window.quesionID + ']').removeClass('wrong').addClass('right');
+									addRightWrong('1')
+								} else {
+									layerTC('游戏结束' + status)
+								}
+
+								function next() {
+									var oId = $('.imgBox[data-id=' + window.quesionID + ']').parent().next().find('.imgBox').attr('data-id');
+									var collect = $('.imgBox[data-id=' + window.quesionID + ']').parent().next().find('.imgBox').attr('data-collect');
+									var index = $('.imgBox[data-id=' + window.quesionID + ']').parent().next().find('.imgBox').attr('data-index');
+
+									mySwiper.swipeTo(index - 1);
+
+									if(oId) {
+										vm.loadMyJob(oId, collect, index);
+									}
+								}
+
+								function updateErrorQuestionsStates(states) {
+									var param = {
+										states: states,
+										quesionID: window.quesionID,
+										uid: uid,
+										token: token
+									}
+									console.log('param:', param)
+									$.ajax({
+										url: http + '/gobangteach/classroom/updateErrorQuestionsStates',
+										type: "POST",
+										dataType: "json",
+										data: $.param(param),
+										success: function(data) {
+											console.log("ClearChessboard", data);
+										},
+										error: function(XMLHttpRequest, data) {
+											alert("更新该题失败");
+										}
+									});
+								}
+								//更新题_____
+								function addRightWrong(sign) {
+									var param = {
+										chessId: window.quesionID,
+										rightWrong: sign, //答题的对错情况   1 代表对 2 代表错
+										source: 1, //题来源    1 题库 2.错题本3作业4课件
+										uid: uid,
+										token: token
+									}
+									console.log(param)
+									$.ajax({
+										url: http + '/gobangteach/QuestionbankController/addRightWrong',
+										type: "POST",
+										dataType: "json",
+										data: $.param(param),
+										success: function(data) {
+											if(sign=='1'){
+												if(data.data.questionJf>0){
+													$(".getJf").show();
+													setTimeout(function(){
+														$(".getJf").hide();
+													},2000)
+												}
+											}
+										},
+										error: function(XMLHttpRequest, data) {
+											console.log("更新该题失败");
+										}
+									});
+								}
+							});
+
+						},
+						components:{
+								//题库引导
+					    		'guideStudent':{
+					    			data:function(){
+					    				return {
+					    					flag:1, //1筛选2列表3换一批4下棋 5答对 6 收藏
+					    					src:'',
+					    				}
+					    			},
+					    			methods:{
+					    				tab:function(){
+							    			this.flag ++;
+							    			vm.flag = this.flag
+							    		},
+							    		anXiaotian:function(){
+							    			anXiaotian()
+							    		}
+					    			},
+					    			mounted:function(){
+					    				var $this = this
+					    				$('.btmBox').height($('body').height() - $('body').width()-document.documentElement.offsetWidth/7.5*0.8)
+										anXiaotian = $('.flag1').comeOn({
+											anTime:1500
+										})
+										setTimeout(function(){
+											document.location.href = "myschema://go?a=301"; //点这里来选题吧
+										},2500)
+										
+					    			},
+					    			watch:{
+					    				flag:function(val){
+//					    					$('#voicePrompt')[0].pause()
+//					    					setTimeout(function(){
+//												$('#voicePrompt').attr('src','music/guide/guideStudent/optChess/flag'+val+'.mp3')
+//											},1200)
+											console.log(val)
+											switch (val){
+												case 2: //引导换页
+													this.anXiaotian();//销毁
+													anXiaotian = $('.flag1').comeOn({
+														start:94,
+														end:107,
+														anTime:2000
+													})//重新执行
+													setTimeout(function(){
+														document.location.href = "myschema://go?a=302"; //点可以更换习题哦
+													},100)
+													break;
+												case 3: //引导下棋
+													this.anXiaotian();//销毁
+													anXiaotian = $('.flag1').comeOn({
+														start:1,
+														end:107,
+														anTime:2000
+													})//重新执行
+													setTimeout(function(){
+														document.location.href = "myschema://go?a=303"; //好啦，快让我们做道题试试
+													},2500)
+													break;
+												case 5: //太棒啦这是你答对的第一道题。。。
+													this.anXiaotian();//销毁
+													anXiaotian = $('.flag1').comeOn({
+														start:94,
+														end:107,
+														anTime:3000
+													});//重新执行
+													setTimeout(function(){
+														document.location.href = "myschema://go?a=304"; //太棒啦这是你答对的第一道题
+													},100)
+													vm.target = 1
+													break;
+												case 6: //引导收藏
+													this.anXiaotian();//销毁
+													anXiaotian = $('.flag1').comeOn({
+														start:94,
+														end:107,
+														anTime:3000
+													});//重新执行
+													setTimeout(function(){
+														document.location.href = "myschema://go?a=305"; //点击这里可以将选中的习题收藏哦
+													},100)
+													vm.target = 1
+													break;
+												case 7: //刚才收藏习题去哪儿了、、、
+													this.anXiaotian();//销毁
+													anXiaotian = $('.flag1').comeOn({
+														start:1,
+														end:107,
+														anTime:4000
+													});//重新执行
+													setTimeout(function(){
+														document.location.href = "myschema://go?a=306"; //刚才收藏的习题去哪儿了，我们去找找吧
+													},2500)
+													vm.target = 1
+													break;
+												case 8: //题库引导结束，跳转首页
+													this.anXiaotian();//销毁
+													document.location.href = "myschema://go?a=307";
+													break;
+											};
+					    				},
+					    				aflag:function(val){
+					    					if(this.flag==3&&val==4){
+					    						console.log('555',val)
+					    						this.flag = val
+					    					}
+					    				}
+					    				
+					    			},
+					    			props:['aflag'],
+					    			template:'#guideStudent'
+					    		}
+							}
+					})
+
+				})
+			})
+		</script>
+	</body>
+
+</html>

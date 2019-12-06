@@ -1,0 +1,423 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@mipmap/main_bg">
+
+    <TextView
+        android:id="@+id/main_message"
+        android:layout_width="@dimen/dp_28"
+        android:layout_height="@dimen/dp_28"
+        android:layout_marginStart="@dimen/dp_16"
+        android:layout_marginTop="@dimen/dp_11"
+        android:background="@mipmap/main_message" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/dp_30"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/dp_11"
+        android:text="个人中心"
+        android:gravity="center"
+        android:textColor="@color/white"
+        android:textSize="@dimen/sp_16" />
+
+    <TextView
+        android:id="@+id/main_set"
+        android:layout_width="@dimen/dp_28"
+        android:layout_height="@dimen/dp_28"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="@dimen/dp_11"
+        android:layout_marginEnd="@dimen/dp_17"
+        android:background="@mipmap/main_set" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="@dimen/dp_50"
+        android:layout_marginBottom="@dimen/dp_50"
+        android:overScrollMode="never"
+        android:scrollbars="none">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:focusable="true"
+            android:focusableInTouchMode="true">
+
+            <android.support.constraint.ConstraintLayout
+                android:id="@+id/sigle_infor"
+                android:layout_width="@dimen/dp_330"
+                android:layout_height="@dimen/dp_130"
+                android:layout_centerHorizontal="true"
+                android:background="@mipmap/main_middle_top">
+
+                <ImageView
+                    android:id="@+id/personal_head"
+                    android:layout_width="@dimen/dp_50"
+                    android:layout_height="@dimen/dp_50"
+                    android:layout_marginStart="@dimen/dp_26"
+                    android:layout_marginTop="@dimen/dp_22"
+                    android:src="@mipmap/bg2"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <ImageView
+                    android:id="@+id/personal_update_headview"
+                    android:layout_width="@dimen/dp_25"
+                    android:layout_height="@dimen/dp_25"
+                    android:layout_marginStart="@dimen/dp_35"
+                    android:layout_marginTop="@dimen/dp_35"
+                    android:src="@mipmap/personal_head_modify"
+                    app:layout_constraintLeft_toLeftOf="@+id/personal_head"
+                    app:layout_constraintTop_toTopOf="@+id/personal_head" />
+
+                <TextView
+                    android:id="@+id/personal_username"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/dp_19"
+                    android:layout_marginTop="@dimen/dp_16"
+                    android:textColor="@color/color_d05701"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    app:layout_constraintLeft_toRightOf="@+id/personal_head"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/level_number"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:maxLines="1"
+                    android:textColor="@color/color_d05701"
+                    android:textSize="12sp"
+                    app:layout_constraintLeft_toLeftOf="@+id/personal_username"
+                    app:layout_constraintTop_toBottomOf="@+id/personal_username" />
+
+                <TextView
+                    android:id="@+id/personal_deadline"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/color_d05701"
+                    android:textSize="12sp"
+                    app:layout_constraintLeft_toLeftOf="@+id/level_number"
+                    app:layout_constraintTop_toBottomOf="@+id/level_number" />
+
+                <Button
+                    android:id="@+id/modified_data"
+                    android:layout_width="@dimen/dp_79"
+                    android:layout_height="@dimen/dp_31"
+                    android:background="@mipmap/main_modified_data"
+                    android:text="修改资料"
+                    android:textColor="@color/color_105065"
+                    android:textSize="13sp"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintLeft_toRightOf="@+id/personal_head"
+                    app:layout_constraintTop_toBottomOf="@+id/personal_deadline" />
+
+                <Button
+                    android:id="@+id/personal_center_pay"
+                    android:layout_width="@dimen/dp_79"
+                    android:layout_height="@dimen/dp_29"
+                    android:layout_marginStart="@dimen/dp_36"
+                    android:background="@mipmap/personal_center_pay"
+                    android:text="立即续费"
+                    android:textColor="@color/color_4c6809"
+                    android:textSize="13sp"
+                    android:textStyle="bold"
+                    app:layout_constraintLeft_toRightOf="@+id/modified_data"
+                    app:layout_constraintTop_toTopOf="@+id/modified_data" />
+
+            </android.support.constraint.ConstraintLayout>
+
+            <android.support.constraint.ConstraintLayout
+                android:id="@+id/personal_levels"
+                android:layout_width="@dimen/dp_334"
+                android:layout_height="@dimen/dp_340"
+                android:layout_below="@+id/sigle_infor"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="@dimen/dp_12"
+                android:orientation="vertical">
+
+                <com.xswq.chess.myapplication.customview.NoScrollViewPager
+                    android:id="@+id/personal_viewpager"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="@dimen/dp_27"
+                    android:background="@mipmap/main_middle_image"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/personal_tablayout" />
+
+                <android.support.design.widget.TabLayout
+                    android:id="@+id/personal_tablayout"
+                    android:layout_width="@dimen/dp_334"
+                    android:layout_height="@dimen/dp_35"
+                    android:layout_gravity="center"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:tabBackground="@drawable/main_middle_tab_bg_selector"
+                    app:tabIndicatorHeight="@dimen/dp_0"
+                    app:tabMaxWidth="@dimen/dp_140"
+                    app:tabSelectedTextColor="@color/color_ad4106"
+                    app:tabTextColor="@color/color_0505ff"
+                    app:xTabTextSize="15sp" />
+            </android.support.constraint.ConstraintLayout>
+
+            <android.support.constraint.ConstraintLayout
+                android:id="@+id/personal_achievement_infor"
+                android:layout_width="@dimen/dp_340"
+                android:layout_height="@dimen/dp_106"
+                android:layout_below="@+id/personal_levels"
+                android:layout_centerHorizontal="true"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="@dimen/dp_38"
+                android:background="@mipmap/personal_achievement_bg"
+                android:gravity="center_vertical|center_horizontal">
+
+                <ImageView
+                    android:id="@+id/personal_chess_Champion2"
+                    android:layout_width="@dimen/dp_67"
+                    android:layout_height="@dimen/dp_70"
+                    android:layout_marginStart="@dimen/dp_10"
+                    android:background="@mipmap/achievement_backgroud_bg"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <ImageView
+                    android:id="@+id/personal_celebrity2"
+                    android:layout_width="@dimen/dp_67"
+                    android:layout_height="@dimen/dp_70"
+                    android:layout_marginStart="@dimen/dp_5"
+                    android:background="@mipmap/achievement_backgroud_bg"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintLeft_toRightOf="@+id/personal_chess_Champion2"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <ImageView
+                    android:id="@+id/personal_starry_sky2"
+                    android:layout_width="@dimen/dp_67"
+                    android:layout_height="@dimen/dp_70"
+                    android:layout_marginStart="@dimen/dp_5"
+                    android:background="@mipmap/achievement_backgroud_bg"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintLeft_toRightOf="@+id/personal_celebrity2"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <ImageView
+                    android:id="@+id/personal_tianyuan2"
+                    android:layout_width="@dimen/dp_67"
+                    android:layout_height="@dimen/dp_70"
+                    android:layout_marginStart="@dimen/dp_5"
+                    android:background="@mipmap/achievement_backgroud_bg"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintLeft_toRightOf="@+id/personal_starry_sky2"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <ImageView
+                    android:id="@+id/personal_chess_Champion"
+                    android:layout_width="@dimen/dp_70"
+                    android:layout_height="@dimen/dp_68"
+                    android:layout_marginStart="@dimen/dp_5"
+                    android:visibility="invisible"
+                    app:layout_constraintBottom_toBottomOf="@+id/personal_chess_Champion2"
+                    app:layout_constraintLeft_toLeftOf="@+id/personal_chess_Champion2"
+                    app:layout_constraintRight_toRightOf="@+id/personal_chess_Champion2"
+                    app:layout_constraintTop_toTopOf="@+id/personal_chess_Champion2" />
+
+                <ImageView
+                    android:id="@+id/personal_celebrity"
+                    android:layout_width="@dimen/dp_70"
+                    android:layout_height="@dimen/dp_68"
+                    android:layout_marginStart="@dimen/dp_5"
+                    android:visibility="invisible"
+                    app:layout_constraintBottom_toBottomOf="@+id/personal_celebrity2"
+                    app:layout_constraintLeft_toLeftOf="@+id/personal_celebrity2"
+                    app:layout_constraintRight_toRightOf="@+id/personal_celebrity2"
+                    app:layout_constraintTop_toTopOf="@+id/personal_celebrity2" />
+
+                <ImageView
+                    android:id="@+id/personal_starry_sky"
+                    android:layout_width="@dimen/dp_70"
+                    android:layout_height="@dimen/dp_68"
+                    android:layout_marginStart="@dimen/dp_5"
+                    android:visibility="invisible"
+                    app:layout_constraintBottom_toBottomOf="@+id/personal_starry_sky2"
+                    app:layout_constraintLeft_toLeftOf="@+id/personal_starry_sky2"
+                    app:layout_constraintRight_toRightOf="@+id/personal_starry_sky2"
+                    app:layout_constraintTop_toTopOf="@+id/personal_starry_sky2" />
+
+                <ImageView
+                    android:id="@+id/personal_tianyuan"
+                    android:layout_width="@dimen/dp_70"
+                    android:layout_height="@dimen/dp_68"
+                    android:layout_marginStart="@dimen/dp_5"
+                    android:visibility="invisible"
+                    app:layout_constraintBottom_toBottomOf="@+id/personal_tianyuan2"
+                    app:layout_constraintLeft_toLeftOf="@+id/personal_tianyuan2"
+                    app:layout_constraintRight_toRightOf="@+id/personal_tianyuan2"
+                    app:layout_constraintTop_toTopOf="@+id/personal_tianyuan2" />
+
+
+                <Button
+                    android:id="@+id/personal_see_all"
+                    android:layout_width="@dimen/dp_18"
+                    android:layout_height="@dimen/dp_28"
+                    android:layout_marginEnd="@dimen/dp_10"
+                    android:background="@mipmap/personal_achievement_button"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintLeft_toRightOf="@+id/personal_tianyuan"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+            </android.support.constraint.ConstraintLayout>
+
+            <ImageView
+                android:layout_width="@dimen/dp_150"
+                android:layout_height="@dimen/dp_36"
+                android:layout_below="@+id/personal_levels"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="@dimen/dp_18"
+                android:gravity="center_horizontal"
+                android:src="@mipmap/personal_achievement" />
+
+            <android.support.constraint.ConstraintLayout
+                android:id="@+id/personal_achievement_shengjiang"
+                android:layout_width="@dimen/dp_330"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/personal_achievement_infor"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="@dimen/dp_40"
+                android:background="@mipmap/main_middle_bottom">
+
+                <GridView
+                    android:id="@+id/personal_chess"
+                    android:layout_width="@dimen/dp_324"
+                    android:layout_height="@dimen/dp_64"
+                    android:layout_marginTop="@dimen/dp_26"
+                    android:gravity="center"
+                    android:horizontalSpacing="@dimen/dp_6"
+                    android:numColumns="10"
+                    android:paddingStart="@dimen/dp_5"
+                    android:paddingEnd="@dimen/dp_5"
+                    android:verticalSpacing="@dimen/dp_4"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <ImageView
+                    android:id="@+id/text_image_bg"
+                    android:layout_width="@dimen/dp_306"
+                    android:layout_height="@dimen/dp_30"
+                    android:background="@drawable/textview_round_border"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/personal_chess" />
+
+                <TextView
+                    android:id="@+id/text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="共胜 "
+                    android:textColor="@color/color_0333a6"
+                    android:textSize="14sp"
+                    app:layout_constraintBottom_toBottomOf="@+id/text_image_bg"
+                    app:layout_constraintHorizontal_chainStyle="packed"
+                    app:layout_constraintLeft_toLeftOf="@+id/text_image_bg"
+                    app:layout_constraintRight_toLeftOf="@+id/text_number"
+                    app:layout_constraintTop_toTopOf="@+id/text_image_bg" />
+
+                <TextView
+                    android:id="@+id/text_number"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="0"
+                    android:textColor="@color/color_dd3334"
+                    android:textSize="14sp"
+                    app:layout_constraintBottom_toBottomOf="@+id/text"
+                    app:layout_constraintLeft_toRightOf="@+id/text"
+                    app:layout_constraintRight_toLeftOf="@+id/text2" />
+
+                <TextView
+                    android:id="@+id/text2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text=" 局,负 "
+                    android:textColor="@color/color_0333a6"
+                    android:textSize="14sp"
+                    app:layout_constraintBottom_toBottomOf="@+id/text"
+                    app:layout_constraintLeft_toRightOf="@+id/text_number"
+                    app:layout_constraintRight_toLeftOf="@+id/text_number2" />
+
+                <TextView
+                    android:id="@+id/text_number2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="0"
+                    android:textColor="@color/color_dd3334"
+                    android:textSize="14sp"
+                    app:layout_constraintBottom_toBottomOf="@+id/text"
+                    app:layout_constraintLeft_toRightOf="@+id/text2"
+                    app:layout_constraintRight_toLeftOf="@+id/text3" />
+
+                <TextView
+                    android:id="@+id/text3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text=" 局,胜率 "
+                    android:textColor="@color/color_0333a6"
+                    android:textSize="14sp"
+                    app:layout_constraintBottom_toBottomOf="@+id/text"
+                    app:layout_constraintLeft_toRightOf="@+id/text_number2"
+                    app:layout_constraintRight_toLeftOf="@+id/text_number3" />
+
+                <TextView
+                    android:id="@+id/text_number3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="0"
+                    android:textColor="@color/color_dd3334"
+                    android:textSize="14sp"
+                    app:layout_constraintBottom_toBottomOf="@+id/text"
+                    app:layout_constraintLeft_toRightOf="@+id/text3"
+                    app:layout_constraintRight_toRightOf="@+id/text_image_bg" />
+
+                <Button
+                    android:id="@+id/personal_historical_match"
+                    android:layout_width="@dimen/dp_68"
+                    android:layout_height="@dimen/dp_26"
+                    android:layout_marginTop="@dimen/dp_8"
+                    android:background="@mipmap/personal_historical_match"
+                    android:text="@string/history_match"
+                    android:textColor="@color/white"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/text_image_bg"
+                    android:layout_marginBottom="@dimen/dp_20"
+                    app:layout_constraintBottom_toBottomOf="parent"/>
+
+            </android.support.constraint.ConstraintLayout>
+
+            <ImageView
+                android:layout_width="@dimen/dp_150"
+                android:layout_height="@dimen/dp_36"
+                android:layout_below="@+id/personal_achievement_infor"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="@dimen/dp_20"
+                android:gravity="center_horizontal"
+                android:src="@mipmap/personal_newly_rise_fall" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp_10"
+                android:layout_below="@+id/personal_achievement_shengjiang"
+                android:layout_marginTop="@dimen/dp_20" />
+
+        </RelativeLayout>
+
+    </ScrollView>
+
+</RelativeLayout>

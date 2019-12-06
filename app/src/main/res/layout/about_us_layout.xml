@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <include layout="@layout/login_title_layout" />
+
+    <RelativeLayout
+        android:layout_width="@dimen/dp_332"
+        android:layout_height="@dimen/dp_422"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/dp_100"
+        android:background="@mipmap/about_us_bg">
+
+        <ScrollView
+            android:layout_width="@dimen/dp_332"
+            android:layout_height="@dimen/dp_290"
+            android:layout_marginTop="@dimen/dp_50">
+
+            <RelativeLayout
+                android:layout_width="@dimen/dp_332"
+                android:layout_height="@dimen/dp_300"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:gravity="center_horizontal">
+
+                <TextView
+                    android:id="@+id/aboutus_content_id1"
+                    android:layout_width="@dimen/dp_280"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="@dimen/dp_10"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/sp_13" />
+
+                <TextView
+                    android:id="@+id/aboutus_content_id2"
+                    android:layout_width="@dimen/dp_280"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/aboutus_content_id1"
+                    android:layout_marginTop="@dimen/dp_10"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/sp_13" />
+
+                <TextView
+                    android:id="@+id/aboutus_content_id3"
+                    android:layout_width="@dimen/dp_280"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/aboutus_content_id2"
+                    android:layout_marginTop="@dimen/dp_10"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/sp_13" />
+
+                <TextView
+                    android:id="@+id/aboutus_content_id4"
+                    android:layout_width="@dimen/dp_280"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/aboutus_content_id3"
+                    android:layout_marginTop="@dimen/dp_10"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/sp_13" />
+            </RelativeLayout>
+        </ScrollView>
+    </RelativeLayout>
+
+    <ImageView
+        android:id="@+id/about_us_title"
+        android:layout_width="@dimen/dp_232"
+        android:layout_height="@dimen/dp_56"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="73dp"
+        android:src="@mipmap/about_us" />
+
+    <ImageView
+        android:layout_width="@dimen/dp_72"
+        android:layout_height="@dimen/dp_72"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="100dp"
+        android:src="@mipmap/public_number" />
+
+    <TextView
+        android:layout_width="@dimen/dp_198"
+        android:layout_height="wrap_content"
+        android:layout_alignEnd="@+id/about_us_title"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="52dp"
+        android:text="@string/servicephone"
+        android:textColor="@color/white"
+        android:textSize="@dimen/sp_15" />
+</RelativeLayout>

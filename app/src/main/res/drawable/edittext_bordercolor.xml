@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<shape xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <!-- view背景色 -->
+
+    <solid android:color="@color/exittext_contentbg" />
+
+    <!-- 边框颜色 宽度 -->
+
+    <stroke
+
+        android:width="2dip"
+
+        android:color= "@color/light_blue" />
+
+    <!-- 边框圆角 -->
+
+    <corners
+        android:bottomLeftRadius="23dp"
+
+        android:topLeftRadius="23dp"
+
+        android:bottomRightRadius="23dp"
+
+        android:topRightRadius="23dp" />
+
+
+
+</shape>

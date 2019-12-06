@@ -1,0 +1,117 @@
+/*  */
+.skin1 .chessroad .black{
+	background: url(black.svg) no-repeat center/80%;
+}
+
+.skin1 .chessroad .black.black_1{
+	background: url(black_1.png) no-repeat center/80%;
+}
+.skin1 .chessroad .black.black_2{
+	background: url(black_2.png) no-repeat center/80%;
+}
+.skin1 .chessroad .black.black_3{
+	background: url(black_3.png) no-repeat center/80%;
+}
+.skin1 .chessroad .black.black_4{
+	background: url(black_4.png) no-repeat center/80%;
+}
+
+.skin1 .chessroad .white{
+	background: url(white.svg) no-repeat center/80%;
+}
+.skin1 .chessroad .white.white_1{
+	background: url(white_1.png) no-repeat center/80%;
+}
+.skin1 .chessroad .white.white_2{
+	background: url(white_2.png) no-repeat center/80%;
+}
+.skin1 .chessroad .white.white_3{
+	background: url(white_3.png) no-repeat center/80%;
+}
+.skin1 .chessroad .white.white_4{
+	background: url(white_4.png) no-repeat center/80%;
+}
+.skin1 .chessroad .AC{
+	background: url(active.svg) no-repeat center/50%;
+}
+
+.skin1 .chessroad .shuqi{
+	width: 100%;
+	height: 100%;
+	background: url(shuqi.png) no-repeat center/80%;
+}
+.skin1 .chessroad .guanzi{
+	width: 100%;
+	height: 100%;
+	background: url(guanzi.png) no-repeat center/80%;
+}
+.skin1 .chessroad .buju{
+	width: 100%;
+	height: 100%;
+	background: url(buju.png) no-repeat center/80%;
+}
+/* 星位样式 */
+.skin1 .xingwei:after {
+    width: 25%;
+    height: 25%;
+    content: '';
+    display: block;
+    background: black;
+    position: absolute;
+    margin: auto;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    border-radius: 50%;
+}
+/* 形式判断黑棋样式 */
+.skin1 .jugementB {
+    width: 50%;
+    height: 50%;
+    background: black;
+    margin: auto;
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    z-index: 3;
+    box-shadow: 0 0 2px #fff;
+}
+/* 形式判断白棋样式 */
+.skin1 .jugementW {
+    width: 50%;
+    height: 50%;
+    background: white;
+    margin: auto;
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    z-index: 3;
+    box-shadow: 0 0 2px #000;
+}
+/* AI支招 样式 */
+.skin1 .aiHelper{
+	width: 80%;
+	height: 80%;
+	margin: auto;
+	position: absolute;
+	top: 0;
+	left: 0;
+	bottom: 0;
+	right: 0;
+	z-index: 0;
+	border-radius: 50%;
+}
+.skin1 .aiHelper.red{
+	background: red;
+}
+.skin1 .aiHelper.yellow{
+	background: yellow;
+}
+.skin1 .aiHelper.gray{
+	background: gray;
+}

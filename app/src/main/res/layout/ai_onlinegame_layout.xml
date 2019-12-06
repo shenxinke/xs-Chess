@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <include layout="@layout/login_title_layout" />
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_500"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="@dimen/dp_70">
+
+        <TextView
+            android:id="@+id/textView1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_5"
+            android:text="@string/onlime_type0"
+            app:layout_constraintLeft_toLeftOf="@+id/imageView3"
+            app:layout_constraintRight_toRightOf="@+id/imageView3"
+            app:layout_constraintTop_toBottomOf="@+id/imageView3" />
+
+        <TextView
+            android:id="@+id/textView10"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/onlime_type9"
+            app:layout_constraintLeft_toLeftOf="@+id/imageView3"
+            app:layout_constraintRight_toRightOf="@+id/imageView3"
+            app:layout_constraintTop_toBottomOf="@+id/textView1" />
+
+        <ImageView
+            android:id="@+id/imageView3"
+            android:layout_width="@dimen/dp_102"
+            android:layout_height="@dimen/dp_117"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@mipmap/online_ai_init" />
+
+
+        <ImageView
+            android:id="@+id/imageView4"
+            android:layout_width="@dimen/dp_102"
+            android:layout_height="@dimen/dp_117"
+            android:layout_marginTop="@dimen/dp_10"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toLeftOf="@+id/imageView5"
+            app:layout_constraintTop_toBottomOf="@+id/textView10"
+            app:srcCompat="@mipmap/online_game_simple" />
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_5"
+            android:text="@string/onlime_type1"
+            app:layout_constraintLeft_toLeftOf="@+id/imageView4"
+            app:layout_constraintRight_toRightOf="@+id/imageView4"
+            app:layout_constraintTop_toBottomOf="@+id/imageView4" />
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/onlime_type5"
+            app:layout_constraintLeft_toLeftOf="@+id/imageView4"
+            app:layout_constraintRight_toRightOf="@+id/imageView4"
+            app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+        <ImageView
+            android:id="@+id/imageView5"
+            android:layout_width="@dimen/dp_102"
+            android:layout_height="@dimen/dp_117"
+            app:layout_constraintBottom_toBottomOf="@+id/imageView4"
+            app:layout_constraintLeft_toRightOf="@+id/imageView4"
+            app:layout_constraintRight_toRightOf="parent"
+            app:srcCompat="@mipmap/online_game_ordinary" />
+
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_5"
+            android:text="@string/onlime_type2"
+            app:layout_constraintLeft_toLeftOf="@+id/imageView5"
+            app:layout_constraintRight_toRightOf="@+id/imageView5"
+            app:layout_constraintTop_toBottomOf="@+id/imageView5" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/onlime_type6"
+            app:layout_constraintLeft_toLeftOf="@+id/imageView5"
+            app:layout_constraintRight_toRightOf="@+id/imageView5"
+            app:layout_constraintTop_toBottomOf="@+id/textView3" />
+
+
+        <ImageView
+            android:id="@+id/imageView6"
+            android:layout_width="@dimen/dp_102"
+            android:layout_height="@dimen/dp_117"
+            android:layout_marginTop="@dimen/dp_10"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toLeftOf="@+id/imageView7"
+            app:layout_constraintTop_toBottomOf="@+id/textView2"
+            app:srcCompat="@mipmap/online_game_hard" />
+
+        <TextView
+            android:id="@+id/textViewnormal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_5"
+            android:text="@string/onlime_type3"
+            app:layout_constraintLeft_toLeftOf="@+id/imageView6"
+            app:layout_constraintRight_toRightOf="@+id/imageView6"
+            app:layout_constraintTop_toBottomOf="@+id/imageView6" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/onlime_type7"
+            app:layout_constraintLeft_toLeftOf="@+id/imageView6"
+            app:layout_constraintRight_toRightOf="@+id/imageView6"
+            app:layout_constraintTop_toBottomOf="@+id/textViewnormal" />
+
+        <ImageView
+            android:id="@+id/imageView7"
+            android:layout_width="@dimen/dp_102"
+            android:layout_height="@dimen/dp_117"
+            app:layout_constraintBottom_toBottomOf="@+id/imageView6"
+            app:layout_constraintLeft_toRightOf="@+id/imageView6"
+            app:layout_constraintRight_toRightOf="parent"
+            app:srcCompat="@mipmap/online_game_very_hard" />
+
+
+        <TextView
+            android:id="@+id/textViewveyhard"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_5"
+            android:text="@string/onlime_type4"
+            app:layout_constraintLeft_toLeftOf="@+id/imageView7"
+            app:layout_constraintRight_toRightOf="@+id/imageView7"
+            app:layout_constraintTop_toBottomOf="@+id/imageView7" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/onlime_type8"
+            app:layout_constraintLeft_toLeftOf="@+id/imageView7"
+            app:layout_constraintRight_toRightOf="@+id/imageView7"
+            app:layout_constraintTop_toBottomOf="@+id/textViewveyhard" />
+
+
+    </android.support.constraint.ConstraintLayout>
+
+</RelativeLayout>

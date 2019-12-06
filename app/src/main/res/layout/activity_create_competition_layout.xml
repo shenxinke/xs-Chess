@@ -1,0 +1,247 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <include layout="@layout/login_title_layout" />
+
+    <ImageView
+        android:id="@+id/image_bg"
+        android:layout_width="@dimen/dp_330"
+        android:layout_height="@dimen/dp_421"
+        android:layout_marginBottom="@dimen/dp_147"
+        android:layout_marginLeft="@dimen/dp_15"
+        android:layout_marginRight="@dimen/dp_15"
+        android:layout_marginTop="@dimen/dp_50"
+        android:background="@mipmap/competition_management_bg"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/image_schedule"
+        android:layout_width="@dimen/dp_262"
+        android:layout_height="@dimen/dp_27"
+        android:layout_marginTop="@dimen/dp_41"
+        android:background="@mipmap/schedule_one"
+        app:layout_constraintLeft_toLeftOf="@+id/image_bg"
+        app:layout_constraintRight_toRightOf="@+id/image_bg"
+        app:layout_constraintTop_toTopOf="@+id/image_bg" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/dp_75"
+        android:layout_marginTop="@dimen/dp_8"
+        android:text="比赛信息"
+        android:textColor="@color/color_893000"
+        android:textSize="12sp"
+        app:layout_constraintRight_toLeftOf="@+id/introduce"
+        app:layout_constraintTop_toBottomOf="@+id/image_schedule" />
+
+    <TextView
+        android:id="@+id/introduce"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp_8"
+        android:text="比赛介绍"
+        android:textColor="@color/color_893000"
+        android:textSize="12sp"
+        app:layout_constraintLeft_toLeftOf="@+id/image_schedule"
+        app:layout_constraintRight_toRightOf="@+id/image_schedule"
+        app:layout_constraintTop_toBottomOf="@+id/image_schedule" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/dp_23"
+        android:layout_marginStart="@dimen/dp_75"
+        android:layout_marginTop="@dimen/dp_8"
+        android:text="设置组别"
+        android:textColor="@color/color_893000"
+        android:textSize="12sp"
+        app:layout_constraintLeft_toRightOf="@+id/introduce"
+        app:layout_constraintTop_toBottomOf="@+id/image_schedule" />
+
+    <TextView
+        android:id="@+id/text_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/dp_10"
+        android:layout_marginTop="@dimen/dp_55"
+        android:text="比赛名称:"
+        android:textColor="@color/color_0058b0"
+        android:textSize="14sp"
+        android:textStyle="bold"
+        app:layout_constraintLeft_toLeftOf="@+id/image_bg"
+        app:layout_constraintTop_toBottomOf="@+id/image_schedule" />
+
+    <EditText
+        android:id="@+id/edit_text_name"
+        android:layout_width="@dimen/dp_241"
+        android:layout_height="@dimen/dp_30"
+        android:background="@drawable/textview_round_border"
+        android:ellipsize="end"
+        android:hint="请输入比赛名称"
+        android:paddingStart="@dimen/dp_11"
+        android:paddingEnd="@dimen/dp_10"
+        android:singleLine="true"
+        android:textColor="@color/color_0058b0"
+        android:textColorHint="@color/color_0058b0"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="@+id/text_name"
+        app:layout_constraintLeft_toRightOf="@+id/text_name"
+        app:layout_constraintRight_toRightOf="@+id/image_bg"
+        app:layout_constraintTop_toTopOf="@+id/text_name" />
+
+    <TextView
+        android:id="@+id/text_pattern"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/dp_10"
+        android:layout_marginTop="@dimen/dp_30"
+        android:text="比赛模式:"
+        android:textColor="@color/color_0058b0"
+        android:textSize="14sp"
+        android:textStyle="bold"
+        app:layout_constraintLeft_toLeftOf="@+id/image_bg"
+        app:layout_constraintTop_toBottomOf="@+id/text_name" />
+
+    <com.xswq.chess.myapplication.customview.MaterialSpinner
+        android:id="@+id/edit_text_pattern"
+        android:layout_width="@dimen/dp_241"
+        android:layout_height="@dimen/dp_30"
+        android:background="@drawable/textview_round_border"
+        android:gravity="center_vertical"
+        android:paddingLeft="@dimen/dp_5"
+        android:spinnerMode="dropdown"
+        android:textColor="@color/color_0058b0"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="@+id/text_pattern"
+        app:layout_constraintLeft_toRightOf="@+id/text_pattern"
+        app:layout_constraintRight_toRightOf="@+id/image_bg"
+        app:layout_constraintTop_toTopOf="@+id/text_pattern"
+        app:ms_hint="请选择比赛模式"
+        app:ms_hint_color="@color/color_0058b0" />
+
+    <TextView
+        android:id="@+id/text_school"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/dp_10"
+        android:layout_marginTop="@dimen/dp_30"
+        android:text="邀请学校:"
+        android:textColor="@color/color_0058b0"
+        android:textSize="14sp"
+        android:textStyle="bold"
+        app:layout_constraintLeft_toLeftOf="@+id/image_bg"
+        app:layout_constraintTop_toBottomOf="@+id/text_pattern" />
+
+    <EditText
+        android:id="@+id/edit_text_school"
+        android:layout_width="@dimen/dp_241"
+        android:layout_height="@dimen/dp_30"
+        android:background="@drawable/textview_round_border"
+        android:gravity="center_vertical"
+        android:paddingStart="@dimen/dp_10"
+        android:spinnerMode="dropdown"
+        android:textColor="@color/color_0058b0"
+        android:textSize="12sp"
+        android:textColorHint="@color/color_0058b0"
+        app:layout_constraintBottom_toBottomOf="@+id/text_school"
+        app:layout_constraintLeft_toRightOf="@+id/text_school"
+        app:layout_constraintRight_toRightOf="@+id/image_bg"
+        app:layout_constraintTop_toTopOf="@+id/text_school"
+        android:hint="请选择比赛学校" />
+
+    <TextView
+        android:id="@+id/text_start_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/dp_10"
+        android:layout_marginTop="@dimen/dp_25"
+        android:text="报名开始时间:"
+        android:textColor="@color/color_0058b0"
+        android:textSize="14sp"
+        android:textStyle="bold"
+        app:layout_constraintLeft_toLeftOf="@+id/image_bg"
+        app:layout_constraintTop_toBottomOf="@+id/edit_text_school" />
+
+    <TextView
+        android:id="@+id/edit_text_start_time"
+        android:layout_width="@dimen/dp_214"
+        android:layout_height="@dimen/dp_30"
+        android:background="@drawable/textview_round_border"
+        android:gravity="center_vertical"
+        android:paddingStart="@dimen/dp_11"
+        android:text="请选择报名开始时间"
+        android:textColor="@color/color_0058b0"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="@+id/text_start_time"
+        app:layout_constraintLeft_toRightOf="@+id/text_start_time"
+        app:layout_constraintRight_toRightOf="@+id/image_bg"
+        app:layout_constraintTop_toTopOf="@+id/text_start_time" />
+
+    <ImageView
+        android:layout_width="@dimen/dp_14"
+        android:layout_height="@dimen/dp_9"
+        android:layout_marginEnd="@dimen/dp_11"
+        android:background="@mipmap/arrows_down"
+        app:layout_constraintBottom_toBottomOf="@+id/edit_text_start_time"
+        app:layout_constraintRight_toRightOf="@+id/edit_text_start_time"
+        app:layout_constraintTop_toTopOf="@+id/edit_text_start_time" />
+
+
+    <TextView
+        android:id="@+id/text_end_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/dp_10"
+        android:layout_marginTop="@dimen/dp_30"
+        android:text="报名结束时间:"
+        android:textColor="@color/color_0058b0"
+        android:textSize="14sp"
+        android:textStyle="bold"
+        app:layout_constraintLeft_toLeftOf="@+id/image_bg"
+        app:layout_constraintTop_toBottomOf="@+id/text_start_time" />
+
+
+    <TextView
+        android:id="@+id/edit_text_end_time"
+        android:layout_width="@dimen/dp_214"
+        android:layout_height="@dimen/dp_30"
+        android:background="@drawable/textview_round_border"
+        android:gravity="center_vertical"
+        android:paddingStart="@dimen/dp_11"
+        android:text="请选择报名结束时间"
+        android:textColor="@color/color_0058b0"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="@+id/text_end_time"
+        app:layout_constraintLeft_toRightOf="@+id/text_end_time"
+        app:layout_constraintRight_toRightOf="@+id/image_bg"
+        app:layout_constraintTop_toTopOf="@+id/text_end_time" />
+
+    <ImageView
+        android:layout_width="@dimen/dp_14"
+        android:layout_height="@dimen/dp_9"
+        android:layout_marginEnd="@dimen/dp_11"
+        android:background="@mipmap/arrows_down"
+        app:layout_constraintBottom_toBottomOf="@+id/edit_text_end_time"
+        app:layout_constraintRight_toRightOf="@+id/edit_text_end_time"
+        app:layout_constraintTop_toTopOf="@+id/edit_text_end_time" />
+
+    <Button
+        android:id="@+id/button_next"
+        android:layout_width="@dimen/dp_112"
+        android:layout_height="@dimen/dp_36"
+        android:background="@mipmap/setup_btn"
+        android:text="下一步"
+        android:textColor="@color/color_cf5003"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/image_bg"
+        app:layout_constraintLeft_toLeftOf="@+id/image_bg"
+        app:layout_constraintRight_toRightOf="@+id/image_bg"
+        app:layout_constraintTop_toBottomOf="@+id/edit_text_end_time" />
+</android.support.constraint.ConstraintLayout>

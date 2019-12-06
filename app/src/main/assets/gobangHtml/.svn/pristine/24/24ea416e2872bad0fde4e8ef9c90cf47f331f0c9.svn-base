@@ -1,0 +1,997 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="css/lib/public.css"/>
+		<link rel="stylesheet" type="text/css" href="libs/mint/style.css"/>
+		<link rel="stylesheet" type="text/css" href="css/custom/webStyle.css"/>
+		<script src="libs/jquery/jquery.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/gobang/common.js" type="text/javascript" charset="utf-8"></script>
+		<link rel="stylesheet" type="text/css" href="libs/laydate/theme/default/laydate.css" />
+		<script type="text/javascript" src="libs/laydate/laydate.js"></script>
+		<script src="js/lib/config.js" type="text/javascript" charset="utf-8"></script>
+		<link rel="stylesheet" type="text/css" href="libs/layer/layer-v3.1.1/layer/theme/default/layer.css"/>
+		<script src="libs/layer/layer-v3.1.1/layer/layer.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/lib/rem.js" type="text/javascript" charset="utf-8"></script>
+		<script src="libs/vuejs/vue.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript" src="libs/vuejs/vue-router.min.js"></script>
+		<script src="libs/mint/index.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript" src="libs/echarts/echarts.common.min.js"></script>
+		
+		<style type="text/css">
+			.mint-loadmore-text{
+				font-size: 0.3rem;
+			}
+			
+			.mint-switch-core{
+				height: 28px;
+			}
+			.mint-switch-core::before {
+			    height: 25px;
+			}
+			.mint-switch-core::after {
+			    height: 25px;
+			}
+			
+			/*路由切换动画*/
+			.slide-right-enter-active,
+			.slide-right-leave-active,
+			.slide-left-enter-active,
+			.slide-left-leave-active {
+			  transition: 300ms;
+			  position: absolute;
+			}
+			.slide-right-enter {
+			 
+			  transform: translate3d(-100%, 0, 0);
+			}
+			.slide-right-leave-active {
+			 
+			  transform: translate3d(100%, 0, 0);
+			}
+			.slide-left-enter {
+			 
+			  transform: translate3d(100%, 0, 0);
+			}
+			.slide-left-leave-active {
+			 
+			  transform: translate3d(-100%, 0, 0);
+			}
+			
+			
+			
+			
+			
+			table tbody {
+				display:block;
+				height: calc(100% - 1.1rem);
+				overflow-y:scroll;
+			}
+			table thead, tbody tr {
+				display:table;
+				width:100%;
+				table-layout:fixed;
+			}
+			
+		</style>
+	</head>
+	<body class="bg_xwbg">
+		<section class="ha100 rel" id="app">
+			<transition :name='viewAnimate'>
+				<router-view :option='option'></router-view>
+			</transition>
+		</section>
+		<!--学务管理-->
+		<template id="study">
+			<section class="wa100 ha100">
+				<header class="h125 df ai-c jc-c rel">
+					<span class="fs36 cf">学务管理</span>
+					<div class="pl30 pr30 df ai-c jc-sb abs wa100 ha100 tp0 lt0">
+						<button onclick='document.location.href = "myschema://go?a=1"' class="w63 h63 btn-n bg_cmfh"></button>
+						<button class="w97 btn-n h60 bg_cmsearch" @click='getList()'></button>
+					</div>
+				</header>
+				<div class="fs20 w660 m0a df ai-c mb10">
+					<span class="cf w120 tl fs26">切换总园</span>
+					<select class="w520 h60 br50 pl10 pr10 bgf" v-model='overallId' @change='getBranch(overallId)'>
+						<option v-for="x in overall" :value='x.ID' v-text='x.customerName'></option>
+					</select>
+				</div>
+				<div class="fs20 w660 m0a df ai-c mb10">
+					<span class="cf w120 tl fs26">切换分园</span>
+					<select class="w520 h60 br50 pl10 pr10 bgf" v-model='branchId'>
+						<option v-for="p in branch" :value='p.ID' v-text='p.customerName'></option>
+					</select>
+				</div>
+				
+				
+				<!-- <div class="fs20 w660 m0a df ai-c mb10">
+					<span class="cf w120 tl fs26">班级名称</span>
+					<input class="w520 h60 bffc br30 pl15 pr15 c0058b0" type="text" name="" v-model='className' />
+				</div> -->
+				<div class="df ai-c w660 m0a pb13">
+					<span class="cf w120 tl fs26">开始</span> 
+					<div class="rel">
+						<img src="img/classManage/xw_date.png" class="w30 h34 abs rt20 tp10">
+						<input type="text" class="pr30 mr10 w220 h60 bffc br30 df ai-c bgf fs24 times c0058b0" id="stTime">
+					</div>
+					<span class="cf tc fs26 ml10">结束</span> 
+					<div class="rel">
+						<img src="img/classManage/xw_date.png" class="w30 h34 abs rt20 tp10">
+						<input type="text" class="pr30 ml10 w220 h60 bffc br30 df ai-c bgf fs24 times c0058b0" id="endTime">
+					</div>
+				</div>
+				<div class="hca8 w688 bg_cmlist m0a mt20">
+					<div class="ha95 oa pt30 pb10">
+						<mt-loadmore
+							:auto-fill='false'
+						 	:top-method="loadTop"  
+						 	:bottom-method="loadBottom"
+						 	:bottom-all-loaded="allLoaded"
+						 	ref="loadmore">
+						    <ul class="w646 m0a">
+						    	<li class="mt15 br20 bgf pt15 pb15 pl25 pr25 df ai-c jc-sa fw-w" v-for="(x, index) in list">
+						    		<div class="w646 ha100 df ac-c fw-w">
+						    			<p class="wa100 lh40 fwb pt10 pb10">
+						    				<span class="c3 fs26">{{x.className}}</span>
+						    				<span class="w170 h30 br14 b3aa cf pr10 pl10 fs22">棋力范围:{{ x.minLevel|leve}}~{{ x.maxLevel|leve}}</span>
+						    			</p>
+						    			<p class="fs27 c6 wa100 lh40 df jc-sb pt10 pb10">
+						    				<span class="">负责老师: {{x.userName}}</span>
+						    				<span class="">创建时间:{{x.createTime | retain('yyyy-MM-dd')}}</span>
+						    			</p>
+						    			<p class="fs27 c6 wa100 lh40 pt10 pb10">学生数:<span class=" ml10">{{x.peopleNum}}</span></p>
+						    			<p class="fs27 c6 wa100 lh40 df jc-sb pt10 pb10">
+											<router-link :to="{path:'/stuDetail',query: {id:x.id,branchNo:x.organizationNo}}">
+												<button class="w120 h50 btn-n xw_xssj" :style={'color':'#0967a9'}>学生数据</button>
+											</router-link>  
+											
+											<button @click="tab('addStudent','slide-left','?classId='+x.id)" class="w120 h50 btn-n xw_xsgl" :style={'color':'#a53f02'} v-if='dealerRank!==1'>学生管理</button>
+											
+											<button class="w120 h50 btn-n xw_bjbj" @click="tab('editorClass','slide-left','?classId='+x.id+'&className='+x.className)" :style={'color':'#026902'}>编辑班级</button>
+											
+											
+											<button @click="delClass(x.id,x.peopleNum)" class="w120 h50 btn-n xw_sc" :style={'color':'#aa1466'}>删除</button>
+															
+						    			</p>
+						    		</div>
+						    	</li>
+						    	<li v-if='allLoaded' class="wa100 h80 df ai-c jc-c c3 fs24">已加载完全部数据</li>
+						    </ul>
+					    </mt-loadmore>
+					   <div v-if='allLoaded && list.length<=0' class="wa100 tc pt50">
+					     	<img class="h600" src="img/ab_help/qm.png"/>
+					     	<div class="wa100 tc pt15 c6">
+					     		暂无数据
+					     	</div>
+					     </div>
+					</div>
+				</div>
+			</section>
+		</template>
+
+		<!--学生数据-->
+		<template id="stuDetail">
+			<section class="wa100 ha100">
+				<header class="h125 df ai-c jc-c rel">
+					<span class="fs36 cf">学生数据</span>
+					<div class="pl30 pr30 df ai-c jc-sb abs wa100 ha100 tp0 lt0">
+						<button @click="tab('study')" class="w63 h63 btn-n bg_cmfh"></button>
+						
+						<!-- <button class="w170 h55 btn-n fs30 cab4402 bg_cmaddclass" @click="tab('add-teacher',tabBranchSchool,'slide-left')">添加老师</button> -->
+					</div>
+				</header>
+				
+				<div class="pt20 pl25 pr25 df ai-c jc-sb fs24 mb30">
+					<span class="cf">切换班级</span>
+					<select class="w500 h50 br50 pl10 pr10 bgf" v-model='overallId' @change='getList()'>
+						<option v-for="x in overall" :value='x.ID' v-text='x.ClassName'></option>
+					</select>
+				</div>
+				
+				
+				
+				<div class="hca9 w688 bg_cmlist m0a pt30">
+
+					<div class="ha100 oa">
+
+						<table class="tc w646 ha100 m0a" border="0" cellspacing="0" cellpadding="0">
+							<thead>
+								<tr class="bgffe47a h80">
+									<th>学生姓名</th>
+									<th>棋力级别</th>
+									<th>做题数量</th>
+									<th>下棋数量</th>
+									<th>完成作业次数</th>
+								</tr>
+							</thead>
+							
+							<tbody>
+								<tr v-for="(item,index) in list" class="h80 bgf">
+									<td v-text='item.UserName' >Data</td>
+									<td>{{item.Level|leve}}</td>
+									<td v-text="item.questionNum||0"></td>
+									<td v-text="item.chessNum||0"></td>
+									<td v-text="item.completeNum||0"></td>
+								</tr>
+							</tbody>
+						</table>
+						
+						
+						
+						
+						<!-- <ul class="w646 m0a">
+							<li class="mt15 br20 bgf pt15 pb15 pl25 pr25 df ai-c jc-sa fw-w" v-for="(item,index) in list">
+								<div class="wa100 ha100 df ac-c fw-w">
+									<p class="fs27 wa100 lh40  mb20">
+										<span>学生姓名：</span>
+										<span v-text='item.UserName'>1</span>
+									</p>
+									
+									<div class="wa50">
+										<p class="fs23 wa100 lh40 c6" >
+											<span>棋力级别：</span>
+											<span>{{item.Level|leve}}</span>
+										</p>
+										<p class="fs23 w200 lh40 c6">
+											<span>做题数量：</span>
+											<span  v-text="item.questionNum||0">0</span>
+										</p>
+									</div>
+									<div class="wa50">
+										<p class="fs23 wa100 lh40 c6" >
+											<span>下棋数量：</span>
+											<span  v-text="item.chessNum||0">0</span>
+										</p>
+										<p class="fs23 wa100 lh40 c6" >
+											<span>完成作业数：</span>
+											<span v-text="item.completeNum||0"></span>
+										</p>
+									</div>
+									
+								</div>
+							</li>
+							<li v-if='allLoaded' class="wa100 h80 df ai-c jc-c c3 fs24">已加载完全部数据</li>
+						</ul>
+					    <div v-if='allLoaded && list.length<=0' class="wa100 tc pt50">
+					     	<img class="h600" src="img/ab_help/qm.png"/>
+					     	<div class="wa100 tc pt15 c6">
+					     		暂无数据
+					     	</div>
+					    </div> -->
+					</div>
+				</div>
+			</section>
+		</template>
+		
+		
+		
+		<!--编辑班级-->
+		<template id="editorClass">
+			<section class="wa100 ha100">
+				<header class="h125 df ai-c jc-c rel">
+					<span class="fs36 cf">编辑班级</span>
+					<div class="pl30 pr30 df ai-c jc-sb abs wa100 ha100 tp0 lt0">
+						<button @click="tab()" class="w63 h63 btn-n bg_cmfh"></button>
+					</div>
+				</header>
+				
+				<div class="df ai-c jc-sb pl60 pr60 pt20">
+					<span class="cf fs30">班级名称</span>
+					<input type="text" class="w477 h73 br37 pl30 pr30" v-model='className' placeholder="请输入班级名称">
+				</div>
+				<div class="tc pt80">
+					<button class="btn-n w107 h53 bg_cmyesbtn cab4402" @click="addClass">确定</button>
+				</div>
+			</section>
+		</template>
+		
+		<!--添加学生组件-->
+		<template id="addStudent">
+			<section class="wa100 ha100">
+				<header class="h125 df ai-c jc-c rel">
+					<span class="fs36 cf">添加学生</span>
+					<div class="pl30 pr30 df ai-c jc-sb abs wa100 ha100 tp0 lt0">
+						<button @click="tab('study')" class="w63 h63 btn-n bg_cmfh"></button>
+						<span class="cf fs26" @click="addData">完成({{checkedStudent.length}})</span>
+					</div>
+				</header>
+				
+				<div class="hca2 w688 bg_cmlist m0a">
+					<div class="wa100 h120 df ai-c jc-sb pt20 pl25 pr25">
+						<input class="bg2cb9f1 c2290c3 w455 h60 pl20 pr15 br32 cf" 
+						placeholder="可输入学生名称" v-model="userName" 
+						type="text"/>
+						<button @click="getList()" class="w97 btn-n h60 bg_cmsearch"></button>
+					</div>
+					<div class="hca1 oa">
+						<mt-loadmore 
+							:auto-fill='false' 
+							:top-method="loadTop" 
+							:bottom-method="loadBottom" 
+							:bottom-all-loaded="allLoaded" 
+							ref="loadmore">
+						    <ul class="w646 m0a">
+						    	<li class="126 mt15 br20 bgf pt15 pb15 pl25 pr25 df jc-sb fw-w" 
+						    		v-for="item in list" >
+						    		<div class="df ai-c">
+						    			<img class="w92 h92 bra100 mr20 bgred" :src="item.headimg" alt="" />
+						    			<div>
+						    				<p class="fs26 fwb">
+						    				
+						    					<span v-text="item.username"></span>
+						    					<span v-if='item.classInfoId' class="c26a2ff pl10">(已分班)</span>
+						    				</p>
+						    				<p class="fs24" v-text="item.mobile">13344445555</p>
+						    			</div>
+						    		</div>
+						    		<div class="df ai-c">
+						    			<!--<span>已分班</span>-->
+						    			<div class="w40 h40 rel">
+						    				<input type="checkbox" v-model="checkedStudent" class="checkboxYuan abs tp0 lt0 wa100 ha100 op0" :value="item.id" />
+						    				<div class="w40 h40 ba2 bra100"></div>
+						    			</div>
+						    		</div>
+						    	</li>
+						    	<li v-if='allLoaded' class="wa100 h80 df ai-c jc-c c3 fs24">已加载完全部数据</li>
+						    </ul>
+					    </mt-loadmore>
+					     <div v-if='allLoaded && list.length<=0' class="wa100 tc pt50">
+					     	<img class="h600" src="img/ab_help/qm.png"/>
+					     	<div class="wa100 tc pt15 c6">
+					     		暂无数据
+					     	</div>
+					     </div>
+					</div>
+				</div>
+			</section>
+		</template>
+		
+		
+		<script type="text/javascript">
+			$(function(){
+				/*
+				 * Vue时间戳过滤器
+				 * {{1529564879000 | retain('yyyy-MM-dd hh:mm')}}
+				 * */
+				Vue.filter('retain', function(data, fmt) {
+					date = new Date(data)
+					var o = {
+						"M+": date.getMonth() + 1, //月份   
+						"d+": date.getDate(), //日   
+						"h+": date.getHours(), //小时   
+						"m+": date.getMinutes(), //分   
+						"s+": date.getSeconds(), //秒   
+						"q+": Math.floor((date.getMonth() + 3) / 3), //季度   
+						"S": date.getMilliseconds() //毫秒   
+					};
+					if(/(y+)/.test(fmt))
+						fmt = fmt.replace(RegExp.$1, (date.getFullYear() + "").substr(4 - RegExp.$1.length));
+					for(var k in o)
+						if(new RegExp("(" + k + ")").test(fmt))
+							fmt = fmt.replace(RegExp.$1, (RegExp.$1.length == 1) ? (o[k]) : (("00" + o[k]).substr(("" + o[k]).length)));
+					return fmt;
+				});
+				// 棋力等级过滤器
+				Vue.filter("leve",function(leve){
+					if(leve>25){
+						return (leve-25)+'D'
+					}else if(leve<=25 && leve>0){
+						return (26-leve)+'K'
+					}else if(leve==0){
+						return '0k'
+					}
+					
+				})
+				Vue.use(VueRouter)
+				var study = {
+	    				data(){
+	    					return{
+	    						classInfoList: {
+	    							list:[]
+	    						},
+								pageNum: '',
+								className: '', //搜索班级名称
+								branchCampusdata:'',//分校数据
+								tabBranchSchool:'',//当前选中的分校
+								allLoaded:false,
+								list:[],
+								
+								overall:'', //所有总园数据
+								overallId:'',//当前选中的总校
+								
+								branch:'',	//所有分园数据
+								branchId:'', //当前选中的分园数据
+								dealerRank:''
+	    					}
+	    				},
+	    				methods:{
+	    					tab:function(name,viewAnimate,age){
+	    						if(name){
+	    							vm.viewAnimate= viewAnimate || 'slide-right';
+	    							router.push({path:name+age});
+	    							
+	    						}else{
+	    							vm.viewAnimate= 'slide-right';
+	    							window.history.go(-1);
+	    						}
+	    					},
+			    			loadTop(){
+			    				$this=this
+			    				console.log('下拉刷新')
+			    				$this.getList({
+									pageNum:$this.pageNum,
+									className:$this.className,
+									success:function(data){
+										setTimeout(function(){
+											$this.list = data.data.list;
+											$this.pages =  data.data.pages;
+											$this.pageNum = data.data.nextPage;
+											
+											if($this.pageNum==0){
+						    					$this.allLoaded=true;
+						    				}else{
+						    					$this.allLoaded=false;
+						    				}
+											$this.$refs.loadmore.onTopLoaded();
+										},500)
+									}
+								}) 
+								
+			    			},
+			    			loadBottom(){
+			    				$this=this
+			    				console.log('上拉加载')
+		    					$this.getList({
+									pageNum:$this.pageNum,
+									className:$this.className,
+									success:function(data){
+										setTimeout(function(){
+											$this.list = data.data.list;
+											$this.pages =  data.data.pages;
+											$this.pageNum = data.data.nextPage;
+											if($this.pageNum==0){
+						    					$this.allLoaded=true;
+						    				}
+											$this.$refs.loadmore.onBottomLoaded();
+										},500)
+									}
+								})
+			    			},
+			    			branchCampus:function(){ //查询分校
+								$this=this
+								$.ajax({
+										type: 'post',
+										url: http+'/gobangteach/BranSchoolController/branchCox',
+										data: {
+											pageSize: 10000,
+											pageNum: 1,
+											token:token,
+											uid:uid
+										},
+										success: function(data) {
+											$this.branchCampusdata = data.data
+											$this.tabBranchSchool = data.data.list[0].id
+											console.log('aaa',data)
+										}
+									})
+							},
+							
+							getPrimary:function(){
+								var $this = this;
+								$.ajax({
+									url:http+'/gobangteach/presidentController/getPrimary',
+									type:'get',
+									data:{
+										token: token,
+										uid: uid
+									},
+									success:function(data){
+										if(data.error.returnCode==='0'){
+											if(data.data.primary.length){
+												$this.overall = data.data.primary;
+												$this.overallId = data.data.primary[0].ID;
+												$this.dealerRank = data.data.now.dealerRank;
+												$this.getBranch(data.data.primary[0].ID)
+												
+											}
+										}else{
+											layerTC(data.error.returnMessage)
+										}
+									}
+								})
+							},
+							getBranch:function(id){
+								var $this = this;
+								$.ajax({
+									url:http+'/gobangteach/presidentController/getBranch',
+									type:'get',
+									data:{
+										orgNo:id,
+										token: token,
+										uid: uid
+									},
+									success:function(data){
+										if(data.error.returnCode==='0'){
+											$this.branch = data.data;
+											$this.branchId = data.data[0].ID;
+											$this.getList()
+										}
+									}
+								})
+							},
+							
+							
+							getList: function(option) { 
+								$this = this
+								var msg = {
+									pageNum:1||pageNum,
+									classname:$this.className,
+									success:function(data){
+										$this.list = data.data.list;
+										$this.pages =  data.data.pages;
+										$this.pageNum = data.data.nextPage;
+										if($this.pageNum==0){
+					    					$this.allLoaded=true;
+					    				}else{
+					    					$this.allLoaded=false;
+					    				}
+									}
+								}
+								msg = $.extend(msg,option)
+					
+								
+								$.ajax({
+									url:http+'/gobangteach/BranSchoolController/affairsList_new',
+									type:'post',
+									data:{
+										pageSize: 6,
+										pageNum: msg.pageNum,
+										branchNo: $this.branchId,
+										beginTime: $("#stTime").val(),
+										endTime: $("#endTime").val(),
+										token: token,
+										uid: uid
+									},
+									success:function(data){
+										if(data.error.returnCode==='0'){
+											msg.success(data)
+												//$this.classInfoList = data.data;
+										}else{
+											layerTC(data.error.returnMessage)
+										}
+									}
+									
+								})
+								
+								
+							},
+			    			delClass: function(id, count) { //删除班级
+								var $this = this
+								if(count > 0) {
+									layer.msg('该班级下存在学生，不允许删除！')
+
+								} else {
+									$.ajax({
+										type: 'post',
+										url: http+'/gobangteach/SchoolController/delClassInfo',
+										data: {
+											ID: id,
+											token:token,
+											uid:uid
+										},
+										success: function(data) {
+											$this.getList()
+										}
+									})
+
+								}
+
+							}
+			    		},
+			    		watch:{
+							tabBranchSchool:function(){
+								this.getList();
+							}
+						},
+			    		mounted(){
+			    			var $this = this;
+			    		//	this.branchCampus();
+							this.getPrimary();
+			    			$.each(["#stTime", "#endTime"], function (i, eid) {
+				   				 laydate.render({
+				   				     elem: eid,
+				   				     type: 'datetime',
+				   				     format: 'yyyy-MM-dd HH:mm'
+				   				 });
+				   			});
+			    		},
+			    		template:'#study',
+	    			};
+				var stuDetail = {
+					data(){
+						return{
+							list:[],
+							allLoaded:false,//为true 则禁止下拉  一般无数据了设置为trun
+							pageNum:1,//当前页
+							pages:'',//总页数
+							overall:'', //所有总园数据
+							overallId:'',//当前选中的总校
+							
+							branch:'',	//所有分园数据
+							branchId:'', //当前选中的分园数据
+						}
+					},
+					methods:{
+
+						tab:function(){
+							vm.viewAnimate='slide-right';
+							router.push({path:'/study'})
+						},
+						getClassinfoBy:function(){
+							var $this = this;
+							$.ajax({
+								url:http+'/gobangteach/presidentController/getClassByOrgNo',
+								type:'get',
+								data:{
+									orgNo:$this.$route.query.branchNo,
+									token: token,
+									uid: uid
+								},
+								success:function(data){
+									if(data.error.returnCode==='0'){
+										if(data.data.length){
+											$this.overall = data.data;
+											$this.overallId = $this.$route.query.id*1;
+											$this.getList()
+										}
+									}else{
+										layerTC(data.error.returnMessage)
+									}
+								}
+							})
+						},
+						
+
+						getList(option){
+							$this = this
+							var msg = {
+								pageNum:1,
+								success:function(data){
+									$this.list = data.data;
+									
+								}
+							}
+							msg = $.extend(msg,option)
+							$.ajax({
+								url:http+'/gobangteach/presidentController/getAllUserInfo',
+								type:'post',
+								data:{
+									classId :$this.overallId,
+									
+									token: token,
+									uid: uid
+								},
+								success:function(data){
+									if(data.error.returnCode==='0'){
+										msg.success(data)
+									}
+								}
+							})
+						},
+					},
+					watch:{
+						
+					},
+					mounted(){
+						var $this = this;
+						this.getClassinfoBy();
+					},
+					template:'#stuDetail',
+				};
+				//编辑班级组件
+    			var editorClass = {
+    				data(){
+    					return{
+    						className:'',
+    						teacherId:''
+    					}
+    				},
+    				methods:{
+    					tab:function(name,viewAnimate){
+    						if(name){
+    							vm.viewAnimate= viewAnimate || 'slide-right';
+    							router.push({path:name});
+    						}else{
+    							vm.viewAnimate= 'slide-right';
+    							window.history.go(-1);
+    						}
+    						
+    					},
+    					//添加班级  / 编辑班级
+    					addClass:function(){
+    						$this = this
+    						if(!this.className){
+    							layer.msg('请输入班级名！');
+    							return;
+    						}
+							$.ajax({
+								type: 'post',
+								url: http+'/gobangteach/BranSchoolController/updateClassInfo',
+								data: {
+									Id:$this.$route.query.classId,
+									className:$this.className,
+									token:token,
+									uid:uid
+								},
+								success: function(data) {
+									layer.closeAll();
+									layer.msg('修改成功！')
+								}
+							})
+    						
+    						
+    					}
+    				},
+    				mounted:function(){
+    					this.className = this.$route.query.className;
+    					this.teacherId = this.$route.query.teacherId;
+    				},
+    				template:'#editorClass'
+    			}
+				var	addStudent={
+    				data(){
+    					return{
+    						list:[],
+			    			topStatus:'',
+			    			allLoaded:false,//为true 则禁止下拉  一般无数据了设置为trun
+							pageNum:1,//当前页
+							pages:'',//总页数
+							userName:'',//学生
+							checkedStudent:[],//选中的学生和本班的学生
+							classStudent:[],//本班学生
+							delStudent:[],//要删除的学生
+    					}
+    				},
+    				methods:{
+    					tab:function(name,viewAnimate,studentId){
+    						vm.viewAnimate= viewAnimate || 'slide-right'
+    						router.push({path:name});
+    					},
+    					loadTop(){
+		    				$this=this
+		    				console.log('下拉刷新')
+							$this.pageNum = 1;//重置下一页页码
+							$this.getList({
+								pageNum:$this.pageNum,
+								className:$this.userName,
+								success:function(data){
+									setTimeout(function(){
+										$this.list = data.data.list;
+										$this.pages =  data.data.pages;
+										$this.pageNum = data.data.nextPage;
+										
+										if($this.pageNum==0){
+					    					$this.allLoaded=true;
+					    				}else{
+					    					$this.allLoaded=false;
+					    				}
+										$this.$refs.loadmore.onTopLoaded();
+									},500)
+								}
+							}) 
+		    			},
+		    			loadBottom(){
+		    				$this=this
+		    				console.log('上拉加载')
+	    					$this.getList({
+								pageNum:$this.pageNum,
+								className:$this.userName,
+								success:function(data){
+									setTimeout(function(){
+										$this.list = $this.list.concat(data.data.list);
+										$this.pages =  data.data.pages;
+										$this.pageNum = data.data.nextPage;
+										if($this.pageNum==0){
+					    					$this.allLoaded=true;
+					    				}
+										$this.$refs.loadmore.onBottomLoaded();
+									},500)
+								}
+							})
+		    			},
+		    			getList(opt){//请求机构学生列表
+							$this = this
+							var msg = {
+								pageNum:1,
+								userName:$this.userName,
+								success:function(data){
+									$this.list = data.data.list;
+									$this.pages =  data.data.pages;
+									$this.pageNum = data.data.nextPage;
+									if($this.pageNum==0){
+				    					$this.allLoaded=true;
+				    				}else{
+				    					$this.allLoaded=false;
+				    				}
+								}
+							}
+							msg = $.extend(msg,opt)
+							$.ajax({
+								type: 'post',
+								url: http+'/gobangteach/SchoolController/allocationClassInfo',
+								data: {
+									UserName:msg.userName,
+									pageSize: 9,
+									pageNum: msg.pageNum,
+									token: token,
+									uid: uid,
+								},
+								success: function(data) {
+									msg.success(data)
+								}
+							})
+		    			},
+		    			//本班所有学生
+		    			getClassStudent:function(){
+		    				$this = this;
+		    				$.ajax({
+								type: 'post',
+								url: http+'/gobangteach/SchoolController/allocationClassInfo',
+								data: {
+									pageSize: 100000,
+									pageNum: 1,
+									type:1,
+									ClassInfoId:$this.$route.query.classId,
+									token: token,
+									uid: uid,
+								},
+								success: function(data) {
+									//$this.checkedStudent
+									console.log('本班学生',data.data.list)
+									$.each(data.data.list,function(){
+										$this.checkedStudent.push(this.id)
+										$this.classStudent.push(this.id)
+									})
+								}
+							})
+		    			},
+		    			//添加学生
+		    			addData:function(){
+		    				$this = this;
+		    				
+		    				
+		    				 //添加学生与移除学生是两个操作，但是只能有一个成功提示，所以下面进行先添加在移除的操作
+		    				 
+		    				
+		    				
+		    				//点击完成 如果添加列表有数据 则执行添加学员
+		    				if($this.checkedStudent.length){
+		    					$.ajax({
+									type: 'post',
+									url: http+'/gobangteach/SchoolController/getDivisionUser',
+									data: {
+										classinfoId: $this.$route.query.classId,
+										ids: $this.checkedStudent.join('_'),
+										token:token,
+										uid:uid
+									},
+									success: function(data) {
+										if(data.error.returnMessage=='操作成功' && $this.delStudent.length){
+											$this.delData()
+										}else{
+											layer.msg(data.error.returnMessage);
+											setTimeout(function(){
+												$this.tab('studentList')
+											},500)
+										}
+									}
+								});
+		    				}else{
+		    					//点击完成 如果移除列表有数据 则执行移除学员
+								if($this.delStudent.length){
+									$this.delData()
+								}
+		    				}
+							
+		    			},
+		    			//移除学生
+		    			delData:function(){
+		    				$this = this
+		    				$.ajax({
+								type: 'post',
+								url: http+'/gobangteach/SchoolController/removeUser',
+								data: {
+									ids: $this.delStudent.join('_'),
+									token:token,
+									uid:uid
+								},
+								success: function(data) {
+									layer.msg(data.error.returnMessage)
+									data.error.returnMessage
+									if(data.error.returnMessage=='操作成功'){
+										setTimeout(function(){
+											$this.tab('studentList')
+										},500)
+									}
+								}
+							})
+		    			}
+    				},
+    				props:['option'],
+    				watch:{
+    					checkedStudent:function(xin,jiu){
+    						$this = this
+    						//获取 从本班级移除的学生
+    						function getArrDifference(arr1, arr2) {
+							    return arr1.concat(arr2).filter(function(v, i, arr) {
+							        return arr.indexOf(v) === arr.lastIndexOf(v) && $this.classStudent.indexOf(v)>=0; 
+							    });
+							}
+    						$this.delStudent = getArrDifference(xin,$this.classStudent)
+    						console.log('要移除的学生',getArrDifference(xin,$this.classStudent))
+    					}
+    				},
+    				mounted:function(){
+    					this.getList({pageNum:1});
+    					this.getClassStudent();
+    					//alert(this.option.classId)
+    				},
+    				template:'#addStudent'
+    			}
+				
+				
+				
+				
+				
+				//路由器
+				var router = new VueRouter({
+					routes: [{
+							path: '/',	
+							redirect: '/study'
+						},
+						{
+							path: '/study',
+							component: study
+						},
+						{
+							path: '/stuDetail',
+							component: stuDetail
+						},
+						{
+							path: '/editorClass',
+							component: editorClass
+						},
+						{
+							path: '/addStudent',
+							component: addStudent
+						}
+						
+					]
+				})
+		    	vm = new Vue({
+		    		el:'#app',
+		    		data:{
+		    			show:'study',
+		    			viewAnimate:'slide-left',
+		    			option:{
+							classId:'',//班级id
+							className:'',//班级名
+							studentMsg:'',//学生数据  学生信息组件需要
+							cooperationType:''
+						}
+		    		},
+		    		router: router,
+		    		methods:{
+		    			
+		    		},
+		    		
+		    	})
+		    });
+			
+		</script>
+		
+	</body>
+</html>

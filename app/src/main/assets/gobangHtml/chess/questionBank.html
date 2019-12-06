@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>做题</title>
+		<link rel="stylesheet" type="text/css" href="css/chess.css"/>
+		<link rel="stylesheet" type="text/css" href="skin/skin1/skin1.css"/>
+		
+		<script src="js/jquery.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/XSGO.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/eve.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/bundle.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/GSocket.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body >
+		<style type="text/css">
+			#game{
+				width: 600px;
+				height: 600px;
+				float: left;
+				margin-right: 20px;
+			}
+		</style>
+		
+		<div id="game" onselectstart="return false"></div>
+		
+		<audio src="audio/STONE0.wav" id="stoen0"></audio>
+		<audio src="audio/ChipMany.wav" id="ChipMany"></audio>
+		
+		<div class="">
+
+			<div class="">
+				<p>console.log 开关</p>
+				<button type="button" onclick="closeLog()">关闭</button>
+				<button type="button" onclick="startLog()">开启</button>
+			</div>
+		</div>
+		
+		<script type="text/javascript">
+			var game = new xsgo('game',{
+					isShowCoord:1,
+					queue:[],
+					type:2,
+				})
+			
+			//关闭console.log
+			function closeLog(){
+				game.closeLog()
+			}
+			//启用console.log
+			function startLog(){
+				game.startLog()
+			}
+			startLog()
+			
+			
+			
+			function loadQuestion(callback){
+				$.ajax({
+					url:'http://192.168.2.116:8080/gobangteach/classroom/loadQuestion',
+					type:'post',
+					data:{
+						questionid: 41739,
+						token:'8DF71CA4269B3BBC60B4D95C2111FDED',
+						uid:'401'
+					},
+					success:function(data){
+						
+						var gameInfo = JSON.parse(data.data.questionbank.chessdata);
+						
+						//设置棋盘路数
+						game.config.road = gameInfo.roadX
+						
+						//更新类型
+						game.config.sgfstate = data.data.questionbank.sgfstate
+						
+						//更新棋谱
+						game.svg = gameInfo.listAction.slice(0,-1); 
+						
+						//登入棋局
+						eve.f('enterGame',data.data.chessid,'401')(); 
+						//落子回调
+						game.playCall = function(d){
+							console.log('落子位置',d)
+							//落子
+							eve.f('handlerAction',data.data.chessid,d)(); 
+						}
+					}
+				})
+			}
+			
+			//链接成功回调
+			eve.on('socketOpen',function(){
+				console.log('链接成功')
+				loadQuestion() //请求题目
+			})
+			//棋局登入成功回调
+			eve.on('signInResponse',function(){
+				console.log('登入成功');
+			})
+			//落子结果
+			eve.on("handlerActionResult", function(data) {
+				console.log('落子结果:',data)
+				game.addQueue(data)
+				var str = data.join('').indexOf('AE');
+				if(str>0){
+					document.getElementById('ChipMany').play()
+				}else{
+					document.getElementById('stoen0').play()
+				}
+			});
+			//棋局结束
+			eve.on("notifyGameOver", function(data) {
+				console.log('棋局结束:',data)
+				switch (data){
+					case 12:
+						alert('答错了！')
+						break;
+					case 13:
+						alert('答对了！')
+						break;
+					default:
+						break;
+				}
+			});
+		</script>
+	</body>
+</html>

@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link rel="stylesheet" type="text/css" href="css/lib/public.css">
+		<link rel="stylesheet" type="text/css" href="css/custom/webStyle.css"/>
+		<script src="js/gobang/common.js" type="text/javascript" charset="utf-8" name="公共配置信息"></script>
+		<script type="text/javascript" src="libs/jquery/jquery.js"></script>
+		<script type="text/javascript" src="libs/vuejs/vue.js"></script>
+		<script type="text/javascript" src="libs/layer/layer-v3.1.1/layer/layer.js"></script>
+		<script type="text/javascript" src="js/lib/rem.js"></script>
+		<!-- 棋盘 -->
+		<link rel="stylesheet" type="text/css" href="chess/css/chess.css"/>
+		<link rel="stylesheet" type="text/css" href="chess/skin/skin1/skin1.css"/>
+		<script src="chess/js/eve.js" type="text/javascript" charset="utf-8"></script>
+		<script src="chess/js/XSGO.js" type="text/javascript" charset="utf-8"></script>
+		<script src="chess/js/bundle.js" type="text/javascript" charset="utf-8"></script>
+		<script src="chess/js/GSocket.js" type="text/javascript" charset="utf-8"></script>
+		<script src="libs/pinchzoom/pinchzoom.js" type="text/javascript" charset="utf-8"></script>
+		<title></title>
+	</head>
+	<body>
+		<div id="fromChess" class="wa100 ha100 ">
+			
+			<div class="">
+				<div class="chessBox wa100 h750 oh">
+					<div id="gameChess" class="wa100 h750 bgred"></div>
+				</div>
+				
+				<div v-show='!qrlzState' class="df ai-c jc-sa pt30 pl20 pr20">
+					<button type="button" class="w72 h72 btn-n btn_kj1" @click="game.last()"></button>
+					<button type="button" class="w72 h72 btn-n btn_kj2" @click="game.nexts()"></button>
+					<button type="button" class="w72 h72 btn-n btn_kj3" @click="game.next()"></button>
+					<button type="button" class="w72 h72 btn-n btn_kj4" @click="game.prev()"></button>
+					<button type="button" class="w72 h72 btn-n btn_kj5" @click="game.prevs()"></button>
+					<button type="button" class="w72 h72 btn-n btn_kj6" @click="game.first()"></button>
+				</div>
+				<div v-show='qrlzState' class="df ai-c jc-sa pt30 pl20 pr20">
+					<button type="button" class="w72 h72 btn-n btn_w" @click="game.steering('w')"></button>
+					<button type="button" class="w72 h72 btn-n btn_s" @click="game.steering('s')"></button>
+					<button type="button" class="h72 w150 btn-n bt_btn ccf5003 fs30" @click="game.steering('e')">确认落子</button>
+					<button type="button" class="w72 h72 btn-n btn_a" @click="game.steering('a')"></button>
+					<button type="button" class="w72 h72 btn-n btn_d" @click="game.steering('d')"></button>
+				</div>
+				
+				<div class="wa100 mt30">
+					<div class="mb h180 df ac-sb jc-sa fw-w pl20 pr20">
+						<button @click="lskc" class="btn-n h75 w180 fwb fs30 c00447d xw_xssj">历史对局</button>
+						<button @click="showLot" class="btn-n h75 w180 fwb fs30 c00447d xw_xssj">
+							<span v-if="!isShowLot">显示手数</span>
+							<span v-else >关闭手数</span>
+						</button>
+						<button @click="smilingFace()" class="btn-n h75 w180 fwb fs30 c00447d xw_xssj">切换笑脸</button>
+						<button @click="AIhelperreq()" :class="['btn-n h75 w180 fwb fs30 ',chessInfo && chessInfo.chessdata.roadX == 19?'c00447d xw_xssj':'btn_hui c3']">AI支招</button>
+						<button @click="jugement()" :class="['btn-n h75 w180 fwb fs30 ',chessInfo && chessInfo.chessdata.roadX == 19?'c00447d xw_xssj':'btn_hui c3']">{{isJugement?'关闭形式':'形式判断'}}</button>
+						<button v-if="!isTry" @click="startTry()" class="btn-n h75 w180 fwb fs30 c00447d xw_xssj">试下</button>
+						<button v-else @click="endTry()" class="btn-n h75 w180 fwb fs30 c00447d xw_xssj">结束试下</button>
+					</div>
+				</div>
+				<div v-show="!isJugement" class="w690 h174 mt30 br30 m0a bgf df ac-c jc-c fw-w">
+					<div class="df ai-c jc-sa wa100">
+						<div class="c6 fs24 df ai-c">
+							<i class="db w30 h30 bg0 bra100 mr15"></i>
+							黑棋：小天
+						</div>
+						<div class="c6 fs24 df ai-c">
+							<i class="db w30 h30 bgf b02 bra100 mr15"></i>
+							黑棋：小天
+						</div>
+					</div>
+					<p class="cff7200 fs30 mt30">
+						对局结果：
+						<span v-if="chessInfo.result==1">黑胜</span>
+						<span v-if="chessInfo.result==2">白胜</span>
+						<span v-if="chessInfo.result==3">平局</span>
+						<span v-if="chessInfo.result==4">无效对局</span>
+					</p>
+				</div>
+				
+				<div v-show="isJugement" class="w690 h174 p15 mt30 br30 m0a bgf rel df ac-c jc-c fw-w">
+					<div class="w50 h50 tr45 bgffe06d abs tp-10 ma lt0 rt0"></div>
+					<div class="bgffe06d br20 wa100 ha100 rel z2 df ac-c jc-c fw-w">
+						<p class="fs30 wa100 tc" v-text="sqResult.content">白领先2目半胜</p>
+						<div class="df ai-c jc-sb w367">
+							<div class="cf02043 h90 df jc-c ac-sb fw-w">
+								<img class="w32 h32" src="img/play/mcwhite.png" />
+								<p class="fs30 wa100 tc" v-text="sqResult.whiteNum">16</p>
+							</div>
+							<div class="h90 w85 df ai-fe">
+								<div class="w85 h34 br30 bgffb424 fs24 df ai-c jc-c cf">
+									形势
+								</div>
+							</div>
+							<div class="cf02043 h90 df ac-sb jc-c fw-w">
+								<img class="w32 h32" src="img/play/mcblack.png" />
+								<p class="fs30 wa100 tc" v-text="sqResult.blackNum">16</p>
+							</div>
+						</div>
+					</div>
+				</div>
+				
+				
+				<!-- <div class="df ai-c jc-sa pt40">
+					<button type="button" class="btn-n btn_1 w234 h72 ccf5003 fs30 mr30" @click="jugement()">{{isJugement?'关闭形式':'形式判断'}}</button>
+					<button type="button" :class="['btn-n w234 h72  fs30 mr30',isJugementResult?'btn_1_hui c6':'btn_1 ccf5003']" @click="jugementResult()">叛棋结果</button>
+				</div> -->
+			</div>
+
+			<div id= 'kecheng' class="wa100 ha100 bg_qs_02 pt14 pl30 pr30 dn">
+				<div class="h90 df jc-c ai-c">
+					<span class="fs26 cf">历史作业</span>
+					<!-- <input class="h55 w250 br50 pl15" type="text" name="" value="" />
+					<button class="btn-n bgBtnNo w122 h55 ml15 cf fs22" type="button">搜索</button> -->
+					<!-- <img src="img/classManage/btnYes.png" > -->
+				</div>
+				
+				<div class="wa100 h750 bgfff4c6 br32 mt15 p15">
+					<div class="wa100 ha100 bgf m0a br20 oh oxa">
+						<table class="w900 fs26" border="0" cellspacing="0" cellpadding="0">
+							<tr class="bgffd86f h85">
+								<th>黑棋</th>
+								<th>白棋</th>
+								<th>结果</th>
+								<th>对局时间</th>
+							</tr>
+							<tr v-for="x in list.list" @click="loadChess(x)" class="tc h80">
+								<td v-text="x.blackname">张亚强</td>
+								<td v-text="x.whitename">先手AI</td>
+								<td>
+									<span v-if="x.result==1">黑胜</span>
+									<span v-if="x.result==2">白胜</span>
+									<span v-if="x.result==3">平局</span>
+									<span v-if="x.result==4">无效对局</span>
+								</td>
+								<td>{{x.createtime|retain('yyyy-MM-dd hh:mm')}}</td>
+							</tr>
+						</table>
+						
+						
+						
+						<!-- 选择题 -->
+							<!-- <div  class="scroller">
+								<ul id="oul" class="df fw-w">
+									<li  v-for="(x,index) in questionList" @click="loadQuestion(x.id)" class="w166 h166 mr8 mb8 rel">
+										<div class="wa100 ha100 df ai-c jc-c cf fwb abs tp0 lt0 opc7 fs60 opc7" v-text="index+1">110</div>
+										<img class="wa100 ha100" :src="x.snapshot" >
+									</li>
+								</ul>
+								<div class="more wa100 df ai-c jc-c fs20">
+									<i class="pull_icon"></i>
+									<span>上拉加载...</span>
+								</div>
+							</div> -->
+							
+							
+							
+							<!-- <div v-else class="df ai-c jc-c fw-w w147">
+								<img src="img/zanwushuju.png" alt="" class="w147 h155">
+								<p class="pt10">暂无数据</p>
+							</div> -->
+						
+					</div>
+					
+				</div>
+				
+				<div class="wa100 mt25 df ai-c jc-sa">
+					<button class="bgBtnNo cf btn-n h70 w156" @click="listChesses(list.prePage)" type="button">上一页</button>
+					<button class="bgBtnYes cf btn-n h70 w156" @click="listChesses(list.nextPage)" type="button">下一页</button>
+				</div>
+				
+			</div>
+			
+			
+		</div>
+
+		<script type="text/javascript">
+			
+			/*
+			 * Vue时间戳过滤器
+			 * {{1529564879000 | retain('yyyy-MM-dd hh:mm')}}
+			 * */
+			Vue.filter('retain',function(data,fmt){
+				date = new Date(data)
+				var o = {
+				    "M+" : date.getMonth()+1,                 //月份   
+				    "d+" : date.getDate(),                    //日   
+				    "h+" : date.getHours(),                   //小时   
+				    "m+" : date.getMinutes(),                 //分   
+				    "s+" : date.getSeconds(),                 //秒   
+				    "q+" : Math.floor((date.getMonth()+3)/3), //季度   
+				    "S"  : date.getMilliseconds()             //毫秒   
+				  };   
+				  if(/(y+)/.test(fmt))   
+				    fmt=fmt.replace(RegExp.$1, (date.getFullYear()+"").substr(4 - RegExp.$1.length));   
+				  for(var k in o)   
+				    if(new RegExp("("+ k +")").test(fmt))   
+				  fmt = fmt.replace(RegExp.$1, (RegExp.$1.length==1) ? (o[k]) : (("00"+ o[k]).substr((""+ o[k]).length)));   
+				  return fmt;
+			})
+			
+			let fromChess = new Vue({
+				el:'#fromChess',
+				data:{
+					list:'',
+					pageNum:'',
+					game:"",
+					chessInfo:'',
+					sqResult:{
+						blackNum:'',
+						whiteNum:'',
+						content:''
+					},
+					isShowLot:0,//显示手数状态
+					isTry:0,//试下状态
+					isJugement:0,//当前形式判断开启状态
+					isJugementResult:0,
+					result:1,//1黑剩 2白胜 3平 4无效
+					qrlzState: 0,
+				},
+				methods:{
+					lskc:function(){
+						layerOpen({
+							content:'#kecheng',//节点
+							area:['6.07rem','10rem'],//可选默认 2rem 2rem  宽度 高度(带单位)
+							cancel:function(){} //可选  右上角关闭回调
+						})
+					},
+					
+					listChesses:function(pageNum){
+						var $this = this;
+						$.ajax({
+							url : http+'/gobangteach/classroom/listChesses',
+							type : "POST",
+							dataType : "json",
+							data : {
+								userId: uid,
+								pageNum: pageNum||1,
+								pageSize: 8,
+								token: token,
+								uid: uid
+							},
+							success : function(data) {
+								//console.log("list chesses", data)
+								$this.list = data.data;
+								if(!$this.chessInfo){
+									$this.loadChess(data.data.list[0])
+								}
+							}
+						});
+					},
+					loadChess:function(chessInfo){
+						layer.closeAll()
+						this.chessInfo = chessInfo;
+						this.chessInfo.chessdata = JSON.parse(this.chessInfo.chessdata);
+						//设置棋盘路数
+						this.game.switchChess(this.chessInfo.chessdata.roadX);
+						//更新棋谱
+						this.game.svg = this.chessInfo.chessdata.listAction; 
+					},
+					//显示手数
+					showLot:function () {
+						this.game.isShowLot ^= 1 //1显示 0隐藏
+						this.isShowLot = this.game.config.isShowLot
+					},
+					//切换笑脸
+					smilingFace:function (){
+						this.game.isSmilingFace^=1 //1显示 0隐藏
+					},
+					//AI支招
+					AIhelperreq:function(num){
+						if(this.chessInfo.chessdata.roadX == 19){
+							eve.f('AIhelperreq',uid+'',this.game.svgFormatting(this.game.config.queueCopy))();
+						}
+					},
+					//开始试下
+					startTry:function (){
+						this.game.startTry()
+						this.isTry = this.game.config.isTry
+					},
+					//结束试下
+					endTry:function (){
+						this.game.endTry()
+						this.isTry = this.game.config.isTry
+					},
+					
+					//形式判断
+					jugement:function(){
+						//eve.f('jugement',readCookie('userid')+'',this.game.svgFormatting(this.game.config.queueCopy))(); 
+						if(this.chessInfo.chessdata.roadX == 19){
+							eve.f('jugement',uid+'',this.game.svgFormatting(this.game.config.queueCopy))(); 
+						}
+					},
+					
+					
+					//根据形势判断结果返回谁胜，胜多少目
+					getInfo:function (blackSum, whiteSum) {
+						if (blackSum === undefined || whiteSum === undefined) 	
+					    return "";
+						var sum =0;
+						if((blackSum+whiteSum)==361){
+							sum = blackSum - 180.5 - 3.75;
+						}else{
+							sum = blackSum - whiteSum - 3.75;
+						}
+						var sumstr = Math.abs(sum)+"";
+						var result = sumstr.substr(0,sumstr.indexOf("."));
+						var desimal = sumstr.substr(sumstr.indexOf(".")+1,sumstr.length);
+						if(desimal=="25"){
+							desimal = "¼";
+						}else {
+							desimal = "¾";
+						}
+						if(result=="0"){
+							result = desimal;
+						}else{
+							result += desimal;
+						}
+						
+					    let obj = {};
+					    if (sum > 0) {
+					    	obj.title = '黑方胜利';
+					    	obj.content = "黑棋胜" + result + "子";
+					        return obj
+					    } else if (sum < 0) {
+					    	obj.title = '白方胜利';
+					    	obj.content = "白棋胜" + result + "子";
+					        return obj
+					    }else {
+					        obj.title = '双方平手';
+					        obj.content = "双方平手";
+					    	return obj;
+					    }
+					},
+				},
+				mounted:function(){
+					var $this = this;
+					//关闭loding
+					document.location.href = "myschema://go?a=14"
+					
+					
+					//棋盘缩放功能
+					new RTP.PinchZoom($(".chessBox"), {
+						animationDuration:200,
+						maxZoom:3
+					});
+					
+					//棋盘实例
+					this.game = new xsgo('gameChess',{
+						type:1,
+						road: 19,//$this.gameInfo.RuleType2===1?19:9 ,
+						bgColor:'#ffd687',
+						isShowCoord:1,
+						affirmMovelater:1,//开启确认落子
+					})
+					this.game.init();
+					//确认落子回调
+					$this.game.qrlzState = function(val){
+						$this.qrlzState = val
+					}
+					$this.listChesses();
+					//链接成功回调
+					eve.on('socketOpen',function(){
+						console.log('链接成功1')
+					})
+					
+					//支招结果
+					eve.on('AIHelperReply',function(data){
+						console.log('ai支招结果：'+data)
+						$this.game.AIHelper(data)
+					})
+					
+					//形式判断返回结果
+					eve.on("jugementResult", function(data) {
+						var mu = $this.game.jugement(data);
+						if(mu){
+							$this.sqResult.title = $this.getInfo(mu.B,mu.W).title
+							$this.sqResult.blackNum = mu.B;
+							$this.sqResult.whiteNum = mu.W;
+							$this.sqResult.content =  $this.getInfo(mu.B,mu.W).content;
+						};
+						console.log($this.sqResult)
+						console.log('形式判断开关：',$this.game.config.isJugement)
+						$this.isJugement = $this.game.config.isJugement
+					});
+				}
+			})
+		</script>
+	</body>
+</html>

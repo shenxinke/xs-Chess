@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:state_selected="true">
+        <layer-list>
+            <item>
+                <shape>
+                    <solid android:color="@android:color/transparent" />
+                </shape>
+            </item>
+            <item android:left="5dp"   android:drawable="@drawable/integral_shopping_mall_sellct">
+                <shape>
+                    <corners android:topLeftRadius="10dp" android:topRightRadius="10dp" />
+                </shape>
+            </item>
+        </layer-list>
+    </item>
+
+    <item android:state_selected="false">
+        <layer-list>
+            <item>
+                <shape>
+                    <solid android:color="@android:color/transparent" />
+                </shape>
+            </item>
+            <item android:left="5dp"   android:drawable="@drawable/integral_shopping_mall_no_sellct">
+                <shape>
+                    <corners android:topLeftRadius="10dp" android:topRightRadius="10dp" />
+                </shape>
+            </item>
+        </layer-list>
+    </item>
+
+</selector>

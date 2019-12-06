@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link rel="stylesheet" type="text/css" href="css/lib/public.css">
+		<link rel="stylesheet" type="text/css" href="css/custom/webStyle.css"/>
+		<script type="text/javascript" src="libs/jquery/jquery.js"></script>
+		<script type="text/javascript" src="libs/vuejs/vue.js"></script>
+		<script type="text/javascript" src="libs/layer/layer-v3.1.1/layer/layer.js"></script>
+		<script src="js/gobang/common.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/lib/config.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript" src="js/lib/rem.js"></script>
+		<link rel="stylesheet" type="text/css" href="libs/swiper/css/idangerous.swiper.css"/>
+		<script src="libs/swiper/js/idangerous.swiper.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="libs/iscroll/iscroll.js" type="text/javascript" charset="utf-8"></script>
+		<!-- 棋盘 -->
+		<link rel="stylesheet" type="text/css" href="chess/css/chess.css"/>
+		<link rel="stylesheet" type="text/css" href="chess/skin/skin1/skin1.css"/>
+		<script src="chess/js/eve.js" type="text/javascript" charset="utf-8"></script>
+		<script src="chess/js/XSGO.js" type="text/javascript" charset="utf-8"></script>
+		<script src="chess/js/bundle.js" type="text/javascript" charset="utf-8"></script>
+		<script src="chess/js/GSocket.js" type="text/javascript" charset="utf-8"></script>
+		<script src="libs/pinchzoom/pinchzoom.js" type="text/javascript" charset="utf-8"></script>
+		<title>题库</title>
+	</head>
+	<body>
+		<div id="questionStore" class="wa100 ha100 ">
+			<div class="chessBox wa100 h750 oh">
+				<div id="gameChess" class="wa100 h750 bgred"></div>
+			</div>
+			<div class="wa100  bgffe880 br32 mt15 p9">
+				<div class="wa100 h58 c703b0c fs28 df ai-c jc-c" v-text="title">
+					黑棋下在哪里可以吃掉白棋？
+				</div>
+				<div class="wa100 h125 bgf br40">
+					
+					<div v-if="game && game.config.sgfstate==33" class="wa100 ha100 df ai-c jc-sa">
+						<button @click="aswRorW(1)" class="w100 h100 btn-n cp mr20 bg_btn_good"></button>
+						<button @click="aswRorW(0)" class="w100 h100 btn-n cp mr20 bg_btn_bad"></button>
+					</div>
+					
+					<div v-show="qrlzState && game.config.sgfstate!==33"  class="df ai-c jc-sa pt30 pl20 pr20">
+						<button type="button" class="w72 h72 btn-n btn_w" @click="game.steering('w')"></button>
+						<button type="button" class="w72 h72 btn-n btn_s" @click="game.steering('s')"></button>
+						<button type="button" class="h72 w150 btn-n bt_btn ccf5003 fs30" @click="game.steering('e')">确认落子</button>
+						<button type="button" class="w72 h72 btn-n btn_a" @click="game.steering('a')"></button>
+						<button type="button" class="w72 h72 btn-n btn_d" @click="game.steering('d')"></button>
+					</div>
+				</div>
+			</div>
+			<div class="df ai-c jc-sa pt20">
+				<button type="button" class="btn-n bt_btn w150 h72 ccf5003 fs30" @click="nextORprev(1)">上一题</button>
+				<button type="button" class="btn-n bt_btn w150 h72 ccf5003 fs30" @click="nextORprev(2)">下一题</button>
+				<button type="button" class="btn-n bt_btn w150 h72 ccf5003 fs30" @click="loadQuestion(questionId)">重做该题</button>
+				<button type="button" class="btn-n bt_btn w150 h72 ccf5003 fs30" @click="selectQuestion()">选择题目</button>
+			</div>
+			
+			<div id= 'kecheng' class="wa100 ha100 bg_qs_02 pt14 pl30 pr30 dn">
+				<p class="c763f05 fs36 h90 df ai-c jc-c">
+					<span v-if="type==1">请选择课程</span>
+					<span v-if="type==2">请选择知识点</span>
+					<span v-if="type==3">请选择习题</span>
+				</p>
+				<div v-if="type!=3" class="wa100 h85 bgf br50 df ai-c jc-c">
+					<!-- 按课程 -->
+					<div v-if="type===1" class="swiper oh w500 h50">
+						<div class="swiper-wrapper">
+							<div v-for="x in kechengName" class="swiper-slide">
+								<div type="button" class="h50 cl pr10">
+									<div :class="['fl ha100 w24',paraValue==x.paraValue?'qs_ls_l1':'qs_ls_h1']"></div>
+									<div :class="['fl ha100 df ai-c jc-c',paraValue==x.paraValue?'qs_ls_l3 c0149cd':'qs_ls_h3 c703b0c']" @click="paraValue = x.paraValue;getQuestionByCourse()" v-text="x.paraKey"></div>
+									<div :class="['fl ha100 w24',paraValue==x.paraValue?'qs_ls_l2':'qs_ls_h2']"></div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<!-- 按级别 -->
+					<div v-if="type===2" class="swiper oh w500 h50">
+						<div class="swiper-wrapper">
+							<div v-for="x in knowledgeData" class="swiper-slide"  @click="questionName = x; getQuestionList()">
+								<div type="button" class="h50 cl pr10">
+									<div :class="['fl ha100 w24',questionName===x?'qs_ls_l1':'qs_ls_h1']"></div>
+									<div :class="['fl ha100 df ai-c jc-c',questionName===x?'qs_ls_l3 c0149cd':'qs_ls_h3 c703b0c']" v-text="x"></div>
+									<div :class="['fl ha100 w24',questionName===x?'qs_ls_l2':'qs_ls_h2']"></div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="wa100 h750 bgf br32 mt15 pt25">
+					<div class="w514 m0a oh">
+						<!-- 选择题 -->
+						<div id="wrapper" :class="['w522 h688',{'df ai-c jc-c':!questionData.pages}]">
+							
+							
+							<div v-if="questionData &&　questionData.list.length" class="scroller">
+								<ul id="oul" class="df fw-w">
+									<li  v-for="(x,index) in questionList" @click="loadQuestion(x.id)" class="w166 h166 mr8 mb8 rel">
+										<div class="wa100 ha100 df ai-c jc-c cf fwb abs tp0 lt0 opc7 fs60 opc7" v-text="index+1">110</div>
+										<img class="wa100 ha100" :src="x.snapshot" >
+									</li>
+								</ul>
+								<div class="more wa100 df ai-c jc-c fs20">
+									<i class="pull_icon"></i>
+									<span>上拉加载...</span>
+								</div>
+							</div>
+							
+							
+							
+							<div v-else class="df ai-c jc-c fw-w w147">
+								<img src="img/zanwushuju.png" alt="" class="w147 h155">
+								<p class="pt10">暂无数据</p>
+							</div>
+						</div>
+					</div>
+					
+				</div>
+			</div>
+			<audio src="music/aswError.mp3" type="hidden" id="aswError"></audio>
+			<audio src="music/aswRight.mp3" type="hidden" id="aswRight"></audio>
+		</div>
+
+		<script type="text/javascript">
+			/* 
+				页面参数
+				按课程:?token=CA9B31BF206D798AE891A36776B497AB&uid=401&type=1&courseNum=1-20
+					courseNum:1-20 = 启蒙上
+		
+				按级别:?token=CA9B31BF206D798AE891A36776B497AB&uid=401&type=2&level=25k&questionType=1
+					questionType=1死活  2布局  3官子 5手筋
+				
+				按知识点:?uid=uid&token=token&type=3&questionType=1死活  2布局  3官子 5手筋 &level=25K & questionName=所选知识点名字如：布局基础 
+
+			 
+			 */
+			
+			
+			var myScroll;
+			let questionStore = new Vue({
+				el:'#questionStore',
+				data:{
+					type:'',//1按课程2按级别3按知识点
+					game:"",
+					swiper:'',
+					myscroll:"",
+					questionData:'',
+					questionList:[],
+					kechengName:'', //课程称列表
+					
+					knowledgeData:'', //知识点列表
+					
+					paraValue:'',//知识点value值
+					questionType:0,	//类型 1死活  2布局  3官子 5手筋 6 行棋方式
+					level:'', //等级
+					questionName:'', //小类名字
+					title:'',
+					qrlzState:''
+				},
+				methods:{
+					//课程列表 入参  courseNum   格式 1-20  第几课到第几课
+					getCourseInfo:function () {
+						$this = this
+						$.ajax({
+							url: http+'/gobangteach/classroom/getCourseInfo',
+							type:'post',
+							data:{
+								uid:uid,
+								token:token,
+								courseNum:jsonlink().courseNum || '1-20',
+							},
+							success:function(d){
+								if(d.error.returnCode ==='0'){
+									$this.kechengName = d.data;
+									$this.paraValue = d.data[0].paraValue;
+									$this.getQuestionByCourse(d.data[0].paraValue);
+									$this.$nextTick(function(){
+										$this.swiper = new Swiper('#kecheng .swiper',{
+										 	slidesPerView: 'auto',
+										})
+									})
+								}else{
+									layerTC(d.error.returnMessage)
+								}
+							}
+						})
+					},
+					//根据课程获取列表入参 courseNum第几节课件（paraValue值）
+					getQuestionByCourse:function (pageNum=1) {
+						var $this = this
+						$.ajax({
+							url: http+'/gobangteach/classroom/getQuestionByCourse',
+							type:'post',
+							data:{
+								uid:uid,
+								token:token,
+								courseNum:$this.paraValue,
+								pageNum:pageNum,
+								pageSize:12
+							},
+							success:function(d){
+								if(d.error.returnCode ==='0'){
+									$this.questionData = d.data;
+									if(d.data.list.length && pageNum!=1){
+										$this.questionList = $this.questionList .concat(d.data.list);
+									}else{
+										$this.questionList = d.data.list
+									}
+									$this.$nextTick(function(){
+										myscroll.refresh();
+									})
+								}else{
+									layerTC(d.error.returnMessage)
+								}
+							}
+						})
+					},
+					
+					//根据棋谱id 加载棋盘
+					loadQuestion: function(questionId) {
+						var $this = this;
+						this.questionId = questionId;
+						
+						layer.closeAll()
+						$.ajax({
+							type: "POST",
+							url: http+"/gobangteach/classroom/loadQuestion",
+							data: {
+								questionid:questionId,
+								uid:uid,
+								token:token
+							},
+							dataType: 'json',
+							success: function(data) {
+								$this.questionInfo = data.data.questionbank;
+								console.log("棋盘信息", data);
+								$this.title = data.data.questionbank.titlerequs===null||
+										data.data.questionbank.titlerequs===''?
+										data.data.questionbank.description.split('_')[0]:
+										data.data.questionbank.titlerequs
+								
+								var gameInfo = JSON.parse(data.data.questionbank.chessdata);
+								console.log('gameInfo',gameInfo)
+					
+								//题库类型
+								$this.game.config.sgfstate = data.data.questionbank.sgfstate
+								//设置棋盘路数
+								$this.game.config.road = gameInfo.roadX
+								
+								//登入棋局
+								eve.f('enterGame',data.data.chessid,uid)();
+								
+							},
+							error: function(XMLHttpRequest, data) {
+								alert("获取房间信息失败");
+							}
+						});
+					},
+					//下一题
+					nextORprev:function(state){
+						var $this = this;
+						let qsType = jsonlink(); //当前的是怎么进的
+						var data = {};
+							data.state = state;
+							data.uid = uid;
+							data.token = token;
+							data.chessId = this.questionId
+							
+						if(qsType.courseNum){ //按课程
+							data.courseNum = this.paraValue;
+						}else{ 
+							data.level = this.level
+							data.questionType = $this.questionType;
+							data.questionName = this.questionName;
+						}
+						$.ajax({
+							url: http+'/gobangteach/classroom/getNextOrUpQuestion',
+							type:'post',
+							data:data,
+							success:function(d){
+								if(d.error.returnCode ==='0'){
+									if(d.data){
+										$this.loadQuestion(d.data.id)
+									}else{
+										layerTC('没有了哦~')
+									}
+								}else{
+									layerTC(d.error.returnMessage)
+								}
+							}
+						})
+					},
+					//根据棋力等级和类型获取知识点
+					listKnowledge:function (callback) {
+						$this = this
+						$.ajax({
+							url: http+'/gobangteach/classroom/listKnowledge',
+							type:'post',
+							data:{
+								uid:uid,
+								token:token,
+								level:$this.level,
+								questionType:$this.questionType,//1死活  2布局  3官子 5手筋 6 行棋方式
+							},
+							success:function(d){
+								if(d.error.returnCode ==='0'){
+									$this.knowledgeData = d.data;
+									$this.paraValue = d.data[0].paraValue;
+									
+									if(d.data.length){
+										$this.questionName = d.data[0]
+										$this.getQuestionList();
+									}
+								}else{
+									layerTC(d.error.returnMessage)
+								}
+							}
+						})
+					},
+					//根据 类型 知识点 等级查询列表
+					getQuestionList:function (pageNum=1) {
+						$this = this
+						$.ajax({
+							url: http+'/gobangteach/classroom/getQuestionList',
+							type:'post',
+							data:{
+								uid:uid,
+								token:token,
+								level:$this.level||'25k',
+								questionName:$this.questionName,
+								questionType:$this.questionType,//1死活  2布局  3官子 5手筋 6 行棋方式
+								pageNum:pageNum,
+								pageSize:12,
+							},
+							success:function(d){
+								if(d.error.returnCode ==='0'){
+									$this.questionData = d.data
+									
+									if(d.data.list.length && pageNum!=1){
+										$this.questionList = $this.questionList .concat(d.data.list);
+									}else{
+										$this.questionList = d.data.list
+									}
+									$this.$nextTick(function(){
+										myscroll.refresh();
+									})
+									
+								}else{
+									layerTC(d.error.returnMessage)
+								}
+							}
+						})
+					},
+					selectQuestion:function(){
+						$this = this;
+						let qsType = jsonlink();
+						if(this.type===1){ //按课程
+							this.getCourseInfo();
+							layerOpen({
+								content:'#kecheng',//节点
+								area:['6.07rem','10rem'],//可选默认 2rem 2rem  宽度 高度(带单位)
+								cancel:function(){} //可选  右上角关闭回调
+							})
+							
+							
+						}else if(this.type===2){ //级别
+							this.level = qsType.level
+							this.questionType = qsType.questionType
+							this.listKnowledge()
+							layerOpen({
+								content:'#kecheng',//节点
+								area:['6.07rem','10rem'],//可选默认 2rem 2rem  宽度 高度(带单位)
+								cancel:function(){} //可选  右上角关闭回调
+							})
+						}else if(this.type===3){
+							this.questionType = qsType.questionType;
+							this.level = qsType.level;
+							this.questionName = decodeURIComponent(qsType.questionName) ;
+							this.getQuestionList();
+							layerOpen({
+								content:'#kecheng',//节点
+								area:['6.07rem','9.5rem'],//可选默认 2rem 2rem  宽度 高度(带单位)
+								cancel:function(){} //可选  右上角关闭回调
+							}) 
+						}
+					},
+					//好坏题
+					aswRorW:function(flag){
+						if(flag==1 && flag==this.questionInfo.opencond){
+							eve.f('notifyGameOver',13)()
+						}else{
+							eve.f('notifyGameOver',12)()
+						}
+					}
+				},
+				mounted:function(){
+					var $this = this;
+					//关闭loding 
+					document.location.href = "myschema://go?a=14"
+					
+					this.type = jsonlink().type*1;
+					//棋盘缩放功能
+					new RTP.PinchZoom($(".chessBox"), {
+						animationDuration:200,
+						maxZoom:3
+					});
+					this.selectQuestion()
+					myscroll = new iScroll("wrapper",{
+						onScrollMove:function(){
+							if (this.y<(this.maxScrollY)) {
+								$('.pull_icon').addClass('flip');
+								$('.pull_icon').removeClass('loading');
+								$('.more span').text('释放加载...');
+							}else{
+								$('.pull_icon').removeClass('flip loading');
+								$('.more span').text('上拉加载...')
+							}
+						},
+						onScrollEnd:function(){
+							if ($('.pull_icon').hasClass('flip')) {
+								$('.pull_icon').addClass('loading');
+								$('.more span').text('加载中...');
+								console.log('上拉',$this.questionData.nextPage)
+
+								if($this.questionData.pageNum==$this.questionData.pages){
+									$('.more span').text('加载完毕！');
+								}else{
+									let qsType = jsonlink();
+									if(qsType.courseNum){ //按课程
+										$this.getQuestionByCourse($this.questionData.nextPage);
+									}else if(qsType.level){ //级别
+										$this.getQuestionList($this.questionData.nextPage)
+									}else{
+										
+									}
+
+								}
+							}
+						},
+						onRefresh:function(){
+							$('.more').removeClass('flip');
+							$('.more span').text('上拉加载...');
+						}
+					});
+					
+					//棋盘实例
+					this.game = new xsgo('gameChess',{
+						type:2,
+						road: 19,//$this.gameInfo.RuleType2===1?19:9 ,
+						bgColor:'#ffd687',
+						affirmMovelater:1,//开启确认落子
+					})
+					//确认落子回调
+					$this.game.qrlzState = function(val){
+						$this.qrlzState = val
+					}
+					
+					
+					
+					//链接成功回调
+					eve.on('socketOpen',function(){
+					  	console.log('链接成功')
+					})
+					  
+					//棋局登入成功回调
+					eve.on('signInResponse',function(data){
+					  	console.log('登入成功',data)
+					  	//落子回调
+					  	$this.game.playCall = function(d){
+					  		console.log('落子位置',d)
+					  		//落子
+					  		eve.f('handlerAction',data.getGameId,d)(); 
+					  	}
+					  	if(data.moveList.length){ //如果有落子信息()
+					  		//更新棋谱
+					  		$this.game.svg = data.moveList;
+					  	}else{
+					  		$this.game.init() 
+					  	}
+					})
+					  
+					  //落子结果
+					eve.on("handlerActionResult", function(data) {
+					  	console.log('落子结果:',data)
+					  	$this.game.addQueue(data) //添加子到棋盘
+					  	var str = data.join('').indexOf('AE');
+					  	if(str>0){ //是否有提子
+					  		document.location.href = "myschema://go?a=10&music=ChipMany";//提子音效
+					  	}else{
+					  		document.location.href = "myschema://go?a=10&music=STONE0";//落子声
+					  	}
+					});
+					  
+					  /**
+					   *  游戏结束
+					   */
+					eve.on("notifyGameOver", function(status, ) {
+					  
+					  	if(status === 12) {
+					  		layerTC({
+					  			skin:'layerWrong',
+					  			closeBtn:0,
+					  		}, function() {
+								$this.nextORprev(2)
+							})
+					  
+					  		$("#aswError")[0].play();
+					  
+					  		addRightWrong('2')
+					  		updateErrorQuestionsStates(1)
+					  	} else if(status === 13) {
+					  		layerTC({
+					  			skin:'layerRight',
+					  			closeBtn:0,
+					  		}, function() {
+								$this.nextORprev(2)
+					  		})
+					  		addRightWrong('1')
+					  		$("#aswRight")[0].play();
+					  	} else {
+					  		layerTC('游戏结束'+ status)
+					  	}
+						//做错题添加到错题本,做对移出错题本
+					  	function updateErrorQuestionsStates(states){
+					          var param = {
+					          	states:states, //1代表错  2代表对
+					          	quesionID:$this.questionInfo.id,
+								uid:uid,
+								token:token,
+					          }
+					  		console.log('param:',param)
+					  		$.ajax({
+					  			url: http+'/gobangteach/classroom/updateErrorQuestionsStates',
+					  			type: "POST",
+					  			dataType: "json",
+					  			data: $.param(param),
+					  			success: function (data) {
+					  				console.log("ClearChessboard", data);
+					  				
+					  			},
+					  			error: function(XMLHttpRequest,data) {
+					  				alert("更新该题失败");
+					  			}
+					  		}); 
+					    };
+					
+					
+					  	//添加用户做题记录
+					  	function addRightWrong(sign) {
+					  		var param = {
+					  			chessId: $this.questionInfo.id,
+					  			rightWrong: sign,   //答题的对错情况   1 代表对 2 代表错
+					  			source:1             ,//题来源    1 题库 2.错题本3作业4课件
+								uid:uid,
+								token:token,
+					  		}
+					  		console.log(param)
+					  		$.ajax({
+					  			url: http+'/gobangteach/QuestionbankController/addRightWrong',
+					  			type: "POST",
+					  			dataType: "json",
+					  			data: $.param(param),
+					  			success: function(data) {
+					  				if(sign=='1'){
+					  					if(data.data.questionJf>0){
+					  						$(".getJf").show();
+					  						setTimeout(function(){
+					  							$(".getJf").hide();
+					  						},2000)
+					  					}
+					  				}
+					  			},
+					  			error: function(XMLHttpRequest, data) {
+					  				console.log("更新该题失败");
+					  			}
+					  		});
+					  	}
+					  });
+					
+					
+					
+					
+					
+					
+					
+					
+				}
+			})
+		</script>
+	</body>
+</html>

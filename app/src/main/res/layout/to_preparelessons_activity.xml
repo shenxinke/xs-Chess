@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <include layout="@layout/login_title_layout" />
+
+    <ImageView
+        android:id="@+id/image_background"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="@dimen/dp_10"
+        android:layout_marginLeft="@dimen/sp_15"
+        android:layout_marginRight="@dimen/sp_15"
+        android:layout_marginTop="@dimen/dp_70"
+        android:background="@mipmap/prepare_lessons_backgrout"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ScrollView
+        android:id="@+id/scrollView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="@dimen/dp_25"
+        android:layout_marginTop="@dimen/dp_80"
+        android:fillViewport="true"
+        app:layout_constraintBottom_toBottomOf="@+id/image_background"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/image_background">
+
+        <android.support.constraint.ConstraintLayout
+            android:id="@+id/to_prepare_image"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="@dimen/dp_20">
+
+            <TextView
+                android:id="@+id/to_prepare_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/dp_5"
+                android:text="备课标题:"
+                android:textColor="@color/white"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                app:layout_constraintLeft_toLeftOf="@+id/to_prepare_image"
+                app:layout_constraintTop_toTopOf="@+id/to_prepare_image" />
+
+            <TextView
+                android:id="@+id/class_name"
+                android:layout_width="@dimen/dp_210"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/dp_10"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:textColor="@color/white"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@+id/to_prepare_title"
+                app:layout_constraintLeft_toRightOf="@+id/to_prepare_title"
+                app:layout_constraintTop_toTopOf="@+id/to_prepare_title" />
+
+            <TextView
+                android:id="@+id/text_type"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_5"
+                android:text="教学目标:"
+                android:textColor="@color/white"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                app:layout_constraintLeft_toLeftOf="@+id/to_prepare_title"
+                app:layout_constraintTop_toBottomOf="@+id/to_prepare_title" />
+
+            <TextView
+                android:id="@+id/edit_text1"
+                android:layout_width="@dimen/dp_305"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_5"
+                android:background="@drawable/shape_to_prepare"
+                android:focusableInTouchMode="false"
+                android:gravity="left"
+                android:padding="@dimen/dp_10"
+                android:textColor="@color/black"
+                android:textSize="11sp"
+                app:layout_constraintLeft_toLeftOf="@+id/to_prepare_title"
+                app:layout_constraintTop_toBottomOf="@+id/text_type" />
+
+            <TextView
+                android:id="@+id/text_type2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_5"
+                android:text="教学重点:"
+                android:textColor="@color/white"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                app:layout_constraintLeft_toLeftOf="@+id/to_prepare_title"
+                app:layout_constraintTop_toBottomOf="@+id/edit_text1" />
+
+            <TextView
+                android:id="@+id/edit_text2"
+                android:layout_width="@dimen/dp_305"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_5"
+                android:background="@drawable/shape_to_prepare"
+                android:focusableInTouchMode="false"
+                android:gravity="left"
+                android:padding="@dimen/dp_10"
+                android:textColor="@color/black"
+                android:textSize="11sp"
+                app:layout_constraintLeft_toLeftOf="@+id/to_prepare_title"
+                app:layout_constraintTop_toBottomOf="@+id/text_type2" />
+
+            <TextView
+                android:id="@+id/text_type3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_5"
+                android:text="教学难点:"
+                android:textColor="@color/white"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                app:layout_constraintLeft_toLeftOf="@+id/to_prepare_title"
+                app:layout_constraintTop_toBottomOf="@+id/edit_text2" />
+
+            <TextView
+                android:id="@+id/edit_text3"
+                android:layout_width="@dimen/dp_305"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_5"
+                android:background="@drawable/shape_to_prepare"
+                android:focusableInTouchMode="false"
+                android:gravity="left"
+                android:padding="@dimen/dp_10"
+                android:textColor="@color/black"
+                android:textSize="11sp"
+                app:layout_constraintLeft_toLeftOf="@+id/to_prepare_title"
+                app:layout_constraintTop_toBottomOf="@+id/text_type3" />
+
+            <TextView
+                android:id="@+id/text_type4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_5"
+                android:text="教学准备:"
+                android:textColor="@color/white"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                app:layout_constraintLeft_toLeftOf="@+id/to_prepare_title"
+                app:layout_constraintTop_toBottomOf="@+id/edit_text3" />
+
+            <TextView
+                android:id="@+id/edit_text4"
+                android:layout_width="@dimen/dp_305"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_5"
+                android:background="@drawable/shape_to_prepare"
+                android:focusableInTouchMode="false"
+                android:gravity="left"
+                android:padding="@dimen/dp_10"
+                android:textColor="@color/black"
+                android:textSize="11sp"
+                app:layout_constraintLeft_toLeftOf="@+id/to_prepare_title"
+                app:layout_constraintTop_toBottomOf="@+id/text_type4" />
+
+            <TextView
+                android:id="@+id/to_prepare_title2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_10"
+                android:text="课时计划:"
+                android:textColor="@color/white"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                app:layout_constraintLeft_toLeftOf="@+id/to_prepare_title"
+                app:layout_constraintTop_toBottomOf="@+id/edit_text4" />
+
+            <com.xswq.chess.myapplication.customview.MyListView
+                android:id="@+id/list_view2"
+                android:layout_width="@dimen/dp_305"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_5"
+                android:scrollbars="none"
+                android:divider="@null"
+                app:layout_constraintLeft_toLeftOf="@+id/to_prepare_title2"
+                app:layout_constraintTop_toBottomOf="@+id/to_prepare_title2" />
+
+        </android.support.constraint.ConstraintLayout>
+
+    </ScrollView>
+
+</android.support.constraint.ConstraintLayout>

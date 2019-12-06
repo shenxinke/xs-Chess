@@ -1,0 +1,258 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/check_school"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/dp_10"
+        android:layout_marginTop="@dimen/dp_15"
+        android:text="切换总园"
+        android:textColor="@color/white"
+        android:textSize="14sp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.xswq.chess.myapplication.customview.MaterialSpinner
+        android:id="@+id/school_spinner"
+        android:layout_width="@dimen/dp_250"
+        android:layout_height="@dimen/dp_30"
+        android:gravity="left|center_vertical"
+        android:paddingLeft="@dimen/dp_10"
+        android:textColor="@color/color_0058b0"
+        android:textSize="@dimen/dp_12"
+        app:layout_constraintBottom_toBottomOf="@+id/check_school"
+        app:layout_constraintLeft_toRightOf="@+id/check_school"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/check_school"
+        app:ms_hint_color="@color/color_0058b0" />
+
+    <TextView
+        android:id="@+id/text_start"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp_20"
+        android:text="切换分园"
+        android:textColor="@color/white"
+        android:textSize="14sp"
+        app:layout_constraintLeft_toLeftOf="@+id/check_school"
+        app:layout_constraintTop_toBottomOf="@+id/check_school" />
+
+    <com.xswq.chess.myapplication.customview.MaterialSpinner
+        android:id="@+id/president_text2"
+        android:layout_width="@dimen/dp_250"
+        android:layout_height="@dimen/dp_30"
+        android:dropDownVerticalOffset="@dimen/dp_30"
+        android:spinnerMode="dropdown"
+        android:textColor="@color/color_0058b0"
+        app:ms_hint_color="@color/color_0058b0"
+        android:textSize="@dimen/dp_12"
+        app:layout_constraintBottom_toBottomOf="@+id/text_start"
+        app:layout_constraintLeft_toRightOf="@+id/text_start"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/text_start" />
+
+
+    <TextView
+        android:id="@+id/switch_star_timer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/dp_10"
+        android:layout_marginTop="@dimen/dp_20"
+        android:text="开始时间:"
+        android:textColor="@color/white"
+        android:textSize="14sp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/text_start" />
+
+    <TextView
+        android:id="@+id/prefect_star_string"
+        android:layout_width="@dimen/dp_95"
+        android:layout_height="@dimen/dp_30"
+        android:background="@drawable/textview_round_border"
+        android:drawableRight="@mipmap/date"
+        android:editable="false"
+        android:gravity="center_vertical"
+        android:paddingLeft="@dimen/dp_10"
+        android:paddingRight="@dimen/dp_6"
+        android:text="请选择"
+        android:textColor="@color/color_0058b0"
+        android:textSize="10sp"
+        app:layout_constraintBottom_toBottomOf="@+id/switch_star_timer"
+        app:layout_constraintLeft_toLeftOf="@+id/school_spinner"
+        app:layout_constraintTop_toTopOf="@+id/switch_star_timer" />
+
+    <TextView
+        android:id="@+id/switch_end_timer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="结束时间:"
+        android:textColor="@color/white"
+        android:textSize="14sp"
+        app:layout_constraintLeft_toRightOf="@+id/prefect_star_string"
+        app:layout_constraintRight_toLeftOf="@+id/prefect_end_string"
+        app:layout_constraintTop_toTopOf="@+id/switch_star_timer" />
+
+    <TextView
+        android:id="@+id/prefect_end_string"
+        android:layout_width="@dimen/dp_95"
+        android:layout_height="@dimen/dp_30"
+        android:background="@drawable/textview_round_border"
+        android:drawableRight="@mipmap/date"
+        android:editable="false"
+        android:gravity="center_vertical"
+        android:paddingLeft="@dimen/dp_10"
+        android:paddingRight="@dimen/dp_6"
+        android:text="请选择"
+        android:textColor="@color/color_0058b0"
+        android:textSize="10sp"
+        app:layout_constraintBottom_toBottomOf="@+id/switch_star_timer"
+        app:layout_constraintRight_toRightOf="@+id/school_spinner"
+        app:layout_constraintTop_toTopOf="@+id/switch_star_timer" />
+
+    <Button
+        android:id="@+id/search_button"
+        android:layout_width="@dimen/dp_290"
+        android:layout_height="@dimen/dp_46"
+        android:layout_marginTop="@dimen/dp_10"
+        android:background="@mipmap/login_yellow"
+        android:text="搜索"
+        android:textColor="@color/color_cf5003"
+        android:textSize="15sp"
+        android:textStyle="bold"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/prefect_end_string" />
+
+
+    <ImageView
+        android:id="@+id/shape_punching_card_record"
+        android:layout_width="@dimen/dp_320"
+        android:layout_height="@dimen/dp_50"
+        android:layout_marginTop="@dimen/dp_5"
+        android:background="@drawable/shape_punching_card_record"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/search_button" />
+
+    <TextView
+        android:id="@+id/text_name"
+        android:layout_width="@dimen/dp_70"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/dp_20"
+        android:gravity="center"
+        android:text="学生姓名"
+        android:textColor="@color/color_573800"
+        android:textSize="15sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/shape_punching_card_record"
+        app:layout_constraintLeft_toLeftOf="@+id/shape_punching_card_record"
+        app:layout_constraintTop_toTopOf="@+id/shape_punching_card_record" />
+
+    <TextView
+        android:id="@+id/text_phone"
+        android:layout_width="@dimen/dp_90"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/dp_20"
+        android:gravity="center"
+        android:text="分润提成(元)"
+        android:textColor="@color/color_573800"
+        android:textSize="15sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/shape_punching_card_record"
+        app:layout_constraintLeft_toRightOf="@+id/text_name"
+        app:layout_constraintTop_toTopOf="@+id/shape_punching_card_record" />
+
+    <TextView
+        android:id="@+id/text_schedule"
+        android:layout_width="65dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/dp_30"
+        android:gravity="center"
+        android:text="园所"
+        android:textColor="@color/color_573800"
+        android:textSize="15sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/shape_punching_card_record"
+        app:layout_constraintLeft_toRightOf="@+id/text_phone"
+        app:layout_constraintTop_toTopOf="@+id/shape_punching_card_record" />
+
+    <ImageView
+        android:id="@+id/shape_punching_card_record2"
+        android:layout_width="@dimen/dp_320"
+        android:layout_height="@dimen/dp_160"
+        android:background="@drawable/shape_punching_card_record2"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/shape_punching_card_record" />
+
+    <ListView
+        android:id="@+id/list_view"
+        android:layout_width="@dimen/dp_320"
+        android:layout_height="@dimen/dp_140"
+        android:layout_marginTop="@dimen/dp_10"
+        android:divider="@null"
+        android:scrollbars="none"
+        app:layout_constraintLeft_toLeftOf="@+id/shape_punching_card_record2"
+        app:layout_constraintRight_toRightOf="@+id/shape_punching_card_record2"
+        app:layout_constraintTop_toTopOf="@+id/shape_punching_card_record2" />
+
+    <TextView
+        android:id="@+id/not_data"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="暂无数据"
+        android:textColor="@color/black"
+        android:textSize="12sp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="@+id/shape_punching_card_record2"
+        app:layout_constraintLeft_toLeftOf="@+id/shape_punching_card_record2"
+        app:layout_constraintRight_toRightOf="@+id/shape_punching_card_record2"
+        app:layout_constraintTop_toTopOf="@+id/shape_punching_card_record2" />
+
+    <LinearLayout
+        android:id="@+id/aggregate_bg"
+        android:layout_width="@dimen/dp_320"
+        android:layout_height="@dimen/dp_56"
+        android:layout_marginTop="@dimen/dp_6"
+        android:background="@drawable/shape_friend_list"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/shape_punching_card_record2">
+
+        <TextView
+            android:id="@+id/text_aggregate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dp_15"
+            android:text="提成总计:"
+            android:textColor="@color/color_0058b0"
+            android:textSize="15sp" />
+
+        <TextView
+            android:id="@+id/text_money"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/dp_5"
+            android:layout_marginLeft="@dimen/dp_5"
+            android:maxEms="7"
+            android:singleLine="true"
+            android:textColor="@color/color_0058b0"
+            android:textSize="26sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dp_5"
+            android:text="元"
+            android:textColor="@color/color_0058b0"
+            android:textSize="15sp"/>
+    </LinearLayout>
+
+
+</android.support.constraint.ConstraintLayout>

@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@mipmap/main_settings_bg"
+    android:orientation="vertical"
+    android:gravity="center_horizontal">
+
+    <include layout="@layout/login_title_layout" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_132"
+        android:layout_marginLeft="@dimen/dp_15"
+        android:layout_marginTop="@dimen/dp_10"
+        android:layout_marginRight="@dimen/dp_15"
+        android:background="@mipmap/settings_bg"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:id="@+id/setup"
+            android:layout_width="@dimen/dp_270"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dp_29"
+            android:layout_marginTop="@dimen/dp_34"
+            android:layout_marginEnd="@dimen/dp_27"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="@dimen/dp_18"
+                android:layout_height="@dimen/dp_18"
+                android:background="@mipmap/setup" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dp_10"
+                android:text="系统设置"
+                android:textColor="@color/wai_content_color"
+                android:textSize="15sp" />
+
+            <ImageView
+                android:layout_width="@dimen/dp_7"
+                android:layout_height="@dimen/dp_13"
+                android:layout_gravity="center"
+                android:layout_marginStart="@dimen/dp_176"
+                android:background="@mipmap/settings_arrows" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/help_center"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dp_29"
+            android:layout_marginTop="@dimen/dp_34"
+            android:layout_marginEnd="@dimen/dp_27"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="@dimen/dp_18"
+                android:layout_height="@dimen/dp_18"
+                android:background="@mipmap/help_center" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dp_10"
+                android:text="帮助中心"
+                android:textColor="@color/wai_content_color"
+                android:textSize="15sp" />
+
+            <ImageView
+                android:layout_width="@dimen/dp_7"
+                android:layout_height="@dimen/dp_13"
+                android:layout_gravity="center"
+                android:layout_marginStart="@dimen/dp_176"
+                android:background="@mipmap/settings_arrows" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_132"
+        android:layout_marginLeft="@dimen/dp_15"
+        android:layout_marginTop="@dimen/dp_10"
+        android:layout_marginRight="@dimen/dp_15"
+        android:background="@mipmap/settings_bg"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:id="@+id/change_password"
+            android:layout_width="@dimen/dp_270"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dp_29"
+            android:layout_marginTop="@dimen/dp_34"
+            android:layout_marginEnd="@dimen/dp_27"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="@dimen/dp_18"
+                android:layout_height="@dimen/dp_18"
+                android:background="@mipmap/change_password" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dp_10"
+                android:text="修改密码"
+                android:textColor="@color/wai_content_color"
+                android:textSize="15sp" />
+
+            <ImageView
+                android:layout_width="@dimen/dp_7"
+                android:layout_height="@dimen/dp_13"
+                android:layout_gravity="center"
+                android:layout_marginStart="@dimen/dp_176"
+                android:background="@mipmap/settings_arrows" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/about_us_image"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dp_29"
+            android:layout_marginTop="@dimen/dp_34"
+            android:layout_marginEnd="@dimen/dp_27"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="@dimen/dp_18"
+                android:layout_height="@dimen/dp_18"
+                android:background="@mipmap/about_us_image" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dp_10"
+                android:text="关于我们"
+                android:textColor="@color/wai_content_color"
+                android:textSize="15sp" />
+
+            <ImageView
+                android:layout_width="@dimen/dp_7"
+                android:layout_height="@dimen/dp_13"
+                android:layout_gravity="center"
+                android:layout_marginStart="@dimen/dp_176"
+                android:background="@mipmap/settings_arrows" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/check_for_updates_button"
+        android:text="检查更新"
+        android:textSize="17sp"
+        android:textColor="@color/color_ad4106"
+        android:layout_marginTop="@dimen/dp_19"
+        android:background="@mipmap/check_for_updates_button"
+        android:layout_width="@dimen/dp_226"
+        android:layout_height="@dimen/dp_38"/>
+
+    <Button
+        android:id="@+id/switch_account_button"
+        android:text="切换用户"
+        android:textSize="17sp"
+        android:textColor="@color/white"
+        android:layout_marginTop="@dimen/dp_15"
+        android:background="@mipmap/switch_account_button"
+        android:layout_width="@dimen/dp_226"
+        android:layout_height="@dimen/dp_38"/>
+</LinearLayout>

@@ -1,0 +1,219 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.xswq.chess.myapplication.customview.HorizontalListView
+        android:id="@+id/list_view"
+        android:layout_width="@dimen/dp_300"
+        android:layout_height="@dimen/dp_30"
+        android:layout_marginStart="@dimen/dp_9"
+        android:layout_marginTop="@dimen/dp_22"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/last_match"
+        android:layout_width="@dimen/dp_78"
+        android:layout_height="@dimen/dp_28"
+        android:layout_marginStart="@dimen/dp_63"
+        android:layout_marginTop="@dimen/dp_20"
+        android:background="@mipmap/integral_shopping_mall_yes"
+        android:text="上轮"
+        android:textColor="@color/color_ad4303"
+        android:textSize="15sp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/list_view" />
+
+    <TextView
+        android:id="@+id/match_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/dp_13"
+        android:text="0/0"
+        android:textColor="@color/wai_content_color"
+        android:textSize="15sp"
+        app:layout_constraintBottom_toBottomOf="@+id/last_match"
+        app:layout_constraintLeft_toRightOf="@+id/last_match"
+        app:layout_constraintTop_toTopOf="@+id/last_match" />
+
+    <Button
+        android:id="@+id/next_match"
+        android:layout_width="@dimen/dp_78"
+        android:layout_height="@dimen/dp_28"
+        android:layout_marginStart="@dimen/dp_13"
+        android:background="@mipmap/integral_shopping_mall_yes"
+        android:text="下轮"
+        android:textColor="@color/color_ad4303"
+        android:textSize="15sp"
+        app:layout_constraintLeft_toRightOf="@+id/match_text"
+        app:layout_constraintTop_toTopOf="@+id/last_match" />
+
+    <HorizontalScrollView
+        android:id="@+id/scroll_view"
+        android:layout_width="@dimen/dp_300"
+        android:layout_height="@dimen/dp_306"
+        android:layout_marginTop="@dimen/dp_15"
+        android:scrollbars="none"
+        android:overScrollMode="never"
+        android:fadingEdge="none"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/last_match"
+        app:layout_goneMarginTop="@dimen/dp_5">
+
+        <android.support.constraint.ConstraintLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:background="@drawable/shape_result_of_the_match">
+
+            <android.support.constraint.ConstraintLayout
+                android:id="@+id/title_list"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/dp_48"
+                android:background="@drawable/shape_result_match"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <TextView
+                    android:id="@+id/tai_hao"
+                    android:layout_width="@dimen/dp_30"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/dp_20"
+                    android:layout_marginTop="@dimen/dp_20"
+                    android:gravity="center"
+                    android:text="台号"
+                    android:textColor="@color/color_893000"
+                    android:textSize="12sp"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/black_serial_number"
+                    android:layout_width="@dimen/dp_30"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/dp_20"
+                    android:layout_marginTop="@dimen/dp_20"
+                    android:gravity="center"
+                    android:text="编号"
+                    android:textColor="@color/color_893000"
+                    android:textSize="12sp"
+                    app:layout_constraintLeft_toRightOf="@+id/tai_hao"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/black_name"
+                    android:layout_width="@dimen/dp_50"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/dp_20"
+                    android:layout_marginTop="@dimen/dp_20"
+                    android:gravity="center"
+                    android:text="黑方姓名"
+                    android:textColor="@color/color_893000"
+                    android:textSize="12sp"
+                    app:layout_constraintLeft_toRightOf="@+id/black_serial_number"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/black_last_round"
+                    android:layout_width="@dimen/dp_50"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/dp_20"
+                    android:layout_marginTop="@dimen/dp_20"
+                    android:gravity="center"
+                    android:text="上轮积分"
+                    android:textColor="@color/color_893000"
+                    android:textSize="12sp"
+                    app:layout_constraintLeft_toRightOf="@+id/black_name"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/result"
+                    android:layout_width="@dimen/dp_50"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/dp_20"
+                    android:layout_marginTop="@dimen/dp_20"
+                    android:gravity="center"
+                    android:text="结果"
+                    android:textColor="@color/color_893000"
+                    android:textSize="12sp"
+                    app:layout_constraintLeft_toRightOf="@+id/black_last_round"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/white_last_round"
+                    android:layout_width="@dimen/dp_50"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/dp_20"
+                    android:layout_marginTop="@dimen/dp_20"
+                    android:gravity="center"
+                    android:text="上轮积分"
+                    android:textColor="@color/color_893000"
+                    android:textSize="12sp"
+                    app:layout_constraintLeft_toRightOf="@+id/result"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/white_name"
+                    android:layout_width="@dimen/dp_50"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/dp_20"
+                    android:layout_marginTop="@dimen/dp_20"
+                    android:gravity="center"
+                    android:text="白方姓名"
+                    android:textColor="@color/color_893000"
+                    android:textSize="12sp"
+                    app:layout_constraintLeft_toRightOf="@+id/white_last_round"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/white_serial_number"
+                    android:layout_width="@dimen/dp_30"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/dp_20"
+                    android:layout_marginRight="@dimen/dp_20"
+                    android:layout_marginTop="@dimen/dp_20"
+                    android:gravity="center"
+                    android:text="编号"
+                    android:textColor="@color/color_893000"
+                    android:textSize="12sp"
+                    app:layout_constraintLeft_toRightOf="@+id/white_name"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+            </android.support.constraint.ConstraintLayout>
+
+            <ListView
+                android:id="@+id/bottom_list"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="@dimen/dp_48"
+                android:divider="@color/color_fff3bc"
+                android:dividerHeight="@dimen/dp_1"
+                android:scrollbars="none"
+                android:layout_marginBottom="@dimen/dp_5"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                android:overScrollMode="never"
+                android:fadingEdge="none"
+                app:layout_constraintTop_toBottomOf="@+id/title_list" />
+
+            <TextView
+                android:id="@+id/no_data"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="暂无数据"
+                android:textColor="@color/black"
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </android.support.constraint.ConstraintLayout>
+
+    </HorizontalScrollView>
+
+</android.support.constraint.ConstraintLayout>

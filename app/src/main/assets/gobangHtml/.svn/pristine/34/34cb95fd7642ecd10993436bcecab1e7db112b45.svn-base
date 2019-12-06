@@ -1,0 +1,26 @@
+
+var http = 'http://192.168.2.104';
+//var http = 'https://test.xswq361.cn';
+var uid = Tool.queryString("uid");
+var token =  Tool.queryString("token");
+var levelAI = Tool.queryString("levelAI");
+
+
+////用户是否过期验证
+$.ajax({
+    url:http+ "/gobangteach/UserBaseController/getUserFullInfoById",
+    data: {
+        userid: uid,
+        token:token,
+            uid:uid
+    },
+    success: function(data) {
+        if(data.error.returnCode==='10048' && !$('.login')[0] && !$('.loginContent')[0]){
+            layerTC('用户登入过期请重新登入', function() {
+                document.location.href = "myschema://go?a=2"
+            }, function() {
+                document.location.href = "myschema://go?a=2"
+            })
+        }
+    }
+});

@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <ImageView
+        android:id="@+id/image_bg"
+        android:layout_width="@dimen/dp_310"
+        android:layout_height="@dimen/dp_80"
+        android:layout_marginTop="@dimen/dp_10"
+        android:background="@drawable/textview_round_border"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/history_collect"
+        android:layout_width="@dimen/dp_44"
+        android:layout_height="@dimen/dp_30"
+        android:layout_marginTop="@dimen/dp_32"
+        android:layout_marginEnd="@dimen/dp_14"
+        android:background="@mipmap/personal_collection"
+        app:layout_constraintRight_toRightOf="@+id/image_bg"
+        app:layout_constraintTop_toTopOf="@+id/image_bg" />
+
+
+    <ImageView
+        android:id="@+id/history_head1"
+        android:layout_width="@dimen/dp_40"
+        android:layout_height="@dimen/dp_40"
+        android:layout_marginStart="@dimen/dp_12"
+        android:layout_marginTop="@dimen/dp_5"
+        android:src="@mipmap/men2x"
+        app:layout_constraintLeft_toLeftOf="@+id/image_bg"
+        app:layout_constraintTop_toBottomOf="@+id/history_gametype" />
+
+    <ImageView
+        android:id="@+id/history_head2"
+        android:layout_width="@dimen/dp_40"
+        android:layout_height="@dimen/dp_40"
+        android:src="@mipmap/wemon2x"
+        app:layout_constraintLeft_toRightOf="@+id/history_user2"
+        app:layout_constraintTop_toTopOf="@+id/history_head1" />
+
+
+    <ImageView
+        android:id="@+id/history_geme_result"
+        android:layout_width="@dimen/dp_26"
+        android:layout_height="@dimen/dp_26"
+        android:layout_marginLeft="@dimen/dp_12"
+        android:layout_marginTop="@dimen/dp_10"
+        android:src="@mipmap/personal_win"
+        app:layout_constraintLeft_toRightOf="@+id/history_user1"
+        app:layout_constraintTop_toTopOf="@+id/history_head1" />
+
+    <TextView
+        android:id="@+id/history_gametype"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/dp_10"
+        android:layout_marginTop="@dimen/dp_5"
+        app:layout_constraintLeft_toLeftOf="@+id/image_bg"
+        app:layout_constraintTop_toTopOf="@+id/image_bg" />
+
+    <TextView
+        android:id="@+id/history_gametime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/history_gametype"
+        android:layout_marginTop="@dimen/dp_5"
+        android:layout_marginRight="@dimen/dp_20"
+        android:text="2018/10/15 14:30:36"
+        android:textSize="@dimen/sp_10"
+        app:layout_constraintRight_toRightOf="@+id/image_bg"
+        app:layout_constraintTop_toTopOf="@+id/image_bg" />
+
+    <TextView
+        android:id="@+id/history_user1"
+        android:layout_width="@dimen/dp_38"
+        android:layout_height="@dimen/dp_44"
+        android:layout_alignParentBottom="true"
+        android:ellipsize="end"
+        android:maxEms="6"
+        android:maxLines="1"
+        android:paddingVertical="@dimen/dp_14"
+        android:text="赵洪超"
+        android:textSize="@dimen/sp_10"
+        app:layout_constraintLeft_toRightOf="@+id/history_head1"
+        app:layout_constraintTop_toTopOf="@+id/history_head1" />
+
+    <TextView
+        android:id="@+id/history_user2"
+        android:layout_width="@dimen/dp_44"
+        android:layout_height="@dimen/dp_44"
+        android:layout_marginLeft="@dimen/dp_12"
+        android:ellipsize="end"
+        android:maxEms="6"
+        android:maxLines="1"
+        android:paddingVertical="@dimen/dp_14"
+        android:paddingLeft="@dimen/dp_8"
+        android:text="周凤成阿"
+        android:textSize="@dimen/sp_10"
+        app:layout_constraintLeft_toRightOf="@+id/history_geme_result"
+        app:layout_constraintTop_toTopOf="@+id/history_head2"
+
+        />
+
+    <TextView
+        android:id="@+id/history_recoder_black_level"
+        android:layout_width="@dimen/dp_24"
+        android:layout_height="@dimen/dp_24"
+        android:layout_marginLeft="@dimen/dp_22"
+        android:layout_marginTop="@dimen/dp_24"
+        android:background="@drawable/blackbgview_round_border"
+        android:gravity="center"
+        android:text="25k"
+        android:textColor="@color/grey"
+        android:textSize="@dimen/dp_10"
+        app:layout_constraintLeft_toLeftOf="@+id/history_head1"
+        app:layout_constraintTop_toTopOf="@+id/history_head1"
+
+        />
+
+    <TextView
+        android:id="@+id/history_recoder_white_level"
+        android:layout_width="@dimen/dp_24"
+        android:layout_height="@dimen/dp_24"
+        android:layout_marginLeft="@dimen/dp_22"
+        android:layout_marginTop="@dimen/dp_24"
+        android:background="@drawable/greybgview_round_border"
+        android:gravity="center"
+        android:text="25k"
+        android:textColor="@color/black"
+        android:textSize="@dimen/dp_10"
+        app:layout_constraintLeft_toLeftOf="@+id/history_head2"
+        app:layout_constraintTop_toTopOf="@+id/history_head2" />
+
+</android.support.constraint.ConstraintLayout>

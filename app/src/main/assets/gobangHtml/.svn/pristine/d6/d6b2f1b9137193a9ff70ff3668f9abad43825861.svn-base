@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+		<meta name="renderer" content="webkit">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title>先手围棋智能教育服务平台</title>
+		<script type='text/javascript' src="cocos2d/src/eve.js"></script>
+		<script type="text/javascript" src="libs/nim/NIM_Web_SDK_v5.0.0.js"></script>
+		<script type="text/javascript" src="libs/nim/NIM_Web_WebRTC_v5.0.0.js"></script>
+		<script src='js/gobang/nim3.js'></script>
+	</head>
+	<style type="text/css"></style>
+
+	<body style="display: none;">
+		<div id='questionStore' class="ha100 oh">
+			<p class="fs30 df ai-c jc-c bge6f wa100 c003 h80">{{description}}</p>
+			<div class="rel boardBg" id='canvasBox'>
+				<canvas id="gameCanvas" width="640" height="640" onmouseout='eve.f("NotifyMouseout")()'></canvas>
+			</div>
+
+			<div class="btmBox wa100 df ai-c jc-c fw-w " v-show='target'>
+
+				<div class="w700 h210 mb40 swiper-container oh">
+					<div class="swiper-wrapper">
+						<div class="swiper-slide " v-if="chessManualList" v-for='(x,index) in chessManualList.list' @click="loadMyJob(x.id)">
+							<div :data-id='x.id' :data-index='index' :key='index+Math.random()' :class="['w210 h210 m0a bgf rel imgBox',{'right':x.rightWrong==1},{'wrong':x.rightWrong==2}]">
+								<div class="wa100 ha100 b3red abs tp0 lt0 dn bkuang"></div>
+								<img class="wa100 ha100" :src="x.snapshot" alt="" />
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="wa100 h70 df ai-c jc-sa">
+					<div class="w130 h60">
+						<button class="btn-n wa100 ha100 bg_qs_01 cc06804" @click='getList(chessManualList.prePage)' v-if="chessManualList.prePage">上一页</button>
+					</div>
+					<div class="w130 h60">
+						<button class="btn-n wa100 ha100 bg_qs_01 cc06804" @click='submitWord'>提交</button>
+					</div>
+					<div class="w130 h60">
+						<button class="btn-n wa100 ha100 bg_qs_01 cc06804" @click='getList(chessManualList.nextPage)' v-if="chessManualList.nextPage">下一页</button>
+					</div>
+					
+				</div>
+			</div>
+
+			<div v-show='!target' class='btmBox wa100 df ai-c jc-c'>
+				<div class="rel w245 h246 scale116">
+					<img alt="" src="img/play/fall.png" class="w245">
+					<button class="abs tp0 lt50 tc h60 w140 lt50 op0 upBtn" @click="moveStep(0,1)"></button>
+					<button class="abs lt0 tp52 tc w60 h140 op0 leftBtn" @click="moveStep(-1,0)"></button>
+					<button class="abs rt0 tp52 tc w60 h140 op0 rightBtn" @click="moveStep(1,0)"></button>
+					<button class="abs bt0 lt50 tc h60 w140 op0 btmBtn" @click="moveStep(0,-1)"></button>
+					<button class="abs bt64 lt62 tc h120 w120 op0 centerBtn" @click="confirmStep()"></button>
+				</div>
+			</div>
+
+			<audio src="music/STONE0.wav" type="hidden" id="stepmusic"></audio>
+			<audio src="music/aswError.mp3" type="hidden" id="aswError"></audio>
+			<audio src="music/aswRight.mp3" type="hidden" id="aswRight"></audio>
+		</div>
+
+		<script src="libs/require/require.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			require(['js/lib/require.config'], function() {
+				require([
+					'Vue',
+					'game',
+					'swiper'
+				], function(Vue) {
+					$('body').show();
+					window.Vue = Vue; //vue全局
+					$('#gameCanvas').attr('width', $('body').width()).attr('height', $('body').width());
+					$('.btmBox').height($('body').height() - $('body').width()-document.documentElement.offsetWidth/7.5*0.8)
+                        var sgfState = 0;
+					var mySwiper
+					var vm = new Vue({
+						el: '#questionStore',
+						data: {
+							chessManualList: {
+								list: []
+							}, //棋谱列表
+							questionIds:'', //
+							target: 1,
+							results:'',
+							wordInfo:{},
+							description:''
+						},
+						methods: {
+							//棋谱列表
+							getList:function(pageNum){
+								$this = this;
+								
+								if(jsonlink().jobid){
+									$.ajax({
+										type:'post',
+										url:http+'/gobangteach/SchoolController/historyDetail',
+										data:{
+											pageSize:12,
+											pageNum:pageNum||1,
+											jobId:jsonlink().jobid,
+											uid: uid,
+											token: token
+										},
+										success:function(data){
+											console.log('1',data)
+											
+											vm.chessManualList=data.data;
+											if(data.data.list[0]&&data.data.list[0].length!=0){
+												vm.loadMyJob(data.data.list[0].id)
+											}else{
+												createGame();
+											}
+											//$('.imgBox').removeClass('wrong right')
+											$this.$nextTick(function() {
+												mySwiper.reInit();
+												mySwiper.swipeTo(0);
+											})
+											if(data.data.list[0]&&data.data.list[0].rightWrong>0){
+												$('#gameCanvas').parent().append('<div class="wa100 ha100 abs tp0 lt0 z10"></div>')
+												$('#gameCanvas').next().click(function(){
+													//layerTC('该作业已经提交过，不能在落子哦~')
+												})
+											}
+										}
+									})
+								}else{
+									$.ajax({
+										type:'post',
+										url:http+'/gobangteach/SchoolController/currentTask',
+										data:{
+											pageSize:12,
+											pageNum:pageNum||1,
+											history:1,
+											uid: uid,
+											token: token
+										},
+										beforeSend:function(){
+											//vm.chessManualList=''
+										},
+										success:function(data){
+											console.log('1',data)
+											
+											vm.chessManualList=data.data;
+											//vm.$set(vm.chessManualList,data.data)
+											if(data.data.list[0]&&data.data.list[0].length!=0){
+												vm.loadMyJob(data.data.list[0].id)
+											}else{
+												createGame();
+											}
+											//$('.imgBox').removeClass('wrong right')
+											$this.$nextTick(function() {
+												mySwiper.reInit();
+												mySwiper.swipeTo(0);
+											})
+											if(data.data.list[0]&&data.data.list[0].rightWrong>0){
+												$('#gameCanvas').parent().append('<div class="wa100 ha100 abs tp0 lt0 z10"></div>')
+												$('#gameCanvas').next().click(function(){
+													layerTC('该作业已经提交过，不能再落子哦~')
+												})
+											}
+										}
+									})
+								}
+							},
+							//根据棋谱id 加载棋盘
+							loadMyJob: function(questionId) {
+								
+									$.ajax({
+										type: "POST",
+										url: http + "/gobangteach/classroom/loadQuestion",
+										data: "questionid=" + questionId + "&token=" + token + "&uid=" + uid,
+										dataType: 'json',
+										success: function(data) {
+											console.log("棋盘信息", data);
+											window.currentGameId = data.data.chessid;
+											window.quesionID = questionId;
+											$('.imgBox').removeClass('qipuActive')
+											$('.imgBox[data-id=' + window.quesionID + ']').addClass('qipuActive');
+											eve.f("HandlerSignInReq", uid)();
+											vm.description = data.data.questionbank.titlerequs===null||
+											data.data.questionbank.titlerequs===''?
+													data.data.questionbank.description.split('_')[0]:
+													data.data.questionbank.titlerequs
+											//棋局开始提示信息
+											/* $('#canvasBox').canvasAlert({
+												content:data.data.questionbank.titlerequs===null||
+												data.data.questionbank.titlerequs===''?
+												data.data.questionbank.description.split('_')[0]:
+												data.data.questionbank.titlerequs
+											}) */
+											setTimeout(function() {
+												eve.f("HandlerHideStep")();
+											}, 100);
+                                           sgfState = data.data.questionbank.sgfstate
+										},
+										error: function(XMLHttpRequest, data) {
+											alert("获取房间信息失败");
+										}
+									});
+							},
+							submitWord: function (){
+								$this=this
+								if(this.chessManualList.list[0].rightWrong>0){ //该作业是否提交过
+									layerTC('提交过的作业不允许重复提交哦~')
+								}else{
+									//如果一道题都没做不允许提交
+									if(JSON.stringify(this.wordInfo) != "{}"){
+										var questionIds='',results='';
+										$.each(this.wordInfo,function(key,val){
+											questionIds += key+','
+											results += val+','
+										})
+										$.ajax({
+											url: http+'/gobangteach/SchoolController/submitJob',
+											type: "POST",
+											dataType: "json",
+											data: {
+												jobId:vm.chessManualList.list[0].jobId,
+												questionIds:questionIds.slice(0,questionIds.length-1),
+												results:results.slice(0,results.length-1),
+												uid: uid,
+												token: token
+											},
+											success: function(data) {
+												console.log("ClearChessboard", data);
+												layerTC('作业提交成功！',function(){
+													//window.history.go(-1)
+													//$this.getList()
+													document.location.href = "myschema://go?a=1"
+												})
+											},
+											error: function(XMLHttpRequest, data) {
+												console.log("更新该题失败");
+											}
+										}); 
+									}else{
+										layerTC('至少做一道吧~')
+									}
+								}
+							},
+							confirmStep: function() {
+                                     if(action_==null){
+                                     layerTC("请选择落点");
+                                     }else{
+                                     var x = action_.substring(2,3).charCodeAt()-97;
+                                     var y = action_.substring(3,4).charCodeAt()-97;
+                                     var gameId = GGame.get("game:id");
+                                     var road = GGame.get("game:" + gameId + ":road");
+                                     if(x < 0 || x >= road.x || y < 0 || y >= road.x){
+                                     layerTC("请选择正确落点");
+                                     return;
+                                     }
+                                     eve.f("HandlerAction", action_)();
+                                     setTimeout(function(){
+                                                var queue = GGame.get("game:"+gameId+":queue");
+                                                if(action_ == queue[queue.length-1]){
+                                                action_ = null;
+                                                }
+                                                },1000);
+                                     $('.fall').hide();
+                                     this.target = 1
+                                     }
+							},
+							moveStep: function(x, y) {
+								$this=this
+								var move = false;
+								if(action_ != null) {
+									var gameId = GGame.get("game:id");
+									var queue = GGame.get("game:" + gameId + ":queue");
+									var tryPlay = GGame.get("game:" + gameId + ":TryPlay");
+									var color = action_.substring(0, 1);
+									var xLoc = action_.substring(2, 3);
+									var yLoc = action_.substring(3, 4);
+									action_ = color + "[" + String.fromCharCode(xLoc.charCodeAt() + x) + String.fromCharCode(yLoc.charCodeAt() + y) + "]";
+									var array = new Array();
+									if(tryPlay === 1) {
+										queue = GGame.get("game:" + gameId + ":queueTraverse");
+									}
+									$.each(queue, function(index, item) {
+										if(item.indexOf(action_.substring(2, 4)) != -1) {
+											array.push(item);
+										}
+									});
+									if(array.length > 0) {
+										var last = array[array.length - 1];
+										if(last.length == 5) {
+											$this.moveStep(x, y);
+										} else {
+											move = true;
+										}
+									} else {
+										move = true;
+									}
+									if(move) {
+										eve.f("HandReply", action_)();
+									}
+								} else {
+									alert("请选择落点");
+								}
+							}
+						},
+						watch:{
+							chessManualList:function(){
+								console.log('监听列表')
+								if(JSON.stringify(this.wordInfo) != "{}"){
+									$.each(this.wordInfo,function(key,val){
+										console.log(key,val)
+										//console.log($('.imgBox[data-id='+key+']').html())
+										
+										vm.$nextTick(function(){
+											$('.imgBox[data-id='+key+']').addClass(val==1?'right':'wrong')
+										})
+										
+										
+									})
+								}
+							
+							}
+							},
+						mounted: function() {
+							//页面初始化完成 请求棋谱列表
+							this.getList();
+							mySwiper = new Swiper('.swiper-container', {
+								slidesPerView: '3',
+								//loop: true
+							})
+
+							//落子声音
+							eve.on("HandlerAction", function(takeBlack, takeWhite) {
+								$("#stepmusic")[0].play();
+                                $("#aswError").attr('src','');
+                                $("#aswRight").attr('src','');
+                                $("#aswError")[0].play();
+                                $("#aswRight")[0].play();
+							});
+
+							// 棋盘加载完毕通知
+							eve.on("AppOnEnter", function() {
+								eve.f("SocketStart")();
+								console.log(1)
+							});
+							eve.on("SocketOpen", function() {
+								console.log(2)
+								console.log("SocketOpen");
+								eve.f("HandlerSignInReq", uid)();
+							});
+
+							eve.on("SignInResponse", function() {
+								console.log(3)
+								//layer.close(layerload);
+								console.log("SignInResponse, gameid is ", window.currentGameId);
+								eve.f("HandlerEnterGame", window.currentGameId)()
+								//;
+								if(sgfState == 3){
+									eve.f("HandlerTurnEditStatus")(14);
+								}else if(sgfState == 28){
+									eve.f("HandlerTurnEditStatus")(16);
+								}else if(sgfState == 34){
+									eve.f("HandlerTurnEditStatus")(17);
+								}
+
+							});
+
+							eve.on("_ConfirmTouchEnded_", function(p1, p2) {
+								var userid = "111";
+								var gameId = GGame.get("game:id");
+								var blackUserid = GGame.get("game:" + gameId + ":black");
+								var whiteUserid = GGame.get("game:" + gameId + ":white");
+								var tryPlay = GGame.get("game:" + gameId + ":TryPlay");
+								if(tryPlay === 0) {
+									if(blackUserid == userid) {
+										p2 = "B" + p2.substring(1, p2.length);
+									} else if(whiteUserid == userid) {
+										p2 = "W" + p2.substring(1, p2.length);
+									}
+								}
+								eve.f("HandReply", p2)();
+								action_ = p2;
+								vm.target = 0
+							});
+
+							/**
+							 *  游戏结束
+							 */
+							eve.on("_NotifyGameOver_", function(status, blackSum, whiteSum) {
+
+								if(status === 12) {
+									msgYN('msg-no', function() {
+										next()
+									})
+									reset()//重新渲染对错
+									$("#aswError").attr("src","music/aswError.mp3");
+									$("#aswError")[0].play();
+									$('.imgBox[data-id=' + window.quesionID + ']').removeClass('right').addClass('wrong');
+									addRightWrong('2');
+									//updateErrorQuestionsStates(1);
+									vm.$set(vm.wordInfo,window.quesionID,2)
+								} else if(status === 13) {
+									msgYN('msg-yes', function() {
+										next()
+									})
+									reset()//重新渲染对错
+									$("#aswRight").attr("src","music/aswRight.mp3");
+									$("#aswRight")[0].play();
+									$('.imgBox[data-id=' + window.quesionID + ']').removeClass('wrong').addClass('right');
+									addRightWrong('1')
+                                    updateErrorQuestionsStates(2);
+                                    vm.$set(vm.wordInfo,window.quesionID,1)
+                                   
+								} else {
+									layerTC('游戏结束' + status)
+								}
+
+								function next() {
+									var oId = $('.imgBox[data-id=' + window.quesionID + ']').parent().next().find('.imgBox').attr('data-id');
+									var index = $('.imgBox[data-id=' + window.quesionID + ']').parent().next().find('.imgBox').attr('data-index');
+									mySwiper.swipeTo(index - 1);
+									if(oId) {
+										vm.loadMyJob(oId);
+									}
+								}
+								//
+								function reset(){
+									if(JSON.stringify(vm.wordInfo) != "{}"){
+										$.each(vm.wordInfo,function(key,val){
+											console.log(key,val)
+											//console.log($('.imgBox[data-id='+key+']').html())
+											
+											vm.$nextTick(function(){
+												$('.imgBox[data-id='+key+']').addClass(val==1?'right':'wrong')
+											})
+										})
+									}
+								}
+								function updateErrorQuestionsStates(states) {
+									var param = {
+										states: states,
+										quesionID: window.quesionID,
+										uid: uid,
+										token: token
+									}
+									console.log('param:', param)
+									$.ajax({
+										url: http + '/gobangteach/classroom/updateErrorQuestionsStates',
+										type: "POST",
+										dataType: "json",
+										data: $.param(param),
+										success: function(data) {
+											console.log("ClearChessboard", data);
+										},
+										error: function(XMLHttpRequest, data) {
+											alert("更新该题失败");
+										}
+									});
+								}
+								//更新题_____
+								function addRightWrong(sign) {
+									var param = {
+										chessId: window.quesionID,
+										rightWrong: sign, //答题的对错情况   1 代表对 2 代表错
+										source: 1, //题来源    1 题库 2.错题本3作业4课件
+										uid: uid,
+										token: token
+									}
+									console.log(param)
+									$.ajax({
+										url: http + '/gobangteach/QuestionbankController/addRightWrong',
+										type: "POST",
+										dataType: "json",
+										data: $.param(param),
+										success: function(data) {
+											console.log("ClearChessboard", data);
+										},
+										error: function(XMLHttpRequest, data) {
+											console.log("更新该题失败");
+										}
+									});
+								}
+							});
+
+						}
+					})
+
+					//当列表不存在随机加载个棋盘
+					function createGame() {
+						$.ajax({
+							type: "POST",
+							url: http + "/gobangteach/classroom/createGame",
+							data: "size=" + 19 + "&token=" + token + "&uid=" + uid,
+							dataType: 'json',
+							success: function(data) {
+								console.log("ClearChessboard", data);
+								window.currentGameId = data.data.chessid;
+								eve.f("HandlerSignInReq", uid)();
+							},
+							error: function(XMLHttpRequest, data) {
+								console.log("获取房间信息失败");
+							}
+						});
+					}
+
+				})
+			})
+		</script>
+	</body>
+
+</html>

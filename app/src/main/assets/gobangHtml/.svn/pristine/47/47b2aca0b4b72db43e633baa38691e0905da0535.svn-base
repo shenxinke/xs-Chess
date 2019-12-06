@@ -1,0 +1,774 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="css/lib/public.css"/>
+		<link rel="stylesheet" type="text/css" href="libs/mint/style.css"/>
+		<link rel="stylesheet" type="text/css" href="libs/icon/iconfont.css">
+		<link rel="stylesheet" type="text/css" href="css/custom/webStyle.css"/>
+		<script src="js/gobang/common.js" type="text/javascript" charset="utf-8" name="公共配置信息"></script>
+		<script src="libs/jquery/jquery.js" type="text/javascript" charset="utf-8"></script>
+		<link rel="stylesheet" type="text/css" href="libs/layer/layer-v3.1.1/layer/theme/default/layer.css"/>
+		<script src="libs/layer/layer-v3.1.1/layer/layer.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/lib/rem.js" type="text/javascript" charset="utf-8"></script>
+		<script src="libs/vuejs/vue.js" type="text/javascript" charset="utf-8"></script>
+		<script src="libs/vuejs/vue-router.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="libs/mint/index.js" type="text/javascript" charset="utf-8"></script>
+		
+		<style type="text/css">
+			/*路由切换动画*/
+			.slide-right-enter-active,
+			.slide-right-leave-active,
+			.slide-left-enter-active,
+			.slide-left-leave-active {
+			  transition: 300ms;
+			  position: absolute;
+			}
+			.slide-right-enter {
+			  transform: translate3d(-100%, 0, 0);
+			}
+			.slide-right-leave-active {
+			  transform: translate3d(100%, 0, 0);
+			}
+			.slide-left-enter {
+			  transform: translate3d(100%, 0, 0);
+			}
+			.slide-left-leave-active {
+			  transform: translate3d(-100%, 0, 0);
+			}
+		</style>
+	</head>
+	<body class="bg_cmbg">
+		<section class="ha100 rel" id="app">
+			<transition :name='viewAnimate'>
+				<router-view :option='option'></router-view>
+				<!--<component :option='option' :is="show"></component>-->
+			</transition>
+		</section>
+		<!--布置作业 选择学生-->
+		<template id="selectStudent">
+			<section class="wa100 ha100">
+				<header class="h125 df ai-c jc-c rel">
+					<span class="fs36 cf">布置作业</span>
+					<div class="pl30 pr30 df ai-c jc-sb abs wa100 ha100 tp0 lt0">
+						<button onclick='document.location.href = "myschema://go?a=1";' class="w63 h63 btn-n bg_cmfh"></button>
+						<button class="w63 h63 btn-n bg_help"></button>
+					</div>
+				</header>
+				<div class="hca6 w688 fs27 bg_cmlist m0a pb30 pt30 pl40 pr40">
+					<ul class="wa100 ha100 oa">
+						<li v-for="(x,index) in classAndstudents" class="mb10">
+							<div class="wa100 h85 bgf pl30 pr30 mb5 br32 df ai-c jc-sb c0058b0 foldTop">
+								<p>
+									<span v-text="x.className">一班</span>
+									<span>({{x.classMember.length}})</span>
+								</p>
+								<div class="df ai-c">
+									<div @click.stop class="w40 h40 rel mr15">
+					    				<input v-model="checkedStudent[index].checkAll" @change="checkAll(index,x.classMember)" type="checkbox" class="checkboxYuan abs tp0 lt0 wa100 ha100 op0" />
+					    				<div class="w40 h40 ba2 bra100"></div>
+					    			</div>
+					    			<span @click.stop class="mr15">全选</span>
+					    			<span class="iconfont t3 icon-gengduo"></span>
+								</div>
+							</div>
+							<ul class="bgf br20 hmax0 oa t3 foldBox">
+								<li v-for='y in x.classMember' class="h90 rel pl30 pr20 df ai-c jc-sb">
+									<i class="wa90 db h1 bgc abs tp0 ma lt0 rt0"></i>
+									<div class="df ai-c">
+										<img class="w73 h73 bra100 mr20" :src="y.headimg" alt="" />
+										<span v-text="y.username">喵新人</span>
+									</div>
+									<div class="w40 h40 rel mr15">
+					    				<input 
+					    					v-model="checkedStudent[index].student" 
+					    					@change="check(index,x.classMember.length)" type="checkbox" 
+					    					:classInfoId='y.classInfoId' :className='x.className' name="student"
+					    					class="checkboxYuan abs tp0 lt0 wa100 ha100 op0" :value="y.id"/>
+					    				<div class="w40 h40 ba2 bra100"></div>
+					    			</div>
+								</li>
+							</ul>
+						</li>
+					</ul>
+				</div>
+				<div class="wa100 df ai-c jc-c">
+					<button @click="tab('select-work','slide-left')" class="btn-n ccf5003 fs27 fwb mt10 bg_cmaddclass w234 h75">下一步 选择习题</button>
+				</div>
+			</section>
+		</template>
+		<!--布置作业及筛选作业类型-->
+		<template id="selectWork">
+			<section class="wa100 ha100">
+				<header class="h125 df ai-c jc-c rel">
+					<span class="fs36 cf">布置作业</span>
+					<div class="pl30 pr30 df ai-c jc-sb abs wa100 ha100 tp0 lt0">
+						
+							<button @click="tab('select-student')" class="w63 h63 btn-n bg_cmfh"></button>
+						
+						<button class="w170 h55 btn-n fs30 cab4402 bg_cmaddclass" @click="flag=true">习题来源</button>
+					</div>
+				</header>
+				<div class="hca6 w688 fs27 bg_cmlist m0a pb30 pt30 pl30 pr12">
+					<div class="wa100 ha100 oa cl">
+						<div v-for="(x,index) in workdata" class="w200 h200 br14 mr14 mb14 bgf rel fl">
+							<input class="inputdx wa100 ha100 abs tp0 lt0 op0" v-model="aaa" :value="x" type="checkbox"/>
+							<img class="wa100 ha100 z1 abs dn" @click="removeWork(index)" src="img/schoolHomework/sh_sc.png"/>
+							<img class="wa100 ha100" :src="x.snapshot||x.Snapshot" alt="" />
+						</div>
+						
+					</div>
+				</div>
+				<div class="wa100 df ai-c jc-c">
+					<button @click="submitJob" class="btn-n ccf5003 fs27 fwb mt10 bg_cmaddclass w234 h75">布置作业</button>
+				</div>
+				<div v-show = 'flag' class="wa100 ha100 abs tp0 lt0 z10 bg08">
+					<div class="fix rt0 bta10 w620 h1050 bg_shsxbg">
+						<button @click="flag=false" class="w73 h73 btn-n abs tp-25 lt-20 bg_shclose"></button>
+						<div class="w580 h870 brl100 bgf abs rt11 tp44 p33 ">
+							<div class="wa100 ha100 oxh">
+								<div class="mb15">
+									<p class="c2b7cb6 fs30 fwb mb15">来源</p>
+									<div class="wa100 df ai-c jc-sb">
+										<button class="btn-n w147 h63 rel bgf">
+											<input class="wa100 ha100 abs tp0 lt0 op0 type" type="radio" v-model="source" value="课程" name="source" />
+											<span class="df ai-c jc-c fs26 wa100 ha100">课程</span>
+										</button>
+										<button class="btn-n w147 h63 rel bgf">
+											<input class="wa100 ha100 abs tp0 lt0 op0 type" type="radio" v-model="source" value="题库" name="source" />
+											<span class="df ai-c jc-c fs26 wa100 ha100">题库</span>
+										</button>
+										<button @click="tab('add-work','slide-left')" class="btn-n w147 h63 rel bgf">
+											<input class="wa100 ha100 abs tp0 lt0 op0 type" type="radio" v-model="source" value="收藏" name="source" />
+											<span class="df ai-c jc-c fs26 wa100 ha100">收藏</span>
+										</button>
+									</div>
+								</div>
+								<div v-show="source=='课程'" class="">
+									<p class="c2b7cb6 fs30 fwb mb15">课程</p>
+									<div class="w530 cl">
+										<button v-for="(x,index) in courseNames" class="btn-n w250 h63 rel bgf fl mb15 mr14">
+											<input class="wa100 ha100 abs tp0 lt0 op0 type" type="radio" v-model="classId" :value="index+4" name="a" />
+											<span class="df ai-c jc-c wa100 ha100 fs20" v-text="x"></span>
+										</button>
+									</div>
+								</div>
+								<div v-show="source=='题库'" class="">
+									<p class="c2b7cb6 fs30 fwb mb15">类别</p>
+									<div class="w530 cl">
+										<button class="btn-n w250 h63 rel bgf fl mb15 mr14">
+											<input class="wa100 ha100 abs tp0 lt0 op0 type" v-model="type" value="0" type="radio" name="type" />
+											<span class="df ai-c jc-c wa100 ha100 fs20">综合练习</span>
+										</button>
+										<button class="btn-n w250 h63 rel bgf fl mb15 mr14">
+											<input class="wa100 ha100 abs tp0 lt0 op0 type" v-model="type" value="1" type="radio" name="type" />
+											<span class="df ai-c jc-c wa100 ha100 fs20">死活</span>
+										</button>
+										<button class="btn-n w250 h63 rel bgf fl mb15 mr14">
+											<input class="wa100 ha100 abs tp0 lt0 op0 type" v-model="type" value="3" type="radio" name="type" />
+											<span class="df ai-c jc-c wa100 ha100 fs20">官子</span>
+										</button>
+										<button class="btn-n w250 h63 rel bgf fl mb15 mr14">
+											<input class="wa100 ha100 abs tp0 lt0 op0 type" v-model="type" value="4" type="radio" name="type" />
+											<span class="df ai-c jc-c wa100 ha100 fs20">定式</span>
+										</button>
+										<button class="btn-n w250 h63 rel bgf fl mb15 mr14">
+											<input class="wa100 ha100 abs tp0 lt0 op0 type" v-model="type" value="5" type="radio" name="type" />
+											<span class="df ai-c jc-c wa100 ha100 fs20">手筋</span>
+										</button>
+										<button class="btn-n w250 h63 rel bgf fl mb15 mr14">
+											<input class="wa100 ha100 abs tp0 lt0 op0 type" v-model="type" value="6" type="radio" name="type" />
+											<span class="df ai-c jc-c wa100 ha100 fs20">行棋方式</span>
+										</button>
+									</div>
+									<p class="c2b7cb6 fs30 fwb mb15">级别</p>
+									<div class="w530 cl ">
+										<button v-for="x in levelList" class="btn-n w118 h63 rel bgf fl mb15 mr14">
+											<input class="wa100 ha100 abs tp0 lt0 op0 type" v-model="level" :value="x" type="radio" name="leve" />
+											<span  class="df ai-c jc-c wa100 ha100 fs20" v-text="x"></span>
+										</button>
+									</div>
+									<p class="c2b7cb6 fs30 fwb mb15">知识点</p>
+									<div class="w530 cl ">
+										<button v-for="x in knowledgeList" class="btn-n w250 h63 rel bgf fl mb15 mr14">
+											<input class="wa100 ha100 abs tp0 lt0 op0 type" v-model="knowledge" :value="x"  type="radio" name="knowledge" />
+											<span class="df ai-c jc-c wa100 ha100 fs20" v-text='x'>切断</span>
+										</button>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="wa100 abs bt33 lt0 df ai-c jc-sa">
+							<button v-if="source=='课程'" class="w164 h74 fs27 btn-n bg_cmyesbtn fwb cad4303" @click="tab('add-work?classId='+classId,'slide-left')">确定</button>
+							<button v-if="source=='题库'" class="w164 h74 fs27 btn-n bg_cmyesbtn fwb cad4303" @click="tab('add-work?level='+level+'&type='+type+'&knowledge='+knowledge,'slide-left')">确定</button>
+							<button class="w164 h74 fs27 btn-n bg_cmnobtn fwb c0967a9">取消</button>
+						</div>
+					</div>
+				</div>
+			</section>
+		</template>
+		<!--选择习题， 添加习题-->
+		<template id="addWork">
+			<section class="wa100 ha100">
+				<header class="h125 df ai-c jc-c rel">
+					<span class="fs36 cf">添加习题</span>
+					<div class="pl30 pr30 df ai-c jc-sb abs wa100 ha100 tp0 lt0">
+						<button @click="tab('select-work')" class="w63 h63 btn-n bg_cmfh"></button>
+					</div>
+				</header>
+				<div class="hca6 w688 fs27 bg_cmlist m0a pb30 pt30 pl30 pr12 ">
+					<div class="wa100 ha100 oa">
+						<mt-loadmore 
+							:auto-fill='false' 
+							:top-method="loadTop" 
+							:bottom-method="loadBottom" 
+							:bottom-all-loaded="allLoaded" 
+							ref="loadmore">
+						    <ul class="wa100 cl">
+								<li v-for="x in list" class="w200 h200 br14 mr14 mb14 bgf rel fl">
+									<input type="checkbox" v-model="workdata" :value="x" class="wa100 ha100 op0 abs tp0 lt0 z10 inputdx"/>
+									<img class="wa100 ha100 abs dn" src="img/schoolHomework/sh_xz.png"/>
+									<img class="wa100 ha100" :src="x.snapshot||x.Snapshot" alt="" />
+								</li>
+						    	<li v-if='allLoaded' class="wa100 h80 df ai-c jc-c c3 fs24">已加载完全部数据</li>
+						    </ul>
+					    </mt-loadmore>
+					</div>
+				</div>
+				<div class="wa100 df ai-c jc-c">
+					<button @click="tab('select-work')" class="btn-n ccf5003 fs27 fwb mt10 bg_cmaddclass w234 h75">添加习题</button>
+				</div>
+			</section>
+		</template>
+		
+		<div id="layerHelp" class="dn w698 h900 df jc-c ac-fs fw-w bg_helpbg">
+			<img class="w483 h122" src="img/deshelps.png" alt="">
+			<ul class="w555 mt50 fs26 lh40 c390202">
+				<li class="mb50">• 左侧为学生列表，在列表中勾选需要布置作业的班级或学生</li>
+				<li class="mb50">• 课程：通过标准化智能课件的课后练习选择习题</li>
+				<li class="mb50">• 题库：通过平台题库选择习题</li>
+				<li class="mb50">• 我的收藏：通过收藏夹选择习题</li>
+				<li class="mb50">• 选择习题后，习题缩略图即显示在右侧区域，点击缩略图可删除习题</li>
+				<li class="mb50">• 点击“布置作业”即可将作业布置到学生端</li>
+			</ul>
+		</div>
+		
+		
+		<script type="text/javascript">
+			$(function(){
+				
+				$('body').on('click','.bg_help',function(){
+					
+					layerOpen({
+						content:'#layerHelp',//节点
+						area:'6.98rem 9rem',//可选默认 2rem 2rem  宽度 高度(带单位)
+						closeBtn:0,
+						shadeClose:true,
+						shade: [0.7, '#000'],
+						cancel:function(){} //可选  右上角关闭回调
+					})
+				})
+				
+				
+				
+				/*
+				 * Vue时间戳过滤器
+				 * {{1529564879000 | retain('yyyy-MM-dd hh:mm')}}
+				 * */
+				Vue.filter('retain', function(data, fmt) {
+					date = new Date(data)
+					var o = {
+						"M+": date.getMonth() + 1, //月份   
+						"d+": date.getDate(), //日   
+						"h+": date.getHours(), //小时   
+						"m+": date.getMinutes(), //分   
+						"s+": date.getSeconds(), //秒   
+						"q+": Math.floor((date.getMonth() + 3) / 3), //季度   
+						"S": date.getMilliseconds() //毫秒   
+					};
+					if(/(y+)/.test(fmt))
+						fmt = fmt.replace(RegExp.$1, (date.getFullYear() + "").substr(4 - RegExp.$1.length));
+					for(var k in o)
+						if(new RegExp("(" + k + ")").test(fmt))
+							fmt = fmt.replace(RegExp.$1, (RegExp.$1.length == 1) ? (o[k]) : (("00" + o[k]).substr(("" + o[k]).length)));
+					return fmt;
+				})
+		    	//选择学生
+		    	var selectStudent = {
+    				data(){
+    					return{
+    						classAndstudents:'',
+    						checkedStudent:[]
+    					}
+    				},
+    				methods:{ //select-work
+    					tab:function(name,viewAnimate){
+    						var accounts =[];
+    						$.each($('input[name=student]:checked.checkboxYuan'),function(){
+								var obj = {};
+								obj.studentId=$(this).val();
+								obj.classInfoId=$(this).attr('classInfoId');
+								obj.className=$(this).attr('className');
+								accounts.push(obj)
+							})
+    						vm.option.accounts = accounts
+    						if(accounts.length){
+    							vm.viewAnimate=viewAnimate||'slide-right'
+    							router.push({path:name}) //将学生信息传到布置作业页面
+    						}else{
+    							layer.msg('请选择要布置作业的学生！')
+    						}
+    					},
+    					
+    					getTeacherByStu:function(){ //获取学生列表
+    						$this = this
+								$.ajax({
+									type:"post",
+									url:http+"/gobangteach/SchoolController/getTeacherByStu",
+									data:{
+										token:token,
+										uid:uid
+									},
+									async:true,
+									success:function(data){
+										$this.classAndstudents=data.data;
+										
+										$.each(data.data, function() {
+											$this.checkedStudent.push(
+												{
+														checkAll:false,
+														student:[]
+													}
+											)
+										});
+										console.log('班级学员信息',data.data)
+									},
+									complete:function(){
+										document.location.href = "myschema://go?a=14"
+									}
+								})
+    					},
+    					//全选
+    					checkAll:function(index,classMember){
+    						$this = this;
+    						if(this.checkedStudent[index].checkAll){
+    							console.log('全选')
+    							$.each(classMember, function(i,itm) {
+    								$this.$set($this.checkedStudent[index].student,i,itm.id)
+    							});
+    						}else{
+    							console.log('取消全选')
+    							$.each(this.checkedStudent[index].student, function(i,itm) {
+    								$this.$delete($this.checkedStudent[index].student,0)
+    							});
+    						}
+    					},
+    					//单选
+    					check:function(index,length){
+    						//选中全部子选项 则 自动选中全选按钮
+    						$this = this;
+    						if(this.checkedStudent[index].student.length===length){
+    							this.$set(this.checkedStudent[index],'checkAll',true)
+    						}else{
+    							this.$set(this.checkedStudent[index],'checkAll',false)
+    						}
+    					},
+    					//添加班级  / 编辑班级
+    					addClass:function(){
+    						$this = this;
+    					}
+    				},
+    				props:['option'],
+    				mounted:function(){
+							$('body').off('click','.foldTop') //解绑事件  防止返回重新注册事件
+    					$('body').on('click','.foldTop',fn);
+							
+							function fn(){
+								if($(this).is('.active')){
+									$(this).removeClass('active');
+								}else{
+									$(this).addClass('active')
+								}
+								
+							}
+							
+							
+							
+    					this.getTeacherByStu()
+    				},
+    				template:'#selectStudent'
+    			};
+    			//选择作业
+    			var selectWork = {
+    				data(){
+    					return{
+    						source:'课程',//来源
+    						classId:'4',//课程某节课id
+    						flag:false,
+    						aaa:[],
+    						type:'',//类型
+    						level:'',//级别
+    						knowledge:'',//知识点
+    						
+    						knowledgeList:'',//知识点列表
+    						levelList:["25k", "20k", "15k", "10k", "5k", "2k", "1k", "1D", "2D", "3D", "4D", "5D"],//等级列表
+              courseNames:[
+                           '04 紧气提子',
+                           '05 打吃,逃子',
+                           '06 双方互相打吃',
+                           '07 虎口',
+                           '08 禁入点（禁着点）！',
+                           '09 打劫',
+                           '10 打二还一和打多还一',
+                           '11 连接和切断',
+                           '12 一、二线吃子的秘密！',
+                           '13 双打吃',
+                           '14 征吃',
+                           '15 门吃',
+                           '16 抱吃',
+                           '17 枷吃',
+                           '18 扑与倒扑',
+                           '19 接不归',
+                           '20 利用对方缺陷逃子',
+                           '21 可逃之子与应弃之子',
+                           '22 两眼活棋',
+                           '23 基础死活常型(一)',
+                           '24 基础死活常型(二)',
+                           '25 杀棋基础',
+                           '26 获取基础',
+                           '27 布局基础(一)',
+                           '28 布局基础(二)',
+                           '29 对杀基础(一)',
+                           '30 对杀基础(二)',
+                           '31 综合吃子(一)',
+                           '32 综合吃子(二)',
+                           '33 好形和坏形',
+                           '34 官子入门',
+                           '35 胜负计算'
+                           ],
+    						workdata:[]
+    					}
+    				},
+    				methods:{
+    					tab:function(name,viewAnimate){
+    						vm.viewAnimate= viewAnimate || 'slide-right'
+    						vm.option.workdata = this.workdata
+    						router.push({path:name})
+    					},
+    					selectLevel:function(type){ //请求级别
+							var $this = this;
+							$.ajax({
+								type:'get',
+								url:http+'/gobangteach/classroom/listTypeLevel?questionType='+type+'&token='+token+'&uid='+uid,
+								success:function(data){
+									$this.levelList=data.data;
+									
+									/*if($('#questionType').val()==0){
+										$this.levelList=["25k", "20k", "15k", "10k", "5k", "2k", "1k", "1D", "2D", "3D", "4D", "5D"];
+									}*/
+								}
+							})
+						},
+						getAbility:function(type,level){//请求知识点
+							var $this = this;
+							$.ajax({
+								type:'get',
+								url:http+'/gobangteach/classroom/listKnowledge',
+								data:{
+									questionType: type,
+									level: level,
+									pageNum: 1,
+									pageSize: 1000,
+									uid:uid,
+									token:token
+								},
+								success:function(data){
+									$this.knowledgeList=data.data;
+								}
+							})
+						},
+						submitJob:function(){
+    						console.log(this.workdata)
+								if(!this.workdata.length){
+									layer.msg('未选择习题哦~')
+									return false
+								}
+								
+								
+    						var questionIds = [];
+    						//筛选 作业 id
+    						$.each(this.workdata,function(index,itm){
+    							if(this.chessId){
+									questionIds.push(this.chessId);
+								}else{
+									questionIds.push(this.id)
+								}
+    						})
+    						
+    						var classIds = [];
+    						$.each(this.option.accounts, function() {
+    							if(classIds.indexOf(this.classInfoId)<0){
+									classIds.push(this.classInfoId)
+								}
+    						});
+    						
+    						console.log('班级ids：',classIds)
+    						
+    						
+    						console.log('作业ids',questionIds.toString())
+    						console.log('学生ids',this.option.accounts)
+    						
+    						
+    						
+    						
+    						$.ajax({
+								type:"post",
+								url:http+"/gobangteach/SchoolController/createJobs",
+								async:true,
+								data:{
+									questionIds:questionIds.toString(),
+									accounts:JSON.stringify(this.option.accounts),
+									jobName:'jobName',
+									classIds:classIds.toString(),
+									token:token,
+									uid:uid
+								},
+								success:function(data){
+									console.log('33',data.error.data)
+										layerTC(data.data,function(){
+											document.location.href = "myschema://go?a=1";
+										})
+								}
+							});
+    					},
+    					
+						removeWork:function(index){
+							this.workdata.splice(index,1)
+						}
+    				},
+    				watch:{
+    					type:function(){
+    						this.knowledgeList=''
+    						this.selectLevel(this.type)
+    					},
+    					level:function(){
+    						this.knowledgeList=''
+    						this.getAbility(this.type,this.level)
+    					}
+    				},
+    				props:['option'],
+    				mounted:function(){
+    					this.workdata = this.option.workdata;
+    					console.log(this.$route.query)
+    				},
+    				template:'#selectWork'
+    			};
+    			
+		    	//添加习题
+    			var addWork = {
+    				data(){
+    					return{
+    						list:[],
+    						allLoaded:false,//为true 则禁止下拉  一般无数据了设置为trun
+    						pageNum:1,//当前页
+							  pages:'',//总页数
+							  workdata:[],//已选择的作业（只选中未点击添加）
+    					}
+    				},
+    				methods:{
+    					tab:function(name,viewAnimate){
+    						vm.viewAnimate= viewAnimate || 'slide-right'
+    						//去重，收藏列表数据与其他列表可能存在重复数据，
+								var res = [];
+								var json = {};
+								$.each(this.workdata,function(){
+									if(this.chessId){ //收藏列表棋盘id是 chessId 其他返回的是 id 所以加判断
+										if(!json[this.chessId]){
+											res.push(this);
+											json[this.chessId]='1'
+										}
+									}else{
+										if(!json[this.id]){
+											res.push(this)
+											json[this.id]='1'
+										}
+									}
+								})
+								console.log('res',res)
+								this.workdata=res
+								//if(res.length){
+									vm.option.workdata = this.workdata
+									router.push({path:name})
+								//}else{
+									//layer.msg('请选择习题！')
+								//}
+    					},
+    					loadTop(){
+		    				$this=this
+		    				console.log('下拉刷新')
+							$this.pageNum = 1;//重置下一页页码
+							$this.getList({
+								pageNum:$this.pageNum,
+								success:function(data){
+									setTimeout(function(){
+										$this.list = data.data.list;
+										$this.pages =  data.data.pages;
+										$this.pageNum = data.data.nextPage;
+										if($this.pageNum==0){
+					    					$this.allLoaded=true;
+					    				}else{
+					    					$this.allLoaded=false;
+					    				}
+										$this.$refs.loadmore.onTopLoaded();
+									},500)
+								}
+							}) 
+		    			},
+		    			loadBottom(){
+		    				$this=this
+		    				console.log('上拉加载')
+	    					$this.getList({
+								pageNum:$this.pageNum,
+								success:function(data){
+									setTimeout(function(){
+										$this.list = $this.list.concat(data.data.list);
+										$this.pages =  data.data.pages;
+										$this.pageNum = data.data.nextPage;
+										if($this.pageNum==0){
+					    					$this.allLoaded=true;
+					    				}
+										$this.$refs.loadmore.onBottomLoaded();
+									},500)
+								}
+							})
+		    			},
+    					getList:function(opt){
+    						var $this = this;
+    						$this = this;
+    						var msg = {
+								pageNum:1,
+								success:function(data){
+									setTimeout(function(){
+										$this.$indicator.close(); //关闭加载中
+										$this.list = data.data.list;
+										$this.pages =  data.data.pages;
+										$this.pageNum = data.data.nextPage;
+										if($this.pageNum==0){
+											$this.allLoaded=true;
+										}else{
+											$this.allLoaded=false;
+										}
+									},200)
+									
+								}
+							};
+							msg = $.extend(msg,opt);
+							//请求课件
+							if(this.$route.query.classId){
+								$.ajax({
+									type:"post",
+									url:http+"/gobangteach/QuestionbankController/getQuestionbankByClassId",
+									data:{
+										classId:this.$route.query.classId,
+										pageNum: msg.pageNum,
+										pageSize: 15,
+										token:token,
+										uid:uid
+									},
+									async:true,
+									success:function(data){
+										msg.success(data)
+									}
+								})
+							}else if(this.$route.query.type){
+								$.ajax({
+									type:"post",
+									url:http+"/gobangteach/classroom/searchQuestions",
+									data:{
+										questionType:this.$route.query.type,
+										level:this.$route.query.level,
+										QuestionName:this.$route.query.knowledge,
+										pageNum: msg.pageNum,
+										pageSize: 15,
+										token:token,
+										uid:uid
+									},
+									async:true,
+									success:function(data){
+										msg.success(data)
+									}
+								})
+							}else{
+								$.ajax({
+									type:"post",
+									url:http+"/gobangteach/QuestionbankController/getCollectChess",
+									data:{
+										type:1,
+										pageNum: msg.pageNum,
+										pageSize: 15,
+										token:token,
+										uid:uid
+									},
+									async:true,
+									success:function(data){
+										msg.success(data)
+									}
+								})
+							}
+    					},
+    					
+    				},
+    				props:['option'],
+						beforeMount:function(){
+							this.$indicator.open({
+								text: '加载中...',
+								spinnerType: 'fading-circle'
+							});
+						},
+						mounted:function(){
+    					this.getList({pageNum:1});
+    					this.workdata = this.option.workdata;
+    				},
+    				template:'#addWork'
+    			};
+    			
+		    	//路由器配置
+				var router = new VueRouter({
+					routes: [{
+							path: '/',	
+							redirect: '/select-student'
+						},
+						{
+							path: '/select-student', // 布置作业前 选择
+							component: selectStudent
+						},
+						{
+							path: '/select-work',//布置作业页面（也选择的作业，作业类型筛选）
+							component: selectWork
+						},
+						{
+							path: '/add-work', //添加作业页面
+							component: addWork
+						}
+					]
+				})
+		    	vm = new Vue({
+		    		el:'#app',
+		    		data:{
+		    			show:'addClass',
+		    			viewAnimate:'slide-left',
+		    			option:{
+							workdata:[],
+							accounts:[]
+						}
+		    		},
+		    		router: router,
+		    		methods:{}
+		    	})
+		    });
+		</script>
+		
+	</body>
+</html>

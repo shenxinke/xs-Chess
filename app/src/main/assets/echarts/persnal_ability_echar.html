@@ -1,0 +1,266 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <title>echarts雷达图</title>
+    <link rel="shortcut icon" href="favicon.png">
+    <link rel="stylesheet" type="text/css" href="css/public.css">
+    <link rel="stylesheet" type="text/css" href="css/webStyle.css">
+    <link rel="stylesheet" type="text/css" href="css/idangerous.swiper.css" />
+    <style>
+    .main {
+      height: 330px;
+      overflow: hidden;
+      padding: 10px;
+      margin-bottom: 10px;
+    }
+    .h550{
+      height: 5.5rem;
+    }
+    .btn-n {
+      border: 0;
+      outline: none;
+      background-color: transparent;
+    }
+    .bg_UI-left {
+      background: url(img/UI-left.png) no-repeat center/100% 100%;
+    }
+
+    .bg_UI-right {
+      background: url(img/UI-right.png) no-repeat center/100% 100%;
+    }
+    </style>
+</head>
+
+<body>
+    <div v-show='tab' class='wa100 ha100 cd05701 fs30 pt25'>
+        <div class='df ai-c jc-c'>
+            <button class='btn-n w43 h55 bg_UI-left'></button>
+            <span class='pl20 pr20'>25k-16k</span>
+            <button class='btn-n w43 h55 bg_UI-right'></button>
+        </div>
+        <div class="swiper-container swiper-radar">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide df jc-c">
+                    <div class='w430 h430' style='width: 6rem;height: 5rem'></div>
+                </div>
+                <div class="swiper-slide df jc-c">
+                    <div class='w430 h430' style='width: 6rem;height: 5rem'></div>
+                </div>
+                <div class="swiper-slide df jc-c">
+                    <div class='w430 h430' style='width: 6rem;height: 5rem'></div>
+                </div>
+                <div class="swiper-slide df jc-c">
+                    <div class='w430 h430' style='width: 6rem;height: 5rem'></div>
+                </div>
+                <div class="swiper-slide df jc-c">
+                    <div class='w430 h430' style='width: 6rem;height: 5rem'></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="js/jquery.js" type="text/javascript" charset="utf-8"></script>
+    <script src="js/idangerous.swiper.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="js/echarts.min.js"></script>
+    <script>
+    document.documentElement.style.fontSize = document.documentElement.offsetWidth / 7.5 + "px";
+    window.onresize = function() {
+        document.documentElement.style.fontSize = document.documentElement.offsetWidth / 7.5 + "px";
+    }
+    var http = 'https://www.xswq361.cn'
+
+
+    /* 获取url参数部分转换为json */
+    function jsonlink(link) {
+        var url = link || window.location.search;
+        var search = window.location.search;
+        var ksbz = url.indexOf("?");
+        var hrefStr = url.substr(ksbz + 1);
+        var splitStr = hrefStr.split("&"); // 返回结果：["userName=cyq", "age=24", "sex=f"]
+        var urlObj = {} // 等价于 var urlObj = new Object()
+        for (var i = 0; i < splitStr.length; i++) {
+            urlObj[splitStr[i].split("=")[0]] = splitStr[i].split("=")[1];
+        }
+        return urlObj
+    }
+
+    $('.swiper-radar .swiper-slide').each(function(index, itm) {
+        $.ajax({
+            type: 'GET',
+            url: http + "/gobangteach/RadarController/RadarAll",
+            data: {
+                userId: jsonlink().uid,
+                stage: index + 1,
+                token: jsonlink().token,
+                uid: jsonlink().uid
+            },
+            success: function(data) {
+                if (data.data != null && data.data) {
+                    console.log('能力', data.data);
+                    myechart(index, $(itm).find('div')[0], data.data)
+                } else {
+                    myechart(index, $(itm).find('div')[0], {
+                        eatZ: 0,
+                        fleeZ: 0,
+                        abscission: 0,
+                        layout: 0,
+                        calculate: 0,
+                        final: 0,
+                        chessView: 0,
+                        chessEfficiency: 0
+
+                    })
+                }
+            }
+        });
+    })
+
+
+
+
+    function myechart(index, id, data) {
+        var indicator, value;
+
+        function filter(o, val) {
+            if (o) {
+                return Math.floor(o)
+            } else {
+                return 0
+            }
+        }
+
+
+        switch (index) {
+            case 0:
+                indicator = [
+                    { name: '吃子能力', max: 100 },
+                    { name: '切断能力', max: 100 },
+                    { name: '逃子能力', max: 100 },
+                ];
+                value = [filter(data.eatZ), filter(data.abscission), filter(data.fleeZ)];
+                break;
+            case 1:
+                indicator = [
+                    { name: '吃子能力', max: 100 },
+                    { name: '逃子能力', max: 100 },
+                    { name: '布局能力', max: 100 },
+                    { name: '计算能力', max: 100 },
+                    { name: '终局能力', max: 100 }
+                ];
+                value = [filter(data.eatZ), filter(data.fleeZ), filter(data.layout), filter(data.calculate), filter(data.final)];
+                break;
+            case 2:
+                indicator = [
+                    { name: '杀棋能力', max: 100 },
+                    { name: '活棋能力', max: 100 },
+                    { name: '布局能力', max: 100 },
+                    { name: '计算能力', max: 100 },
+                    { name: '官子能力', max: 100 }
+                ];
+                value = [filter(data.eatZ), filter(data.fleeZ), filter(data.layout), filter(data.calculate), filter(data.final)];
+                break;
+            case 3:
+                indicator = [
+                    { name: '大局观', max: 100 },
+                    { name: '棋子效率', max: 100 },
+                    { name: '布局能力', max: 100 },
+                    { name: '计算能力', max: 100 },
+                    { name: '官子能力', max: 100 }
+                ];
+                value = [filter(data.eatZ), filter(data.fleeZ), filter(data.layout), filter(data.calculate), filter(data.final)];
+                break;
+            case 4:
+                indicator = [
+                    { name: '大局观', max: 100 },
+                    { name: '棋子效率', max: 100 },
+                    { name: '布局能力', max: 100 },
+                    { name: '计算能力', max: 100 },
+                    { name: '官子能力', max: 100 }
+                ];
+                value = [filter(data.eatZ), filter(data.fleeZ), filter(data.layout), filter(data.calculate), filter(data.final)];
+                break;
+
+        }
+
+        console.log(value)
+
+
+        echarts.init(id).setOption({
+            title: {
+                text: '',
+                show: false
+            },
+            tooltip: {},
+            legend: {
+                data: [],
+                show: false
+            },
+            radar: {
+                name: {
+                    textStyle: {
+                        color: '#d05701',
+                        fontSize: '85%',
+                        borderRadius: 3,
+
+                    },
+                    fontSize: '50px'
+                },
+                radius: '70%',
+                splitArea: {
+                    areaStyle: {
+                        color: ['rgba(114, 172, 209, 0)'],
+                        shadowColor: 'rgba(0, 0, 0, 0.3)',
+                        shadowBlur: 10
+                    }
+                },
+                indicator: indicator
+            },
+            series: [{
+                name: '预算 vs 开销（Budget vs spending）',
+                type: 'radar',
+                areaStyle: {
+                    normal: {
+                        opacity: 0.5,
+                        color: new echarts.graphic.RadialGradient(0.5, 0.5, 1, [{
+                            color: '#49c1fc',
+                            offset: 0
+                        }, ])
+                    }
+                },
+                lineStyle: {
+                    color: 'rgba(73,193,252,0.5)'
+                },
+                data: [{
+                    value: value,
+                    name: '个人能力图',
+                }]
+            }]
+        });
+
+    }
+    var mySwiper = new Swiper('.swiper-radar', {
+        //loop:true,
+        grabCursor: true,
+        paginationClickable: true,
+				swipeToPrev : false,
+				swipeToNext : false,
+        onSlideChangeStart: function(swiper) {
+            var titlearr = ['25k-16k', '15k-11k', '10k-1k', '1D-3D', '4D及以上']
+            $('.bg_UI_title').text(titlearr[swiper.activeIndex]);
+        }
+
+    })
+
+
+    $('.bg_UI-left').click(function() {
+        mySwiper.swipePrev();
+    })
+    $('.bg_UI-right').click(function() {
+        mySwiper.swipeNext();
+    })
+    </script>
+</body>
+
+</html>

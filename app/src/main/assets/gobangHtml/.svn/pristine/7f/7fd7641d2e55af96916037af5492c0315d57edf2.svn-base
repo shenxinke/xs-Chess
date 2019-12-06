@@ -1,0 +1,898 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="css/lib/public.css" />
+		<link rel="stylesheet" type="text/css" href="libs/mint/style.css" />
+		<link rel="stylesheet" type="text/css" href="css/custom/webStyle.css" />
+		<script src="libs/jquery/jquery.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/gobang/common.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/lib/config.js" type="text/javascript" charset="utf-8"></script>
+		<link rel="stylesheet" type="text/css" href="libs/layer/layer-v3.1.1/layer/theme/default/layer.css" />
+		<script src="libs/layer/layer-v3.1.1/layer/layer.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/lib/rem.js" type="text/javascript" charset="utf-8"></script>
+		<script src="libs/vuejs/vue.js" type="text/javascript" charset="utf-8"></script>
+		<script src="libs/mint/index.js" type="text/javascript" charset="utf-8"></script>
+
+		<style type="text/css">
+			.mint-loadmore-text {
+				font-size: 0.3rem;
+			}
+			
+			.mint-switch-core {
+				height: 28px;
+			}
+			
+			.mint-switch-core::before {
+				height: 25px;
+			}
+			
+			.mint-switch-core::after {
+				height: 25px;
+			}
+			/*路由切换动画*/
+			
+			.slide-right-enter-active,
+			.slide-right-leave-active,
+			.slide-left-enter-active,
+			.slide-left-leave-active {
+				transition: 300ms;
+				position: absolute;
+			}
+			.slide-right-enter {
+				transform: translate3d(-100%, 0, 0);
+			}
+			.slide-right-leave-active {
+				transform: translate3d(100%, 0, 0);
+			}
+			.slide-left-enter {
+				transform: translate3d(100%, 0, 0);
+			}
+			.slide-left-leave-active {
+				transform: translate3d(-100%, 0, 0);
+			}
+			
+			table thead, tbody tr {
+				display:table;
+				width:100%;
+				table-layout:fixed;
+			}
+			
+			
+			
+		</style>
+	</head>
+
+	<body class="bg_cmbg dn">
+		<section class="ha100 rel" id="app">
+			<section class="wa100 ha100">
+				<header class="h125 df ai-c jc-c rel">
+					<span class="fs36 cf">收藏</span>
+					<div class="pl30 pr30 df ai-c jc-sb abs wa100 ha100 tp0 lt0">
+						<button onclick='document.location.href = "myschema://go?a=1"' class="w63 h63 btn-n bg_cmfh" class="w63 h63 btn-n bg_cmfh"></button>
+					</div>
+				</header>
+				<div class="hca1 w688 m0a">
+					<div class="h72 df ai-fe jc-c ">
+						<div class="rel w190 fl">
+							<input class="abs tp0 lt0 wa100 ha100 op0" v-model="colltab" type="radio" name="tab" value="棋谱" />
+							<button :class="['wa100 btn-n fwb fs28',colltab==='棋谱'?'h72 bg_colxz cf':'h60 bg_colwxz c0461d2']">棋谱</button>
+						</div>
+						<div class="rel w190 fl">
+							<input class="abs tp0 lt0 wa100 ha100 op0" v-model="colltab" type="radio" name="tab" value="习题" />
+							<button :class="['wa100 btn-n fwb fs28',colltab==='习题'?'h72 bg_colxz cf':'h60 bg_colwxz c0461d2']">习题</button>
+						</div>
+						<!-- <div class="rel w190 fl">
+							<input class="abs tp0 lt0 wa100 ha100 op0" v-model="colltab" type="radio" name="tab" value="我的上传" />
+							<button :class="['wa100 btn-n fwb fs28',colltab==='我的上传'?'h72 bg_colxz cf':'h60 bg_colwxz c0461d2']">我的上传</button>
+						</div> -->
+					</div>
+					
+					<component :is="show"></component>
+
+				</div>
+			</section>
+		</section>
+		<template  id="classManual">
+			<div  class="hca3 bg_colbg1">
+				<div class="wa100 h120 df ai-c jc-sb pl25 pr25">
+					<input class="bgf w455 h60 pl20 pr15 br32" v-model="search" placeholder="搜索对弈人" type="" name="" id="" value="" />
+					<button class="w97 btn-n h60 bg_cmsearch" @click="getList()"></button>
+				</div>
+				<div class="hca1 oa">
+					<mt-loadmore :auto-fill='false' :top-method="loadTop" :bottom-method="loadBottom" :bottom-all-loaded="allLoaded" ref="loadmore">
+						<ul class="w646 m0a">
+							<li class="mb15 br20 bgf pt15 pb15 pl25 pr25" v-for="(x,index) in searchData">
+								<p class="df ai-c jc-sb c0862d0 mb10 fs20"> 
+									<span>晋级赛</span>
+									<span>{{x.GameTime | retain('yyyy-MM-dd hh:mm')}}</span>
+								</p>
+								<div class="df ai-c jc-sb">
+									<div class="w480 df ai-c jc-sb">
+										<div class="df ai-c">
+											<div class="w80 h80 rel mr10">
+												<img class="wa100 ha100 bra100" :src="x.blackHeadImg"/>
+												<div class="w40 h40 bra100 bg06 abs bt0 rt0 df ai-c jc-c cf">{{x.blackLevel | leve}}</div>
+											</div>
+											<p class="fs24" v-text="x.BlackName">喵星人</p>
+										</div>
+										<div class="">
+											<img class="w50 h50" :src='x.res == 1 ? "img/collection/colsheng.png" : x.res == 2 ? "img/collection/colfu.png" : x.res == 3 ? "img/collection/colping.png"  : "img/collection/colwu.png"'/>
+										</div>
+										<div class="df ai-c">
+											<p class="fs24" v-text="x.WhiteName">喵星人</p>
+											<div class="w80 h80 rel ml10">
+												<img class="wa100 ha100 bra100" :src="x.whiteHeadImg"/>
+												<div class="w40 h40 bra100 bgf1 abs bt0 lt0 df ai-c jc-c">{{x.whiteLevel | leve}}</div>
+											</div>
+										</div>
+									</div>
+									<div @click="collect(x.chessId,x.collect,index)" class="w85 h57">
+										<img class="wa100 ha100"  :src="x.collect==1?'img/collection/colysc.png':'img/collection/colwsc.png'"/>
+									</div>
+								</div>
+							</li>
+							<li v-if='allLoaded' class="wa100 h80 df ai-c jc-c c3 fs24">已加载完全部数据</li>
+						</ul>
+					</mt-loadmore>
+					<div v-if='allLoaded && list.length<=0' class="wa100 tc pt50">
+						<img class="h600" src="img/ab_help/qm.png" />
+						<div class="wa100 tc pt15 c6">
+							暂无数据
+						</div>
+					</div>
+				</div>
+			</div>
+		</template>
+		<template id="exercises">
+			<div  class="hca3 bg_colbg1">
+				<div v-if="switch1" class="wa100 h120 df ai-c jc-fe pl25 pr25">
+					<img @click="switch1 = false" class="w84 h57 mr20" src="img/collection/colwsc.png"/>
+					<img @click="flag=true" class="w84 h57" src="img/collection/colsx.png"/>
+				</div>
+				<div v-else class="wa100 h120 df ai-c jc-fe pl25 pr25">
+					<button @click="cancelSc" class="w84 h57 mr20 btn-n bg_colbtnno cad4303">确定</button>
+					<button @click="switch1=true;" class="w84 h57 btn-n bg_colbtnyes c0967a9">取消</button>
+				</div>
+				<div class="hca1 oa">
+					<mt-loadmore :auto-fill='false' :top-method="loadTop" :bottom-method="loadBottom" :bottom-all-loaded="allLoaded" ref="loadmore">
+						<ul class="wa100 m0a cl">
+							<li v-for="(x,index) in list" class="w200 h200 br14 ml22 mb22 bgf rel fl">
+								<input type="checkbox" class="wa100 ha100 op0 abs tp0 lt0 z10 inputdx" v-model="chessIds" :value="x.chessId"/>
+								<img class="wa100 ha100 abs dn" src="img/collection/colqxsc.png"/>
+								<img class="wa100 ha100" :src="x.Snapshot" alt="" />
+							</li>
+							<li v-if='allLoaded' class="wa100 h80 df ai-c jc-c c3 fs24">已加载完全部数据</li>
+						</ul>
+					</mt-loadmore>
+					<div v-if='allLoaded && list.length<=0' class="wa100 tc pt50">
+						<img class="h600" src="img/ab_help/qm.png" />
+						<div class="wa100 tc pt15 c6">
+							暂无数据
+						</div>
+					</div>
+				</div>
+				
+				
+				<div v-show='flag' class="wa100 ha100 abs tp0 lt0 z10 bg08 fadeIn">
+					<div class="fix rt0 bta10 w620 h1050 bg_shsxbg toRight2">
+						<button @click="flag=false" class="w73 h73 btn-n abs tp-25 lt-20 bg_shclose"></button>
+						<div class="w580 h870 brl100 bgf abs rt11 tp44 p33 ">
+							<div class="wa100 ha100 oxh">
+								<div class="">
+									<div class="w530 cl">
+										<button class="btn-n w250 h63 rel bgf fl mb15 mr14">
+											<input class="wa100 ha100 abs tp0 lt0 op0 type" v-model="type" value="0" type="radio" name="type" />
+											<span class="df ai-c jc-c wa100 ha100 fs20">综合练习</span>
+										</button>
+										<button class="btn-n w250 h63 rel bgf fl mb15 mr14">
+											<input class="wa100 ha100 abs tp0 lt0 op0 type" v-model="type" value="1" type="radio" name="type" />
+											<span class="df ai-c jc-c wa100 ha100 fs20">死活</span>
+										</button>
+										<button class="btn-n w250 h63 rel bgf fl mb15 mr14">
+											<input class="wa100 ha100 abs tp0 lt0 op0 type" v-model="type" value="3" type="radio" name="type" />
+											<span class="df ai-c jc-c wa100 ha100 fs20">官子</span>
+										</button>
+										<button class="btn-n w250 h63 rel bgf fl mb15 mr14">
+											<input class="wa100 ha100 abs tp0 lt0 op0 type" v-model="type" value="4" type="radio" name="type" />
+											<span class="df ai-c jc-c wa100 ha100 fs20">定式</span>
+										</button>
+										<button class="btn-n w250 h63 rel bgf fl mb15 mr14">
+											<input class="wa100 ha100 abs tp0 lt0 op0 type" v-model="type" value="5" type="radio" name="type" />
+											<span class="df ai-c jc-c wa100 ha100 fs20">手筋</span>
+										</button>
+										<button class="btn-n w250 h63 rel bgf fl mb15 mr14">
+											<input class="wa100 ha100 abs tp0 lt0 op0 type" v-model="type" value="6" type="radio" name="type" />
+											<span class="df ai-c jc-c wa100 ha100 fs20">行棋方式</span>
+										</button>
+									</div>
+									<p class="c2b7cb6 fs30 fwb mb15">级别</p>
+									<div class="w530 cl ">
+										<button v-for="x in levelList" class="btn-n w118 h63 rel bgf fl mb15 mr14">
+											<input class="wa100 ha100 abs tp0 lt0 op0 type" v-model="level" :value="x" type="radio" name="leve" />
+											<span  class="df ai-c jc-c wa100 ha100 fs20" v-text="x"></span>
+										</button>
+									</div>
+									<p class="c2b7cb6 fs30 fwb mb15">知识点</p>
+									<div class="w530 cl ">
+										<button v-for="x in knowledgeList" class="btn-n w250 h63 rel bgf fl mb15 mr14">
+											<input class="wa100 ha100 abs tp0 lt0 op0 type" v-model="knowledge" :value="x"  type="radio" name="knowledge" />
+											<span class="df ai-c jc-c wa100 ha100 fs20" v-text='x'>切断</span>
+										</button>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="wa100 abs bt33 lt0 df ai-c jc-sa">
+							<button @click='getList();flag=false' class="w164 h74 fs27 btn-n bg_cmyesbtn fwb cad4303">确定</button>
+							<button @click="flag=false" class="w164 h74 fs27 btn-n bg_cmnobtn fwb c0967a9">取消</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</template>
+		<template id='myUpload'>
+			<div  class="hca3 bg_colbg1 fs24">
+				<div class="wa100 h120 df ai-c jc-sb pl25 pr25">
+					<div class="w240 h60 cf rel">
+						<input class="wa100 ha100 br32 bf2 op0 abs tp0 lt0 z1" @click='openInitial' readonly="readonly" v-model="startTime"/>
+						<span class="df ai-c wa100 ha100 bf2 br30 pl20 pr15 rel">
+							{{startDate}}
+							<i class="db w38 h40 abs rt20 tp10 bg_coltime"></i>
+						</span>
+					</div>
+					<span class="cf fs24">至</span>
+					<div class="w240 h60 cf rel">
+						<input class="wa100 ha100 br32 bf2 op0 abs tp0 lt0 z1" @click='openAtLast' readonly="readonly" v-model="endTime"/>
+						<span class="df ai-c wa100 ha100 bf2 br30 pl20 pr15 rel">
+						{{endDate}}
+						<i class="db w38 h40 abs rt20 tp10 bg_coltime"></i>
+						</span>
+					</div>
+					
+					<mt-datetime-picker
+					  ref="pickerInitial"
+					  v-model="startTime"
+					  type="date"
+						:end-date='new Date()'
+					  @confirm="startConfirm"
+					 >
+					</mt-datetime-picker>
+					
+					<mt-datetime-picker
+						ref="pickerAtLast"
+						v-model="endTime"
+						type="date"
+						:start-date='startTime'
+						@confirm="endConfirm"
+					>
+					</mt-datetime-picker>
+					<button @click='getList' class="w97 btn-n h60 bg_cmsearch"></button>
+				</div>
+				<div class="hca1 w645 m0a ">
+					
+					<div class="df ai-c tc h100 bgffe880 fs30">
+						<div class="w125">编号</div>
+						<div class="w175">上传时间</div>
+						<div class="w215">文件名</div>
+						<div class="w130">操作</div>
+					</div>
+					
+					<div class="hca5 oa">
+						
+						<mt-loadmore :auto-fill='false' :top-method="loadTop" :bottom-method="loadBottom" :bottom-all-loaded="allLoaded" ref="loadmore">
+							<ul class="w646 m0a">
+								<li v-for='(x,index) in list' class="df ai-c bgf tc mb1 h95 fs24 rel">
+									<div class="w125" v-text='x.id'>1</div>
+									<div class="w175">{{x.createTime| retain('yyyy-MM-dd hh:mm')}}</div>
+									<div class="w215 texth" v-text='x.fileName'>李世石vs柯洁的啊删掉阿斯蒂芬</div>
+									<div class="w130">
+										<button @click='deleteUploadFile(x)' class="w95 h53 c006699 btn-n bg_colbtnyes">删除</button>
+									</div>
+									<i class="db wa100 h1 bgffe880 abs bt0 lt0"></i>
+								</li>
+								<li v-if='allLoaded' class="wa100 h80 df ai-c jc-c c3 fs24">已加载完全部数据</li>
+							</ul>
+						</mt-loadmore>
+						
+						<div v-if='allLoaded && list.length<=0' class="wa100 tc pt50">
+							<img class="h600" src="img/ab_help/qm.png" />
+							<div class="wa100 tc pt15 c6">
+								暂无数据
+							</div>
+						</div>
+					</div>
+					
+				</div>
+			</div>
+		</template>
+		<script type="text/javascript">
+			$(function() {
+				//关闭loding
+				document.location.href = "myschema://go?a=14"
+				
+				
+				/*
+				 * Vue时间戳过滤器
+				 * {{1529564879000 | retain('yyyy-MM-dd hh:mm')}}
+				 * */
+				Vue.filter('retain', function(data, fmt) {
+					date = new Date(data)
+					var o = {
+						"M+": date.getMonth() + 1, //月份   
+						"d+": date.getDate(), //日   
+						"h+": date.getHours(), //小时   
+						"m+": date.getMinutes(), //分   
+						"s+": date.getSeconds(), //秒   
+						"q+": Math.floor((date.getMonth() + 3) / 3), //季度   
+						"S": date.getMilliseconds() //毫秒   
+					};
+					if(/(y+)/.test(fmt))
+						fmt = fmt.replace(RegExp.$1, (date.getFullYear() + "").substr(4 - RegExp.$1.length));
+					for(var k in o)
+						if(new RegExp("(" + k + ")").test(fmt))
+							fmt = fmt.replace(RegExp.$1, (RegExp.$1.length == 1) ? (o[k]) : (("00" + o[k]).substr(("" + o[k]).length)));
+					return fmt;
+				})
+				// 棋力等级过滤器
+				Vue.filter("leve",function(leve){
+					if(leve>25){
+						return (leve-25)+'D'
+					}else if(leve<=25 && leve>0){
+						return (26-leve)+'K'
+					}else if(leve==0){
+						return '暂未定级'
+					}
+				})
+				vm = new Vue({
+					el: '#app',
+					data: {
+						show:'classManual',
+						colltab:'棋谱',
+						//showBody:false,
+					},
+					
+					watch:{
+						colltab:function(val){
+							switch(val){
+								case '棋谱':
+									this.show = 'classManual'
+								break;
+								case '习题':
+									this.show = 'exercises'
+								break;
+								case '我的上传':
+									this.show = 'myUpload'
+								break;
+							}
+						}
+						
+					},
+					
+					
+					components:{
+						//棋谱
+						'classManual':{
+							data:function () {
+								return {
+									list: [],
+									search:'',//搜索内容
+									allLoaded: false, //为true 则禁止下拉  一般无数据了设置为trun
+									pageNum: 1, //当前页
+									pages: '', //总页数
+								}
+							},
+							methods:{
+								loadTop() {
+									$this = this
+									console.log('下拉刷新')
+									$this.pageNum = 1; //重置下一页页码
+									$this.getList({
+										pageNum: $this.pageNum,
+										success: function(data) {
+											setTimeout(function() {
+												$this.list = data.data.list;
+												$this.pages = data.data.pages;
+												$this.pageNum = data.data.nextPage;
+		
+												if($this.pageNum == 0) {
+													$this.allLoaded = true;
+												} else {
+													$this.allLoaded = false;
+												}
+												$this.$refs.loadmore.onTopLoaded();
+											}, 500)
+										}
+									})
+								},
+								loadBottom() {
+									$this = this
+									console.log('上拉加载')
+									$this.getList({
+										pageNum: $this.pageNum,
+										success: function(data) {
+											setTimeout(function() {
+												$this.list = $this.list.concat(data.data.list);
+												$this.pages = data.data.pages;
+												$this.pageNum = data.data.nextPage;
+												if($this.pageNum == 0) {
+													$this.allLoaded = true;
+												}
+												$this.$refs.loadmore.onBottomLoaded();
+											}, 500)
+										}
+									})
+								},
+								getList(option) { //请求班级列表
+									$this = this
+									var msg = {
+										pageNum: 1,
+										success: function(data) {
+											setTimeout(function(){
+												$this.$indicator.close(); //关闭加载中
+												$this.list = data.data.list;
+												$this.pages = data.data.pages;
+												$this.pageNum = data.data.nextPage;
+												if($this.pageNum == 0) {
+													$this.allLoaded = true;
+												} else {
+													$this.allLoaded = false;
+												}
+											},300)
+										}
+									}
+									msg = $.extend(msg, option)
+									$.ajax({
+										type: 'post',
+										url: http + '/gobangteach/QuestionbankController/getCollectChess',
+										data: {
+											pageSize: 10000,
+											pageNum: msg.pageNum,
+											type: 2,
+											//className: msg.classname,
+											token: token,
+											uid: uid
+										},
+										success: function(data) {
+											msg.success(data)
+										}
+									})
+								},
+								//收藏
+								collect:function(id,collect,index){
+									var collect = collect;
+									var $this = this;
+									if(collect==1){
+										layerTC('你确定要取消收藏吗？',function(){
+											collect = 2; //取消收藏
+											postCollect(id,collect);
+										})
+									}else{
+										collect = 1; //收藏
+										postCollect(id,collect);
+									}
+									function postCollect(id,collect){
+										$.ajax({
+											type:'post',
+											url:http+'/gobangteach/QuestionbankController/collectChess',
+											data:{
+												type:2,
+												chessId:id,
+												collect:collect,
+												token:token,
+												uid:uid
+											},
+											success:function(data){
+												console.log(data)
+												if(data.error.returnMessage=='操作成功'){
+													$this.list[index].collect = $this.list[index].collect===1?2:1
+													layer.msg('操作成功！');
+												}
+											}
+										})
+									}
+								}
+							},
+							computed: {
+					            searchData: function() {
+					                var search = this.search;
+					                if (search) {
+					                    return this.list.filter(function(itm) {
+					                        console.log(Object.keys(itm))
+					                        return Object.keys(itm).some(function(key) {
+					                        	console.log('11',String(itm[key]))
+					                            return String(itm[key]).toLowerCase().indexOf(search) > -1
+					                        })
+					                    })
+					                }
+					                return this.list;
+					            }
+					        },
+							beforeMount(){
+								this.$indicator.open({
+									text: '加载中...',
+									spinnerType: 'fading-circle'
+								});
+							}, 
+							mounted:function () {
+								var $this = this;
+								this.getList({
+									pageNum: 1
+								});
+							},
+							
+							template:'#classManual'
+						},
+						'exercises':{
+							data:function () {
+								return {
+									list: [],
+									chessIds:[],//选中的习题id
+									switch1:true,
+									allLoaded: false, //为true 则禁止下拉  一般无数据了设置为trun
+									pageNum: 1, //当前页
+									pages: '', //总页数
+									flag:false,
+									type:'0',//类型
+		    						level:'',//级别
+		    						knowledge:'',//知识点
+		    						knowledgeList:'',//知识点列表
+									levelList:["25k", "20k", "15k", "10k", "5k", "2k", "1k", "1D", "2D", "3D", "4D", "5D"],//等级列表
+									
+								}
+							},
+							methods:{
+								loadTop() {
+									$this = this
+									console.log('下拉刷新')
+									$this.pageNum = 1; //重置下一页页码
+									$this.getList({
+										pageNum: $this.pageNum,
+										success: function(data) {
+											setTimeout(function() {
+												$this.list = data.data.list;
+												$this.pages = data.data.pages;
+												$this.pageNum = data.data.nextPage;
+		
+												if($this.pageNum == 0) {
+													$this.allLoaded = true;
+												} else {
+													$this.allLoaded = false;
+												}
+												$this.$refs.loadmore.onTopLoaded();
+											}, 500)
+										}
+									})
+								},
+								loadBottom() {
+									$this = this
+									console.log('上拉加载')
+									$this.getList({
+										pageNum: $this.pageNum,
+										success: function(data) {
+											setTimeout(function() {
+												$this.list = $this.list.concat(data.data.list);
+												$this.pages = data.data.pages;
+												$this.pageNum = data.data.nextPage;
+												if($this.pageNum == 0) {
+													$this.allLoaded = true;
+												}
+												$this.$refs.loadmore.onBottomLoaded();
+											}, 500)
+										}
+									})
+								},
+								getList(option) { //请求班级列表
+									$this = this
+									var msg = {
+										pageNum: 1,
+										success: function(data) {
+											setTimeout(function(){
+												$this.$indicator.close(); //关闭加载中
+												$this.list = data.data.list;
+												$this.pages = data.data.pages;
+												$this.pageNum = data.data.nextPage;
+												if($this.pageNum == 0) {
+													$this.allLoaded = true;
+												} else {
+													$this.allLoaded = false;
+												}
+											},300)
+										}
+									}
+									msg = $.extend(msg, option)
+									$.ajax({
+										type: 'post',
+										url: http + '/gobangteach/QuestionbankController/getCollectChess',
+										data: {
+											questionType: this.type,
+											level: this.level,
+											type:1,
+											pageSize: 10000,
+											pageNum: msg.pageNum,
+											token: token,
+											uid: uid
+										},
+										beforeSend:function(){
+											
+										},
+										success: function(data) {
+											msg.success(data)
+										},
+										
+									})
+								},
+								cancelSc:function(){
+									$this =this
+									if(this.chessIds.length){
+										
+										$.ajax({
+											type:'post',
+											url:http+'/gobangteach/QuestionbankController/collectChess',
+											data:{
+												type:1,
+												chessId:this.chessIds.toString(),
+												collect:2,
+												token:token,
+												uid:uid
+											},
+											success:function(data){
+												if(data.error.returnMessage=='操作成功'){
+													var arr=[];
+													$.each(arr.concat($this.list),function(index,x){
+														$.each($this.chessIds, function(inx,y) {
+															if(x.chessId == y){
+																$this.$delete($this.list,$this.list.indexOf(x))
+															}
+														});
+													})
+													$this.chessIds = [];
+													$this.switch1 = true
+													layer.msg('操作成功！');
+												}
+											}
+										})
+									
+										
+										
+										
+										
+									}else{
+										layer.msg('请选择习题！')
+									}
+								},
+								selectLevel:function(type){ //请求级别
+									var $this = this;
+									$.ajax({
+										type:'get',
+										url:http+'/gobangteach/classroom/listTypeLevel?questionType='+type+'&token='+token+'&uid='+uid,
+										success:function(data){
+											$this.levelList=data.data;
+											
+											/*if($('#questionType').val()==0){
+												$this.levelList=["25k", "20k", "15k", "10k", "5k", "2k", "1k", "1D", "2D", "3D", "4D", "5D"];
+											}*/
+										}
+									})
+								},
+								getAbility:function(type,level){//请求知识点
+									var $this = this;
+									$.ajax({
+										type:'get',
+										url:http+'/gobangteach/classroom/listKnowledge',
+										data:{
+											questionType: type,
+											level: level,
+											pageNum: 1,
+											pageSize: 1000,
+											uid:uid,
+											token:token
+										},
+										success:function(data){
+											$this.knowledgeList=data.data;
+										}
+									})
+								}
+							},
+							watch:{
+		    					type:function(){//监听类型
+		    						this.knowledgeList='';
+		    						this.level=''
+		    						this.selectLevel(this.type)
+		    					},
+		    					level:function(){//监听级别
+		    						this.knowledgeList='';
+		    						
+		    						this.getAbility(this.type,this.level)
+		    					}
+		    				},
+								 beforeMount(){
+									this.$indicator.open({
+										text: '加载中...',
+										spinnerType: 'fading-circle'
+									});
+								}, 
+							
+							mounted:function(){
+								var $this = this;
+								this.getList({
+									pageNum: 1
+								});
+							},
+							template:'#exercises'
+						},
+						'myUpload':{
+							data:function () {
+								return {
+									list: [],
+									startTime:new Date(),
+									endTime:new Date(),
+									
+									startDate:'',
+									endDate:'',
+									
+									allLoaded: false, //为true 则禁止下拉  一般无数据了设置为trun
+									pageNum: 1, //当前页
+									pages: '', //总页数
+								}
+							},
+							methods:{
+								
+		    					openInitial(){ //打开起始时间
+		    						this.$refs.pickerInitial.open();
+		    					},
+									openAtLast(){ //打开终止时间
+										this.$refs.pickerAtLast.open();
+									},
+								  startConfirm(val){ 
+										this.startDate = val.Format('yyyy-MM-dd')
+										console.log(val.Format('yyyy-MM-dd'))
+		    					},
+									endConfirm(val){
+										this.endDate = val.Format('yyyy-MM-dd')
+										console.log(val)
+									},
+									loadTop() {
+										$this = this
+										console.log('下拉刷新')
+										$this.pageNum = 1; //重置下一页页码
+										$this.getList({
+											pageNum: $this.pageNum,
+											success: function(data) {
+											
+													
+													$this.list = data.data.list;
+													$this.pages = data.data.pages;
+													$this.pageNum = data.data.nextPage;
+			
+													if($this.pageNum == 0) {
+														$this.allLoaded = true;
+													} else {
+														$this.allLoaded = false;
+													}
+													$this.$refs.loadmore.onTopLoaded();
+											
+											}
+										})
+									},
+									loadBottom() {
+										$this = this
+										console.log('上拉加载')
+										$this.getList({
+											pageNum: $this.pageNum,
+											success: function(data) {
+												setTimeout(function() {
+													$this.list = $this.list.concat(data.data.list);
+													$this.pages = data.data.pages;
+													$this.pageNum = data.data.nextPage;
+													if($this.pageNum == 0) {
+														$this.allLoaded = true;
+													}
+													$this.$refs.loadmore.onBottomLoaded();
+												}, 500)
+											}
+										})
+									},
+									getList(option) { //请求班级列表
+										$this = this
+										var msg = {
+											pageNum: 1,
+											startTime:$this.startDate,
+											endTime:$this.endDate+'23:59:59',
+											success: function(data) {
+												setTimeout(function(){
+													$this.$indicator.close(); //关闭加载中
+													$this.list = data.data.list;
+													$this.pages = data.data.pages;
+													$this.pageNum = data.data.nextPage;
+													if($this.pageNum == 0) {
+														$this.allLoaded = true;
+													} else {
+														$this.allLoaded = false;
+													}
+												},300)
+											}
+										}
+										msg = $.extend(msg, option)
+										$.ajax({
+											type: 'post',
+											url: http + '/gobangteach/classroom/listUploadFile',
+											data: {
+												endTime:msg.endTime,
+												startTime:msg.startTime,
+												pageSize: 9,
+												pageNum: msg.pageNum,
+												token: token,
+												uid: uid,
+											},
+											success: function(data) {
+												msg.success(data)
+											}
+										})
+									},
+									deleteUploadFile(x){
+										var $this = this
+										$.ajax({
+												type: 'post',
+												url: http + '/gobangteach/classroom/deleteUploadFileById',
+												data: {
+													id: x.id,
+													token: token,
+													uid: uid,
+												},
+												success: function(data) {
+													if(data.error.returnMessage ==='操作成功'){
+														
+														$this.list.splice($this.list.indexOf(x),1)
+														
+														layer.msg('删除成功！')
+													}
+											}
+										})
+									}
+								},
+							beforeMount(){
+								this.$indicator.open({
+									text: '加载中...',
+									spinnerType: 'fading-circle'
+								});
+							}, 
+							mounted:function(){
+								var $this = this;
+								this.getList({
+									pageNum: 1
+								});
+								
+								
+								
+								
+							},
+							
+							template:'#myUpload'
+						}
+					},
+					
+					
+					
+					
+					methods: {
+						
+						
+						
+					},
+					
+					mounted() {
+						//this.showBody = true
+						$('body').show()
+					},
+
+				})
+			});
+		</script>
+
+	</body>
+
+</html>

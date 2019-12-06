@@ -1,0 +1,641 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link rel="stylesheet" type="text/css" href="css/lib/public.css">
+		<link rel="stylesheet" type="text/css" href="css/custom/webStyle.css"/>
+		<script type="text/javascript" src="libs/jquery/jquery.js"></script>
+		<script type="text/javascript" src="libs/vuejs/vue.js"></script>
+		<link rel="stylesheet" type="text/css" href="libs/layer/layer-v3.1.1/layer/theme/default/layer.css" />
+		<script type="text/javascript" src="libs/layer/layer-v3.1.1/layer/layer.js"></script>
+		<script src="js/gobang/common.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/lib/config.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript" src="js/lib/rem.js"></script>
+		<!-- 棋盘 -->
+		<link rel="stylesheet" type="text/css" href="chess/css/chess.css"/>
+		<link rel="stylesheet" type="text/css" href="chess/skin/skin1/skin1.css"/>
+		<script src="chess/js/eve.js" type="text/javascript" charset="utf-8"></script>
+		<script src="chess/js/XSGO.js" type="text/javascript" charset="utf-8"></script>
+		<script src="chess/js/bundle.js" type="text/javascript" charset="utf-8"></script>
+		<script src="chess/js/GSocket.js" type="text/javascript" charset="utf-8"></script>
+		
+		<title></title>
+	</head>
+	<body>
+		<div id="matchPlay" class="wa100 ha100 ">
+			
+			<div class="wa100 h100 mt20 mb15 df ai-c jc-c rel ">
+				<img src="img/play/vs.png" class="w67 h48">
+				<div class="abs wa100 h100 tp0 lt0 df ai-c jc-sb pl30 pr30">
+					<!-- 白 -->
+					<div class="w305 df">
+						<div :class="['w100 h100 mr15 bra100 b1becff rel',activeUser==1?'b4ff0000':'b4f']">
+							<img class="wa100 ha100 bra100" src="img/headImg/1.png" >
+							<div class="py_white w30 h30 abs bt0 rt0"></div>
+						</div>
+						<div class="lh35 ">
+							<p class="c3 fs24">{{gameInfo.whiteUserNm}}【{{gameInfo.whiteLevel||'25k'}}】</p>
+							<p class="fs22 c6">
+								<span class="pr10">{{whiteSeconds}}s</span>
+								<span class="pr10">{{vsInfo.whiteCounts?3-vsInfo.whiteCounts:3}}次</span>
+								<span>提{{vsInfo.resultList?vsInfo.resultList[1]:0}}子</span>
+							</p>
+							<p :class="['fs22 c1b1b46 w164 h30  br30 df ai-c',activeUser==1?'bgfde128':'bgf']">
+								<img class="w20 h20 mr10 ml10" src="img/play/naozhong.png" ><span style="line-height: 0px;">{{whiteTime}}</span>  
+							</p>
+						</div>
+					</div>
+					<!-- 黑 -->
+					<div class="w305 df jc-fe">
+						<div class="lh35 tr">
+							<p class="c3 fs24">【{{gameInfo.blackLevel ||'25k'}}】 {{gameInfo.blackUserNm}}</p>
+							
+							<p class="fs22 c6">
+								<span class="pr10">{{blackSeconds}}s</span>
+								<span class="pr10">{{vsInfo.blackCounts?3-vsInfo.blackCounts:3}}次</span>
+								<span>提{{vsInfo.resultList?vsInfo.resultList[0]:0}}子</span>
+							</p>
+							<p :class="['fs22 c1b1b46 w164 h30 br30 df ai-c',activeUser==0?'bgfde128':'bgf']">
+								<img class="w20 h20 mr10 ml10" src="img/play/naozhong.png" ><span style="line-height: 0px;">{{blackTime}}</span>  
+							</p>
+						</div>
+						<div :class="['w100 h100 ml15 mt10 bra100 b1becff rel',activeUser==0?'b4ff0000':'b4f']">
+							<img class="wa100 ha100 bra100" src="img/headImg/1.png" >
+							<div class="py_black w30 h30 abs bt0 lt0 cf"></div>
+						</div>
+					</div>
+					
+				</div>
+			</div>
+			<div id="gameChess" class="wa100 h750 bgred"></div>
+			<div v-if="qrlzState" class="df ai-c jc-sa pt30 pl20 pr20">
+				<button type="button" class="w72 h72 btn-n btn_w" @click="game.steering('w')"></button>
+				<button type="button" class="w72 h72 btn-n btn_s" @click="game.steering('s')"></button>
+				<button type="button" class="h72 w150 btn-n bt_btn ccf5003 fs30" @click="game.steering('e')">确认落子</button>
+				<button type="button" class="w72 h72 btn-n btn_a" @click="game.steering('a')"></button>
+				<button type="button" class="w72 h72 btn-n btn_d" @click="game.steering('d')"></button>
+			</div>
+			<div v-else class="df ai-c jc-c pt40">
+				<button type="button" class="btn-n bt_btn w150 h72 ccf5003 fs30 mr30" @click="inform(4)">停一手</button>
+				<button type="button" class="btn-n bt_btn w150 h72 ccf5003 fs30 mr30" @click="giveUp()">认输</button>
+				<!-- 九路棋盘无数棋 -->
+				<button type="button" class="btn-n bt_btn w150 h72 ccf5003 fs30" v-if="gameInfo.RuleType2==1" @click="inform(1)">数棋</button>
+				<button @click="createAIChess()">创建ai对弈</button>
+			</div>
+			<!-- 数棋结果 -->
+			<div id="countChess" class="wa100 ha100 layer_bg1 dn">
+				<div class="wa100 ha100 df ac-c fw-w">
+					<p class="wa100 pb10 tc caa4800 fs36 fwb">数棋结果</p>
+					<div class="w520 h240 m0a bgf br32 fs30 caa4800 oay tc pt10 lineh50">
+						<p class="cff3000 fs36 pb25 pt20" v-text="sqResult.title"></p>
+						<div class="df jc-sa ">
+							<div class="df ai-c ">
+								<img class="w35 h35" src="img/play/mcblack.png" ><p >黑：{{sqResult.blackNum}}子</p>
+							</div>
+							<div class="df ai-c">
+								<img class="w35 h35" src="img/play/mcwhite.png" ><p>白：{{sqResult.whiteNum}}子</p>
+							</div>
+						</div>
+						<p class="pt20">{{sqResult.content}}</p>
+					</div>
+					<div class="wa100 tc pt25 df ac-c jc-sa fw-w">
+						<p class="w520 c8b4501 m0a pt10 pb10 tl fs24">20 秒后将自动同意</p>
+						<button type="button" class="bg_cmyesbtn w156 h70 btn-n caa4800 fs26 fwb">同意</button>
+						<button type="button" class="bg_cmnobtn w156 h70 lh27 btn-n c0967a9 fs26 fwb df ai-c jc-c fw-w">
+							<p>拒绝</p>
+							<p class="fs20 wa100">提交判棋</p>
+						</button>
+					</div>
+				</div>
+			</div>
+			
+			<!-- 比赛结果 -->
+			<div id="matchResult" class="wa100 ha100 layer_bg1 dn">
+				<div class="wa100 ha100 df ac-c fw-w">
+					<p class="wa100 pb10 tc caa4800 fs36 fwb">比赛结果</p>
+					<div class="w520 h240 m0a bgf br32 fs30 caa4800 oay tc pt10 lineh50">
+						<p class="cff3000 fs36 pb25 pt20" v-text="bsResult.title"></p>
+						<div class="df jc-sa ">
+							<div class="df ai-c ">
+								<img class="w35 h35" src="img/play/mcblack.png" ><p >黑：提{{vsInfo.resultList?vsInfo.resultList[0]:0}}子</p>
+							</div>
+							<div class="df ai-c">
+								<img class="w35 h35" src="img/play/mcwhite.png" ><p>白：提{{vsInfo.resultList?vsInfo.resultList[1]:0}}子</p>
+							</div>
+						</div>
+						<p class="pt20">{{bsResult.content}}</p>
+					</div>
+					<div class="wa100 tc pt25 df ac-c jc-sa fw-w pt20">
+						<button type="button" onclick="layer.closeAll()" class="bg_cmyesbtn w156 h70 btn-n caa4800 fs26 fwb">确认</button>
+					</div>
+				</div>
+			</div>
+			
+			
+			<!-- <audio controls autoplay>
+				<source id="tts_source" type="audio/mpeg" src="http://tts.baidu.com/text2audio/text2audio?lan=zh&amp;ie=UTF-8&amp;spd=8&amp;text=床前明月光,疑是地上霜,举头望明月,低头思故乡">
+			</audio> -->
+		</div>
+		<script type="text/javascript">
+			//倒计时
+			function countDown(callback){
+				var flag = 1;
+				this.timout=function(total){
+					this.flag = 1
+					var $this =this;
+					if(total<=0){
+						callback(total);
+						return
+					}
+					this.time = setInterval(function(){
+						if($this.flag){
+							total --;
+							if(total<=0){
+								clearInterval($this.time)
+							}
+							callback(total)
+						}else{
+							clearInterval($this.time)
+						}
+					},1000)
+				}
+				Object.defineProperty(this,'flag',{
+					get:function(){
+						return flag
+					},
+					set:function(val){
+						flag = val;
+						if(!val){
+							clearInterval(this.time)
+						}
+					},
+				})
+			}
+			
+			
+			//读秒到倒计时
+			var djs = new countDown(function(t){
+			
+				if(matchPlay.game.config.first){ //当前白下
+					matchPlay.whiteSeconds = t;
+					if(t===0){
+						matchPlay.vsInfo.whiteCounts ++;
+						if(matchPlay.game.config.userFirst===1){
+							eve.f('countingCounts',uid,matchPlay.gameInfo.gameId)()
+						}
+						if(matchPlay.vsInfo.whiteCounts<3){
+							djs.timout(30);
+						}
+					}
+				}else{ //当前黑下
+					matchPlay.blackSeconds = t;
+					if(t===0){
+						matchPlay.vsInfo.blackCounts ++;
+						if(matchPlay.game.config.userFirst===0){
+							eve.f('countingCounts',uid,matchPlay.gameInfo.gameId)()
+						}
+						if(matchPlay.vsInfo.blackCounts<3){
+							djs.timout(30);
+						}
+						
+					}
+				}
+			})
+			
+			//基础用时倒计时
+			var timer = new countDown(function(time){
+				//console.log(55,time)
+				
+				if(matchPlay.game.config.first){
+					djs.flag = 0;
+					matchPlay.whiteTime = time;					
+					if(time===0){
+						djs.timout(30)
+					}
+				}else{
+					djs.flag = 0;
+					matchPlay.blackTime = time;
+					if(time===0){
+						djs.timout(30)
+					}
+				}
+				
+			})
+			
+			
+			
+			var matchPlay = new Vue({
+				el:'#matchPlay',
+				data:{
+					aa:111,
+					game:'',
+					qrlzState:0, //确认落子返回的状态 1 0
+					gameInfo:'',
+					opponentId:'',//对手id
+					vsInfo:'',
+					totalTime:10, //总用时
+					activeUser:'', //当前下棋的人 0黑 1白
+					blackTime:'',//黑棋所剩基础时间
+					whiteTime:'',//白棋所剩基础时间
+					blackSeconds:30, //黑棋读秒
+					whiteSeconds:30, //白棋读秒
+					sqResult:{ //数棋结果
+						title:'',
+						blackNum: '',
+						whiteNum:'',
+						content:''
+					},
+					bsResult:{ //比赛结果
+						title:'',
+						content:''
+					}
+					
+				},
+				methods:{
+					//创建AI 棋局
+					createAIChess :function () {
+						var $this = this;
+						$.ajax({
+							url: http+'/gobangteach/ChessController/createAIChess',
+							type: "GET",
+							//contentType: "application/json",
+							data: {
+								ai_level: '25k',
+								size:9,
+								count:'',
+								color:'', //'white'//black
+								guide:'',
+								token:token,
+								uid:uid
+							},
+							dataType: "json",
+							success: function (data) {
+								if (data.error.returnCode == 0) {
+									console.log("创建成功",data);
+								} else {
+									
+								}
+								$this.getGameInfoByUserId()
+							},
+							error: function (XMLHttpRequest, textStatus) {}
+						});
+					},
+					
+					//查询对弈信息
+					getGameInfoByUserId:function (){
+						var $this = this;
+						$.ajax({
+							type : "POST",
+							url : http+"/gobangteach/ChessController/getGameInfoByUserId",
+							dataType : 'json',
+							data:{
+								token:token,
+								uid:uid
+							},
+							success : function(data){
+								if (data.error.returnCode == 0) {
+									//option.gameInfo = data.data[0];
+									$this.gameInfo = data.data[0]
+									eve.f('enterGame',data.data[0].gameId,uid)(); 
+								}
+								if(data.error.returnCode == 10053){
+								//	alert('对局信息不存在')
+								}
+							},
+							error : function(XMLHttpRequest, data) {
+								
+							}
+						});
+					},
+					//关闭棋局
+					closeGame:function(){
+						var $this = this;
+						this.gameInfo.token = token;
+						this.gameInfo.uid = uid;
+						$.ajax({
+							type : "POST",
+							url : http+"/gobangteach/ChessController/closeGame",
+							data :$this.gameInfo,
+							dataType : 'json',
+							success : function(data) {
+								if (data.error.returnCode > 0) {
+									console.log("更新对局状态失败。", data.error);
+								} else {
+									$this.closePlaying($this.gameInfo.gameId)
+								}
+							},
+							error : function(XMLHttpRequest, data) {
+								
+							}
+
+						})
+					},
+					
+					closePlaying:function (chessid, callback) {
+						// 用户退出时
+						$.ajax({
+							type : "POST",
+							url : http+"/gobangteach/ChessController/closePlaying",
+							data : {
+								chessid: chessid,
+								token:token,
+								uid:uid
+							},
+							dataType : 'json',
+							success : function(data) {
+								if (data.error.returnCode > 0) {
+									console.log("更新用户比赛状态失败。", data.error);
+								} else {
+									
+								}
+							},
+							error : function(XMLHttpRequest, data) {
+								
+							}
+						});
+					},
+					//认输
+					giveUp:function(){
+						eve.f('giveUp',uid,this.gameInfo.gameId)(); 
+					},
+					inform:function(num){
+						var $this = this;
+						//推送消息
+						eve.f('inform',this.opponentId,num)(); 
+						switch(num){
+							case 4:
+							if($this.gameInfo.blackUserId==uid){
+								eve.f('handlerAction',$this.gameInfo.gameId,'B[]')();
+							}else{
+								eve.f('handlerAction',$this.gameInfo.gameId,'W[]')();
+							}
+							
+							break;
+						}
+					}
+				},
+				mounted:function(){
+					var $this = this;
+					
+					
+					
+					/* matchResult */
+					
+					this.getGameInfoByUserId()
+					//棋盘实例
+					this.game = new xsgo('gameChess',{
+						type:3,
+						bgColor:'#ffd687',
+						affirmMovelater:1,//开启确认落子
+					})
+					//this.game.init()
+					this.game.qrlzState = function(val){
+						$this.qrlzState = val
+					}
+
+					var game = this.game
+					
+					//链接成功回调
+					eve.on('socketOpen',function(){
+						console.log('链接成功')
+					})
+					
+					//棋局登入成功回调
+					eve.on('signInResponse',function(data){
+						console.log(data)
+					
+						//更新棋盘路数 RuleType2 == 1 19路 ==2  9路
+						$this.game.config.road = $this.gameInfo.RuleType2===1?19:9  
+						
+						//设置当前用户所执棋子颜色
+						//如果棋局黑棋id  等于当前用户id  则当前用户执黑 否则执白
+						if($this.gameInfo.blackUserId==uid){
+							$this.game.config.userFirst = 0;
+							$this.opponentId = $this.gameInfo.whiteUserId //对手id
+						}else{
+							$this.game.config.userFirst = 1;
+							$this.opponentId = $this.gameInfo.blackUserId //对手id
+							
+						}
+						//设置 谁先 0黑先 1白先
+						$this.game.config.first = data.first
+					
+						/* 
+							判断当前棋局是否有落子信息，防止刷新数据丢失
+							如果有落子信息则渲染落子否则初始化整个棋盘
+						 */
+					
+						if(data.moveList.length){ //如果有落子信息()
+							//更新棋谱
+							$this.game.svg = data.moveList;
+						}else{
+							$this.game.init() 
+						}
+						
+						//落子回调
+						$this.game.playCall = function(d){
+							//落子
+							console.log(d)
+							eve.f('handlerAction',$this.gameInfo.gameId,d)(); 
+						}
+						
+						$this.vsInfo = data;
+						$this.blackTime = $this.totalTime - data.blackSeconds<0?0:$this.totalTime - data.blackSeconds;
+						$this.whiteTime = $this.totalTime - data.whiteSeconds<0?0:$this.totalTime - data.whiteSeconds
+						
+						//当前该谁落子
+						$this.activeUser = game.config.first
+						
+						if($this.game.config.first){
+							timer.timout($this.whiteTime)
+						}else{
+							timer.timout($this.blackTime )
+						}
+						console.log('登入成功');
+					})
+					
+					//落子结果
+					eve.on("handlerActionResult", function(data,resultList) {
+						console.log('落子结果:',data);
+						var str = data.join('').indexOf('AE');
+						if(str>0){
+							//document.getElementById('ChipMany').play() //提子声
+						}else{
+							//document.getElementById('stoen0').play() //落子声
+						}
+						game.addQueue(data)
+						
+						console.log('当前谁下',game.config.first)
+						
+						if(game.config.first){
+							timer.flag = 0; //关闭上一次的计时
+							timer.timout($this.whiteTime) //从新开始本次计时
+							
+						}else{
+							timer.flag = 0;
+							timer.timout($this.blackTime)
+						}
+						
+						if($this.blackTime===0){ // 如果基础时间用完 则每次落子重置 读秒时间为30秒
+							$this.blackSeconds = 30;
+						}
+						if($this.whiteTime===0){
+							$this.whiteSeconds = 30
+						}
+						$this.vsInfo.resultList = resultList
+						
+						$this.activeUser = game.config.first
+					});
+					
+					//棋局结束
+					eve.on("notifyGameOver", function(data) {
+						console.log('棋局结束:',data)
+						switch (data){
+							case 1:
+								//alert('黑棋认输，白中盘胜')
+								$this.bsResult.title = '白中盘胜'
+								$this.bsResult.content = '黑棋认输'
+								break;
+							case 2:
+								//alert('白棋认输，黑中盘胜')
+								$this.bsResult.title = '黑中盘胜'
+								$this.bsResult.content = '白棋认输'
+								break;
+							case 3:
+								//alert('白棋求和，黑棋同意')
+								$this.bsResult.title = '平局'
+								$this.bsResult.content = '白棋求和，黑棋同意'
+								break;
+							case 4:
+								//alert('黑棋求和，白棋同意')
+								$this.bsResult.title = '平局'
+								$this.bsResult.content = '黑棋求和，白棋同意'
+								break;
+							case 5:
+								//alert('黑棋超时')
+								$this.bsResult.title = '白中盘胜'
+								$this.bsResult.content = '黑棋超时'
+								break;
+							case 6:
+								//alert('白棋超时')
+								$this.bsResult.title = '黑中盘胜'
+								$this.bsResult.content = '白棋超时'
+								break;
+							case 7:
+								alert('黑白棋各停一手，进入数棋')
+								break;	
+							case 8:
+								//alert('白棋发起数棋，黑棋同意')
+								break;	
+							case 9:
+								//alert('黑棋发起数棋，白棋同意')
+								break;
+							case 10:
+								alert('黑棋发起强制数棋')
+								break;
+							case 11:
+								alert('白棋发起强制数棋')
+								break;	
+							case 12:
+								alert('答题错误')
+								break;
+							case 13:
+								alert('答题正确')
+								break;
+							case 14:
+								//alert('9路吃子黑棋胜')
+								$this.bsResult.title = '黑棋胜'
+								$this.bsResult.content = '9路吃子黑棋胜'
+								break;
+							case 15:
+								//alert('9路吃子白棋胜')
+								$this.bsResult.title = '白棋胜'
+								$this.bsResult.content = '9路吃子白棋胜'
+								break;	
+							default:
+								break;
+						}
+						timer.flag = 0; //关闭读秒
+						
+						//比赛结果弹框
+						layerOpen({
+							content:'#matchResult',//节点
+							area:['6.07rem','4.77rem']//可选默认 2rem 2rem  宽度 高度(带单位)
+						})
+						
+						
+						$this.closeGame($this.gameInfo)
+					});
+					//形式判断返回结果
+					eve.on("jugementResult", function(data) {
+						var mu = game.jugement(data);
+						if(mu){
+							if(mu.B>mu.W){
+								$this.sqResult.title = '黑方胜利'
+								$this.sqResult.blackNum = mu.B;
+								$this.sqResult.whiteNum = mu.W;
+								$this.sqResult.content = '黑胜'+(mu.B-mu.W)+'子';
+							}else if(mu.B < mu.W){
+								$this.sqResult.title = '白方胜利'
+								$this.sqResult.blackNum = mu.B;
+								$this.sqResult.whiteNum = mu.W;
+								$this.sqResult.content = '白胜'+(mu.W-mu.B)+'子';
+							}else{
+								$this.sqResult.title = '平局'
+								$this.sqResult.blackNum = mu.B;
+								$this.sqResult.whiteNum = mu.W;
+								$this.sqResult.content = '平手';
+							}
+						}
+						//数棋弹框
+						layerOpen({
+							content:'#countChess',//节点
+							area:['6.07rem','4.77rem']//可选默认 2rem 2rem  宽度 高度(带单位)
+						})
+						
+					});
+					//接收推送消息
+					eve.on('informReply',function(data){
+						switch (data){
+							case 1: //申请数棋
+								layerTC('对手请求数棋',function(){
+									//console.log('同意数棋')
+									eve.f('statisticalYes',uid,$this.gameInfo.gameId)();
+								},function(){
+									//console.log('拒绝数棋')
+									eve.f('inform',$this.opponentId,101)(); 
+								})
+
+								break;
+							case 101: //拒绝数棋
+								layerTC('对方拒绝数棋请求！')
+								break;
+							case 2: //同意和棋
+								layerTC('对手请求和棋',function(){
+									//同意
+									eve.f('answerdrawYes',uid,$this.gameInfo.gameId)();
+								},function(){
+									//拒绝
+									eve.f('inform',$this.opponentId,102)(); 
+								})
+
+								break;
+							case 102: //拒绝和棋
+								layerTC('对方拒绝和棋请求！')
+								break;
+							case 4: //停一手
+								layerTC('对手停一手');
+								break;
+							default:
+								break;
+						}
+					})
+					
+					
+				}
+			})
+			
+		</script>
+	</body>
+</html>

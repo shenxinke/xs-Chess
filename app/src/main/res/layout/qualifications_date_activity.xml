@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <include layout="@layout/login_title_layout" />
+
+    <TextView
+        android:id="@+id/president_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/dp_30"
+        android:layout_marginTop="@dimen/dp_60"
+        android:text="切换总园"
+        android:textColor="@color/white"
+        android:textSize="@dimen/sp_12"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.xswq.chess.myapplication.customview.MaterialSpinner
+        android:id="@+id/president_text"
+        android:layout_width="@dimen/dp_225"
+        android:layout_height="@dimen/dp_30"
+        android:dropDownVerticalOffset="@dimen/dp_30"
+        android:spinnerMode="dropdown"
+        android:textColor="@color/color_1060b5"
+        app:layout_constraintBottom_toBottomOf="@+id/president_name"
+        app:layout_constraintLeft_toRightOf="@+id/president_name"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/president_name" />
+
+    <TextView
+        android:id="@+id/text_start"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp_30"
+        android:text="切换分园"
+        android:textColor="@color/white"
+        android:textSize="@dimen/sp_12"
+        app:layout_constraintLeft_toLeftOf="@+id/president_name"
+        app:layout_constraintTop_toBottomOf="@+id/president_name" />
+
+    <com.xswq.chess.myapplication.customview.MaterialSpinner
+        android:id="@+id/president_text2"
+        android:layout_width="@dimen/dp_225"
+        android:layout_height="@dimen/dp_30"
+        android:dropDownVerticalOffset="@dimen/dp_30"
+        android:spinnerMode="dropdown"
+        android:textColor="@color/color_1060b5"
+        app:layout_constraintBottom_toBottomOf="@+id/text_start"
+        app:layout_constraintLeft_toRightOf="@+id/text_start"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/text_start" />
+
+    <ImageView
+        android:id="@+id/image_bg"
+        android:layout_width="@dimen/dp_330"
+        android:layout_height="match_parent"
+        android:layout_marginTop="@dimen/dp_150"
+        android:layout_marginBottom="@dimen/dp_10"
+        android:background="@mipmap/personal_juxing_bg227"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/president_text2" />
+
+
+    <ImageView
+        android:id="@+id/shape_punching_card_record"
+        android:layout_width="@dimen/dp_320"
+        android:layout_height="@dimen/dp_50"
+        android:layout_marginTop="@dimen/dp_10"
+        android:background="@drawable/shape_punching_card_record"
+        app:layout_constraintLeft_toLeftOf="@+id/image_bg"
+        app:layout_constraintRight_toRightOf="@+id/image_bg"
+        app:layout_constraintTop_toTopOf="@+id/image_bg" />
+
+    <TextView
+        android:id="@+id/text_name"
+        android:layout_width="@dimen/dp_60"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="教师姓名"
+        android:textColor="@color/color_573800"
+        android:textSize="13sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/shape_punching_card_record"
+        app:layout_constraintLeft_toLeftOf="@+id/shape_punching_card_record"
+        app:layout_constraintTop_toTopOf="@+id/shape_punching_card_record" />
+
+    <TextView
+        android:id="@+id/text_level"
+        android:layout_width="@dimen/dp_60"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/dp_5"
+        android:gravity="center"
+        android:text="棋力级别"
+        android:textColor="@color/color_573800"
+        android:textSize="13sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/shape_punching_card_record"
+        app:layout_constraintLeft_toRightOf="@+id/text_name"
+        app:layout_constraintTop_toTopOf="@+id/shape_punching_card_record" />
+
+    <TextView
+        android:id="@+id/text_number"
+        android:layout_width="@dimen/dp_60"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/dp_5"
+        android:gravity="center"
+        android:text="对局数量"
+        android:textColor="@color/color_573800"
+        android:textSize="13sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/shape_punching_card_record"
+        app:layout_constraintLeft_toRightOf="@+id/text_level"
+        app:layout_constraintTop_toTopOf="@+id/shape_punching_card_record" />
+
+    <TextView
+        android:id="@+id/text_topic_number"
+        android:layout_width="60dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/dp_5"
+        android:gravity="center"
+        android:text="做题数量"
+        android:textColor="@color/color_573800"
+        android:textSize="13sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/shape_punching_card_record"
+        app:layout_constraintLeft_toRightOf="@+id/text_number"
+        app:layout_constraintTop_toTopOf="@+id/shape_punching_card_record" />
+
+    <TextView
+        android:id="@+id/text_schedule"
+        android:layout_width="60dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/dp_5"
+        android:gravity="center"
+        android:text="打卡进度"
+        android:textColor="@color/color_573800"
+        android:textSize="13sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/shape_punching_card_record"
+        app:layout_constraintLeft_toRightOf="@+id/text_topic_number"
+        app:layout_constraintTop_toTopOf="@+id/shape_punching_card_record" />
+
+    <com.scwang.smartrefresh.layout.SmartRefreshLayout
+        android:id="@+id/smartRefreshLayout"
+        android:layout_width="@dimen/dp_320"
+        android:layout_height="match_parent"
+        android:layout_marginTop="@dimen/dp_210"
+        android:layout_marginBottom="@dimen/dp_20"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/shape_punching_card_record">
+
+        <com.scwang.smartrefresh.layout.header.ClassicsHeader
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <ListView
+            android:id="@+id/listView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:divider="@null"
+            android:scrollbars="none" />
+
+        <com.scwang.smartrefresh.layout.footer.ClassicsFooter
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </com.scwang.smartrefresh.layout.SmartRefreshLayout>
+
+    <TextView
+        android:id="@+id/no_date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="暂无数据"
+        android:textColor="@color/black"
+        android:textSize="@dimen/sp_12"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="@+id/smartRefreshLayout"
+        app:layout_constraintLeft_toLeftOf="@+id/smartRefreshLayout"
+        app:layout_constraintRight_toRightOf="@+id/smartRefreshLayout"
+        app:layout_constraintTop_toTopOf="@+id/smartRefreshLayout" />
+
+    <include
+        layout="@layout/webview_topic_layout"
+        android:visibility="invisible" />
+</android.support.constraint.ConstraintLayout>

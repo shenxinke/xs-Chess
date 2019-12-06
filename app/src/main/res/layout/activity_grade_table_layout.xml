@@ -1,0 +1,671 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <HorizontalScrollView
+        android:id="@+id/scroll_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fadingEdge="none"
+        android:overScrollMode="never"
+        android:rotation="90"
+        android:scrollbars="none"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <android.support.constraint.ConstraintLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:background="@drawable/shape_result_of_the_match">
+
+            <android.support.constraint.ConstraintLayout
+                android:id="@+id/title_list"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/dp_48"
+                android:background="@drawable/shape_result_match"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <TextView
+                    android:id="@+id/serial_number"
+                    android:layout_width="@dimen/dp_30"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/dp_30"
+                    android:layout_marginTop="@dimen/dp_20"
+                    android:gravity="center"
+                    android:text="编号"
+                    android:textColor="@color/color_893000"
+                    android:textSize="12sp"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/user_name"
+                    android:layout_width="@dimen/dp_30"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/dp_40"
+                    android:gravity="center"
+                    android:text="姓名"
+                    android:textColor="@color/color_893000"
+                    android:textSize="12sp"
+                    app:layout_constraintLeft_toRightOf="@+id/serial_number"
+                    app:layout_constraintTop_toTopOf="@+id/serial_number" />
+
+                <TextView
+                    android:id="@+id/one_match"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="第 1 轮"
+                    android:textColor="@color/color_893000"
+                    android:textSize="12sp"
+                    android:visibility="gone"
+                    app:layout_constraintBottom_toTopOf="@+id/one_opponent"
+                    app:layout_constraintLeft_toLeftOf="@+id/one_opponent"
+                    app:layout_constraintRight_toRightOf="@+id/one_score"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/one_opponent"
+                    android:layout_width="@dimen/dp_30"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/dp_40"
+                    android:gravity="center"
+                    android:text="对手"
+                    android:textColor="@color/color_893000"
+                    android:textSize="12sp"
+                    android:visibility="gone"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintLeft_toRightOf="@+id/user_name"
+                    app:layout_constraintTop_toBottomOf="@+id/one_match" />
+
+                <TextView
+                    android:id="@+id/one_score"
+                    android:layout_width="@dimen/dp_30"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/dp_22"
+                    android:gravity="center"
+                    android:text="得分"
+                    android:textColor="@color/color_893000"
+                    android:textSize="12sp"
+                    android:visibility="gone"
+                    app:layout_constraintLeft_toRightOf="@+id/one_opponent"
+                    app:layout_constraintTop_toTopOf="@+id/one_opponent" />
+
+                <TextView
+                    android:id="@+id/two_match"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="第 2 轮"
+                    android:textColor="@color/color_893000"
+                    android:textSize="12sp"
+                    android:visibility="gone"
+                    app:layout_constraintBottom_toTopOf="@+id/two_opponent"
+                    app:layout_constraintLeft_toLeftOf="@+id/two_opponent"
+                    app:layout_constraintRight_toRightOf="@+id/two_score"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/two_opponent"
+                    android:layout_width="@dimen/dp_30"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/dp_28"
+                    android:gravity="center"
+                    android:text="对手"
+                    android:textColor="@color/color_893000"
+                    android:textSize="12sp"
+                    android:visibility="gone"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintLeft_toRightOf="@+id/one_score"
+                    app:layout_constraintTop_toBottomOf="@+id/two_match" />
+
+                <TextView
+                    android:id="@+id/two_score"
+                    android:layout_width="@dimen/dp_30"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/dp_22"
+                    android:gravity="center"
+                    android:text="得分"
+                    android:textColor="@color/color_893000"
+                    android:textSize="12sp"
+                    android:visibility="gone"
+                    app:layout_constraintLeft_toRightOf="@+id/two_opponent"
+                    app:layout_constraintTop_toTopOf="@+id/two_opponent" />
+
+                <TextView
+                    android:id="@+id/three_match"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="第 3 轮"
+                    android:textColor="@color/color_893000"
+                    android:textSize="12sp"
+                    android:visibility="gone"
+                    app:layout_constraintBottom_toTopOf="@+id/three_opponent"
+                    app:layout_constraintLeft_toLeftOf="@+id/three_opponent"
+                    app:layout_constraintRight_toRightOf="@+id/three_score"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/three_opponent"
+                    android:layout_width="@dimen/dp_30"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/dp_40"
+                    android:gravity="center"
+                    android:text="对手"
+                    android:textColor="@color/color_893000"
+                    android:textSize="12sp"
+                    android:visibility="gone"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintLeft_toRightOf="@+id/two_score"
+                    app:layout_constraintTop_toBottomOf="@+id/three_match" />
+
+                <TextView
+                    android:id="@+id/three_score"
+                    android:layout_width="@dimen/dp_30"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/dp_22"
+                    android:gravity="center"
+                    android:text="得分"
+                    android:textColor="@color/color_893000"
+                    android:textSize="12sp"
+                    android:visibility="gone"
+                    app:layout_constraintLeft_toRightOf="@+id/three_opponent"
+                    app:layout_constraintTop_toTopOf="@+id/three_opponent" />
+
+                <TextView
+                    android:id="@+id/four_match"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="第 4 轮"
+                    android:textColor="@color/color_893000"
+                    android:textSize="12sp"
+                    android:visibility="gone"
+                    app:layout_constraintBottom_toTopOf="@+id/four_opponent"
+                    app:layout_constraintLeft_toLeftOf="@+id/four_opponent"
+                    app:layout_constraintRight_toRightOf="@+id/four_score"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/four_opponent"
+                    android:layout_width="@dimen/dp_30"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/dp_40"
+                    android:gravity="center"
+                    android:text="对手"
+                    android:textColor="@color/color_893000"
+                    android:textSize="12sp"
+                    android:visibility="gone"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintLeft_toRightOf="@+id/three_score"
+                    app:layout_constraintTop_toBottomOf="@+id/four_match" />
+
+                <TextView
+                    android:id="@+id/four_score"
+                    android:layout_width="@dimen/dp_30"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/dp_22"
+                    android:gravity="center"
+                    android:text="得分"
+                    android:textColor="@color/color_893000"
+                    android:textSize="12sp"
+                    android:visibility="gone"
+                    app:layout_constraintLeft_toRightOf="@+id/four_opponent"
+                    app:layout_constraintTop_toTopOf="@+id/four_opponent" />
+
+                <TextView
+                    android:id="@+id/five_match"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="第 5 轮"
+                    android:textColor="@color/color_893000"
+                    android:textSize="12sp"
+                    android:visibility="gone"
+                    app:layout_constraintBottom_toTopOf="@+id/five_opponent"
+                    app:layout_constraintLeft_toLeftOf="@+id/five_opponent"
+                    app:layout_constraintRight_toRightOf="@+id/five_score"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/five_opponent"
+                    android:layout_width="@dimen/dp_30"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/dp_40"
+                    android:gravity="center"
+                    android:text="对手"
+                    android:textColor="@color/color_893000"
+                    android:textSize="12sp"
+                    android:visibility="gone"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintLeft_toRightOf="@+id/four_score"
+                    app:layout_constraintTop_toBottomOf="@+id/five_match" />
+
+                <TextView
+                    android:id="@+id/five_score"
+                    android:layout_width="@dimen/dp_30"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/dp_22"
+                    android:gravity="center"
+                    android:text="得分"
+                    android:textColor="@color/color_893000"
+                    android:textSize="12sp"
+                    android:visibility="gone"
+                    app:layout_constraintLeft_toRightOf="@+id/five_opponent"
+                    app:layout_constraintTop_toTopOf="@+id/five_opponent" />
+
+                <TextView
+                    android:id="@+id/six_match"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="第 6 轮"
+                    android:textColor="@color/color_893000"
+                    android:textSize="12sp"
+                    android:visibility="gone"
+                    app:layout_constraintBottom_toTopOf="@+id/six_opponent"
+                    app:layout_constraintLeft_toLeftOf="@+id/six_opponent"
+                    app:layout_constraintRight_toRightOf="@+id/six_score"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/six_opponent"
+                    android:layout_width="@dimen/dp_30"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/dp_40"
+                    android:gravity="center"
+                    android:text="对手"
+                    android:textColor="@color/color_893000"
+                    android:textSize="12sp"
+                    android:visibility="gone"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintLeft_toRightOf="@+id/five_score"
+                    app:layout_constraintTop_toBottomOf="@+id/six_match" />
+
+                <TextView
+                    android:id="@+id/six_score"
+                    android:layout_width="@dimen/dp_30"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/dp_22"
+                    android:gravity="center"
+                    android:text="得分"
+                    android:textColor="@color/color_893000"
+                    android:textSize="12sp"
+                    android:visibility="gone"
+                    app:layout_constraintLeft_toRightOf="@+id/six_opponent"
+                    app:layout_constraintTop_toTopOf="@+id/six_opponent" />
+
+                <TextView
+                    android:id="@+id/seven_match"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="第 7 轮"
+                    android:textColor="@color/color_893000"
+                    android:textSize="12sp"
+                    android:visibility="gone"
+                    app:layout_constraintBottom_toTopOf="@+id/seven_opponent"
+                    app:layout_constraintLeft_toLeftOf="@+id/seven_opponent"
+                    app:layout_constraintRight_toRightOf="@+id/seven_score"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/seven_opponent"
+                    android:layout_width="@dimen/dp_30"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/dp_40"
+                    android:gravity="center"
+                    android:text="对手"
+                    android:textColor="@color/color_893000"
+                    android:textSize="12sp"
+                    android:visibility="gone"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintLeft_toRightOf="@+id/six_score"
+                    app:layout_constraintTop_toBottomOf="@+id/seven_match" />
+
+                <TextView
+                    android:id="@+id/seven_score"
+                    android:layout_width="@dimen/dp_30"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/dp_22"
+                    android:gravity="center"
+                    android:text="得分"
+                    android:textColor="@color/color_893000"
+                    android:textSize="12sp"
+                    android:visibility="gone"
+                    app:layout_constraintLeft_toRightOf="@+id/seven_opponent"
+                    app:layout_constraintTop_toTopOf="@+id/seven_opponent" />
+
+                <TextView
+                    android:id="@+id/eight_match"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="第 8 轮"
+                    android:textColor="@color/color_893000"
+                    android:textSize="12sp"
+                    android:visibility="gone"
+                    app:layout_constraintBottom_toTopOf="@+id/eight_opponent"
+                    app:layout_constraintLeft_toLeftOf="@+id/eight_opponent"
+                    app:layout_constraintRight_toRightOf="@+id/eight_score"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/eight_opponent"
+                    android:layout_width="@dimen/dp_30"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/dp_40"
+                    android:gravity="center"
+                    android:text="对手"
+                    android:textColor="@color/color_893000"
+                    android:textSize="12sp"
+                    android:visibility="gone"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintLeft_toRightOf="@+id/seven_score"
+                    app:layout_constraintTop_toBottomOf="@+id/eight_match" />
+
+                <TextView
+                    android:id="@+id/eight_score"
+                    android:layout_width="@dimen/dp_30"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/dp_22"
+                    android:gravity="center"
+                    android:text="得分"
+                    android:textColor="@color/color_893000"
+                    android:textSize="12sp"
+                    android:visibility="gone"
+                    app:layout_constraintLeft_toRightOf="@+id/eight_opponent"
+                    app:layout_constraintTop_toTopOf="@+id/eight_opponent" />
+
+                <TextView
+                    android:id="@+id/nine_match"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="第 9 轮"
+                    android:textColor="@color/color_893000"
+                    android:textSize="12sp"
+                    android:visibility="gone"
+                    app:layout_constraintBottom_toTopOf="@+id/nine_opponent"
+                    app:layout_constraintLeft_toLeftOf="@+id/nine_opponent"
+                    app:layout_constraintRight_toRightOf="@+id/nine_score"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/nine_opponent"
+                    android:layout_width="@dimen/dp_30"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/dp_40"
+                    android:gravity="center"
+                    android:text="对手"
+                    android:textColor="@color/color_893000"
+                    android:textSize="12sp"
+                    android:visibility="gone"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintLeft_toRightOf="@+id/eight_score"
+                    app:layout_constraintTop_toBottomOf="@+id/nine_match" />
+
+                <TextView
+                    android:id="@+id/nine_score"
+                    android:layout_width="@dimen/dp_30"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/dp_22"
+                    android:gravity="center"
+                    android:text="得分"
+                    android:textColor="@color/color_893000"
+                    android:textSize="12sp"
+                    android:visibility="gone"
+                    app:layout_constraintLeft_toRightOf="@+id/nine_opponent"
+                    app:layout_constraintTop_toTopOf="@+id/nine_opponent" />
+
+                <TextView
+                    android:id="@+id/ten_match"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="第 10 轮"
+                    android:textColor="@color/color_893000"
+                    android:textSize="12sp"
+                    android:visibility="gone"
+                    app:layout_constraintBottom_toTopOf="@+id/ten_opponent"
+                    app:layout_constraintLeft_toLeftOf="@+id/ten_opponent"
+                    app:layout_constraintRight_toRightOf="@+id/ten_score"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/ten_opponent"
+                    android:layout_width="@dimen/dp_30"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/dp_40"
+                    android:gravity="center"
+                    android:text="对手"
+                    android:textColor="@color/color_893000"
+                    android:textSize="12sp"
+                    android:visibility="gone"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintLeft_toRightOf="@+id/nine_score"
+                    app:layout_constraintTop_toBottomOf="@+id/ten_match" />
+
+                <TextView
+                    android:id="@+id/ten_score"
+                    android:layout_width="@dimen/dp_30"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/dp_22"
+                    android:gravity="center"
+                    android:text="得分"
+                    android:textColor="@color/color_893000"
+                    android:textSize="12sp"
+                    android:visibility="gone"
+                    app:layout_constraintLeft_toRightOf="@+id/ten_opponent"
+                    app:layout_constraintTop_toTopOf="@+id/ten_opponent" />
+
+                <TextView
+                    android:id="@+id/eleven_match"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="第 11 轮"
+                    android:textColor="@color/color_893000"
+                    android:textSize="12sp"
+                    android:visibility="gone"
+                    app:layout_constraintBottom_toTopOf="@+id/eleven_opponent"
+                    app:layout_constraintLeft_toLeftOf="@+id/eleven_opponent"
+                    app:layout_constraintRight_toRightOf="@+id/eleven_score"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/eleven_opponent"
+                    android:layout_width="@dimen/dp_30"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/dp_40"
+                    android:gravity="center"
+                    android:text="对手"
+                    android:textColor="@color/color_893000"
+                    android:textSize="12sp"
+                    android:visibility="gone"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintLeft_toRightOf="@+id/ten_score"
+                    app:layout_constraintTop_toBottomOf="@+id/eleven_match" />
+
+                <TextView
+                    android:id="@+id/eleven_score"
+                    android:layout_width="@dimen/dp_30"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/dp_22"
+                    android:gravity="center"
+                    android:text="得分"
+                    android:textColor="@color/color_893000"
+                    android:textSize="12sp"
+                    android:visibility="gone"
+                    app:layout_constraintLeft_toRightOf="@+id/eleven_opponent"
+                    app:layout_constraintTop_toTopOf="@+id/eleven_opponent" />
+
+                <TextView
+                    android:id="@+id/twelve_match"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="第 12 轮"
+                    android:textColor="@color/color_893000"
+                    android:textSize="12sp"
+                    android:visibility="gone"
+                    app:layout_constraintBottom_toTopOf="@+id/twelve_opponent"
+                    app:layout_constraintLeft_toLeftOf="@+id/twelve_opponent"
+                    app:layout_constraintRight_toRightOf="@+id/twelve_score"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/twelve_opponent"
+                    android:layout_width="@dimen/dp_30"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/dp_40"
+                    android:gravity="center"
+                    android:text="对手"
+                    android:textColor="@color/color_893000"
+                    android:textSize="12sp"
+                    android:visibility="gone"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintLeft_toRightOf="@+id/eleven_score"
+                    app:layout_constraintTop_toBottomOf="@+id/twelve_match" />
+
+                <TextView
+                    android:id="@+id/twelve_score"
+                    android:layout_width="@dimen/dp_30"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/dp_22"
+                    android:gravity="center"
+                    android:text="得分"
+                    android:textColor="@color/color_893000"
+                    android:textSize="12sp"
+                    android:visibility="gone"
+                    app:layout_constraintLeft_toRightOf="@+id/twelve_opponent"
+                    app:layout_constraintTop_toTopOf="@+id/twelve_opponent" />
+
+                <TextView
+                    android:id="@+id/thirteen_match"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="第 13 轮"
+                    android:textColor="@color/color_893000"
+                    android:textSize="12sp"
+                    android:visibility="gone"
+                    app:layout_constraintBottom_toTopOf="@+id/thirteen_opponent"
+                    app:layout_constraintLeft_toLeftOf="@+id/thirteen_opponent"
+                    app:layout_constraintRight_toRightOf="@+id/thirteen_score"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/thirteen_opponent"
+                    android:layout_width="@dimen/dp_30"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/dp_40"
+                    android:gravity="center"
+                    android:text="对手"
+                    android:textColor="@color/color_893000"
+                    android:textSize="12sp"
+                    android:visibility="gone"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintLeft_toRightOf="@+id/twelve_score"
+                    app:layout_constraintTop_toBottomOf="@+id/thirteen_match" />
+
+                <TextView
+                    android:id="@+id/thirteen_score"
+                    android:layout_width="@dimen/dp_30"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/dp_22"
+                    android:gravity="center"
+                    android:text="得分"
+                    android:textColor="@color/color_893000"
+                    android:textSize="12sp"
+                    android:visibility="gone"
+                    app:layout_constraintLeft_toRightOf="@+id/thirteen_opponent"
+                    app:layout_constraintTop_toTopOf="@+id/thirteen_opponent" />
+
+                <TextView
+                    android:id="@+id/integral"
+                    android:layout_width="@dimen/dp_30"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/dp_20"
+                    android:gravity="center"
+                    android:text="积分"
+                    android:textColor="@color/color_893000"
+                    android:textSize="12sp"
+                    app:layout_constraintBottom_toBottomOf="@+id/user_name"
+                    app:layout_constraintLeft_toRightOf="@+id/thirteen_score" />
+
+                <TextView
+                    android:id="@+id/opponent_score"
+                    android:layout_width="@dimen/dp_40"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/dp_17"
+                    android:gravity="center"
+                    android:text="对手分"
+                    android:textColor="@color/color_893000"
+                    android:textSize="12sp"
+                    app:layout_constraintBottom_toBottomOf="@+id/user_name"
+                    app:layout_constraintLeft_toRightOf="@+id/integral" />
+
+                <TextView
+                    android:id="@+id/total_points"
+                    android:layout_width="@dimen/dp_40"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/dp_10"
+                    android:gravity="center"
+                    android:text="总得分"
+                    android:textColor="@color/color_893000"
+                    android:textSize="12sp"
+                    app:layout_constraintBottom_toBottomOf="@+id/user_name"
+                    app:layout_constraintLeft_toRightOf="@+id/opponent_score" />
+
+                <TextView
+                    android:id="@+id/ranking"
+                    android:layout_width="@dimen/dp_30"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/dp_16"
+                    android:layout_marginRight="@dimen/dp_23"
+                    android:gravity="center"
+                    android:text="名次"
+                    android:textColor="@color/color_893000"
+                    android:textSize="12sp"
+                    app:layout_constraintBottom_toBottomOf="@+id/user_name"
+                    app:layout_constraintLeft_toRightOf="@+id/total_points"
+                    app:layout_constraintRight_toRightOf="parent" />
+
+            </android.support.constraint.ConstraintLayout>
+
+            <ListView
+                android:id="@+id/bottom_list"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="@dimen/dp_5"
+                android:layout_marginTop="@dimen/dp_48"
+                android:divider="@color/color_fff3bc"
+                android:dividerHeight="@dimen/dp_1"
+                android:fadingEdge="none"
+                android:overScrollMode="never"
+                android:scrollbars="none"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/title_list" />
+
+            <TextView
+                android:id="@+id/no_data"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="暂无数据"
+                android:textColor="@color/black"
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </android.support.constraint.ConstraintLayout>
+
+    </HorizontalScrollView>
+
+    <ImageView
+        android:id="@+id/image_close"
+        android:layout_width="@dimen/dp_35"
+        android:layout_height="@dimen/dp_35"
+        android:layout_marginBottom="@dimen/dp_5"
+        android:layout_marginEnd="@dimen/dp_36"
+        android:background="@mipmap/guanbi"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintRight_toRightOf="parent" />
+
+</android.support.constraint.ConstraintLayout>

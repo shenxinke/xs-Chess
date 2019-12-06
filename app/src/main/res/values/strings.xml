@@ -1,0 +1,164 @@
+<resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
+    //登陆登录
+    <string name="app_name">先手围棋-棋校版</string>
+    <string name="login_remindpassword">记住密码</string>
+    <string name="login_forgetpassword">忘记密码？</string>
+    <string name="login_name">登录</string>
+    <string name="login_regster">注册</string>
+    <string name="login_usercode">请输入手机号码</string>
+    <string name="login_userpassword">密码</string>
+    //忘记密码页面
+    <string name="findpass_usercode">请输入手机号码</string>
+    <string name="findpass_newpassword">重新设置密码</string>
+    <string name="findpass_againpassword">再次输入密码</string>
+    <string name="findpass_checkcode">请输入验证码</string>
+    <string name="findpass_getcheckcode">获取验证码</string>
+    <string name="findpass_submit">提交</string>
+    //注册页面
+    <string name="register_phonecode">请输入手机号</string>
+    <string name="register_password">密码</string>
+    <string name="register_againpassword">再次输入密码</string>
+    <string name="register_checkcode">请输入验证码</string>
+    <string name="register_getcheckcode">获取验证码</string>
+    <string name="register_register">注册</string>
+    //修改密码
+    <string name="change_password_new_password">新密码</string>
+
+    //完善页面信息页面
+    <string name="perfect_username">姓名:</string>
+    <string name="perfect_usersex">姓别:</string>
+    <string name="perfect_barthday">生日:</string>
+    <string name="perfect_useraddress">居住地:</string>
+    <string name="perfect_the_garden">园所:</string>
+    <string name="perfect_the_garden_hint">请输入所在园所名，系统将自动匹配</string>
+    <string name="perfect_the_garden_text">如未填写园所，则默认园所为先手科技</string>
+    <string name="perfect_teacher">教师:</string>
+    <string name="perfect_class_id">班级:</string>
+    <string name="perfect_submit">提交</string>
+    //个人中心
+    <string name="history_match">历史对局</string>
+    <string name="personal_username">姓名:</string>
+    <string name="personal_usersex">姓别:</string>
+    <string name="personal_barthday">生日:</string>
+    <string name="personal_useraddress">居住地:</string>
+    <string name="personal_mechanism_name">机构名称:</string>
+    <string name="personal_phone">手机号:</string>
+    <string name="_123123132">123123123</string>
+
+    //时间控件
+    <string name="cancle">取消</string>
+    <string name="title">请选择时间</string>
+    <string name="commit">确定</string>
+    <string name="year">年</string>
+    <string name="month">月</string>
+    <string name="day">日</string>
+    <string name="hour">时</string>
+    <string name="minute">分</string>
+
+    //导航入口
+
+    <string name="about_us_content1">
+            北京先手网络科技有限公司（以下简称“先手围
+        棋”）是由围棋行业资深人士联合精耕资本市场多年
+        的专业人士共同发起设立的，公司成立于2017年9月
+        ，注册资本1000万元，目前公司已经完成贰千万元的
+        A轮战略融资。
+    </string>
+    <string name="about_us_content2">
+        先手围棋专注为围棋教育提供整体解决方案。希
+        望孩子们能在开放、创新、健康、快乐的围棋教育
+        生态环境中不断提升综合素质，实现梦想，成就未来
+        。先手围棋努力将科技成果融入教育实践，创建智能
+        、互动的教学服务平台，帮助孩子们更好的成就自我
+        。
+    </string>
+    <string name="about_us_content3">
+             先手围棋邀请著名国手刘小光（九段）、郑弘
+        （九段）、仇丹云（二段）和清华大学人工智能（AI）
+        技术首席科学家由小川博士组成了专家委员会；同时
+        公司还组建了一支数十人的核心技术骨干团队，他们
+        中不乏具有丰富的围棋教育研发经验、互联网技术开
+        发及产品运营经验。目前公司已经按计划推出了包括
+        标准化智能互动课件、亲子游戏、在线教学、多功能
+        电子教学棋盘、在线对弈、围棋AI、成长日志和题库
+        等八大功能模块的在线服务平台。
+    </string>
+    <string name="about_us_content4">
+            先手围棋将始终贯彻“勤奋、学习、创新、团队
+        ”的企业文化精神，且秉承开放的心态，期望与同行
+        业者共同扩大围棋在中国乃至全世界的影响力，让更
+        多的人了解和喜欢围棋，推动围棋事业蓬勃发展。
+    </string>
+    <string name="servicephone">服务热线：4008-527-722</string>
+
+    <string name="help_content">
+        对弈\n
+        Q：什么是升降赛，什么是友谊赛？\n
+        A：在线对弈随机匹配对手的比赛，是升降\n
+        赛。与好友间进行对弈，是友谊赛。\n
+        Q：如何提升我在平台的对弈棋力？\n
+        A：在线进行升降赛对弈，获得一定胜场后，\n
+        棋力会获得提升。\n
+        Q：在平台下棋是怎么匹配的对手？会不会遇\n
+        到比我厉害很多的对手？\n
+        A：平台自动匹配用户棋力等级加减±级或同级别\n
+        用户随机匹配对弈。\n
+        Q：如何与好友进行友谊赛？\n
+        A：在好友列表中，邀请好友进行对局。\n
+        Q：什么是“AI支招”？\n
+        A：AI判断落子，提供下一步概率最大的3个点\n
+        供用户选择，选择后默认落子。\n
+        Q：我随时都可以使用“AI支招”吗？那我岂不\n
+        是无敌了？\n
+        A：仅在友谊赛或对局研究中可使用，不支持\n
+        升降级赛。\n
+    </string>
+    <string name="help_content2">
+       AI\n
+      Q：怎么和AI下棋？\n
+      A：用户在与AI对弈之前应该先选择AI的难易\n
+      程度，根据选择的等级，系统匹配棋力相符的\n
+      AI进行对弈。\n
+      Q：怎么在评测我的棋力？\n
+      A：根据用户答题，先判断出改用户的棋力，\n
+      如果用户的棋力高于10K然后再与AI对弈评测\n
+      出用户的棋力。\n
+      Q：是否可以多次棋力评测？\n
+      A：系统允许用户多次棋力评测，但用户的棋\n
+      力只与第一次棋力评测的结果相关。\n
+      Q：成长日志是怎么来的？\n
+      A：成长日志是AI抓取用户近期使用平台学\n
+      习，对弈，练习的过程，经过科学严密的分\n
+      析，统计得来的。\n
+    </string>
+
+    <string name="invitation_game"> 允许对局邀请</string>
+    <string name="falling_sound">落子音</string>
+    <string name="warning_tone">提示音</string>
+    <string name="add_friend">允许加我好友</string>
+    <string name="syytem_setup">系统设置</string>
+    <string name="about_us">关于我们</string>
+    <string name="helper_center">帮助中心</string>
+    <string name="switch_user">切换账号</string>
+    <string name="change_password">修改密码</string>
+    <string name="check_for_updates">检查更新</string>
+    <string name="playingchess_username">可输入用户名</string>
+
+    //在线对弈
+    <string name="onlime_type0">入门</string>
+    <string name="onlime_type1">简单</string>
+    <string name="onlime_type2">普通</string>
+    <string name="onlime_type3">困难</string>
+    <string name="onlime_type4">极限挑战</string>
+    <string name="onlime_type9">（建议棋力 25K-20K）</string>
+    <string name="onlime_type5">（建议棋力 15K-5K）</string>
+    <string name="onlime_type6">（建议棋力 5K-10K）</string>
+    <string name="onlime_type7">（建议棋力 2D-4D）</string>
+    <string name="onlime_type8">（建议棋力 5D以上）</string>
+    <string name="save">保存</string>
+    
+    <string name="worktime">作业时间</string>
+    <string name="zhengquelv">正确率</string>
+    <string name="xititotal">习题数</string>
+
+</resources>

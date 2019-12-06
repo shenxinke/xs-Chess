@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>先手围棋智能教育服务平台 </title>
+		<link rel="icon" href="img/logo-left.png" type="image/x-icon">
+	</head>
+	<body style="display: none;">
+		<div id="courseware" class="wa100 ha100 bg_cw_bg">
+			<!--标题-->
+			<div class="w1220 h150 m0a bg_cw_title rel tp50">
+				<h3 class="w610 m0a fs48 tc cf pt14 pr40 ts-t">
+					标准化智能互动课件
+				</h3>
+			</div>
+			<!--返回主界面按钮-->
+			<div class="w322 h150 bg_cws_gb abs tp0 lt100 ">
+				<a href="javascript:history.go(-1)" class="db w260 h85 abs lt30 bt20 br50"></a>
+			</div>
+			<!--内容区域-->
+			
+			<div class="wa100 h680 abs lt0 bt30">
+				<div id="playervideo" class="w1220 ha100 m0a cf bg_cwm_bg df ai-c jc-c">
+					<div class="w1160 w608 fs35 c773b0e tc df fw-w ac-sa ml65">
+						<div class="w312 mr70" v-for='(x,index) in msg' v-if='index < 6'>
+							
+							<a class="db wa100 h202 rel" :href="'/gobangteach/gobangPc/coursewareMp4.html?videoUrl='+x.VideoUrl+'&name='+x.JuniorVideoname">
+								<img class="abs lt-50 tp-50 w412 h302" :src="'img/courseware/coursewareSwf/cwSwf_list'+(index%3+1)+'.png'"/>
+							</a>
+							<a class="db wa100 mt10" href="" v-text='x.JuniorVideoname'></a>
+						</div>
+						
+						<!--<div class="w312">
+							<a class="db wa100 h202 rel" href="">
+								<img class="abs lt-50 tp-50 w412 h302" src="img/courseware/coursewareSwf/cwSwf_list2.png"/>
+							</a>
+							<a class="db wa100 mt10" href="">紧气吃子和打吃</a>
+						</div>
+						<div class="w312">
+							<a class="db wa100 h202 rel" href="">
+								<img class="abs lt-50 tp-50 w412 h302" src="img/courseware/coursewareSwf/cwSwf_list3.png"/>
+							</a>
+							<a class="db wa100 mt10" href="">紧气吃子和打吃</a>
+						</div>
+						<div class="w312">
+							<a class="db wa100 h202 rel" href="">
+								<img class="abs lt-50 tp-50 w412 h302" src="img/courseware/coursewareSwf/cwSwf_list1.png"/>
+							</a>
+							<a class="db wa100 mt10" href="">紧气吃子和打吃</a>
+						</div>
+						<div class="w312">
+							<a class="db wa100 h202 rel" href="">
+								<img class="abs lt-50 tp-50 w412 h302" src="img/courseware/coursewareSwf/cwSwf_list2.png"/>
+							</a>
+							<a class="db wa100 mt10" href="">紧气吃子和打吃</a>
+						</div>
+						<div class="w312">
+							<a class="db wa100 h202 rel" href="">
+								<img class="abs lt-50 tp-50 w412 h302" src="img/courseware/coursewareSwf/cwSwf_list3.png"/>
+							</a>
+							<a class="db wa100 mt10" href="">紧气吃子和打吃</a>
+						</div>-->
+					</div>
+				</div>
+			</div>
+		</div>
+		<script src="libs/require/require.js" type="text/javascript" charset="utf-8"></script>
+		
+		<script type="text/javascript">
+			require(['js/lib/require.config'], function() {
+			    require([
+			    	'Vue',
+			    	'coursewareLookBack'
+			    ],function(Vue){
+				    	$('body').show();
+						coursewareLookBack(Vue)
+						console.log(0%3)
+				})
+			});
+		</script>
+	</body>
+	
+</html>

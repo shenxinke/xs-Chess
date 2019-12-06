@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+	<meta name=”renderer” content="webkit|ie-comp|ie-stand" />
+	<meta name="renderer" content="webkit">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+	<link rel="stylesheet" type="text/css" href="css/lib/reset.css">
+	<link rel="stylesheet" type="text/css" href="css/lib/public.css" />
+	<link rel="stylesheet" type="text/css" href="css/lib/animate.min.css" />
+	<script src="js/gobang/common.js" type="text/javascript" charset="utf-8" name="公共配置信息"></script>
+	<script type="text/javascript" src="libs/jquery/jquery.js"></script>
+	<!-- 第三方 -->
+	<script type='text/javascript' src='libs/sweetalert/sweetalert.min.js'></script>
+	<script type="text/javascript" src="libs/dateformat/dateformat-min.js"></script>
+	<script type="text/javascript" src="libs/laydate/laydate.js"></script>
+	<script type="text/javascript" src="libs/md5/MD5.js"></script>
+	<script type="text/javascript" src="libs/base64/base64.js"></script>
+	<script type="text/javascript" src="libs/vuejs/vue.js"></script>
+	<script type="text/javascript" src="libs/swiper/js/idangerous.swiper.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="libs/layer/layer-v3.1.1/layer/theme/default/layer.css" />
+	<script type="text/javascript" src="libs/layer/layer-v3.1.1/layer/layer.js"></script>
+	<script src="nim/im/js/util.js?v=2"></script>
+	<!-- 通用处理 -->
+	<script type="text/javascript" src="js/lib/rem.js"></script>
+	<!-- 页面样式 -->
+	<link rel="stylesheet" type="text/css" href="css/custom/ElecBoard.css">
+	<!-- 棋盘 -->
+	<link rel="stylesheet" type="text/css" href="chess/css/chess.css"/>
+	<link rel="stylesheet" type="text/css" href="chess/skin/skin1/skin1.css"/>
+	<script src="chess/js/eve.js" type="text/javascript" charset="utf-8"></script>
+	<script src="chess/js/XSGO.js" type="text/javascript" charset="utf-8"></script>
+	<script src="chess/js/bundle.js" type="text/javascript" charset="utf-8"></script>
+	<script src="chess/js/GSocket.js" type="text/javascript" charset="utf-8"></script>
+	<script src="libs/pinchzoom/pinchzoom.js" type="text/javascript" charset="utf-8"></script>
+	<title>先手围棋智能教育服务平台</title>
+	<link rel="icon" href="img/logo-left.png" type="image/x-icon">
+</head>
+
+<body>
+	<div style="display:none">
+		黑：
+		<b id="blacktime">00:00:00</b>
+		提子：
+		<b id="blacktake">0</b>
+		读秒：
+		<b id="black_Seconds">0</b>
+		次数：
+		<b id="black_counts">0</b>
+		白：
+		<b id="whitetime">00:00:00</b>
+		提子：
+		<b id="whitetake">0</b>
+		读秒：
+		<b id="white_Seconds">0</b>
+		次数：
+		<b id="white_counts">0</b>
+		<audio src="music/STONE0.wav" type="hidden" id="stepmusic"></audio>
+	</div>
+	<div class="ElecBoard posrel">
+		<img src="img/ElecBoard/elecExit.png"  onclick='document.location.href = "myschema://go?a=1"' class="posabs dn exitRoom w102 h172 tp rt36">
+		<div class="content-left posrel" id="content">
+			<div id="section" class="bgfff fontsz15">
+				<div class="chessBox wa100 h750 oh">
+					<div id="gameCanvas" onselectstart="return false"></div>
+					<canvas class="posabs tp opacity0 opc5 disn" id="canvas"></canvas>
+					<canvas class="posabs tp opacity0 opc5 disn" id="canvasOp"></canvas>
+				</div>
+				
+				
+			</div>
+		</div>
+		<div class="width100 abs bt0 marginAuto disflex boradius10 flexWrap padlr30">
+			<section class="chessBtn width100">
+				<div class="disflex j-bet ptb3 width100">
+					<a href="javascript:; " onclick='changeFirst("BW")' class="btn">
+						<img src="img/ElecBoard/play-13.png ">
+					</a>
+					<a href="javascript:; " onclick='changeFirst("WB")' class="btn">
+						<img src="img/ElecBoard/play-14.png ">
+					</a>
+					<a href="javascript:; " onclick='changeFirst("B")' class="btn">
+						<img src="img/ElecBoard/play-15.png ">
+					</a>
+					<a href="javascript:; " onclick='changeFirst("W")' class="btn">
+						<img src="img/ElecBoard/play-16.png ">
+					</a>
+					<div class="qpgn w188 h78 disflex ac jc cf fontsz28" onclick="chessFn($(this))">棋盘功能</div>
+				</div>
+				<div class="disflex j-bet ptb3 width100">
+					<a href="javascript:; " onclick='changeFirst("TR")' class="btn ">
+						<img src="img/ElecBoard/play-10.png ">
+					</a>
+					<a href="javascript:; " onclick="changeFirst('SQ')" class="btn ">
+						<img src="img/ElecBoard/play-12.png ">
+					</a>
+					<a href="javascript:; " onclick="changeFirst('CR')" class="btn ">
+						<img src="img/ElecBoard/play-18.png">
+					</a>
+					<a href="javascript:; " onclick="changeFirst('LB1')" class="btn ">
+						<img src="img/ElecBoard/play-8.png ">
+					</a>
+					<a href="javascript:; " onclick="changeFirst('LBA')" class="btn ">
+						<img src="img/ElecBoard/play-9.png ">
+					</a>
+					<a href="javascript:; " onclick='delLabel()' class="btn ">
+						<img src="img/ElecBoard/play-11.png ">
+					</a>
+				</div>
+				<!-- 步数 -->
+				<div class="disflex j-bet ptb3 width100">
+					<a href="javascript:;" onclick='javascript:game.first()' class="btn">
+						<img src="img/ElecBoard/play-1.png">
+					</a>
+					<a href="javascript:;" onclick='javascript:game.nexts()' class="btn">
+						<img src="img/ElecBoard/play-2.png">
+					</a>
+					<a href="javascript:;" onclick='javascript:game.next()' class="btn">
+						<img src="img/ElecBoard/play-3.png">
+					</a>
+					<a href="javascript:;" onclick='javascript:game.prev()' class="btn">
+						<img src="img/ElecBoard/play-4.png">
+					</a>
+					<a href="javascript:;" onclick='javascript:game.prevs()' class="btn">
+						<img src="img/ElecBoard/play-5.png">
+					</a>
+					<a href="javascript:;" onclick='javascript:game.last()' class="btn">
+						<img src="img/ElecBoard/play-6.png">
+					</a>
+				</div>
+			</section>
+			
+			<section style="display:none" class="width100">
+				<!-- 清空  切换棋盘 -->
+				<div class="disflex j-bet pad10 width100">
+					<div class="qpgn w150 h72 disflex ac jc cf fontsz28 changeChessboardModal">切换棋盘</div>
+					<div class="qpgn w150 h72 disflex ac jc cf fontsz28 clearboard">清空棋盘</div>
+				<!-- 题库  棋谱 -->
+					<div class="qpgn w150 h72 disflex ac jc cf fontsz28 library" onclick="loadQuestionsStore()">加载题库</div>
+					<div class="qpgn w150 h72 disflex ac jc cf fontsz28 manualModal">加载棋谱</div>
+				</div>
+				<div class="disflex j-bet pad10 width100">
+					<div class="qpgn w150 h72 disflex ac jc cf fontsz28 showStep" onclick="showLot()">显示手数</div>
+					<div class="qpgn w150 h72 disflex ac jc cf fontsz28 collection">加载收藏</div>
+					<div class="qpgn w150 h72 disflex ac jc cf fontsz28 discuss">研讨</div>
+					<div class="bgyuan4 w150 h72 disflex ac jc cf fontsz28" onclick='backPrev($(this))'>返回</div>
+				</div>
+			</section>
+			
+		</div>
+			
+	</div>
+	<!-- 切换棋盘 -->
+	<div class='modal fade disn bgAlert height100' id='changeChessboardModal' data-backdrop='static'>
+		<div class="modal-body">
+			<h4 class="modal-title fontsz47 textcenter pad10">切换棋盘</h4>
+			<div class="fontsz47 disflex flex-flow j-sa ac padtb80">
+				<span id="chessSize9" class="board active cursPoin">
+					<em></em>
+					9 路
+				</span>
+				<span id="chessSize19" class="board cursPoin">
+					<em></em>
+					19 路
+				</span>
+			</div>
+			<div class="modal-footer fontsz47 disflex flex-flow j-sa ac">
+				<a href="javascript:changeChessboard() " class="btn confirmBtn"></a>
+				<a href="javascript:; " class="btn closeBtn" onclick="layer.closeAll();"></a>
+			</div>
+		</div>
+	</div>
+	<!-- 切换棋盘 -->
+	<!-- 收藏 -->
+	<div class='modal fade disn height100' id='collection'>
+		<div class='modalWrap'>
+			<div class="w690 h119 bg41b br60 disflex j-sa ac pad20">
+				<span class="swiper-button-prev posabs tabPrv lt20"></span>
+				<div class="swiper-container w567 h119 disflex ac marginAuto overHid">
+					<div class="swiper-wrapper disflex j-start ac">
+						<div class="cf fs18 swiper-slide disflex j-sa ac">
+							<div @click="getCollectChess('1','1','12')" class="fontsz26 itemBg w181 h60 textcenter lineh60 active">收藏的习题</div>
+							<div @click="getLatelyChess('1','2','5')" class="fontsz26 itemBg w181 h60 textcenter lineh60">最近使用棋谱</div>
+							<div @click="getLatelyChess('1','1','12')" class="fontsz26 itemBg w181 h60 textcenter lineh60">最近浏览习题</div>
+						</div>
+						<div class="cf fs18 swiper-slide disflex j-sa ac">
+							<div @click="nativeChess()" class="fontsz26 itemBg active w181 h60 textcenter lineh60 clrTab">上传列表</div>
+						</div>
+					</div>
+				</div>	
+				<span class="swiper-button-next posabs tabNext rt20"></span>
+			</div>
+		</div>
+			<div class="modal-body h940 bg41b br50 posrel tp19 z2 overHid">
+				<div class="wa96 marginAuto posrel boradius40 bgfff tp19">
+					<!-- 收藏的习题 -->
+					<div class="libr colle h800 oh">
+						<form id="searchStock" action="" method="post" class="df ai-c jc-sa pt18">
+							<p class="df ai-c jc-sb">
+								<select @change="selectLevel" class="form-control cfff fontsz18 bg28a bd68e" id="questionType" name="questionType">
+									<option value="0">综合练习</option>
+									<option value="1">死活</option>
+									<!-- <option value="2">布局</option> -->
+									<option value="3">官子</option>
+									<option value="4">定式</option>
+									<option value="5">手筋</option>
+									<option value="6">行棋方式</option>
+								</select>
+							</p>
+							<p class="df ai-c jc-sb">
+								<select @change="selectStock" class="form-control cfff fontsz18 bg28a bd68e" name="level">
+									<option v-for='x in levelList' :value="x" v-text='x'></option>
+								</select>
+							</p>
+							<p class="df ai-c jc-sb">
+								<select class="form-control cfff fontsz18 bg28a bd68e" name="QuestionName">
+									<option v-for='x in knowledgeList' :value="x" v-text='x'></option>
+								</select>
+							</p>
+							<img alt="" src="img/ElecBoard/searchBg.png" class="w95 h60" @click='getCollectChess()'>
+							<input type="hidden" name='pageNum' value='1'/>
+							<input type="hidden" name='type' value='1'/>
+							<input type="hidden" name='pageSize' value='12'/>
+						</form>
+						<div v-if="info.list!=0" class="disflex ac j-start flexWrap pad20 overHid content-lib">
+							<img v-for="question in info.list " :src="question.Snapshot " v-on:click="loadQuestion(question.chessId,0) ">
+
+						</div>
+						<div class="noDetail" v-else>
+							<img src="img/ab_help/qm.png" class="h446" />
+							<span class="fontsz24">暂无相关数据</span>
+						</div>
+						<div class="btm-100 posabs width100">
+							<div class="disflex ac j-sa">
+								<span class="w157 h68 fontsz31 lineHei pagePrev textcenter" v-on:click="refsh(info.prePage)">	
+									上一页
+								</span>
+								<span class="w157 h68 fontsz31 lineHei pageNext textcenter" v-on:click="refsh(info.prePage)">	
+									下一页
+								</span>
+							</div>
+						</div>
+					</div>
+					<!-- 最近使用棋谱 -->
+					<div class="manual colle h800 oh" style="display:none">
+						<div v-if="lately.list.length!=0" class="width100 overHid boradius16">
+							<table  class="table tablelist width100">
+								<thead class="theadBg">
+									<tr class="fontsz28 textcenter h124">
+										<th width="33% " class="">黑棋</th>
+										<th width="33% ">白棋</th>
+										<th width="33% ">胜负</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr class="fontsz28 textcenter h130 border1" v-for="chess in lately.list " v-on:click="loadChess(chess.chessId )" :data-id="chess.chessId ">
+										<td>{{chess.BlackName}}</td>
+										<td>{{chess.WhiteName}}</td>
+										<td>{{formatResult(chess.Result)}}</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+						<span v-if="lately.list.length==0 " class="noDetail">
+							<img src="img/ab_help/qm.png" class="h446" />
+							<span class="fontsz24">暂无相关数据</span>
+						</span>
+						<div class="btm-100 posabs width100">
+							<div class="disflex ac j-sa">
+								<span class="w157 h68 fontsz31 lineHei pagePrev textcenter" v-on:click="refresh('2',lately,'5','0')">	
+								上一页
+								</span>
+								<span class="w157 h68 fontsz31 lineHei pageNext textcenter" v-on:click="refresh('2',lately,'5','0') ">	
+									下一页
+								</span>
+							</div>
+							
+						</div>
+					</div>
+					
+					<!-- 最近收藏的习题 -->
+					<div class="libr colle h800 oh" style="display:none">
+						
+						<div v-if="lately.list!=0" class="disflex ac j-start flexWrap pad20 overHid content-lib">
+							<img v-for="question in lately.list " :src="question.Snapshot" v-on:click="loadQuestion(question.chessId,0) ">
+						</div>
+						<div class="noDetail" v-else>
+							<img src="img/ab_help/qm.png" class="h446" />
+							<span class="fontsz24">暂无相关数据</span>
+						</div>
+						<div class="btm-100 posabs width100">
+							<div class="disflex ac j-sa">
+								<span class="w157 h68 fontsz31 lineHei pagePrev textcenter" v-on:click="refresh('1',lately,'12','1') ">	
+									上一页
+								</span>
+								<span class="w157 h68 fontsz31 lineHei pageNext textcenter" v-on:click="refresh('1',lately,'12','1') ">	
+									下一页
+								</span>
+							</div>
+						</div>
+						
+					</div>
+					<!-- 最近上传的习题 棋谱 -->
+					<div class="manual colle h800 oh" style="display:none">
+						<div v-if="pageinfoNative.list.length!=0" class="width100 overHid boradius16">
+							<table  class="table tablelist width100">
+								<thead class="theadBg">
+									<tr class="fontsz28 textcenter h124">
+										
+										<th width="40% ">时间</th>
+										<th width="30% ">标题</th>
+										<th width="30% " class="">操作</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr class="fontsz28 textcenter h130 border1" v-for="chess in pageinfoNative.list " :data-id="chess.id ">
+										<td  v-on:click="loadFile( chess.id ) ">{{formatTime(chess.createTime)}}</td>
+										<td  v-on:click="loadFile( chess.id ) ">{{chess.fileName}}</td>
+										<td>
+											<span class="btntkSearch db tc m0a" @click="dele(chess.id,$event)">删除</span>
+										</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+						<span v-else="pageinfoNative.list.length==0 " class="noDetail">
+							<img src="img/ab_help/qm.png" class="h446" />
+							<span class="fontsz24">暂无相关数据</span>
+						</span>
+						<div class="btm-100 posabs width100">
+							<div class="disflex ac j-sa">
+								<span class="w157 h68 fontsz31 lineHei pagePrev textcenter" v-on:click="refresh('',pageinfoNative.prePage,'5','2') ">	
+									上一页
+								</span>
+								<span class="w157 h68 fontsz31 lineHei pageNext textcenter" v-on:click="refresh('',pageinfoNative.nextPage,'5','2') ">	
+									下一页
+								</span>
+							</div>
+						</div>
+						
+					</div>
+				</div>
+			</div>
+		</div> 
+	</div>
+	<!-- 死活题库 -->
+	<div class='modal fade disn height100' id='libraryModal'>
+		<div class='modalWrap height100'>
+			<div class="modal-body height100 bg41b br50 posrel">
+				<div class="width100 height100 marginAuto boradius40 overHid">
+					<div class="headerSearch disflex flex-flow j-sa ac padTopBtm30">
+						<select class="form-control cfff fontsz18 bg28a bd68e" name=" " id="gobangType" onchange="selectType($(this))">
+							<option value="0">综合练习</option>
+							<option value="1">死活</option>
+							<!-- <option value="2">布局</option> -->
+							<option value="3">官子</option>
+							<option value="4">定式</option>
+							<option value="5">手筋</option>
+							<option value="6">行棋方式</option>
+						</select>
+						<select class="form-control cfff fontsz18 bg28a bd68e" name=" " id="gobangLevel" onchange="selectStock()">
+							<option value="0">25k</option>
+							<option value="1">20k</option>
+							<option value="2">15k</option>
+							<option value="3">10k</option>
+							<option value="4">5k</option>
+							<option value="5">2k</option>
+							<option value="6">1k</option>
+							<option value="7">1D</option>
+							<option value="8">2D</option>
+							<option value="9">3D</option>
+							<option value="10">4D</option>
+							<option value="11">5D</option>
+						</select>
+						<select class="form-control cfff fontsz18 bg28a bd68e" name=" " disabled="disabled" id="knowledge">
+							<option v-for="n in listKnowledge ">{{n}}</option>
+						</select>
+						<img alt="" src="img/ElecBoard/searchBg.png" class="w95 h60" onclick="loadQuestionsStore() ">
+					</div>
+					<div id="content-body" class="disflex ac j-start flexWrap pad20">
+						<img v-for="question in pageinfo.list " :src="question.snapshot " v-on:click="loadQuestion(question.id,0) ">
+					</div>
+					<div id="noDetail" class="noDetail">
+						<img src="img/ab_help/qm.png" class="h446" />
+						<span class="fontsz24">暂无相关数据</span>
+					</div>
+					<div class="disflex ac j-sa">
+						<span class="w157 h68 fontsz31 lineHei pagePrev textcenter" v-on:click="refresh(pageinfo.prePage) ">	
+							上一页
+						</span>
+						<span class="w157 h68 fontsz31 lineHei pageNext textcenter" v-on:click="refresh(pageinfo.nextPage) ">	
+							下一页
+						</span>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!--棋谱加载 -->
+	<div class='modal fade disn height100' id='manualModal'>
+		<div class='modalWrap height100'>
+			<div class="modal-body height100 bg41b br50 posrel z2">
+				<div class="headerSearch manualSearch padAll30 pbt10">
+					<form class="form-inline disflex flex-flow j-sa ac" id='searchqq'>
+						<div class="form-group fontsz20">
+							<input type="text " name='user' placeholder="可输入用户名" style='width:4.87rem' class="form-control cfff fontsz18 bg28a bd68e" placeholder=" ">
+						</div>
+						<img alt="" src="img/ElecBoard/searchBg.png" class="btn-default w95 h60" onclick="loadQuestionsStore()">
+					</form>
+				</div>
+				<div class="wa96 marginAuto posrel boradius40 h800 bgfff">
+					<div class="tab-content tab-box ">
+						<div id="allChess" class="chess">
+							<span v-if="pageinfo.list.length==0 " class="noDetail " style="padding-top: 50px;display:flex ">
+								<img src="img/ab_help/qm.png" class="h446" />
+								<span class="fontsz24">暂无相关数据</span>
+							</span>
+							<div v-if="pageinfo.list.length!=0" class="width100 overHid h800 boradius16">
+								<table v-if="pageinfo.list.length!=0 " class="table tablelist width100">
+									<thead class="theadBg">
+										<tr class="fontsz28 textcenter h124">
+											<th width="33% ">黑棋</th>
+											<th class="33% ">白棋</th>
+											<th class="33% ">结果</th>
+										</tr>
+									</thead>
+									<tbody>
+
+										<tr class="fontsz28 textcenter h130 border1" v-for="chess in pageinfo.list " v-on:click="loadChess( chess.id ) ">
+											<td>{{chess.blackname}}</td>
+											<td>{{chess.whitename}}</td>
+											<td>{{formatResult(chess.result)}}</td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+							<section class="pageSearch fontsz24 btm-88 posabs width100" v-if="pageinfo.list.length!=0 ">
+								<div class="disflex ac j-sa">
+									<span class="w157 h68 fontsz31 lineHei pagePrev textcenter" v-on:click="page(pageinfo.prePage)">	
+										上一页
+									</span>
+									<span class="w157 h68 fontsz31 lineHei pageNext textcenter" v-on:click="page(pageinfo.nextPage)">	
+										下一页
+									</span>
+								</div>
+							</section>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div style="display:none ">
+		黑：
+		<b id="blacktime ">00:00:00</b>
+		提子：
+		<b id="blacktake ">0</b>
+		读秒：
+		<b id="black_Seconds ">0</b>
+		次数：
+		<b id="black_counts ">0</b>
+		白：
+		<b id="whitetime ">00:00:00</b>
+		提子：
+		<b id="whitetake ">0</b>
+		读秒：
+		<b id="white_Seconds ">0</b>
+		次数：
+		<b id="white_counts ">0</b>
+		<audio src="/gobangteach/music/STONE0.wav " type="hidden " id="stepmusic "></audio>
+	</div>
+</body>
+<script type="text/javascript " src="js/custom/ElecBoard.js "></script>
+<script>
+var ratio = parseInt($('html').css('font-size'))/100;
+$('#gameCanvas,#section,#canvas,#canvasOp,#content').css('width', $('body').width()).css('height', $('body').width());
+
+//关闭loding 
+document.location.href = "myschema://go?a=14"
+//棋盘缩放功能
+new RTP.PinchZoom($(".chessBox"), {
+	animationDuration:200,
+	maxZoom:3
+});
+var game = new xsgo('gameCanvas',{
+	isShowCoord:1,//显示坐标
+	queue:[],
+	type:1,//2类型为做题
+	bgColor:'#ffd687',
+	road:19
+})
+game.init();
+function chessFn($this){
+		$('.chessBtn').hide().next().show();
+	}
+function backPrev($this){
+		$this.parent().parent().hide();
+		$('.chessBtn').show();
+	}
+	
+var mySwiper = new Swiper ('.swiper-container', {
+	  loop: false,
+    keyboardControl: true,
+    onSlideNext: function(swiper){
+    	vmCollection.nativeChess();
+  	  $(".colle").last().show().siblings('.colle').hide();
+      },
+      onSlidePrev: function(swiper){
+    	  var $node = $("#collection .swiper-slide").eq(0).find('div');
+    		if($node.eq(0).hasClass('active')){
+    			vmCollection.getCollectChess('1','1','12');
+    			$(".colle").eq(0).show().siblings('.colle').hide();
+    		}else if($node.eq(1).hasClass('active')){
+    			vmCollection.getLatelyChess('1','2','5');
+    			$(".colle").eq(1).show().siblings('.colle').hide();
+    		}else if($node.eq(2).hasClass('active')){
+    			vmCollection.getLatelyChess('1','1','12');
+    			$(".colle").eq(2).show().siblings('.colle').hide();
+    		}
+        }
+})        
+$("body").on("click", ".swiper-button-next", function() {
+	  
+	  mySwiper.swipeNext();
+	  vmCollection.nativeChess();
+	  $(".colle").last().show().siblings('.colle').hide();
+});
+	//swiper 向右切换
+$("body").on("click", ".swiper-button-prev", function() {
+	mySwiper.swipePrev();
+	var $node = $("#collection .swiper-slide").eq(0).find('div');
+	if($node.eq(0).hasClass('active')){
+		vmCollection.getCollectChess('1','1','12');
+		$(".colle").eq(0).show().siblings('.colle').hide();
+	}else if($node.eq(1).hasClass('active')){
+		vmCollection.getLatelyChess('1','2','5');
+		$(".colle").eq(1).show().siblings('.colle').hide();
+	}else if($node.eq(2).hasClass('active')){
+		vmCollection.getLatelyChess('1','1','12');
+		$(".colle").eq(2).show().siblings('.colle').hide();
+	}
+});
+</script>
+
+</html>
